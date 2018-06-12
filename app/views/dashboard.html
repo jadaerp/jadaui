@@ -1,0 +1,61 @@
+
+<!-- START widgets box-->
+<div class="row" ng-controller="DashboardController">
+   <div class="col-lg-3 col-sm-6">
+      <!-- START widget-->
+      <div class="panel bg-info-light pt b0 widget">
+         <div class="ph">
+            <em class="icon-clock fa-lg pull-right"></em>
+            <div class="h2 mt0">{{dashboard.currentPeriod.month}} {{dashboard.currentPeriod.year}} </div>
+            <div class="text-uppercase">Current Period</div>
+         </div>
+         <div sparkline="" data-type="line" data-width="100%" data-height="75px" data-line-color="{{colorByName('info')}}" data-chart-range-min="0" data-fill-color="{{colorByName('info')}}" data-spot-color="{{colorByName('info')}}" data-min-spot-color="{{colorByName('info')}}"
+         data-max-spot-color="{{colorByName('info')}}" data-highlight-spot-color="{{colorByName('info')}}" data-highlight-line-color="{{colorByName('info')}}" values="2,5,3,7,4,5" style="margin-bottom: -2px" data-resize="true"></div>
+      </div>
+   </div>
+   <div class="col-lg-3 col-sm-6">
+      <!-- START widget-->
+      <div class="panel widget bg-purple-light pt b0 widget">
+         <div class="ph">
+            <em class="icon-people fa-lg pull-right"></em>
+            <div class="h2 mt0">{{dashboard.noOfEmployees}}
+            </div>
+            <div class="text-uppercase">Head Count</div>
+         </div>
+         <div sparkline="" data-type="line" data-width="100%" data-height="75px" data-line-color="{{colorByName('purple')}}" data-chart-range-min="0" data-fill-color="{{colorByName('purple')}}" data-spot-color="{{colorByName('purple')}}" data-min-spot-color="{{colorByName('purple')}}"
+         data-max-spot-color="{{colorByName('purple')}}" data-highlight-spot-color="{{colorByName('purple')}}" data-highlight-line-color="{{colorByName('purple')}}" values="1,4,5,4,8,7,10" style="margin-bottom: -2px" data-resize="true"></div>
+      </div>
+   </div>
+
+
+   <div class="col-lg-3 col-md-6 col-sm-12">
+      <!-- START widget-->
+      <div class="panel widget bg-info-light pt b0 widget">
+         <div class="ph">
+            <em class="icon-bubbles fa-lg pull-right"></em>
+            <div class="h2 mt0">500</div>
+            <div class="text-uppercase">Remaining days</div>
+         </div>
+         <div sparkline="" data-type="line" data-width="100%" data-height="75px" data-line-color="{{colorByName('info')}}" data-chart-range-min="0" data-fill-color="{{colorByName('info')}}" data-spot-color="{{colorByName('info')}}" data-min-spot-color="{{colorByName('info')}}"
+         data-max-spot-color="{{colorByName('info')}}" data-highlight-spot-color="{{colorByName('info')}}" data-highlight-line-color="{{colorByName('info')}}" values="4,5,3,10,7,15" style="margin-bottom: -2px" data-resize="true"></div>
+      </div>
+   </div>
+   <div class="col-lg-3 col-md-6 col-sm-12">
+      <!-- START widget-->
+      <div class="panel widget bg-purple-light pt b0 widget">
+         <div class="ph">
+            <em class="icon-pencil fa-lg pull-right"></em>
+            <div class="h2 mt0">
+               {{day}}<span class="text-sm text-white">{{month}}</span>
+               
+            </div>
+            <div class="text-uppercase">
+            Today          
+            </div>
+         </div>
+         <div sparkline="" data-type="line" data-width="100%" data-height="75px" data-line-color="{{colorByName('purple')}}" data-chart-range-min="0" data-fill-color="{{colorByName('purple')}}" data-spot-color="{{colorByName('purple')}}" data-min-spot-color="{{colorByName('purple')}}"
+         data-max-spot-color="{{colorByName('purple')}}" data-highlight-spot-color="{{colorByName('purple')}}" data-highlight-line-color="{{colorByName('purple')}}" values="1,3,4,5,7,8" style="margin-bottom: -2px" data-resize="true"></div>
+      </div>
+   </div>
+</div>
+<!-- END widgets box-->

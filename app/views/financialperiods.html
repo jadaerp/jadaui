@@ -1,0 +1,299 @@
+<!--     <button class="btn btn-info pull-right mr" type="button"  ng-click="newFinancialyear()">New Financial Year </button>
+ -->
+<!--  <div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+    </div>
+  </div>
+    
+ </div>
+ --> 
+    <div class="panel b" >
+         <div class="panel-heading  text-bold" >Financial Periods</div>
+         <div class="panel-body "  ng-controller="FinancialPeriodsController">
+          <div class="row">
+
+             <button class="btn btn-info pull-right mr" type="button"  ng-click="newFinancialyear()"><em class="icon-plus fa-lg "></em> New Financial Year </button>  
+           
+
+          </div>
+
+         <div class="table-responsive">
+         <table class="table table-striped" datatable="ng">
+                 <thead>
+               <tr >
+                  <th> Period</th>
+                  <th>Month</th>
+                   <th>Year</th>
+                   <th>Start</th>
+                  
+                  
+                   <th>End</th>
+                   <th>Is Current</th>
+                  
+               </tr>
+            </thead>
+                <tbody>
+               <tr ng-repeat="period in periods">
+                  <td>{{period.period}}</td>
+                  <td>{{period.monthDescription}}</td>
+                  <td>{{period.year}}</td>
+                   <td>{{period.startDate}}</td>
+                  <td>{{period.endDate}}</td>
+                  <td>{{period.isCurrent==true?'YES':'NO'}}</td>
+                  
+                <td>
+                        <div class="buttons" >
+                         <button class="btn btn-info pull-left mr" type="button" ng-click="show(period)"><em class="fa fa-pencil"></em></button>
+                    <!--  <a class="btn btn-primary" title="edit"
+                          ui-sref="app.userinfo({UserId:user.id})">  <em class="fa fa-pencil"></em></a>
+                        -->
+                        <button class="btn btn-sm btn-danger"  ng-click="delete(period)" title="Delete">
+                          <em class="fa fa-trash"></em>
+                        </button>
+                      </div>
+                    </td> 
+                  
+               </tr>
+              
+           
+               
+            </tbody>
+         </table>
+
+          
+      </div>
+
+     
+          
+          
+         
+         </div>
+         </div>
+         <div ng-controller="FinancialYearController">
+             <button class="btn btn-info pull-right" type="button"  ng-click="newFinancialyear()"><em class="icon-plus fa-lg "></em> New Financial Year </button>  
+           
+         </div>
+
+   
+
+   <script type="text/ng-template" id="newFYear.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Financial Year</h4></div><div class="modal-body"><!-- START panel-->
+
+               <div class="form-group" ng-controller="DatepickerDemoCtrl as dpick">
+                  <label class="col-lg-3 control-label">Current Financial Year ends at</label>
+                     <div class="col-lg-9">
+                    <p class="input-group">
+                              <input class="form-control" type="text" name="date_of_birth"   uib-datepicker-popup="{{dpick.format}}" ng-model="financialyear.endDate" is-open="dpick.opened" min-date="dpick.minDate" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+                           </p>
+                  </div>
+               </div>
+            
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm" ng-click="submitYear()">Save</button>
+                    <!--    <button class="btn btn-info btn-sm" ng-click="submitClosePeriod()">Save and Close</button> -->
+                      <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+                  </div>
+               </div>
+
+
+                      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+
+
+<script type="text/ng-template" id="newFperiods.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Financial Periods</h4></div><div class="modal-body"><!-- START panel-->
+
+ <form class="form-horizontal" ng-controller="FinancialPeriodsController">
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Period
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="trans_type" ng-model="period.period" placeholder="Period"/>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Month</label>
+                  <div class="col-lg-9">
+                     
+                        <select class="form-control" name="month" ng-model="period.month" ng-options="month.id as month.name for month in months" ng-focus="loadMonths()">
+                  <option value="">Select Month</option>
+  </select>
+                  </div>
+
+                 
+           
+               </div>
+
+              
+            
+             <div class="form-group">
+                  <label class="col-lg-3 control-label">Year</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="trans_desc" ng-model="period.year"  placeholder="Year"/>
+                  </div>
+               </div>
+            
+              
+               <div class="form-group" ng-controller="DatepickerDemoCtrl as dpick">
+                  <label class="col-lg-3 control-label">Start</label>
+                     <div class="col-lg-9">
+                    <p class="input-group">
+                              <input class="form-control" type="text" name="date_of_birth" uib-datepicker-popup="{{dpick.format}}" ng-model="period.startDate" is-open="dpick.opened" min-date="dpick.minDate" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+                           </p>
+                  </div>
+               </div>
+              
+               <div class="form-group" ng-controller="DatepickerDemoCtrl as dpick">
+                  <label class="col-lg-3 control-label">End</label>
+                     <div class="col-lg-9">
+                    <p class="input-group">
+                              <input class="form-control" type="text" name="date_of_birth"   uib-datepicker-popup="{{dpick.format}}" ng-model="period.endDate" is-open="dpick.opened" min-date="dpick.minDate" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+                           </p>
+                  </div>
+               </div>
+            
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm" ng-click="submitPeriod()">Save and New</button>
+                       <button class="btn btn-info btn-sm" ng-click="submitClosePeriod()">Save and Close</button>
+                      <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+                  </div>
+               </div>
+
+
+                      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+
+
+
+
+
+<script type="text/ng-template" id="editFperiods.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Edit Financial Periods</h4></div><div class="modal-body"><!-- START panel-->
+
+ <form class="form-horizontal" ng-controller="FinancialPeriodsController">
+
+      <div class="form-group">
+               
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="hidden"  name="id" ng-model="period.id" placeholder="Period"/>
+                  </div>
+               </div>
+                  <div class="form-group">
+                  <label class="col-lg-3 control-label">Period
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="trans_type" ng-model="period.period" placeholder="Period"/>
+                  </div>
+               </div>
+             <div class="form-group">
+                  <label class="col-lg-3 control-label">Month</label>
+                  <div class="col-lg-9">
+                     
+                        <select class="form-control" name="month" ng-model="period.month" ng-options="month.id as month.name for month in months" ng-focus="loadMonths()">
+                  <option value="" >Select Month</option>
+                            </select>
+                  </div>
+
+                 
+           
+               </div>
+             <div class="form-group">
+                  <label class="col-lg-3 control-label">Year</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="trans_desc" ng-model="period.year"  placeholder="Year"/>
+                  </div>
+               </div>
+            
+              
+               <div class="form-group" ng-controller="DatepickerDemoCtrl as dpick">
+                  <label class="col-lg-3 control-label">Start</label>
+                     <div class="col-lg-9">
+                    <p class="input-group">
+                              <input class="form-control" type="text" name="date_of_birth" uib-datepicker-popup="{{dpick.format}}" ng-model="period.startDate" is-open="dpick.opened" min-date="dpick.minDate" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+                           </p>
+                  </div>
+               </div>
+              
+               <div class="form-group" ng-controller="DatepickerDemoCtrl as dpick">
+                  <label class="col-lg-3 control-label">End</label>
+                     <div class="col-lg-9">
+                    <p class="input-group">
+                              <input class="form-control" type="text" name="date_of_birth"   uib-datepicker-popup="{{dpick.format}}" ng-model="period.endDate" is-open="dpick.opened" min-date="dpick.minDate" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+                           </p>
+                  </div>
+               </div>
+ <div class="form-group">
+ <label class="col-lg-3 control-label">Is Current </label>
+   <div class="col-lg-9">
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="itemstate" ng-value="true" ng-model="period.isCurrent" ng-required="true">
+                   <span class="fa fa-circle"></span> Yes
+                </label>
+            </div>
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="itemstate" ng-value="false"  ng-model="period.isCurrent" ng-required="true">
+                    <span class="fa fa-circle"></span>No
+                </label>
+            </div>
+
+            <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.itemstate.$error.required">This field is required</span>
+            </div>
+        </div>              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm" ng-click="updatePeriods(period)">Update</button>
+                      <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+                  </div>
+               </div>
+            </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+
+
+
+
+               

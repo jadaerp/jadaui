@@ -1,0 +1,169 @@
+   
+         <h3>Payroll Journal </h3>
+      <!-- START panel-->
+      <div ng-controller="PayrollJournalReportController">
+        <div class="row">
+          <div class="col-lg-8">
+                  <form class="form-inline">
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Filter By</div>
+         <!-- <input class="form-control" type="text"  name="empNumber"  ng-model="postingtrans.periodId" placeholder="Period"/>
+          <input class="form-control" type="text"  name="empNumber"  ng-model="period_description" placeholder="Period" disabled="" /> -->
+  
+         <select name="department" class="slider slider-lg form-control" ng-model="filter.filterType" ng-change="filterData(filter)">
+        <option value=""  selected>Select Filter</option>
+        <option value="0"  selected>Department</option>
+        <option value="1"  selected>Cost Center</option>
+  </select>
+  </div>
+  <button  ng-click="filterData(filter)"   class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+
+
+
+  
+</form>     
+
+          </div>
+
+     
+     
+   <div class="col-lg-4 pull-right">
+      <!-- START box placeholder-->
+      
+         <!-- START button group-->
+         <div class="btn-group" uib-dropdown="dropdown">
+            <button class="btn btn-primary pull-right" uib-dropdown-toggle="">Generate File
+            </button>
+            <ul class="dropdown-menu animated" role="menu">
+               <li><a ng-click="download('exportTable')" >Pastel</a>
+
+                <li><a ng-click="download('exportTable')" >Evolution</a>
+               </li>
+               <!-- <li><a href="#">Another action</a>
+               </li>
+               <li><a href="#">Something else here</a>
+               </li>
+               <li><a href="#">Separated link</a>
+               </li> -->
+            </ul>
+         </div>
+         <!-- END button group-->
+      
+      <!-- END box placeholder-->
+   </div>
+     
+
+        </div>
+<!-- 
+        <div class="row" >
+   
+
+
+   <div class="col-lg-8">
+
+     <div class="clearfix" ng-controller="DashboardController">
+               <p class="pull-left mr"><b>Period:</b> </p>
+               <p class="pull-left mr">{{dashboard.currentPeriod.month}} {{dashboard.currentPeriod.year}}</p>
+              
+            </div>
+
+
+    
+
+   </div>
+
+
+
+</div> -->
+      <div class="panel panel-default" id="panelDemo15">
+         <div class="panel-heading"></div>
+         <div class="panel-body">
+
+
+
+
+          <div class="table-responsive">
+         <table class="table table-bordered-white   table-bordered-whitecol-lg-6" >
+            <thead>
+               <tr><th>Mapping Code</th>
+                  <th>Mapping Description</th>
+                 <th>General Ledger Code</th>
+                 <th>Payroll Code</th>
+                  <th>Debit</th>
+                  <th>Credit</th>
+                <th>Department</th>
+                  <th>Cost Centre</th>
+                 
+               </tr>
+            </thead>
+            <tbody >
+               <tr ng-repeat="jreport in jounalreports">
+                  <td >{{jreport.payrollLedgerMappingCode}}
+</td>
+                  <td >{{jreport.payrollLedgerMappingDescription}}</td>
+                   <td >{{jreport.payrollLedgerCode}}</td>
+                  
+                  <td >{{jreport.payrollCodeDescription}}</td>
+                  <td  style="text-align: right;">{{jreport.debit}}</td>
+                   <td  style="text-align: right;">{{jreport.credit}}</td>
+                   <td >{{jreport.department}}</td>
+                    <td >{{jreport.costCenter}}</td>
+                  
+                
+               </tr>
+             
+              
+                
+              
+           
+             <tr>
+                  <td >Total </td>
+                  <td ></td>
+                   <td > </td>
+                   <td > </td>
+                  <td  class="h3"  style="text-align: right;">{{jounalreports.totalDebit}}</td>
+                   <td class="h3"   style="text-align: right;">{{jounalreports.totalCredit}}</td>
+                   <td ></td>
+                  
+                 
+                   
+               </tr>
+            
+            </tbody>
+         </table>
+
+         <table ng-show="false"  >
+           <thead><th>Field</th><th>Period</th><th>Date</th><th>GDC</th><th>Account Number</th><th>Reference</th><th>Description</th><th>Amount</th><th>Tax Type</th><th>Tax Amount</th><th>Open Item</th><th>Projects Code</th><th>Contra Amount</th><th>Exchange Rate</th><th>Bank Exchange Rate</th><th>Batch ID</th><th>Discount Tax Type</th><th>Discount Amount</th>
+           <th>Home Amount</th></thead>
+           <tbody id="exportTable">
+             <tr ng-repeat="pastelExport in pastelExportData">
+                 <td >{{pastelExport.date}}</td>
+                 <td >{{pastelExport.gdc}}</td>
+                 <td >{{pastelExport.accountNumber}}</td>
+                 <td >{{pastelExport.reference}}</td>
+                 <td >{{pastelExport.description}}</td>
+                 <td >{{pastelExport.amount}}</td>
+                 <td >{{pastelExport.taxType}}</td>
+                 <td >{{pastelExport.taxAmout}}</td>
+                 <td >{{pastelExport.openItem}}</td>
+                 <td >{{pastelExport.projectCode}}</td>
+                 <td >{{pastelExport.contraAmount}}</td>
+                 <td >{{pastelExport.exchangeRate}}</td>
+                 <td >{{pastelExport.bankExchangeRate}}</td>
+                 <td >{{pastelExport.batchId}}</td>
+                 <td >{{pastelExport.discountTaxType}}</td>
+                 <td >{{pastelExport.discountAmount}}</td>
+                 <td >{{pastelExport.homeAmount}}</td>
+
+             </tr>
+           </tbody>
+
+         </table>
+        
+             
+   </div>
+          
+         </div>
+      </div>
+      <!-- END panel-->
+      </div>

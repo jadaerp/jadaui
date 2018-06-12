@@ -1,0 +1,303 @@
+                                                                           <h3>Company Totals</h3>
+<div  ng-controller="CompanyTotalsController">
+ <div class="row">
+   <div class="col-lg-12">
+
+      <form class="form-inline">
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Period</div>
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="ctotal.period" ng-options="period.period as period.period for period in periods"  >
+        <option value="" disabled selected>Periods</option>
+  </select>
+  </div>
+
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Department</div>
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="ctotal.department" ng-options="department.ID as department.description for department in departments" >
+        <option value=""  selected>All Departments</option>
+  </select>
+  </div>
+
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Employee Group</div>
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="ctotal.group" ng-options="group.id as group.description for group in groups" >
+        <option value="" selected>All Groups</option>
+  </select>
+  </div>
+
+<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Employee Category</div>
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="ctotal.category" ng-options="category.id as category.description for category in categories" ng-change="getByperiod(ctotal)" >
+        <option value=""  selected>All Categories</option>
+  </select>
+  </div>
+
+
+  <br/>
+   <br/>
+    <div class="col-lg-8">
+
+      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+   
+   <button ng-click="getByperiod(ctotal)" class="btn btn-primary">Search</button>
+  </div>
+ 
+    </div>
+</form>
+  
+
+ </div>
+   </div>
+<!--  <hr/> -->
+<br/>
+
+  <div class="panel panel-default">
+   <!-- <div class="panel-heading">
+      <small>Company Totals</small>
+   </div> -->
+
+
+   <div class="panel-body">
+     <div id="printable">
+   <div class="row">
+     <div class="col-lg-6">
+<div class="table-responsive" >
+       <table  class="table table-bordered-white">
+        
+            <tbody >
+
+
+              <tr>
+                  <td class="boldTotal">Company Totals
+                    
+             </td>
+                  <td></td>
+                     </tr>
+              <tr>
+                  <td class="boldTotal">{{companytotals.company.companyName}} 
+
+             </td>
+             <td></td>
+                  
+                     </tr>                     
+                       <tr>
+                  <td class="boldTotal"> Pay Period:</td>
+                  <td lass="boldTotal" style="text-align: right;"> {{companytotals.period.monthDescription}} {{companytotals.period.year}}</td>
+                     </tr>
+                       <tr>
+                  <td class="boldTotal" > No. of Employees </td>
+                  <td style="text-align: right;"> 2</td>
+                     </tr>
+           
+        
+            </tbody>
+         </table> 
+<!--        </div>
+         
+         </div>
+         </div>
+<div class="row">
+   <div class="col-lg-8">
+      <div class="table-responsive" id="tableToExport"> -->
+
+      <table class="table table-bordered-white" >
+     
+            <tbody>
+              <tr>
+                  <td class="boldTotal">Earnings</td>
+                  <td></td>
+               
+                
+                
+               </tr>
+              <tr  ng-repeat="earning in companytotals.earnings">
+                  <td >{{earning.description}} </td>
+                     <td style="text-align: right;";>{{earning.amount}} </td>
+                
+                
+               </tr>
+               <tr  ng-repeat="grossPay in companytotals.grossPay">
+                  <td class="boldTotal">{{grossPay.description}} </td>
+                     <td class="boldTotal" style="text-align: right;";>{{grossPay.amount}} </td>
+                
+                
+               </tr>
+               
+            
+           
+        
+            </tbody>
+         </table>
+
+
+         <table class="table table-bordered-white" >
+        
+            <tbody >
+               <tr>
+                  <td class="boldTotal">Tax Calculation</td>
+                  <td></td>
+               </tr>
+               <tr ng-repeat="tax in companytotals.taxCalculations">
+                   <td >{{tax.description}} </td>
+                     <td style="text-align: right;"; >{{tax.amount}} </td>
+                
+                
+               </tr>
+            
+           
+        
+            </tbody>
+         </table>
+
+
+     <table class="table table-bordered-white" >
+    
+            <tbody >
+                <tr>
+                  <td class="boldTotal">Deductions</td>
+                  <td></td>
+               </tr>
+               <tr ng-repeat="deduction in companytotals.deductions">
+                  <td >{{deduction.description}} </td>
+                     <td style="text-align: right;"; >{{deduction.amount}} </td>
+                
+                
+               </tr>
+
+               <tr ng-repeat="totalDeduction in companytotals.totalDeduction">
+                  <td  class="boldTotal">{{totalDeduction.description}} </td>
+                     <td style="text-align: right;";  class="boldTotal">{{totalDeduction.amount}} </td>
+                
+                
+               </tr>               
+            
+               <tr  ng-repeat="netPay in companytotals.netPay">
+                  <td class="boldTotal">{{netPay.description}} </td>
+                     <td class="boldTotal" style="text-align: right;";>{{netPay.amount}} </td>
+                
+                
+               </tr>           
+        
+            </tbody>
+         </table>
+
+
+
+           <table class="table table-bordered-white" >
+       
+            <tbody>
+                  <tr>
+                  <td class="boldTotal">Benefits</td>
+                  <td></td>
+               </tr>
+               <tr ng-repeat="benefit in companytotals.benefits">
+                  <td >{{benefit.description}} </td>
+                     <td style="text-align: right;"; >{{benefit.amount}} </td>
+                
+                
+               </tr>
+            
+           
+        
+            </tbody>
+         </table>
+
+         <table class="table table-bordered-white" >
+       
+            <tbody>
+                  <tr>
+                  <td class="boldTotal">Company Contributions</td>
+                  <td></td>
+               </tr>
+               <tr ng-repeat="company in companytotals.companyContributions">
+                  <td >{{company.description}} </td>
+                     <td style="text-align: right;"; >{{company.amount}} </td>
+                
+                
+               </tr>
+            
+           
+        
+            </tbody>
+         </table>
+             
+   </div>
+ </div>
+ 
+   
+   </div>
+   <div class="clearfix ">
+            <hr/>
+         </div>
+   <div class="row">
+   <div class="col-lg-6">
+      
+         <table class="table table-bordered-white col-lg-6" >
+            
+            <tbody >
+               <tr>
+                  <td >Prepared By</td>
+                  <td >----------</td>
+                 
+                  <td >Date</td>
+                  <td >----------</td>
+               </tr>
+                <tr>
+                  <td >Reviewed By </td>
+                  <td >----------</td>
+                 
+                 <td >Date </td>
+                  <td >-----------</td>
+                 
+               </tr>
+              <tr>
+                  <td >Approved By</td>
+                  <td >----------</td>
+                 
+                 <td >Date</td>
+                  <td >---------</td>
+                 
+               </tr>
+            
+               
+                
+                  
+            </tbody>
+         </table>
+             
+   </div>
+   </div>
+ </div>
+   <br/>
+   
+
+    <br/>
+    <div class="col-lg-8">
+            <div class="clearfix">
+         
+         <button class="btn btn-info pull-left mr" type="button" ng-click="printDiv('printable');">Print</button>
+    <!--      <button class="btn btn-success pull-left mr"  ng-click="exportToExcel('#tableToExport')" type="button">EXCEL</button> -->
+      </div>
+
+      </div>
+      </div>
+      </div>
+
+   
+<!--   <button ng-click="printDiv('printable');">Print Div</button> -->
+
+
+<!-- 
+    <h1>Export to Excel</h1>
+    <button class="btn btn-link" ng-click="exportToExcel('#tableToExport')">
+      <span class="glyphicon glyphicon-share"></span>
+ Export to Excel
+    </button> -->
+    </div>
+
+ 
+   

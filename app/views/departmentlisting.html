@@ -1,0 +1,158 @@
+<h3>Departments
+   
+</h3>
+<!-- Zero Configuration-->
+
+<!-- ngRepeat + ngResource-->
+
+<div class="panel panel-default" ng-controller="DeptController">
+   <div class="panel-heading"><div class="clearfix">
+   <button class="btn btn-info pull-right mr" type="button" ng-click="open()">Add New</button>
+        
+        
+      </div></div>
+   <div class="panel-body" >
+
+    <div class="table-responsive">
+     <table  class="table table-striped" datatable="ng">
+       <thead>
+         <tr>
+
+          <th>Department Code</th>
+          <th>Description</th>
+          <th>Action</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="department in departments">
+          <td>{{department.code }}</td>
+          <td>{{department.description }}</td>
+
+
+
+          <td>
+            <div class="buttons" >
+             <button class="btn btn-info pull-left mr" type="button" ng-click="show(department)"><em class="fa fa-pencil"></em></button>
+                    <!--  <a class="btn btn-primary" title="edit"
+                          ui-sref="app.userinfo({UserId:user.id})">  <em class="fa fa-pencil"></em></a>
+                        -->
+                        <button  class="btn btn-sm btn-danger"  ng-click="deletedept(department)" title="Delete">
+                          <em class="fa fa-trash"></em>
+                        </button>
+                      </div>
+                    </td>          
+                  </tr>
+
+
+
+                </tbody>
+              </table>
+
+
+            </div>
+       
+            
+
+
+          </div>
+        </div>
+
+      <script type="text/ng-template" id="newDepartment.html">
+        <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Department</h4></div><div class="modal-body"><!-- START panel-->
+<div ng-controller="DeptController">
+          <form  name="deptform" novalidate >
+        <div class="form-horizontal" >
+           <div class="form-group">
+            <label class="col-lg-3 control-label">Code</label>
+            <div class="col-lg-9">
+             <input class="form-control" type="text" name="deptcode" ng-model="dept.code" ng-minlength="2" placeholder="Department code" ng-required="true"
+        ng-pattern="/^[\w,]+$/" ng-change="checkDepartment(dept.code)" />
+                 <span class="text-danger" ng-show="deptform.deptcode.$dirty &amp;&amp; deptform.deptcode.$error.required">This field is required</span>
+               <span class="text-danger" ng-if="deptform.deptcode.$dirty &amp;&amp; deptform.deptcode.$error.pattern">This field is invalid:No special characters allowed</span>
+
+             <span class="text-center text-danger"  margin-top="md" ng-show="errorMessage">{{errorMessage}}</span>
+           </div>
+         </div>
+         <div class="form-group">
+          <label class="col-lg-3 control-label">Descriptions</label>
+          <div class="col-lg-9">
+           <input class="form-control" type="text" name="deptdescription" ng-model="dept.description" placeholder="eg Name of the Department" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" />
+           <span class="text-danger" ng-show="deptform.deptdescription.$dirty &amp;&amp; deptform.deptdescription.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="deptform.deptdescription.$dirty &amp;&amp; deptform.deptdescription.$error.pattern"> No special characters allowed </span>
+         </div>
+       </div>
+
+
+
+
+       <div class="form-group">
+        <div class="col-lg-offset-3 col-lg-9">
+         <button class="btn btn-info btn-sm" ng-disabled="deptform.$invalid" ng-click="submitdept(deptform)"  >Save and New</button>
+            <button class="btn btn-info btn-sm" ng-disabled="deptform.$invalid" ng-click="submitdeptClose()" >Save and Close</button>
+           <button class="btn btn-warning btn-sm"  ng-click="resets(deptform)">Reset</button>
+       </div>
+     </div>
+
+                      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+
+
+            </div> 
+   </form>
+ </div>
+   <!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+ </script>
+
+
+ <script type="text/ng-template" id="editDepartment.html">
+
+  <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Edit Department</h4></div><div class="modal-body"><!-- START panel-->
+<div  ng-controller="DeptController">
+    <form class="form-horizontal" name="deptform" novalidate >
+
+     <div class="form-group">
+   
+      <div class="col-lg-12">
+       <input class="form-control" type="hidden" name="deptcode" ng-model="department.ID"  placeholder="Department code"/>
+     </div>
+   </div>
+     <div class="form-group">
+      <label class="col-lg-3 control-label">Code</label>
+      <div class="col-lg-9">
+       <input class="form-control" type="text" name="deptcode" ng-model="department.code"  placeholder="Department code" ng-required="true"
+        ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  />
+          <span class="text-danger" ng-show="deptform.deptcode.$dirty &amp;&amp; deptform.deptcode.$error.required">This field is required</span>
+               <span class="text-danger" ng-if="deptform.deptcode.$dirty &amp;&amp; deptform.deptcode.$error.pattern">This field is invalid:No special characters allowed</span>
+     </div>
+
+    
+
+   </div>
+   <div class="form-group">
+    <label class="col-lg-3 control-label">Descriptions</label>
+    <div class="col-lg-9">
+     <input class="form-control" type="text" name="deptdescription" ng-model="department.description" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder="eg Name of the Department"/>
+         <span class="text-danger" ng-show="deptform.deptdescription.$dirty &amp;&amp; deptform.deptdescription.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="deptform.deptdescription.$dirty &amp;&amp; deptform.deptdescription.$error.pattern"> No special characters allowed </span>
+   </div>
+
+
+ </div>
+
+
+
+
+ <div class="form-group">
+  <div class="col-lg-offset-3 col-lg-9">
+   <button class="btn btn-info btn-sm mr" ng-disabled="deptform.$invalid" ng-click="updatedept(department)">Update</button>
+    <button class="btn btn-warning btn-sm "  type="reset">Reset</button>
+
+ </div>
+</div>
+</form>
+</div>
+<div>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+</script>
+

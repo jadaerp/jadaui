@@ -1,0 +1,185 @@
+<!-- <h3>
+   <button class="btn btn-primary pull-right" type="button">
+      <em class="fa fa-plus-circle fa-fw mr-sm"></em>New Invoice</button>Invoice</h3> -->
+    <div class="page" ng-controller="P10dController">
+         <div class="row">
+   <div class="col-lg-8">
+      <form class="form-inline">
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Year</div>
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="p10dreport.year" ng-options="period.year as period.year for period in periods  | unique:'year'" >
+        <option value="" disabled selected>Periods</option>
+  </select>
+  </div>
+
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Quater</div>
+  
+         <select class="form-control" name="account" ng-model="p10dreport.quater">
+                     <option value="1">Quater 1</option>
+                     <option value="2">Quater 2</option>
+                     <option value="3">Quater 3</option>
+                     <option value="4">Quater 4</option>
+                  </select>
+  </div>
+
+
+
+
+   
+
+<button ng-click="getByperiod(p10dreport)" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+</form>
+  
+
+ </div>
+   </div>
+<div class="panel">
+  
+   <div class="panel-body">
+     
+      <div class=" text-center">
+                   <h4><img class="img-responsive center-block" src="app/img/kralogo.jpg"  alt="App Logo" /></h4>
+                
+                </div>
+      <div class="table-responsive ">
+         <table class="table table-bordered">
+                  <tbody>
+
+               <tr>
+                  <td colspan="5" ><b>P.10D</b></td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="text-center">INCOME TAX DEPARTMENT</td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="text-center">EMPLOYER'S QUARTERLY RETURN</td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="text-center"><b>P.A.Y.E RETURN FOR THE QUARTER ENDING: 30 SEPTEMBER  YEAR 2014</b></td>
+                </tr>
+               
+                <tr>
+                  <td colspan="5" height="30"></td>
+                </tr>
+                <tr>
+                 <td></td>
+                  <td colspan="2">EMPLOYER'S PIN </td>
+                  <td colspan="2">{{ptends.employer.pinNumber}}</td>
+                   
+                  
+                </tr>
+                <tr>
+                 
+                  <td></td>
+                  <td colspan="2">EMPLOYER'S NAME. </td>
+                  <td colspan="2"> {{ptends.employer.employerName}} </td>
+                 
+                </tr>
+                <!-- <tr>
+                  <td>Employer's P.I.N. </td>
+                  <td>P051393868P </td>
+                  <td colspan="3"></td>
+                </tr> -->
+                <tr>
+                  <td colspan="5" height="30"></td>
+                </tr>
+            
+                <tr>
+                  <th>EMPLOYEE'S PIN</th>
+                  <th colspan="2">EMPLOYEE'S NAME</th>
+                  <th>TOTAL EMOLUMENTS KSHS.</th>
+                  <th>TOTAL PAYE DEDUCTED KSHS.</th>
+               
+                  
+                 
+               </tr>
+               <tr ng-repeat="ptend in ptends.p10DReportDataList">
+                  <td>{{ptend.employeePin}}</td>
+                  <td colspan="2">{{ptend.employeeName}}</td>
+                 
+                  <td>{{ptend.totalEmoluments}}</td>
+                  <td>{{ptend.totalPayeDeducted}}</td>
+                  
+               </tr>
+             
+            
+
+               <tr>
+                  <td colspan="5" height="30"></td>
+                </tr>
+                <tr>
+                  <td>BANK OF REMITTANCE 9g784g</td>
+                  <td colspan="2">TOTAL EMOLUMENTS</td>
+                 
+                  <td>240000</td>
+                  <td></td>
+                  
+               </tr>
+               <tr>
+                  <td></td>
+                  <td colspan="2">TOTAL PAYE TAX</td>
+                 
+                  <td></td>
+                  <td>33735.00</td>
+                  
+               </tr>
+                <tr>
+                  <td></td>
+                  <td colspan="2">TOTAL WCPS</td>
+                 
+                  <td></td>
+                  <td>0.00</td>
+                  
+               </tr>
+               <tr>
+                  <td></td>
+                  <td colspan="2">FRINGE BENEFIT TAX</td>
+                 
+                  <td></td>
+                  <td>0.00</td>
+                  
+               </tr>
+                <tr>
+                  <td></td>
+                  <td colspan="2">TAX ON</td>
+                 
+                  <td></td>
+                  <td></td>
+                  
+               </tr>
+                <tr>
+                  <td></td>
+                  <td colspan="2">LUMPSUMS/AUDIT/PENALTY/INTEREST</td>
+                 
+                  <td></td>
+                  <td></td>
+                  
+               </tr>
+                <tr>
+                  <td></td>
+                  <td colspan="2">TOTAL TAX PAID FOR THE QUARTER</td>
+                 
+                  <td></td>
+                  <td>33 735.00</td>
+                  
+               </tr>
+              
+               
+                 
+               
+         
+            </tbody>
+         </table>
+      </div>
+    <br/>
+     
+      <div class="clearfix">
+         
+         <button class="btn btn-info pull-left mr" type="button" onclick="window.print();">Print</button>
+         <button class="btn btn-success pull-left mr" type="button">Excel</button>
+      </div>
+   </div>
+</div>
+</div>

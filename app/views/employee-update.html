@@ -1,0 +1,769 @@
+
+
+<h3>Update Employee Details
+
+</h3>
+
+<div class="container-fluid" ng-controller="EmployeesController">
+<!-- START panel-->
+<div class="panel panel-default">
+   <div class="panel-heading">Update Employee Details</div>
+   <div class="panel-body">
+  
+      <form form-wizard="" steps="5"  name="wizardValidation" ng-submit="updateEmpMaster(employee)"  ng-controller="EmployeesController" novalidate>
+         <div id="wizard" class="form_wizard wizard_horizontal">
+            <!-- START wizard steps indicator-->
+   
+
+            <ul class="wizard_steps">
+                        <li >
+                          <a ng-class="{'active':wizard.active(1)}" ng-click="wizard.go(1)">
+                            <span class="step_no">1</span>
+                            <span class="step_descr">
+                                             Basic
+                                             
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a  ng-class="{'active':wizard.active(2)}" ng-click="wizard.go(2)">
+                            <span class="step_no">2</span>
+                            <span class="step_descr">
+                                             Contact
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a  ng-class="{'active':wizard.active(3)}" ng-click="wizard.go(3)">
+                            <span class="step_no">3</span>
+                            <span class="step_descr">
+                                              Statutory
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a  ng-class="{'active':wizard.active(4)}" ng-click="wizard.go(4)">
+                            <span class="step_no">4</span>
+                            <span class="step_descr">
+                                             Financial
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a  ng-class="{'active':wizard.active(5)}" ng-click="wizard.go(5)">
+                            <span class="step_no">5</span>
+                            <span class="step_descr">
+                                             Other information
+                                          </span>
+                          </a>
+                        </li>
+                      </ul>
+                     
+          
+            <!-- END wizard steps indicator-->
+            <!-- START Wizard Step inputs-->
+            <div id="step1" ng-show="wizard.active(1)">
+               <!-- Wizard with validation require inner forms to group step inputs to be validated-->
+               <section ng-form="formStep1">
+                  <legend>Basic</legend>
+                  <!-- START row-->
+                  <div class="row">
+<div class="col-lg-10">
+                  <div class="form-horizontal">
+               
+              
+               <div class="form-group">
+                  <label class="col-lg-2 ">First Name
+                   </label>
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text" name=" surname" ng-model="employee.firstName" placeholder="First Name
+                   " />
+                     <!-- <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.surname.$invalid">This field is invalid</span> -->
+                  </div>
+               </div>
+
+               <div class="form-group">
+                  <label class="col-lg-2 ">Middle Name
+                   </label>
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text" name=" surname" ng-model="employee.middleName" placeholder="Middle Name
+                   " />
+                     <!-- <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.surname.$invalid">This field is invalid</span> -->
+                  </div>
+               </div>
+                 <div class="form-group">
+                  <label class="col-lg-2 "> Surname
+                   </label>
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="other_names" ng-model="employee.lastName" placeholder="Surname
+                   " />
+                  </div>
+               </div>
+                 <div class="form-group">
+                  <label class="col-lg-2 "> Payroll number
+                   </label>
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="payroll_number" ng-model="employee.employeeNumber" placeholder="Payroll number
+                   " />
+                  </div>
+               </div>
+           
+
+               <div class="form-group">
+                  <label class="col-lg-2 ">  National ID Number
+                   </label>
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="id_number"  ng-model="employee.idNumber" placeholder="National ID Number
+                   " />
+                  </div>
+               </div>
+
+               <div class="form-group" >
+                 
+
+                 <label class="col-lg-2">  Passport  Number
+                   </label>
+                  <div class="col-lg-2">
+                     <input class="form-control" type="text"  name="passport_number"  ng-model="employee.passportNumber" placeholder="National ID Number
+                   " />
+                  </div>
+
+                   <label class="col-lg-2 control-label">  Country of issue
+                   </label>
+                  <div class="col-lg-2">
+                     <input class="form-control" type="text"  name="p_country"  ng-model="employee.countryOfIssuance" placeholder="Country of issue
+                   " />
+                  </div>
+                   <label class="col-lg-2 control-label">  Expiry date
+                   </label>
+                  <div class="col-lg-2" ng-controller="DatepickerDemoCtrl as dpick">
+                      <p class="input-group">
+                              <input class="form-control" type="text" name="ex_date" ng-model="employee.expiryDate" uib-datepicker-popup="{{dpick.format}}" is-open="dpick.opened" min-date="dpick.minDate" max-date="'2019-12-22'" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+                           </p>
+                           
+                  </div>
+  
+</div>
+            
+            <!--    <div class="form-group">
+                  <label class="col-lg-2 ">  Date of Birth
+                   </label>
+
+                   <div class="col-lg-10">
+                     <input class="form-control" type="text" name=" date_of_birth" ng-model="employee.dateOfBirth" placeholder="Middle Name
+                   " />
+              
+                  </div>
+                  <div class="col-lg-10">
+                    <p class="input-group">
+                              <input class="form-control" type="text" name="date_of_birth" ng-model="employee.dateOfBirth" uib-datepicker-popup="{{format}}"  is-open="opened" min-date="minDate" uib-datepicker-options="dateOptions"
+                              date-disabled="disabled(date, mode)" close-text="Close" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+                           </p>
+                  </div>
+               </div> -->
+
+
+              <div class="form-group" ng-controller="DatepickerDemoCtrl as dpick">
+                  <label class="col-lg-2">  Date of Birth
+                   </label>
+                  <div class="col-lg-10">
+                    <p class="input-group">
+
+                              <input class="form-control" type="text" name="date_of_birth" uib-datepicker-popup="{{dpick.format}}" ng-model="employee.dateOfBirth" is-open="dpick.opened" min-date="dpick.minDate" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close" required="" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+
+                                 <span class="text-danger" ng-show="formStep4.$submitted &amp;&amp; formStep4.date_of_employment.$invalid">This field is required  ></span>
+                           </p>
+                  </div>
+               </div>
+                 
+             <div class="form-group">
+                  <label class="col-lg-2 "> Marital Status
+                   </label>
+                  <div class="col-lg-10">
+                    <select class="form-control" name="maritalStatus"  ng-model="employee.maritalStatus">
+                              <option value="">Select Status</option>
+                              <option value="SINGLE">Single</option>
+                              <option value="MARRIED">Married</option>
+                             
+                           </select>
+                  </div>
+               </div>
+
+                <div class="form-group">
+                        <label class="col-sm-2 ">Gender </label>
+                        <div class="col-sm-6">
+                       
+                         
+                           
+                           <div class="radio c-radio">
+                              <label>
+                                 <input type="radio"  name="gender" value="1" ng-model="employee.gender" />
+                                 <span class="fa fa-circle"></span>Male
+</label>
+                           </div>
+                           <div class="radio c-radio">
+                              <label>
+                                 <input type="radio"  name="gender"  value="2" ng-model="employee.gender"  />
+
+                                 <span class="fa fa-circle"></span>Female
+</label>
+                           </div>
+                           
+                        </div>
+                        <div class="col-sm-4"></div>
+                     </div>
+
+                     <div class="form-group">
+                  <label class="col-lg-2 "> Dependency
+                   </label>
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="dependencies"  ng-model="employee.dependencies"  placeholder="Dependencies
+                   " />
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg-2 ">Next of Kin
+                   </label>
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="nextkin"  ng-model="employee.nextOfKin" placeholder=" Next of Kin
+                   " />
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg-2 ">Relationship with Next of Kin
+                   </label>
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="nextkinRelaionship" ng-model="employee.nextOfKinRelationship" placeholder="Relationship with Next of Kin
+                   " />
+                  </div>
+               </div>
+
+               <div class="form-group">
+                  <label class="col-lg-2 ">Phone Number for Next of Kin
+
+                 </label>
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="kin_number" ng-model="employee.nextOfKinPhoneNumber "  placeholder="Phone Number
+                   " />
+                  </div>
+               </div>
+
+               <div class="form-group">
+                  <label class="col-lg-2 ">Disability
+
+                 </label>
+                  <div class="col-lg-2">
+                    <div class="checkbox c-checkbox needsclick">
+                              <label class="needsclick">
+                                 <input class="needsclick" type="checkbox"  name="Yes" ng-model="employee.disability" ng-true-value="1" ng-false-value="0" />
+                                 <span class="fa fa-check"></span>Yes</label>
+                           </div>
+                  </div>
+
+               </div>
+               
+
+               <div class="form-group">
+                  <label class="col-lg-2 ">Nature of Disability
+
+                 </label>
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="nature_d" ng-model="employee.natureOfDisability" placeholder="Descriptions
+
+                   " />
+                  </div>
+               </div>
+              
+                     
+              
+               </div>
+               </div>
+                   
+                     
+                  </div>
+                  <!-- END row-->
+               </section>
+               <ul class="pager">
+                  <li class="next"><a href="" ng-click="wizard.go(2)">Next<span>&rarr;</span></a>
+                  </li>
+               </ul>
+            </div>
+            <!-- END Wizard Step inputs-->
+            <!-- START Wizard Step inputs-->
+            <div id="step2" ng-show="wizard.active(2)">
+               <!-- Wizard with validation require inner forms to group step inputs to be validated-->
+               <section ng-form="formStep2">
+                  <legend>Contact</legend>
+                  <!-- START row-->
+                  <div class="row">
+                   
+<div class="col-lg-8">
+                  <div class="form-horizontal">
+               
+              <div class="form-group">
+                  <label class="col-lg-3 "> Phone Number
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="phone_number" ng-model="employee.phoneNumber" placeholder="Phone Number
+                   " />
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 ">Email address
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="email" name=" email" ng-model="employee.emailAddress" placeholder=" Email address
+                   "  />
+                    <!--  <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.email.$invalid">This field is invalid</span> -->
+                  </div>
+               </div>
+                 
+
+               <div class="form-group">
+                  <label class="col-lg-3 "> Physical Address
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="physical_address" ng-model="employee.physicalAddress" placeholder="Physical Address
+                   " />
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 "> Postal address
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="physical_address"  ng-model="employee.postalAddress" placeholder="Physical Address
+                   " />
+                  </div>
+               </div>
+
+               <div class="form-group">
+                  <label class="col-lg-3"> Postal Code
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="postal_code"  ng-model="employee.postalCode"  placeholder="Postal Code
+                   " />
+                  </div>
+               </div>
+              
+               </div>
+               </div>
+                  </div>
+                  <!-- END row-->
+               </section>
+               <ul class="pager">
+                  <li class="previous">
+                     <a href="" ng-click="wizard.go(1)">
+                        <span>&larr; Previous</span>
+                     </a>
+                  </li>
+                  <li class="next"><a href="" ng-click="wizard.go(3)">Next<span>&rarr;</span></a>
+                  </li>
+               </ul>
+            </div>
+            <!-- END Wizard Step inputs-->
+            <!-- START Wizard Step inputs-->
+            <div id="step3" ng-show="wizard.active(3)">
+               <!-- Wizard with validation require inner forms to group step inputs to be validated-->
+               <section ng-form="formStep3">
+                  <legend>Statutory</legend>
+
+
+             <!-- START row-->
+                  <div class="row">
+                    
+                      <div class="col-lg-8">
+                  <div class="form-horizontal">
+               
+              <div class="form-group">
+                  <label class="col-lg-3"> PIN number
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="pin_number" ng-model="employee.pinNumber" placeholder="PIN Number
+                   " />
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 "> NHIF number
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="nhif_number" ng-model="employee.nhifNumber" placeholder=" NHIF Number
+                   "  />
+                     <!-- <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.nhif_number.$invalid">This field is invalid  required="required" ></span> -->
+                  </div>
+               </div>
+                 
+
+               <div class="form-group">
+                  <label class="col-lg-3 "> NSSF number
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="nssf_number" ng-model="employee.nssfNumber" placeholder="NSSF number
+                   " />
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 "> HELB
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="helb" ng-model="employee.helbNumber" placeholder="HELB number
+                   " />
+                  </div>
+               </div>
+
+               <div class="form-group">
+                  <label class="col-lg-3 "> University Registration Number
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="helb" ng-model="employee.universityRegNo" placeholder="Enter University Registration Number"  />
+
+                  </div>
+               </div>
+               
+               </div>
+               </div>
+                </div>
+                  <!-- END row-->
+               </section>
+               <ul class="pager">
+                  <li class="previous">
+                     <a href="" ng-click="wizard.go(2)">
+                        <span>&larr; Previous</span>
+                     </a>
+                  </li>
+                  <li class="next"><a href="" ng-click="wizard.go(4)">Next<span>&rarr;</span></a>
+                  </li>
+               </ul>
+            </div>
+            <!-- END Wizard Step inputs-->
+            <!-- START Wizard Step inputs-->
+             <div id="step4" ng-show="wizard.active(4)">
+               <!-- Wizard with validation require inner forms to group step inputs to be validated-->
+               <section ng-form="formStep4">
+                  <legend>Financial</legend>
+                  <!-- START row-->
+                  <div class="row">
+                    
+                      <div class="col-lg-8">
+                  <div class="form-horizontal">
+               
+            
+                 
+
+           
+              <div class="form-group" ng-controller="DatepickerDemoCtrl as dpick">
+                  <label class="col-lg-3">  Employment date
+                   </label>
+                  <div class="col-lg-9">
+                    <p class="input-group"> 
+                              <input class="form-control" type="text" name="date_of_employment" uib-datepicker-popup="{{dpick.format}}" ng-model="employee.employmentDate" is-open="dpick.opened" min-date="dpick.minDate" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close" required="" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+
+                                 <span class="text-danger" ng-show="formStep4.$submitted &amp;&amp; formStep4.date_of_employment.$invalid">This field is required  ></span>
+                           </p>
+                  </div>
+               </div>
+          
+              
+              
+              <div class="form-group" ng-controller="DatepickerDemoCtrl as dpick">
+                  <label class="col-lg-3">  Terminated
+                   </label>
+                  <div class="col-lg-9">
+                    <input type="checkbox" name="terminated" value="1" ng-model='employee.terminated'/>
+                  </div>
+               </div>             
+
+           
+              <div class="form-group" ng-controller="DatepickerDemoCtrl as dpick">
+                  <label class="col-lg-3">  Termination date
+                   </label>
+                  <div class="col-lg-9">
+                    <p class="input-group"> 
+                              <input class="form-control" type="text" name="date_of_employment" uib-datepicker-popup="{{dpick.format}}" ng-model="employee.terminationDate" is-open="dpick.opened" min-date="dpick.minDate" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close" required="" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+
+                                 <span class="text-danger" ng-show="formStep4.$submitted &amp;&amp; formStep4.date_of_employment.$invalid">This field is required  ></span>
+                           </p>
+                  </div>
+               </div>
+        
+
+
+                       <div class="form-group">
+                        <label class="col-sm-3">Pay Point</label>
+                        <div class="col-lg-9">
+                          <select  class="form-control" name="payPoint" ng-model="employee.payPoint" ng-options="point.id as point.description for point in points">
+    <option value="" disabled selected>Select Pay Point</option>
+  </select>
+                          <!--  <span class="text-danger" ng-show="form.validateInput('pay_point', 'required')">This field is required</span> -->
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>
+                     
+
+
+
+                     <div class="form-group">
+                        <label class="col-sm-3 ">Pay Mode</label>
+                        <div class="col-lg-9">
+                       <select  class="form-control" name="payMode" ng-model="employee.payMode" ng-options="paymode.id as paymode.code+' - '+ paymode.description for paymode in paymodes" >
+                 <option value=" 0" disabled selected >Select Pay Mode</option>
+
+ 
+  </select>
+                        <!--     <span class="text-danger" ng-show="formStep3.$submitted &amp;&amp; formStep3.payMode.$invalid">This field is required  ></span> -->
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>
+
+
+                     
+                
+
+
+                <div class="form-group">
+                  <label class="col-lg-3 ">Bank Code
+                   </label>
+                  <div class="col-lg-9">
+                    <select  class="form-control" name="bank_code" ng-model="employee.bankCode" ng-options="bank.bankCode as bank.bankCode  for bank in bankcodes | unique:'bankCode' " ng-change="updateBankCodes(employee.bankCode)">
+    <option value="" disabled selected > Select Bank Code</option>
+
+ 
+  </select>
+               
+                     <!-- <input class="form-control" type="text"  name="bank_code"  ng-model="empMaster.bankCode" placeholder="Bank Code
+                   " /> -->
+                  </div>
+               </div>
+
+
+                 <div class="form-group">
+                  <label class="col-lg-3 "> Bank Branch Name
+                   </label>
+                  <div class="col-lg-9">
+                    <!--  <input class="form-control" type="text"  name="branch_name" ng-model="empMaster.bankBranch" placeholder="Bank Branch Name
+                   " /> -->
+
+                         <select  class="form-control" name="bankBranch" ng-model="employee.bankBranch" ng-options="bank.bankBranchCode as bank.bankBranchCode +' -'+bank.branchName for bank in bankBranchName" ng-change="updateBankName(employee.bankBranch)" >
+    <option value="" disabled selected > Select Bank Branch</option>
+
+ 
+  </select>
+                  </div>
+               </div>
+
+                    <div class="form-group">
+                  <label class="col-lg-3 ">Bank Name
+                   </label>
+              
+
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="bankName" ng-model="employee.bankName" placeholder="Bank Name
+                   " />
+                  </div>
+               </div>
+
+               <div class="form-group">
+                  <label class="col-lg-3 ">Bank Account Number
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="account_number" ng-model="employee.accountNumber" placeholder="Bank Account Number
+                   " />
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 "> Bank Account Name
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="account_name" ng-model="employee.accountName" placeholder="Bank Account Name
+                   " />
+                  </div>
+               </div>
+         
+   
+              
+       
+                     
+              
+               </div>
+               </div>
+                </div>
+                  <!-- END row-->
+               </section>
+               <ul class="pager">
+                  <li class="previous">
+                     <a href="" ng-click="wizard.go(3)">
+                        <span>&larr; Previous</span>
+                     </a>
+                  </li>
+                  <li class="next"><a href="" ng-click="wizard.go(5)">Next<span>&rarr;</span></a>
+                  </li>
+               </ul>
+            </div>
+            <!-- END Wizard Step inputs-->
+            <!-- END Wizard Step inputs-->
+
+              <!-- START Wizard Step inputs-->
+             <!-- START Wizard Step inputs-->
+            <div id="step5" ng-show="wizard.active(5)">
+               <!-- Wizard with validation require inner forms to group step inputs to be validated-->
+               <section ng-form="formStep5">
+                  <legend>Other Details</legend>
+                  <!-- START row-->
+                  <div class="row">
+                    
+                      <div class="col-lg-8">
+                  <div class="form-horizontal">
+               
+              
+
+                        <div class="form-group">
+                        <label class="col-sm-3 ">Department</label>
+                        <div class="col-lg-9">
+                    <select  class="form-control" name="department"  ng-model="employee.department" ng-options="department.ID as department.description for department in departments">
+                     <option value="" disabled selected>Select Department</option>
+                     </select>
+               
+                          <!--  <span class="text-danger" ng-show="form.validateInput('pay_point', 'required')">This field is required</span> -->
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>
+
+
+                        <div class="form-group">
+                        <label class="col-sm-3"> Cost Center</label>
+                        <div class="col-lg-9">
+                 
+                            <select  class="form-control" name="department"  ng-model="employee.costCenter" ng-options="center.id as center.description for center in centers">
+                     <option value="" disabled selected>Select Cost Center</option>
+                     </select>
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>
+                  
+
+
+              
+                 <div class="form-group">
+                        <label class="col-sm-3"> Employee category   
+                </label>
+                        <div class="col-lg-9">
+                           <select  class="form-control" name="department"  ng-model="employee.employeeCategory" ng-options="category.id as category.description for category in categories">
+                     <option value="" disabled selected>Select Employee category   </option>
+                     </select>
+            
+                           
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>
+
+
+                
+
+                 <div class="form-group">
+                        <label class="col-sm-3"> Employee Group  
+                         </label>
+                        <div class="col-lg-9">
+
+                          <select  class="form-control" name="department"  ng-model="employee.employeeGroup" ng-options="group.id as group.description for group in groups">
+                     <option value="" disabled selected>Select Employee Group</option>
+                     </select>
+            
+               
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>
+                  
+                 <div class="form-group">
+                  <label class="col-lg-3"> Position
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="position"  ng-model="employee.position" placeholder="Position
+                   " />
+                  </div>
+               </div>
+
+
+                      
+              <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                  <button class="btn btn-sm btn-primary" type="submit">Update</button>
+                    <button class="btn btn-sm btn-warning" type="reset">Reset</button>
+                   </div>
+               </div>
+              <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div> 
+              
+               </div>
+               </div>
+                </div>
+                  <!-- END row-->
+               </section>
+               <ul class="pager">
+                  <li class="previous">
+                     <a href="" ng-click="wizard.go(4)">
+                        <span>&larr; Previous</span>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+            <!-- END Wizard Step inputs-->
+
+         </div>
+
+       <!--   {{employee|json}} -->
+      </form>
+   </div>
+</div>
+</div>

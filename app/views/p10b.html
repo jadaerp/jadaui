@@ -1,0 +1,127 @@
+<!-- <h3>
+   <button class="btn btn-primary pull-right" type="button">
+      <em class="fa fa-plus-circle fa-fw mr-sm"></em>New Invoice</button>Invoice</h3> -->
+         <div class="page" ng-controller="P10bController">
+         <div class="row">
+   <div class="col-lg-8">
+      <form class="form-inline">
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">year</div>
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="user.period" ng-options="period.year as period.year for period in periods | unique:'year'" ng-change="showcurrentYear(user.period)">
+        <option value="" disabled selected>Periods</option>
+  </select>
+  </div>
+
+    <button ng-click="getByperiod(user.period)" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+</form>
+  
+
+ </div>
+   </div>
+<div class="panel">
+   <div class="panel-body">
+     <div class=" text-center">
+                   <h4><img class="img-responsive center-block" src="app/img/kralogo.jpg"  alt="App Logo" /></h4>
+                
+                </div>
+     
+      <div class="table-responsive ">
+         <table class="table table-bordered-white ">
+                   <tbody>
+                 
+
+               <tr>
+                  <td colspan="9" ><b>P10B</b></td>
+                </tr>
+                <tr>
+                  <td colspan="9" class="text-center">INCOME TAX DEPARTMENT</td>
+                </tr>
+                <tr>
+                  <td colspan="9" class="text-center">FRINGE BENEFIT TAX RETURN FOR THE YEAR {{user.period}}</td>
+                </tr>
+                 <tr>
+                 
+                 
+                  <td >EMPLOYER'S NAME. </td>
+                  <td colspan="2">{{ptenbs.employer.employerName}}</td>
+                 <td colspan="2"></td>
+                 <td >EMPLOYER'S PIN </td>
+                  <td colspan="2">{{ptenbs.employer.pinNumber}}</td>
+                </tr>
+
+                <tr>
+                  <td colspan="5" height="25"></td>
+                </tr>
+               
+                
+                <tr>
+                  <th colspan="2" style="width: 15%">EMPLOYEE'S NAME</th>
+                  <th>OPENING LOAN BALANCE AT 1ST JANUARY</th>
+                  <th>ADDITIONAL LOAN</th>
+                  <th>DATE LOAN ADVANCED</th>
+                  <th>EMPLOYER'S INTEREST RATE</th>
+                  <th>LOAN BALANCE AT 31ST DECEMBER</th>
+                  <th>TAXABLE FRINGE BENEFIT VALUE PER YEAR</th>
+                  <th>FRINGE BENEFIT TAX PAID</th>
+                  
+                 
+               </tr>
+               <tr ng-repeat="ptenb in ptenbs.p10BReportDataList">
+                  <td colspan="2"  style="width: 20%">{{ptenb.employeeName}}</td>
+                  <td>{{ptenb.openingLoanBalanceAt1stJan}}</td>
+                  <td>{{ptenb.additionalLoan}}</td>
+                  <td>{{ptenb.dateLoanAdvanced}}</td>
+                  <td>{{ptenb.employersInterestRate}}</td>
+                  <td>{{ptenb.loanBalanceAsAt31stDec}}</td>
+                  <td>{{ptenb.taxableFringeBenefitValuePerYear}}</td>
+                  <td>{{ptenb.fringeBenefitTaxPaid}}</td>
+                  
+               </tr>
+               <tr>
+                  <td colspan="9" height="25"></td>
+                </tr>
+                <tr>
+                  <td colspan="7"></td>
+                  
+               <td>{{getTotal('taxableFringeBenefitValuePerYear')}}</td>
+                  <td>{{getTotal('fringeBenefitTaxPaid')}}</td>
+                  
+                 
+               </tr>
+               <tr>
+                  <td colspan="9" height="25"></td>
+                </tr>
+              
+                 <tr>
+                
+                  <td colspan="2"><b>Note to Employer:</b></td>
+                   <td colspan="7">1) FRINGE BENEFIT IS CHARGEABLE TO TAX AT CORPORATION RATE OF TAX</td>
+                 
+                  </tr>
+                  <tr>
+                
+                  <td colspan="2" ></td>
+                   <td colspan="7">2)SUBMIT TWO COPIES OF THIS FORM TOGETHER WITH P.A.Y.E. END OF YEAR RETURN</td>
+                 
+                  </tr>
+               <tr>
+                  <td colspan="9" height="25"></td>
+                </tr>
+                  
+               
+         
+            </tbody>
+            <br/>
+         </table>
+
+      </div>
+    <br/> <br/>
+    <div class="clearfix">
+     
+         <button class="btn btn-info pull-left mr" type="button" onclick="window.print();">Print</button>
+         <button class="btn btn-success pull-left mr" type="button">Excel</button>
+      </div>
+   </div>
+</div>
+</div>

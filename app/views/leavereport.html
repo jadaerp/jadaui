@@ -1,0 +1,239 @@
+<h3>Leaves Report </h3>
+
+
+
+<div class="panel b" ng-controller="LeaveReportController">
+<!-- <div class="panel-heading bg-gray-lighter text-bold">Leaves Report
+  
+   </div> -->
+   <div class="panel-body">
+     
+<div class="row m-b-10"  >
+   
+
+
+   <div class="col-lg-8">
+      <form class="form-inline">
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Period</div>
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="leaveReportFilter.periodId" ng-options="period.id as period.period+' - '+period.year+' - '+period.monthDescription for period in periods" ng-change="getReport(leaveReportFilter.periodId,leaveReportFilter.leaveTypeId)">
+        <option value="" disabled selected>Periods</option>
+  </select>
+  </div>
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Leave Type</div>
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="leaveReportFilter.leaveTypeId" ng-options="l.id as l.code+' - '+l.description for l in leavetypes" ng-change="getReport(leaveReportFilter.periodId,leaveReportFilter.leaveTypeId)" >
+        <option value="" disabled selected>Types</option>
+  </select>
+  </div>
+
+  <button type="button" class="btn btn-primary" ng-click="getReport(leaveReportFilter.periodId,leaveReportFilter.leaveTypeId)"><i class="fa fa-search" aria-hidden="true"></i></button>
+</form>
+  
+
+
+   </div>
+
+</div>      
+   <div class="row m-t-10">
+<!--       <div class="col-md-3">
+         <div class="panel b">
+            <div class="panel-heading bg-gray-lighter text-bold">Leave Types</div>
+            
+       <div class="list-group"    ng-repeat="leave in leavetypes">
+
+            <button class="list-group-item" type="button" ng-click="show(leave.id)"> {{leave.description}}</button>
+            </div> 
+
+                 <div class="list-group" ng-init="settingActive = 1"  >
+
+            <a class="list-group-item" href="" ng-click="settingActive=1" ng-class="{'active': (settingActive == 1)}">{{leave.description}}</a><a class="list-group-item" href="" ng-click="settingActive=2" ng-class="{'active': (settingActive == 2)}">Sick Leave</a><a class="list-group-item"
+               href="" ng-click="settingActive=3" ng-class="{'active': (settingActive == 3)}">Exam Leave</a><a class="list-group-item" href="" ng-click="settingActive=4" ng-class="{'active': (settingActive == 4)}">Maternity Leave</a><a class="list-group-item"
+               href="" ng-click="settingActive=5" ng-class="{'active': (settingActive == 5)}">Paternity Leave</a> 
+            </div> 
+
+
+            </div>
+
+       
+         </div> -->
+    
+      <div class="col-md-12"  ng-controller="LeaveReportController" >
+    
+            <div class="panel b">
+               <div class="panel-heading bg-gray-lighter text-bold">{{currentleaveType}}</div>
+               <div class="panel-body">
+                <div class="clearfix">
+               <p class="pull-left mr h3">Month</p>
+               <p class="pull-left mr h3">Jan-2017</p>
+            </div>
+          
+                  <table class="table table-bordered-white " >
+
+               <thead>
+               <tr>
+                <th>Employee No.</th>
+                <th>Employee Name</th>
+                   <th>Balance b/d</th>
+                   <th>Leave Accrued</th>
+                  <th>Leave Taken</th>
+                 <th>Balance c/d</th>
+                 
+                 
+               </tr>
+            </thead>
+            <tbody >
+               <tr  ng-repeat="leaveReportData in leaveReport">
+                  <td >{{leaveReportData.employeeNumber}}</td>
+                  <td >{{leaveReportData.employeeName}}</td>
+                  <td >{{leaveReportData.broughtForward}}</td>
+                   <td >{{leaveReportData.accrued}}</td>
+             
+                  <td >{{leaveReportData.taken}}</td>
+                  <td >{{leaveReportData.carriedForward}}</td>
+
+                  
+                 
+                
+               </tr>
+
+           
+             
+                   <tr>
+                  <td ></td>
+<!--                   <td class="boldTotal">Total </td>
+                  <td class=" boldTotal">4.25</td>
+                   <td class=" boldTotal">1.75</td>
+                   <td class=" boldTotal">1.00</td>
+                  <td class=" boldTotal">5.00</td> -->
+                  
+                 
+                
+               </tr>
+               
+              
+             
+            
+            </tbody>
+         </table>
+             
+               </div>
+            </div>
+      </div>
+       </div>
+     
+          
+         </div>
+       
+     
+      </div>
+ 
+
+
+    
+     
+           
+        
+  
+     
+               
+              
+        <div>
+
+      <!-- Modal Controller-->
+      <div ng-controller="ModalGmapController as gmapmodal">
+         <!-- Button trigger modal -->
+         <button class="btn btn-primary" ng-click="gmapmodal.open('lg')">Leave History</button>
+         <!-- Modal inline template-->
+         <script type="text/ng-template" id="/myModalContent.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel"></h4></div>
+            <div class="modal-body"> <div class="panel b">
+<div class="row" ng-controller="LeaveReportController" >
+   
+
+
+   <div class="col-lg-8">
+      <form class="form-inline">
+
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Employee Number</div>
+    <select name="employeeNumber" class="slider slider-lg form-control" ng-model="user.employeeNumber" ng-options="employee.id as employee.employeeNumber for employee in employees" >
+        <option value="" disabled selected>Employees</option>
+  </select>
+  </div>
+  <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+</form>
+  
+
+
+   </div>
+<br/>
+
+</div>
+              
+               <div class="panel-heading bg-gray-lighter text-bold">Leave History</div>
+               <div class="panel-body">
+
+
+
+
+                  <div class="row">
+     <div class="col-lg-6 col-xs-12 pv">
+           
+            <div class="clearfix">
+               <p class="pull-left mr"><strong>Employee Number:</strong></p>
+            <p class="pull-left mr"><strong>20456789</strong></p>
+            </div>
+           
+            <div class="clearfix">
+               <p class="pull-left mr"><strong>Employee Name:</strong></p>
+               <p class="pull-left mr"><strong>XYZ Limited P.O. BOX 20744-KNH 00200</strong></p>
+               
+            </div>
+          
+         </div>
+         </div>
+                  <table class="table table-bordered-white " >
+            <thead>
+               <tr><th>Date applied</th>
+                   <th>Leave type</th>
+                      <th>Balance b/d</th>
+                  <th>Balance c/d</th>
+                 
+                 
+               </tr>
+            </thead>
+            <tbody >
+               <tr>
+                  <td >17/8/2017</td>
+                  <td >Annual </td>
+                  <td >1.7</td>
+                    <td >1.7</td>
+           
+                  
+                 
+                
+               </tr>
+               
+              
+             
+            
+            </tbody>
+         </table>
+             
+               </div>
+            </div></div>
+           <!--  <div class="modal-footer"><button class="btn btn-primary" ng-click="ok()"></button></div> -->
+         </script>
+      </div>
+   </div>
+
+
+         
+        
+     
+
+
+

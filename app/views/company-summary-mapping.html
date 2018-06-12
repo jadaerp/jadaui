@@ -1,0 +1,222 @@
+<h3>Company Summar Mapping</h3>
+
+
+
+
+   <div class="container-fluid" ng-controller="CompanySummaryMappingController">
+
+
+
+
+  <div class="panel panel-default">
+         <div class="panel-heading"><div class="buttons" >
+ <button class="btn btn-info pull-right mr" type="button" ng-click="open()">Add New</button>
+
+            </div></div>
+            <div class="panel-body" >
+         <div class="row">
+           <div class="col-md-10">
+                   <div class="clearfix">
+          <table class="table table-bordered-white"  >
+         <thead>
+          <tr>
+           <th>Code</th>
+           <th>Description</th>
+           <th>Payroll Code</th>        
+           <th>Action</th>
+       
+         </tr>
+       </thead>
+       <tbody>
+        <tr ng-repeat="companySummaryMapping in companySummaryMappingData" >
+        
+    
+            <td>{{companySummaryMapping.code}}</td>
+              <td>{{companySummaryMapping.description}}</td>
+
+                  <td>{{companySummaryMapping.payrollCodeDescription}}</td>
+
+                
+
+                
+
+        
+
+          <td>
+            <div class="buttons" >
+              
+                   <button class="btn btn-sm btn-info  mr" type="button" ng-click="show(companySummaryMapping)"><em class="fa fa-pencil"></em></button>
+                  <button class="btn btn-sm btn-danger mr"  ng-click="delete(companySummaryMapping)" title="Delete">
+                    <em class="fa fa-trash"></em>
+
+                  
+                      </div>
+                    </td>          
+                  </tr>
+
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+            
+               
+            <br/>
+           
+                 
+          </div>
+           
+    
+
+               </div>
+             <br/>
+              
+
+          <script type="text/ng-template" id="companySummaryMappingMapping.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">New Company Summary Mapping</h4></div>
+            <div class="modal-body" ng-controller="CompanySummaryMappingController"><!-- START panel-->
+
+ <form class="form-horizontal" name="companySummaryMappingform" novalidate=""  >
+    <div class="form-group">
+                  <label class="col-lg-3"> Code
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="mappingCode" ng-model="companySummaryMapping.code" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder=" Mapping Code"/>
+                       <span class="text-danger" ng-show="companySummaryMappingform.mappingCode.$dirty &amp;&amp; companySummaryMappingform.mappingCode.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="companySummaryMappingform.mappingCode.$dirty &amp;&amp; companySummaryMappingform.mappingCode.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+               
+                <div class="form-group">
+                  <label class="col-lg-3">Description
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="description" ng-model="companySummaryMapping.description" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder=" Mapping Description"/>
+                       <span class="text-danger" ng-show="companySummaryMappingform.description.$dirty &amp;&amp; companySummaryMappingform.description.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="companySummaryMappingform.description.$dirty &amp;&amp; companySummaryMappingform.description.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+
+     
+
+
+                  
+                      <div class="form-group">
+                        <label class="col-lg-3">Payroll Code</label>
+                        <div class="col-lg-9">
+                 
+                            <select  class="form-control" chosen=""  multiple="multiple"  name="payrollCode"  ng-model="companySummaryMapping.payrollCodeList" ng-options="code.id as code.code+' - '+code.description for code in pcodes">
+                
+                     </select>
+
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>
+                
+                
+    
+
+           
+              
+             
+            
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm mr" ng-disabled="companySummaryMappingform.$invalid" ng-click="submitCompanySummaryMapping(companySummaryMapping)">Save and New</button>
+                         <button class="btn btn-info btn-sm mr" ng-disabled="companySummaryMappingform.$invalid" ng-click="submitCloseCompanySummaryMapping(companySummaryMapping)">Save and Close</button>
+                      <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+                  </div>
+               </div>
+               
+                      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            </form>
+          
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+
+
+             <script type="text/ng-template" id="editgcompanySummaryMappingMapping.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Edit companySummaryMappingMapping</h4></div><div class="modal-body"  ng-controller="CompanySummaryMappingController"><!-- START panel-->
+
+<form class="form-horizontal" name="companySummaryMappingform" novalidate=""  >
+       <div class="form-group">
+                  <label class="col-lg-3"> Code
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="mappingCode" ng-model="companySummaryMapping.code" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder=" Mapping Code"/>
+                       <span class="text-danger" ng-show="companySummaryMappingform.mappingCode.$dirty &amp;&amp; companySummaryMappingform.mappingCode.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="companySummaryMappingform.mappingCode.$dirty &amp;&amp; companySummaryMappingform.mappingCode.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+               
+                <div class="form-group">
+                  <label class="col-lg-3">Description
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="description" ng-model="companySummaryMapping.description" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder=" Mapping Description"/>
+                       <span class="text-danger" ng-show="companySummaryMappingform.description.$dirty &amp;&amp; companySummaryMappingform.description.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="companySummaryMappingform.description.$dirty &amp;&amp; companySummaryMappingform.description.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+
+     
+
+
+                  
+                      <div class="form-group">
+                        <label class="col-lg-3">Payroll Code</label>
+                        <div class="col-lg-9">
+                 
+                            <select  class="form-control" chosen=""  multiple="multiple"  name="payrollCode"  ng-model="companySummaryMapping.payrollCodeList" ng-options="code.id as code.code+' - '+code.description for code in pcodes">
+                
+                     </select>
+
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>
+                
+                
+    
+
+           
+              
+             
+            
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm mr" ng-disabled="companySummaryMappingform.$invalid" ng-click="updateCompanySummaryMapping(companySummaryMapping)">Update</button>
+                         
+                      <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+                  </div>
+               </div>
+               
+                      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            </form>
+           <!--  {{companySummaryMapping|json}} -->
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+      </div>
+       
+</button>
+
+
+
+
+
+
+
+
+

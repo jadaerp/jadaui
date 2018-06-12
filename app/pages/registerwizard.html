@@ -1,0 +1,326 @@
+
+<div class="block-center  mt-xl wd-xxl" ng-controller="RegisterFormController as reg">
+   <!-- START panel-->
+   <div class="panel panel-dark panel-flat">
+      <div class="panel-heading text-center">
+         <a href="#">
+            <img class="block-center img-rounded" src="app/img/logo.png" alt="Image" width="80" />
+         </a>
+      </div>
+       <div class="panel-body">
+  
+      <form form-wizard="" steps="3"  class="form-validate mb-lg" role="form" name="reg.registerForm" novalidate="" ng-submit="reg.register()">
+         <div id="wizard" class="form_wizard wizard_horizontal">
+            <!-- START wizard steps indicator-->
+   
+
+            <ul class="wizard_steps">
+                        <li >
+                          <a ng-class="{'active':wizard.active(1)}" ng-click="wizard.go(1)">
+                            <span class="step_no">1</span>
+                            <span class="step_descr">
+                                        Database
+                                             
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a  ng-class="{'active':wizard.active(2)}" ng-click="wizard.go(2)">
+                            <span class="step_no">2</span>
+                            <span class="step_descr">
+                                          Company
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a  ng-class="{'active':wizard.active(3)}" ng-click="wizard.go(3)">
+                            <span class="step_no">3</span>
+                            <span class="step_descr">
+                                            ADMINSTRATOR
+                                          </span>
+                          </a>
+                        </li>
+                       
+                      
+                      </ul>
+                     
+       
+            <div id="step1" ng-show="wizard.active(1)">
+               <!-- Wizard with validation require inner forms to group step inputs to be validated-->
+               <div ng-form="formStep1">
+                  <legend>Database</legend>
+                  <!-- START row-->
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="form-horizontal1">
+  <div class="form-group has-feedback">
+               <label class="text-muted">Server Name</label>
+               <input class="form-control" type="text" name="account_server_name" placeholder="Enter Server name"  ng-model="reg.account.serverName" required="" />
+               <!-- <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep1.account_server_name.$dirty &amp;&amp; formStep1.account_server_name.$error.required">This field is required</span>
+            <!--    <span class="text-danger" ng-show="formStep1.account_server_name.$dirty &amp;&amp; formStep1.account_server_name.$error.pattern">This field must be a valid name</span> -->
+            </div>
+
+            <div class="form-group has-feedback">
+               <label class="text-muted">UserName</label>
+               <input class="form-control" type="text" name="account_username" placeholder="Enter Database Username" ng-model="reg.account.DatabaseUsername" required="" />
+               <!-- <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep1.account_username.$dirty &amp;&amp; formStep1.account_username.$error.required">This field is required</span>
+               <!-- <span class="text-danger" ng-show="formStep1.account_username.$dirty &amp;&amp; formStep1.account_username.$error.pattern">This field must be a valid email address</span> -->
+            </div>
+              <div class="form-group has-feedback">
+               <label class="text-muted">Password</label>
+               <input class="form-control" type="password" name="account_db_password" placeholder="Enter Database password"  ng-model="reg.account.DatabasePassword" required="" />
+               <!-- <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep1.account_db_password.$dirty &amp;&amp;formStep1.account_db_password.$error.required">This field is required</span>
+             <!--   <span class="text-danger" ng-show="formStep1.account_db_password.$dirty &amp;&amp; formStep1.account_db_password.$error.pattern">This field must be a valid email address</span> -->
+            </div>
+
+              <div class="form-group has-feedback">
+               <label class="text-muted">Database Name</label>
+               <input class="form-control" type="text" name="account_database_name" placeholder="Enter Database name"  ng-model="reg.account.DatabaseName" required="" />
+               <!-- <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep1.account_database_name.$dirty &amp;&amp;formStep1.account_database_name.$error.required">This field is required</span>
+              <!--  <span class="text-danger" ng-show="formStep1.account_database_name.$dirty &amp;&amp; reg.registerForm.account_database_name.$error.pattern">This field must be a valid email address</span> -->
+            </div>
+                   
+                   
+                   </div> 
+                   </div> 
+                  </div>
+                  <!-- END row-->
+               </div>
+               <ul class="pager">
+                  <li class="next"><a href="" ng-click="wizard.go(2)">Next<span>&rarr;</span></a>
+                  </li>
+               </ul>
+            </div>
+            <!-- END Wizard Step inputs-->
+            <!-- START Wizard Step inputs-->
+            <div id="step2" ng-show="wizard.active(2)">
+               <!-- Wizard with validation require inner forms to group step inputs to be validated-->
+               <div ng-form="formStep2">
+                  <legend>Company</legend>
+                  <!-- START row-->
+                  <div class="row">
+                       <div class="col-lg-12">
+                      <div class="form-horizontal1">
+       
+          <div class="form-group has-feedback">
+               <label class="text-muted">Company Name</label>
+               <input class="form-control" type="text" name="account_company_name" placeholder="Enter company name" ng-model="reg.account.companyName" required="" />
+               <!-- <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep2.account_company_name.$dirty &amp;&amp;formStep2.account_company_name.$error.required">This field is required</span>
+               <!-- <span class="text-danger" ng-show="formStep2.reg.account_company_name.$submitted  &amp;&amp; formStep2.account_company_name.$error.email">This field must be a valid email address</span> -->
+            </div>
+
+
+               <div class="form-group has-feedback">
+               <label class="text-muted">Email Address</label>
+               <input class="form-control" type="email" name="account_company_email" placeholder="Enter Email Address"  ng-model="reg.account.companyEmail" required="" />
+               <!-- <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep2.account_company_email.$dirty &amp;&amp; formStep2.account_company_email.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="formStep2.account_company_email.$dirty &amp;&amp;formStep2.account_company_email.$error.email">This field must be a valid email address</span>
+            </div>
+
+
+               <div class="form-group has-feedback">
+               <label class="text-muted">Personal  Number</label>
+               <input class="form-control" type="text" name="account_pin" placeholder="Personal  Number"ng-model="reg.account.companyPin" ng-pattern="/^[a-zA-Z0-9]+$/" required="" />
+               <!-- <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep2.account_pin.$dirty &amp;&amp; formStep2.account_pin.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="formStep2.account_pin.$dirty &amp;&amp;formStep2.account_pin.$error.pattern">Input should match 'a-zA-Z0-9' </span>
+            </div>
+             <div class="form-group has-feedback">
+               <label class="text-muted">Postal Address</label>
+               <input class="form-control" type="text" name="account_postal_address" placeholder="Enter Postal Address"  ng-model="reg.account.postalAddress" />
+               <!-- <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+             <!--   <span class="text-danger" ng-show="formStep2.account_postal_address.$dirty &amp;&amp;formStep2.account_postal_address.$error.required">This field is required</span> -->
+              <!--  <span class="text-danger" ng-show="reg.registerForm.reg.account_physical_address.$dirty &amp;&amp; reg.registerForm.account_physical_address.$error.pattern">This field must be a valid email address</span> -->
+            </div>
+
+            <div class="form-group has-feedback">
+               <label class="text-muted">Postal Code</label>
+               <input class="form-control" type="text" name="account_postal_code" placeholder="Enter Postal Code"ng-model="reg.account.postalCode"  />
+               <!-- <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+              <!--  <span class="text-danger" ng-show="formStep2.account_postal_code.$dirty &amp;&amp;formStep2.account_postal_code.$error.required">This field is required</span> -->
+              <!--  <span class="text-danger" ng-show="reg.registerForm.reg.account_physical_address.$dirty &amp;&amp; reg.registerForm.account_physical_address.$error.pattern">This field must be a valid email address</span> -->
+            </div>
+              <div class="form-group has-feedback">
+               <label class="text-muted">Physical Address</label>
+               <input class="form-control" type="text" name="account_physical_address" placeholder="Enter Physical Address" autocomplete="off" ng-model="reg.account.physicalAddress" />
+               <!-- <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+              <!--  <span class="text-danger" ng-show="formStep2.account_physical_address.$dirty &amp;&amp; formStep2.account_physical_address.$error.required">This field is required</span> -->
+             <!--   <span class="text-danger" ng-show="reg.registerForm.reg.account_physical_address.$dirty &amp;&amp; reg.registerForm.account_physical_address.$error.pattern">This field must be a valid email address</span> -->
+            </div>
+             <div class="form-group has-feedback">
+               <label class="text-muted"> Country</label>
+
+               <select class="form-control" name="account_country"  ng-model="reg.account.country" required="">
+                              <option value="">Select Country</option>
+                              <option value="1">Kenya</option>
+                              
+                             
+                           </select>
+          <!--      <input class="form-control" type="text" name="account_country" placeholder="Enter Country" ng-model="reg.account.country" required="" /> -->
+              <!--  <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep2.account_country.$dirty &amp;&amp;formStep2.account_country.$error.required">This field is required</span>
+               <!-- <span class="text-danger" ng-show="formStep2.account_country.$dirty &amp;&amp; formStep2.account_country.$error.pattern">This field must be a valid email address</span> -->
+            </div>
+                 <div class="form-group has-feedback">
+               <label class="text-muted"> Website</label>
+               <input class="form-control" type="text" name="account_website" placeholder="Enter Website url"  ng-model="reg.account.website" />
+              <!--  <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+              <!--  <span class="text-danger" ng-show="formStep2.account_website.$dirty &amp;&amp; formStep2.account_website.$error.required">This field is required</span> -->
+              <!--  <span class="text-danger" ng-show="formStep2.account_website.$dirty &amp;&amp; formStep2.account_website.$error.pattern">This field must be a valid email address</span> -->
+            </div>
+
+
+
+                  </div>
+                </div>
+              </div>
+                  <!-- END row-->
+               </div>
+               <ul class="pager">
+                  <li class="previous">
+                     <a href="" ng-click="wizard.go(1)">
+                        <span>&larr; Previous</span>
+                     </a>
+                  </li>
+                  <li class="next"><a href="" ng-click="wizard.go(3)">Next<span>&rarr;</span></a>
+                  </li>
+               </ul>
+            </div>
+            <!-- END Wizard Step inputs-->
+            <!-- START Wizard Step inputs-->
+            <div id="step3" ng-show="wizard.active(3)">
+               <!-- Wizard with validation require inner forms to group step inputs to be validated-->
+               <section ng-form="formStep3">
+                  <legend>ADMINSTRATOR</legend>
+
+
+ <div class="row">
+                    
+          
+      <div class="col-lg-12">
+       <div class="form-horizontal1">
+
+            
+          <div class="form-group has-feedback">
+               <label class="text-muted">First Name</label>
+               <input class="form-control" type="text" name="account_first_name" placeholder="Enter First Name" ng-model="reg.account.FirstName" required="" />
+              <!--  <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep3.account_first_name.$dirty &amp;&amp; formStep3.account_first_name.$error.required">This field is required</span>
+              <!--  <span class="text-danger" ng-show="formStep3.account.company_name.$dirty &amp;&amp; formStep3.account_first_name.$error.email">This field must be a valid email address</span> 
+ -->
+
+            </div>
+          
+
+               <div class="form-group has-feedback">
+               <label class="text-muted">Middle Name</label>
+               <input class="form-control" type="text" name="account_middle_name" placeholder="Enter Middle Name" ng-model="reg.account.MiddleName" required="" />
+              <!--  <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep3.account_company_name.$dirty &amp;&amp; formStep3.account_middle_name.$error.required">This field is required</span>
+               <!-- <span class="text-danger" ng-show="formStep3.account.company_name.$dirty &amp;&amp; formStep3.account_company_name.$error.pattern">This field must be a valid email address</span> -->
+            </div>
+
+           <div class="form-group has-feedback">
+               <label class="text-muted">Last  Name</label>
+               <input class="form-control" type="text" name="account_last_name" placeholder="Enter Last  Name"  ng-model="reg.account.LastName" required="" />
+              <!--  <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep3.account_last_name.$dirty &amp;&amp; formStep3.account_last_name.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="formStep3.account_last_name.$dirty &amp;&amp; formStep3.account_last_name.$error.pattern">This field must be a valid email address</span>
+            </div>
+
+            <div class="form-group has-feedback">
+               <label class="text-muted">Email address</label>
+               <input class="form-control" type="email" name="account_email" placeholder="Enter Email address" ng-model="reg.account.emailAddress" required="" />
+              <!--  <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep3.account_email.$dirty &amp;&amp; formStep3.account_email.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="reg.registerForm.account_email.$dirty &amp;&amp; reg.registerForm.account_email.$error.email">This field must be a valid email address</span>
+            </div>
+            <div class="form-group has-feedback">
+               <label class="text-muted">Phone Number</label>
+               <input class="form-control" type="text" name="account_phone_number" placeholder="(+254XXXXXXXXX)" ng-model="reg.account.phoneNumber" required="" />
+              <!--  <span class="fa fa-envelope form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep3.account_phone_number.$dirty &amp;&amp; reg.registerForm.account_phone_number.$error.required">This field is required</span>
+             <!--   <span class="text-danger" ng-show="reg.registerForm.reg.account_phone_number.$dirty &amp;&amp; reg.registerForm.account_phone_number.$error.pattern">This field must be a valid email address</span> -->
+            </div>
+            <div class="form-group has-feedback">
+               <label class="text-muted">Password</label>
+               <input class="form-control" id="id-password" type="password" name="account_password" ng-model="reg.account.password"  required="" />
+               <!-- <span class="fa fa-lock form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep3.account_password.$dirty &amp;&amp; formStep3.account_password.$error.required">This field is required</span>
+        <!--        <span class="text-danger" ng-show="formStep3.account_password.$dirty &amp;&amp; formStep3.account_password.$error.pattern">Input should match 'a-zA-Z0-9' and min 8 characters</span> -->
+            </div>
+            <div class="form-group has-feedback">
+               <label class="text-muted">Retype Password</label>
+               <input class="form-control" type="password" name="account_password_confirm" ng-model="reg.account.password_confirm" ui-validate="'$value==reg.account.password'" ui-validate-watch="'password'" />
+               <!-- <span class="fa fa-lock form-control-feedback text-muted"></span> -->
+               <span class="text-danger" ng-show="formStep3.account_password_confirm.$dirty &amp;&amp; formStep3.account_password_confirm.$error.validator">Password does Not match</span>
+            </div>
+          <!--   <div class="clearfix">
+               <div class="checkbox c-checkbox pull-left mt0">
+                  <label>
+                     <input type="checkbox" required="" name="account_agreed" ng-model="reg.account.agreed" />
+                     <span class="fa fa-check"></span>I agree with the <a href="#">terms</a>
+                  </label>
+               </div>
+            </div> -->
+            <!-- <div class="text-danger" ng-show="reg.registerForm.account_agreed.$dirty &amp;&amp; reg.registerForm.account_agreed.$error.required">You must agree the terms</div> -->
+
+            <button class="btn btn-block btn-primary mt-lg" type="submit">Create account</button>
+            <div class="alert alert-success text-center" margin-top="md" ng-show="reg.authMsg">{{reg.authMsg}}</div>
+             <div class="alert alert-danger text-center" margin-top="md" ng-show="reg.error">{{reg.error}}</div>
+            <pre></pre>
+                </div>
+
+                  <!-- END row-->
+               </section>
+               <ul class="pager">
+                  <li class="previous">
+                     <a href="" ng-click="wizard.go(2)">
+                        <span>&larr; Previous</span>
+                     </a>
+                  </li>
+                 
+               </ul>
+             </div>
+           </div>
+            </div>
+            <!-- END Wizard Step inputs-->
+          
+            <!-- END Wizard Step inputs-->
+
+              <!-- START Wizard Step inputs-->
+             <!-- START Wizard Step inputs-->
+         
+            <!-- END Wizard Step inputs-->
+
+         </div>
+      </form>
+   </div>
+   </div>
+   <!-- END panel-->
+   <div class="p-lg text-center">
+      <span>&copy;</span>
+      <span ng-bind="app.year"></span>
+      <span>-</span>
+      <span ng-bind="app.name"></span>
+      <br/>
+      <span ng-bind="app.description"></span>
+   </div>
+</div>
+
+
+
+
+ <!-- ` -->
+
+
+
+
+
+

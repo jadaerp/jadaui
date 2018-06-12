@@ -1,0 +1,269 @@
+<h3>Timesheets
+  
+
+
+</h3>
+
+
+
+
+      <!-- START panel-->
+      <div class="panel panel-default" id="panelDemo15">
+         <div class="panel-heading"></div>
+         <div class="panel-body">
+            <uib-tabset type="pills">
+            <uib-tab heading="Timesheets">
+            
+
+               <div class="col-lg-12  companydetails"><div class="panel panel-default">
+         <div class="panel-heading">Timesheets</div>
+         <div class="panel-body" ng-controller="LeaveController">
+
+         <div class="table-responsive">
+         <table class="table table-striped">
+                 <thead>
+               <tr>
+                  <th> Date</th>
+                  <th>Time From</th>
+                  <th> Time To</th>
+                  
+                   <th>Activity Code</th>
+                     <th> Activity</th>
+                  
+                   <th>Details</th>
+
+                   <th>Action</th>
+                  
+                  
+               </tr>
+            </thead>
+                <tbody>
+               <tr ng-repeat="user in users">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                     <td>{{ user.id }}</td>
+                   <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                     <td>{{ user.id }}</td>
+                 
+            
+                      <td>
+                        <div class="buttons" ng-controller="LeaveController">
+                       <button class="btn btn-info pull-left mr" type="button" ng-click="show(user.id)"><em class="fa fa-pencil"></em></button>
+                    <!--  <a class="btn btn-primary" title="edit"
+                          ui-sref="app.userinfo({UserId:user.id})">  <em class="fa fa-pencil"></em></a>
+                                                                           -->
+                     <button class="btn btn-sm btn-danger"  ng-click="delete(user.id)" title="Delete">
+                    <em class="fa fa-trash"></em>
+                     </button>
+                    </div>
+                     </td>          
+                 </tr>
+              
+              
+               
+            </tbody>
+         </table>
+
+          
+      </div>
+           <button class="btn btn-info pull-left mr" type="button" ng-click="open()">Add New</button>
+          
+         
+         </div>
+         </div>
+      </div>
+
+      <script type="text/ng-template" id="addLeave.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Leave</h4></div><div class="modal-body"><!-- START panel-->
+
+ <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Type
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="leave_name"  ng-model="leave_name" placeholder="Leave Type"/>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 control-label"> Description</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="leave_desc" ng-model="leave_desc" placeholder="eg. Annual"/>
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Entitlement</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="l_entitlement" ng-model="l_entitlement"  placeholder="eg 21 days"/>
+                  </div>
+               </div>
+
+              
+              
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-lg" type="submit">Save</button>
+                  </div>
+               </div>
+            </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button></div>
+         </script>
+
+            <script type="text/ng-template" id="editLeave.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Leave</h4></div><div class="modal-body"><!-- START panel-->
+
+ <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Type
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="leave_name"  ng-model="user.name" placeholder="Leave Type"/>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 control-label"> Description</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="leave_desc" ng-model="leave_desc" placeholder="eg. Annual"/>
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Entitlement</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="l_entitlement" ng-model="l_entitlement"  placeholder="eg 21 days"/>
+                  </div>
+               </div>
+
+              
+              
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-lg" type="submit">Save</button>
+                  </div>
+               </div>
+            </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button></div>
+         </script>
+</uib-tab>
+
+               
+               <uib-tab heading="Activity"> <div class=" companydetails"><div class="panel panel-default">
+         <div class="panel-heading">Add new Activity</div>
+         <div class="panel-body col-lg-10" ng-controller="ModalController as  trans">
+
+         <div class="table-responsive">
+         <table class="table table-striped">
+                 <thead>
+               <tr>
+                  <th> Code</th>
+                  <th>Description</th>
+                  
+                  
+                   <th>Action</th>
+                  
+               </tr>
+            </thead>
+                <tbody>
+               <tr>
+                  <td>1</td>
+                  <td>Entitled</td>
+                  
+                  <td>  <div class="buttons" >
+               <button class="btn btn-sm btn-info"   title="Edit">
+                  <em class="fa fa-pencil"></em>
+               </button>
+               <button class="btn btn-sm btn-danger"  title="Delete">
+                  <em class="fa fa-trash"></em>
+               </button>
+            </div
+                  </td>
+                  
+               </tr>
+               <tr>
+                  <td>2</td>
+                  <td>Taken</td>
+                 
+                   <td>  <div class="buttons" >
+               <button class="btn btn-sm btn-info" ng-click="mod.open()"  title="Edit">
+                  <em class="fa fa-pencil"></em>
+               </button>
+               <button class="btn btn-sm btn-danger"  title="Delete">
+                  <em class="fa fa-trash"></em>
+               </button>
+            </div
+                  </td>
+                  
+               </tr>
+               <tr>
+                  <td>3</td>
+                  <td>Paid</td>
+                   <td>  <div class="buttons" >
+               <button class="btn btn-sm btn-info" ng-click="mod.open()"  title="Edit">
+                  <em class="fa fa-pencil"></em>
+               </button>
+               <button class="btn btn-sm btn-danger"  title="Delete">
+                  <em class="fa fa-trash"></em>
+               </button>
+            </div
+                </td>
+                  
+               </tr>
+               
+            </tbody>
+         </table>
+
+          
+      </div>
+           <button class="btn btn-info pull-left mr" type="button" ng-click="trans.show()">Add New</button>
+          
+         
+         </div>
+         </div>
+      </div>
+
+<script type="text/ng-template" id="ModalContent.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Leave Transaction</h4></div><div class="modal-body"><!-- START panel-->
+
+ <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Transaction Type
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="trans_type" ng-model="trans_type" placeholder="Transaction Type"/>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Trasaction Description</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="trans_desc" ng-model="trans_desc"  placeholder="eg. Paid"/>
+                  </div>
+               </div>
+            
+
+              
+              
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-lg" type="submit">Save</button>
+                      <button class="btn btn-info btn-lg" type="reset">Cancel</button>
+                  </div>
+               </div>
+            </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button></div>
+         </script>
+
+
+
+
+
+
+
+      </uib-tab>
+               
+
+            </uib-tabset>
+         </div>
+      </div>
+      <!-- END panel-->

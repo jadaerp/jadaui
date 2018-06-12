@@ -1,0 +1,102 @@
+<h3>Leave Approval
+  
+</h3>
+
+      <!-- START panel-->
+      <div class="panel panel-default" ng-controller="LeaveApprovalController">
+         <div class="panel-heading"></div>
+         <div class="panel-body">
+            <!-- START table-responsive-->
+            <div class="table-responsive">
+
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                      
+                        <th>Employee Name</th>
+                        <th>Leave Type</th>
+                          <th>Duration</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr ng-repeat="leave in pendingleaves">
+                   
+                        <td>{{leave.employee}}</td>
+                         <td>{{leave.leaveType}}</td>
+                        <td>{{leave.duration}}</td>
+                        
+                        <td><div class="buttons" >
+             <button class="btn btn-info pull-left mr" type="button" ng-click="show(leave)" >Approval</button>
+                   
+                      </div></td>
+                     </tr>
+                 
+                 
+                  </tbody>
+               </table>
+            </div>
+
+
+<script type="text/ng-template" id="leaveapproval.html">
+        <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Leave Approval</h4></div><div class="modal-body">
+      
+          <form class="form-horizontal" ng-controller="LeaveApprovalController">
+
+             <div class="form-group">
+               
+                  <div class="col-lg-9">
+                     <input class="form-control" type="hidden" name="id" ng-model="leave.id" placeholder="Enter comment"/>
+                  </div>
+               </div>
+           
+ <div class="form-group">
+ <label class="col-lg-3 control-label">Leave approval</label>
+   <div class="col-lg-9">
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="f_country" ng-value="1" ng-model="leave.isApproved
+">
+                   <span class="fa fa-circle"></span> Approve
+                </label>
+            </div>
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="f_custom" ng-value="2" ng-model="leave.isApproved">
+                    <span class="fa fa-circle"></span>Deny
+                </label>
+            </div>
+            </div>
+        </div>
+
+   
+             
+              
+
+
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Comment</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="formula" ng-model="leave.approvalComment" placeholder="Enter comment"/>
+                  </div>
+               </div>
+
+     <div class="form-group">
+      <div class="col-lg-offset-3 col-lg-9">
+       <button class="btn btn-info btn-sm" ng-click="approveLeave(leave)">Submit</button>
+      
+          <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+     </div>
+   
+   </div>
+      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+
+ </form>
+
+</div>
+<div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+</script>
+            <!-- END table-responsive-->
+         </div>
+      </div>

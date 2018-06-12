@@ -1,0 +1,224 @@
+<h3>Batch Import
+
+    <div class="clearfix">
+<!-- 
+ <button class="btn btn-primary pull-left mr" type="button" ng-click="open()">
+      <em class="fa fa-plus-circle fa-fw "></em>Import Employees Transaction</button> &nbsp; &nbsp;  -->
+<a href="server/transactionPosting.csv" class="btn btn-primary pull-right mr" type="button"> 
+
+      <em class="fa fa-download fa-fw "></em>Download the csv format</a>
+      </div>
+</h3>
+<!-- <script type="text/javascript">
+   var jsonData=[]; 
+    $(function() {
+        $('textarea[name=excel_data]').keyup(function() {
+            var data = $(this).val();
+            var rows = data.split("\n");
+            var table = $('<table />'); 
+             
+            for(var y in rows) {
+                var cells = rows[y].split("\t");
+                var row = $('<tr />');
+                for(var x in cells) {
+                  jsonData[y]=cells;
+                    row.append('<td>'+cells[x]+'</td>');
+                }
+                table.append(row);
+
+            }
+            console.log(jsonData);
+            $('#excel_table').html(table);
+             // $('#excel_json').ExcelToJSON(table);
+        });
+    });
+    </script> -->
+<!-- 
+        <textarea  class="form-control"   name="excel_data" /></textarea> -->
+
+  
+
+<!-- <div class="panel">
+   <div class="panel-body" ng-controller="BulkImportController">
+     <form><input type="file" class="file-chooser" id="files" name="files[]" /></form>
+  <div ui-grid="gridOptions" ui-grid-importer class="grid" ui-grid-edit ui-grid-row-edit></div>
+
+   </div>
+ </div> -->
+
+
+<!-- 
+ <script>
+  console.log("file upload function");
+var ExcelToJSON = function() {
+
+  this.parseExcel = function(file) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      var data = e.target.result();
+      var workbook = XLSX.read(data, {
+        type: 'binary'
+      });
+
+      workbook.SheetNames.forEach(function(sheetName) {
+        // Here is your object
+        var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+        var json_object = JSON.stringify(XL_row_object);
+        console.log(json_object);
+
+      })
+
+    };
+
+    reader.onerror = function(ex) {
+      console.log(ex);
+    };
+
+    reader.readAsBinaryString(file);
+  };
+};
+</script> -->
+
+<div class="panel">
+   <div class="panel-body" ng-controller="EmpBulkTransController">
+    
+
+<!-- 
+    <div id="excel_table"> table here</div> -->
+
+ <!--  <div >
+      <form><input type="file" class="file-chooser" id="files" name="files[]" /></form>
+      <div ui-grid="gridOptions" ui-grid-importer class="grid" ui-grid-edit ui-grid-row-edit></div>
+    </div> -->
+ 
+<!--  <script type="text/ng-template" id="EmpBulkTransaction.html">
+              <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Upload</h4></div>
+ <div class="modal-body">
+
+    <form class="form-horizontal" ng-controller="EmpBulkTransController">
+
+   <div class="col-lg-9">
+      
+    <input class="form-control" filestyle="" type="file" data-file-reader-directive="fileContent" accept=".csv" data-button-text="Browse" data-class-button="btn btn-default" data-classinput="form-control inline" nv-file-select="" uploader="form.uploader" />
+  
+                </div> 
+<br/>
+<br/>
+<br/>
+     <div class="clearfix">
+       
+     <button class="btn btn-info btn-s" type="button" ng-click="uploadFile()" >
+                     <span class="icon-cloud-upload mr"></span>Upload</button>
+                  <button class="btn btn-warning btn-s" type="button">
+                     <span class="icon-close mr"></span>Cancel</button>
+
+      </div>
+
+     
+       
+                 
+              </form>
+ </div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button></div>
+
+           </script> -->
+<br/>
+<br/>
+
+<form class="form-horizontal">
+<div class="form-group">
+   <div class="col-lg-6">
+ <input type="file" class="form-control" data-file-reader-directive="fileContent" accept=".csv" data-button-text="Browse" data-class-button="btn btn-default" data-classinput="form-control inline" nv-file-select="" uploader="form.uploader"/>
+</div>
+</div>
+  <div class="clearfix">
+       
+     <button class="btn btn-info btn-s" type="button" ng-click="uploadFile()" >
+                     <span class="icon-cloud-upload mr"></span>Upload</button>
+                  <button class="btn btn-warning btn-s" type="reset" ng-click="cancel()">
+                     <span class="icon-close mr"></span>Cancel</button>
+
+
+                         <button class="btn btn-info btn-s"  ng-click="save()">
+                     <span class="icon-save mr"></span>Save</button>
+
+      </div>
+<div class="row">
+               <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            <!--  {{fileData}} -->
+          </div>
+</form>
+     
+
+
+
+    <!-- <div>{{ fileData}}</div> -->
+     
+      <div class="table-responsive table-bordered mb-lg">
+         <table class="table">
+            <thead>
+               <tr>
+                  
+                  <th>Employee Number</th>
+                  <th>Payroll Code</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                 
+                 
+               </tr>
+            </thead>
+                  
+                 
+            <tbody>
+              
+               <tr  ng-repeat="data in fileData" ng-show="data.employee_number!=null && data.payroll_code!=null && data.amount!=null">
+                
+                  <td>{{data.employee_number}}</td>
+                  <td>{{data.payroll_code}}</td>
+                  <td>{{data.amount}}</td>
+                  <td><button type="button" class="mb-sm btn btn-warning" ng-show="data.status == null"> <em class="fa fa-refresh" ng-show="data.status == null" ng-model="data.employee"></em>  </button>
+                              
+                              <button type="button" class="mb-sm btn btn-success" ng-show="data.status == true">   <em class="fa fa-check-circle" ng-show="data.status == true" ng-model="data.employee"></em> </button>
+
+                            
+
+                                <button type="button" class="mb-sm btn btn-danger" ng-show="data.status == false"> <em class="fa fa-close" ng-show="data.status == false" ng-model="data.employee">
+                              </em>  </button></td>
+                 
+               </tr>
+         
+               
+            </tbody>
+         </table>
+      </div>
+     
+               
+            
+
+
+
+            </div>
+
+</div>
+
+         
+
+  <!-- 
+      <div class="clearfix">
+         <button class="btn btn-info pull-left mr" type="button">Edit</button>
+         <button class="btn btn-danger pull-left mr" type="button">Delete</button>
+      
+         <button class="btn btn-success pull-left" type="button">Save</button>
+
+
+      </div>
+ -->
+
+
+
+
+
+
+
+

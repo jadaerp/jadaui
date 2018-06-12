@@ -1,0 +1,146 @@
+
+<h3>Employee Group Entitlement
+   
+</h3>
+<div class="panel panel-default" ng-controller="LeaveEntitlementController" >
+                 <div class="panel-heading"><div class="clearfix">
+   <button class="btn btn-info pull-right mr" type="button" ng-click="open()">Add New</button>
+        
+        
+      </div></div>
+                 <div class="panel-body" >
+
+                  <div class="table-responsive">
+                   <table class="table table-striped" datatable="ng">
+                     <thead>
+                       <tr>
+
+                <th>Group</th>
+                <th>Leave Type</th>
+                <th>Entitlement</th>
+                <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     <tr ng-repeat="data in leaveEntitlementData">
+                      <td>{{ data.employeeGroupDescription }}</td>
+                      <td>{{ data.leaveTypeDescription}}</td>
+                      <td>{{ data.entitlement}}</td>
+
+
+
+                      <td>
+                        <div class="buttons">
+                         <button class="btn btn-info pull-left mr" type="button" ng-click="show(data.id)"><em class="fa fa-pencil"></em></button>
+                   
+                        <button class="btn btn-sm btn-danger"  ng-click="delete(data.id)" title="Delete">
+                          <em class="fa fa-trash"></em>
+                        </button>
+                      </div>
+                    </td>          
+                  </tr>
+
+                </tbody>
+              </table>
+
+
+            </div>
+            
+            
+
+
+          </div>
+        </div>
+      </div>
+
+
+      <script type="text/ng-template" id="LeaveEntitlementForm.html">
+        <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">New Entitlement</h4></div>
+        <div class="modal-body" ng-controller="LeaveEntitlementController"><!-- START panel-->
+        <form class="form-horizontal" name="leaveEntitlementForm" novalidate  >
+
+           <div class="form-group">
+            <label class="col-lg-3 control-label">Employee Group</label>
+                  <div class="col-lg-9">
+                    <select class="form-control" name="employeeGroupId" ng-model="leaveEntitlement.employeeGroupId"  ng-options="data.id as data.code+'-'+data.description  for data in employeeGroupData" ng-required="true">
+    <option value="" disabled selected>Seelct Group</option>
+  </select>
+   <span class="text-danger" ng-show="employeepostingform.$submitted &amp;&amp; employeepostingform.payrollcode.$error.required">This field is required</span>
+                  </div>
+         </div>
+           <div class="form-group">
+            <label class="col-lg-3 control-label">Leave Type</label>
+                  <div class="col-lg-9">
+                    <select class="form-control" name="leaveTypeId" ng-model="leaveEntitlement.leaveTypeId"  ng-options="data.id as data.code+'-'+data.description  for data in leaveTypeData" ng-required="true">
+    <option value="" disabled selected>Seelct Leave Type</option>
+  </select>
+   <span class="text-danger" ng-show="employeepostingform.$submitted &amp;&amp; employeepostingform.payrollcode.$error.required">This field is required</span>
+                  </div>
+         </div>         <div class="form-group">
+          <label class="col-lg-3 control-label">Entitlement</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="entitlement" ng-model="leaveEntitlement.entitlement"  ng-required="true" placeholder="Amount
+                   " />
+                    <span class="text-danger" ng-show="employeepostingform.$submitted &amp;&amp; employeepostingform.amount.$error.required">This field is required</span>
+                  </div>
+       </div>
+       
+
+                       <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-9">
+                         <button class="btn btn-info btn-sm mr" ng-disabled="leaveEntitlementForm.$invalid"  ng-click="submitLeaveEntitlement(leaveEntitlement)">Save and New</button>
+                         <button class="btn btn-info btn-sm mr" ng-disabled="leaveEntitlementForm.$invalid" ng-click="submitLeaveEntitlementExit(leaveEntitlement)">Save and Close</button>
+                         <button class="btn btn-warning btn-sm mr" type="reset">Reset</button>
+                       </div>
+                     </div>
+                     <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+                   </form>
+   <!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+ </script>
+
+
+ <script type="text/ng-template" id="leaveEntitlementUpdateForm.html">
+  <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Edit Employee Group</h4></div>
+  <div class="modal-body"  ng-controller="leaveEntitlementController"> <!-- START panel-->
+
+  <form class="form-horizontal" name="leaveEntitlementForm" novalidate>
+                      <div class="form-group">
+                   
+                      <div class="col-lg-12">
+                       <input class="form-control" type="hidden" name="cat_code" ng-model="data.id" placeholder="Group code"/>
+                     </div>
+                   </div>
+                     <div class="form-group">
+                      <label class="col-lg-3 control-label">Group</label>
+                      <div class="col-lg-9">
+                       <input class="form-control" type="text" name="cat_code" ng-model="data.code"  ng-required="true"
+        ng-pattern="/^[\w,]+$/" placeholder="Group code"/>
+
+         <span class="text-danger" ng-show="leaveEntitlementForm.cat_code.$dirty &amp;&amp; leaveEntitlementForm.cat_code.$error.required">This field is required</span>
+               <span class="text-danger" ng-if="leaveEntitlementForm.cat_code.$dirty &amp;&amp; leaveEntitlementForm.cat_code.$error.pattern">This field is invalid:No special characters allowed </span>
+                     </div>
+                   </div>
+                   <div class="form-group">
+                    <label class="col-lg-3 control-label">Entitlement</label>
+                    <div class="col-lg-9">
+                     <input class="form-control" type="text" name="cat_description" ng-model="data.description" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder="Descriptions"/>
+                         <span class="text-danger" ng-show="leaveEntitlementForm.cat_description.$dirty &amp;&amp; leaveEntitlementForm.cat_description.$error.required">This field is required</span>
+               <span class="text-danger" ng-if="leaveEntitlementForm.cat_description.$dirty &amp;&amp; leaveEntitlementForm.cat_description.$error.pattern">This field is invalid:No special characters allowed </span>
+                   </div>
+                 </div>
+
+
+
+
+                       <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-9">
+                         <button class="btn btn-info btn-sm mr"    ng-disabled="leaveEntitlementForm.$invalid"  ng-click="updateEmpGroup(data)">Update</button>
+                           <button class="btn btn-warning btn-sm mr" type="reset">Reset</button>
+                       </div>
+                     </div>
+                   </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+</script>
+             
+

@@ -1,0 +1,77 @@
+<h3>Payroll Approval
+
+
+</h3>
+<div class="row" ng-controller="PayrollApprovalController">
+   <div class="col-md-12">
+      <!-- START panel-->
+      <div class="panel panel-default">
+         <div class="panel-heading">
+          <!--   <h3 class="panel-title">Earnings</h3> -->
+         </div>
+         <div class="panel-body">
+         <div class="row">
+         <div class="form-group " >
+                  <label class="col-lg-2 control-label">Pay Slips
+                   </label>
+                  <div class="col-lg-2">
+                   
+                    <a class="btn btn-primary"  ui-sref="app.payslip-approve" ui-sref-active="active">View</a>
+                  </div>
+                  </div>
+
+               </div>
+             <br/>
+                <div class="row" >
+         <div class="form-group " >
+                  <label class="col-lg-2 control-label">Company Totals
+                   </label>
+                  <div class="col-lg-2">
+                    <a class="btn btn-primary"  ui-sref="app.company-total-approve" ui-sref-active="active">View</a>
+                  </div>
+                  </div>
+
+               </div>
+               <br/>
+                <div class="row">
+      <div class="form-group">
+                  <label class="col-lg-2 control-label">Company Summary
+                   </label>
+                  <div class="col-lg-2">
+                     <a class="btn btn-primary"  ui-sref="app.company-summary-approve" ui-sref-active="active">View</a>
+                  </div>
+               </div>
+                            
+            
+     
+   </div>
+         
+
+
+              
+               <br/>
+               
+            <br/>
+
+
+
+    <input class="form-control" type="hidden" name="id" ng-model="current" />
+           
+          
+        <!--  <button class="btn btn-default pull-left" type="button" onclick="window.print();">Print</button> -->
+         <button class="btn btn-info pull-left mr" type="button" ng-class="currentclass" ng-click="payrollApproval(current)">Approve</button>
+
+          <button class="btn btn-warning pull-left mr" type="button" ng-class="rejectclass" ng-click="payrollReject(current)">Reject</button>
+      </div>
+         </div>
+      </div>
+      <!-- END panel-->
+   </div>
+
+   
+   
+
+
+
+</div>
+<!-- END row-->

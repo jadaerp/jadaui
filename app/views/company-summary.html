@@ -1,0 +1,119 @@
+    
+  <h3>Company Summary</h3>
+
+    <div  ng-controller="CompanySumarryController">
+<!--   <div class="row">
+     <div class="col-lg-8">
+        <form class="form-inline">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+      <div class="input-group-addon">Period</div>
+    
+           <select name="period" class="slider slider-lg form-control" ng-model="user.period" ng-options="period.id as period.period for period in periods" ng-change="searchCsummaryByperiod(user.period)">
+          <option value="" disabled selected>Periods</option>
+    </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+  </form>
+    
+
+   </div>
+     </div> -->
+      <div class="panel panel-default">
+           <!-- <div class="panel-heading"></div> -->
+           <div class="panel-body">
+            <div id="printable">
+            <div class="table-responsive ">
+           <table class="table table-bordered-white horiztbl">
+                   <thead>
+                 <tr>
+                 <th ng-repeat="column
+   in companysumaries.columnList track by $index
+  ">{{column}}</th>
+                 
+                    
+                    
+                 </tr>
+              </thead>
+        
+              <tbody>
+                 <tr ng-repeat="summary in companysumaries.dataList">
+  <td ng-repeat="data in summary  track by $index" style="text-align: right;">{{data}}</td>
+
+                   
+
+
+                    
+                 </tr>
+            
+                  <tr>
+
+                   
+                    <td ng-repeat="totals in companysumaries.totalList track by $index" style="text-align: right;"><strong>{{totals}}
+  </strong></td>
+                  
+
+                 </tr>
+              
+              </tbody>
+           </table>
+
+          
+        </div>
+         <br/>
+           <br/>
+        
+     
+  </div>
+
+       <div class="clearfix">
+           
+      
+           <button class="btn btn-info pull-left mr" type="button" ng-click="printDiv('printable');"">Print</button>
+     
+        </div>
+           </div>
+           </div>
+
+             <div class="panel panel-default">
+           <!-- <div class="panel-heading"></div> -->
+           <div class="panel-body">
+            <div id="payment">
+     
+        <div class="table-responsive">
+               <div class="col-lg-8">
+                 <table class="table table-bordered-white">
+              
+               
+                    <tbody>
+                      <tr>
+                        <td class="boldTotal">Payroll Cost</td>
+                        <td class="boldTotal" style="text-align: right;">{{companysumaries.payrollCost}}</td>
+                      </tr>
+                       <tr ng-repeat=" companySummarytotal in companysumaries.grantTotalList">
+                          
+                          <td>{{companySummarytotal.name}}</td>
+                          <td style="text-align: right;" >{{companySummarytotal.amount}}</td>
+                       </tr>
+                       <tr>
+                         <td  class="boldTotal" >Grant Total</td>
+                         <td class="boldTotal" style="text-align: right;">{{companysumaries.grantTotal}}</td>
+                       </tr>
+                
+                    </tbody>
+                 </table>
+                 <br/>
+                 </div>
+              </div>
+            </div>
+
+
+            <div class="clearfix">
+           
+      
+           <button class="btn btn-info pull-left mr" type="button" ng-click="printDiv('payment');"">Print</button>
+     
+        </div>
+          </div>
+        </div>
+        </div>

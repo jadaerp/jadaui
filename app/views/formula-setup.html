@@ -1,0 +1,306 @@
+
+
+
+
+
+<h3>Payroll Formulas
+  <!--  <small>payrol code groups and payroll codes</small> -->
+
+
+</h3>
+
+       
+
+<div class="container-fluid" ng-controller="FormulasController">
+<div class="panel panel-default">
+   <div class="panel-heading">   <div class=" clearfix buttons">
+                       <button class="btn btn-info pull-right mr" type="button" ng-click="open()">Add New</button>  
+                                                      
+                     
+                    </div> </div>
+
+
+
+
+   <div class="panel-body" >
+
+         <div class="table-responsive">
+         <table class="table table-striped" datatable="ng">
+                 <thead>
+
+               <tr>
+                
+                  
+                   <th>Formula Code</th>
+                  <th>Formula  Description</th>
+                  
+                  <th>Type </th>
+                  <th> Formula</th>
+                  <th>Resulting Payroll Code </th>
+                      <th>Priority</th>
+
+                   <th>Action</th>
+                  
+                  
+               </tr>
+            </thead>
+                <tbody>
+                      <tr ng-repeat="formula in formulas">
+                    <td>{{ formula.code }}</td>
+                    <td >{{ formula.description }}</td>
+                     <td>{{ formula.typeDescription }}</td>
+                     <td>{{ formula.formula }}</td>
+                     <td>{{ formula.payrollCodeId }}</td>
+                    
+                      <td>{{ formula.priority }}</td>
+
+                 
+            
+                      <td>
+                        <div class="buttons" >
+                       <button class="btn btn-info pull-left mr" type="button" ng-click="show(formula)"><em class="fa fa-pencil"></em></button>
+                    
+                                                                
+                     <button class="btn btn-sm btn-danger"  ng-click="delete(formula)" title="Delete">
+                    <em class="fa fa-trash"></em>
+                     </button>
+                    </div>
+                     </td>          
+                 </tr>
+            
+               
+            </tbody>
+         </table>
+
+          
+      </div>
+          <!--  <button class="btn btn-info pull-left mr" type="button" ng-click="open()">Add New</button> -->
+          
+         
+         </div>
+    
+
+
+
+
+
+
+
+
+         <script type="text/ng-template" id="addFormulas.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add New Formula</h4></div>
+            <div class="modal-body"  ng-controller="FormulasController"><!-- START panel-->
+
+
+            <form class="form-horizontal" name="formulaform" novalidate>
+
+            <div class="form-group">
+                  <label class="col-lg-3 control-label">Formula Code</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="f_code"  ng-model="formula.code" ng-required="true"
+        ng-pattern="/^[\w,]+$/" placeholder="Enter Code"/>
+
+        <span class="text-danger" ng-show="formulaform.$submitted &amp;&amp; formulaform.f_code.$error.required">This field is required</span>
+               <span class="text-danger" ng-if="formulaform.f_code.$dirty &amp;&amp; formulaform.f_code.$error.pattern">This field is invalid:No special characters allowed </span>
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Formula Description
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="f_desc" ng-model="formula.description" ng-required="true"  placeholder="Enter Description"/>
+
+
+        <span class="text-danger" ng-show="formulaform.$submitted &amp;&amp; formulaform.f_desc.$error.required">This field is required</span>
+               
+                  </div>
+               </div>
+          
+                     <div class="form-group">
+ <label class="col-lg-3 control-label">Type</label>
+   <div class="col-lg-9">
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="f_type" ng-value="0" ng-model="formula.type" ng-required="true">
+                   <span class="fa fa-circle"></span> Country
+                </label>
+            </div>
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="f_type" ng-value="1" ng-model="formula.type" ng-required="true">
+                    <span class="fa fa-circle"></span>Custom
+                </label>
+            </div>
+             <span class="text-danger" ng-show="formulaform.$submitted &amp;&amp; formulaform.f_type.$error.required">This field is required</span>
+            </div>
+        </div>
+
+   
+             
+              
+
+
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Formula</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="formula" ng-model="formula.formula" ng-required="true" placeholder="Enter Formula"/>
+
+        <span class="text-danger" ng-show="formulaform.$submitted &amp;&amp; formulaform.formula.$error.required">This field is required</span>
+                  </div>
+               </div>
+              
+
+                <div class="form-group">
+            <label class="col-lg-3 control-label"> Resulting payroll Code</label>
+            <div class="col-lg-9">
+            <select class="form-control" name="resulting_code" ng-model="formula.payrollCodeId" ng-options="code.id as code.description for code in pcodes" ng-required="true">
+    <option value="" disabled selected>Select Payroll Codes</option>
+  </select>
+
+
+        <span class="text-danger" ng-show="formulaform.$submitted &amp;&amp; formulaform.resulting_code.$error.required">This field is required</span>
+           </div>
+         </div>
+
+              
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Priority</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="number" name="priority" ng-model="formula.priority" ng-required="true" placeholder="Enter Priority"/>
+
+                     <span class="text-danger" ng-show="formulaform.$submitted &amp;&amp; formulaform.priority.$error.required">This field is required</span>
+               <span class="text-danger" ng-if="formulaform.priority.$dirty &amp;&amp; formulaform.priority.$error.number">This field is invalid:No special characters allowed </span>
+                  </div>
+               </div>
+              
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm mr" ng-click="formulaform.$valid && submitFormula(formulaform)">Save and New</button>
+                      <button class="btn btn-info btn-sm mr" ng-click="formulaform.$valid && closeFormula(formula)">Save and Close</button>
+                       <button class="btn btn-warning btn-sm mr" type="reset">Reset</button>
+                  </div>
+               </div>
+               <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            </form>
+
+        
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+
+
+
+
+
+
+
+
+
+
+         <script type="text/ng-template" id="editFormulas.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Edit Formula</h4></div>
+            <div class="modal-body" ng-controller="FormulasController"><!-- START panel-->
+
+
+            <form class="form-horizontal" name="formulaform" novalidate>
+
+            <div class="form-group">
+                
+                  <div class="col-lg-9">
+                     <input class="form-control" type="hidden" name="f_code"  ng-model="formula.id" placeholder="Formula Code"/>
+                  </div>
+               </div>
+                   <div class="form-group">
+                        <label class="col-sm-3 control-label">Formula Code</label>
+                        <div class="col-lg-9">
+                  
+                           <input class="form-control" type="text"  name="f_code" ng-model="formula.code" ng-required="true"
+        ng-pattern="/^[\w,]+$/" placeholder="Enter Description"/>
+                     
+                     <span class="text-danger" ng-show="formulaform.$submitted &amp;&amp; formulaform.f_code.$error.required">This field is required</span>
+               <span class="text-danger" ng-if="formulaform.f_code.$dirty &amp;&amp; formulaform.f_code.$error.pattern">This field is invalid:No special characters allowed </span>
+                  </div>
+                           
+                     </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Formula Description
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="f_desc" ng-model="formula.description" ng-required="true" placeholder="Formula Description"/>
+
+                      <span class="text-danger" ng-show="formulaform.$submitted &amp;&amp; formulaform.f_desc.$error.required">This field is required</span>
+                  </div>
+               </div>
+         
+                     <div class="form-group">
+ <label class="col-lg-3 control-label">Type</label>
+   <div class="col-lg-9">
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="f_type" value="1" ng-model="formula.type"  ng-required="true">
+                   <span class="fa fa-circle"></span> Country
+                </label>
+            </div>
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="f_type" value="0" ng-model="formula.type"  ng-required="true">
+                    <span class="fa fa-circle"></span>Custom
+                </label>
+            </div>
+             <span class="text-danger" ng-show="formulaform.$submitted &amp;&amp; formulaform.f_type.$error.required">This field is required</span>
+            </div>
+        </div>
+
+   
+          
+
+
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Formula</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="formula" ng-model="formula.formula" ng-required="true" placeholder="Formula"/>
+                      <span class="text-danger" ng-show="formulaform.$submitted &amp;&amp; formulaform.formula.$error.required">This field is required</span>
+                  </div>
+               </div>
+              
+
+                <div class="form-group">
+            <label class="col-lg-3 control-label"> Resulting payroll Code</label>
+            <div class="col-lg-9">
+            <select class="form-control" name="resulting_code" ng-model="formula.payrollCodeId" ng-options="code.id as code.description for code in pcodes" ng-required="true" >
+    <option value="" disabled selected>Select Payroll Codes</option>
+  </select>
+  <span class="text-danger" ng-show="formulaform.$submitted &amp;&amp; formulaform.resulting_code.$error.required">This field is required</span>
+           </div>
+         </div>
+
+    
+              
+            
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Priority</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="number" name="priority" ng-model="formula.priority" placeholder="Priority"/>
+
+                     <span class="text-danger" ng-show="formulaform.$submitted &amp;&amp; formulaform.priority.$error.required">This field is required</span>
+               <span class="text-danger" ng-if="formulaform.priority.$dirty &amp;&amp; formulaform.priority.$error.number">This field is invalid:No special characters allowed </span>
+                  </div>
+               </div>
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-primary btn-sm mr" ng-click="formulaform.$valid && updateFormula(formula)">Update</button>
+                       <button class="btn btn-warning btn-sm mr" >Reset</button>
+                  </div>
+               </div>
+              
+            </form>
+
+        
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+</div>
+
+</div>
+

@@ -1,0 +1,227 @@
+<div class=" companydetails"><div class="panel panel-default" ng-controller="UserGroupController">
+         <div class="panel-heading">
+     
+ <div class="clearfix">
+     
+    <button class="btn btn-info pull-right mr" ng-click="open()">
+        Add New
+               </button>
+        
+        
+      </div>
+          
+        
+      </div>
+         <div class="panel-body" >
+
+         <div class="table-responsive">
+         <table class="table table-striped" datatable="ng">
+                 <thead>
+               <tr>
+                  
+                  <th>user</th>
+                 
+                  <th>Group</th>
+                <!--    <th>email Address</th> -->
+                    <th>User 
+                    Name</th>
+        <th> Action</th>
+               </tr>
+            </thead>
+                <tbody>
+             <tr  ng-repeat="usergroup in usergroups">
+                    <td> {{usergroup.user}}</td>
+                        <td> {{usergroup.account}}</td>
+                         <!-- <td> {{usergroup.emailAddress}}</td> -->
+                 <td> {{usergroup.userName}}</td>
+
+               
+
+                
+
+                  <td> <div class="clearfix">
+        
+     <button class="btn btn-sm btn-info  mr" type="button" ng-click="show(usergroup)"><em class="fa fa-pencil fa-fw mr"></em></button>
+
+     <button class="btn btn-sm btn-danger  mr" type="button" ng-click="delete(usergroup)"><em class="fa fa-trash fa-fw mr"></em></button>
+       
+      
+     
+ 
+      </div></td>
+                  
+                  
+                
+               </tr>
+              
+               
+               
+            </tbody>
+         </table>
+
+          
+      </div>
+      
+          
+         
+         </div>
+         </div>
+      </div>
+
+<script type="text/ng-template" id="newUserGroup.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add User Groups</h4></div><div class="modal-body"><!-- START panel-->
+
+ <form class="form-horizontal" name="usergroupform" novalidate=""    ng-controller="UserGroupController">
+          
+
+            <!--   <div class="form-group">
+            
+                  <div class="col-lg-9">
+                     <input class="form-control" type="hidden" name="user" ng-model="usergroup.ID"  placeholder="Enter user"/>
+                  </div>
+               </div> -->
+           <div class="form-group">
+                  <label class="col-lg-3 control-label">User</label>
+                  <div class="col-lg-9">
+                    <!--  <input class="form-control" type="text" name="user" ng-model="usergroup.user"  placeholder="Enter user"/> -->
+
+                     <select class="form-control" name="user" ng-model="usergroup.user" ng-options="user.id as user.emailAddress for user in users" ng-required="true">
+    <option value="" disabled selected>Select User</option>
+  </select>   <span class="text-danger" ng-show="usergroupform.user.$dirty &amp;&amp; usergroupform.user.$error.required">This field is required</span>
+                  </div>
+               </div>
+                 <div class="form-group">
+                  <label class="col-lg-3 control-label">Group</label>
+                  <div class="col-lg-9">
+                   <!--   <input class="form-control" type="text" name="group" ng-model="usergroup.account"  placeholder="Enter group "/> -->
+
+
+                     <select class="form-control" name="group" ng-model="usergroup.account" ng-options="account.id as account.description for account in accounts" ng-required="true" >
+    <option value="" disabled selected>Select Group</option>
+
+  </select>   <span class="text-danger" ng-show="usergroupform.group.$dirty &amp;&amp; usergroupform.group.$error.required">This field is required</span>
+                  </div>
+               </div>
+               
+                <!--  <div class="form-group">
+                  <label class="col-lg-3 control-label">Email Address</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="email" name="trans_desc" ng-model="usergroup.emailAddress"  placeholder="Enter Email Address"/>
+                  </div>
+               </div> -->
+               
+             <div class="form-group">
+                  <label class="col-lg-3 control-label">Username</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="username" ng-model="usergroup.userName" ng-required="true" placeholder="Enter username"/>
+                        <span class="text-danger" ng-show="usergroupform.username.$dirty &amp;&amp; usergroupform.username.$error.required">This field is required</span>
+                  </div>
+               </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Password</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="password" name="Password" ng-model="usergroup.password" ng-required="true" placeholder="password"/>
+                        <span class="text-danger" ng-show="usergroupform.Password.$dirty &amp;&amp; usergroupform.Password.$error.required">This field is required</span>
+                  </div>
+               </div>
+
+            
+
+
+        
+
+              
+         
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm" ng-disabled="usergroupform.$invalid"  ng-click="submitUserGroup(usergroupform)">Save and New</button>
+                       <button class="btn btn-info btn-sm"  ng-disabled="usergroupform.$invalid" ng-click="submitUserGroupClose()">Save and Close</button>
+                      <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+                  </div>
+               </div>
+
+                   <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+        
+            </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+
+
+
+
+<script type="text/ng-template" id="EditUserGroup.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Edit User Group</h4></div>
+            <div class="modal-body"   ng-controller="UserGroupController"><!-- START panel-->
+
+ <form class="form-horizontal" name="usergroupform" novalidate=""   >
+
+   <div class="form-group">
+               
+                  <div class="col-lg-9">
+                     <input class="form-control" type="hidden" name="user" ng-model="usergroup.ID"  placeholder="Enter user"/>
+                  </div>
+               </div>
+                       <div class="form-group">
+                  <label class="col-lg-3 control-label">User</label>
+                  <div class="col-lg-9">
+                    <!--  <input class="form-control" type="text" name="user" ng-model="usergroup.user"  placeholder="Enter user"/> -->
+
+                     <select class="form-control" name="user" ng-model="usergroup.user" ng-options="user.id as user.emailAddress for user in users" ng-required="true">
+    <option value="" disabled selected>Select User</option>
+  </select>   <span class="text-danger" ng-show="usergroupform.user.$dirty &amp;&amp; usergroupform.user.$error.required">This field is required</span>
+                  </div>
+               </div>
+                 <div class="form-group">
+                  <label class="col-lg-3 control-label">Group</label>
+                  <div class="col-lg-9">
+                   <!--   <input class="form-control" type="text" name="group" ng-model="usergroup.account"  placeholder="Enter group "/> -->
+
+
+                     <select class="form-control" name="group" ng-model="usergroup.account" ng-options="account.id as account.description for account in accounts" ng-required="true" >
+    <option value="" disabled selected>Select Group</option>
+
+  </select>   <span class="text-danger" ng-show="usergroupform.group.$dirty &amp;&amp; usergroupform.group.$error.required">This field is required</span>
+                  </div>
+               </div>
+               
+                <!--  <div class="form-group">
+                  <label class="col-lg-3 control-label">Email Address</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="email" name="trans_desc" ng-model="usergroup.emailAddress"  placeholder="Enter Email Address"/>
+                  </div>
+               </div> -->
+               
+             <div class="form-group">
+                  <label class="col-lg-3 control-label">Username</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="username" ng-model="usergroup.userName" ng-required="true" placeholder="Enter username"/>
+                        <span class="text-danger" ng-show="usergroupform.username.$dirty &amp;&amp; usergroupform.username.$error.required">This field is required</span>
+                  </div>
+               </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Password</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="password" name="Password" ng-model="usergroup.password" ng-required="true" placeholder="password"/>
+                        <span class="text-danger" ng-show="usergroupform.Password.$dirty &amp;&amp; usergroupform.Password.$error.required">This field is required</span>
+                  </div>
+               </div>
+
+         
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm" ng-disabled="usergroupform.$invalid" ng-click="updateUserGroup(usergroup)">Update</button>
+              
+                      <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+                  </div>
+               </div>
+                   <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            <!--  {{usergroup|json}} -->
+            </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>

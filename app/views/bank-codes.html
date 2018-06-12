@@ -1,0 +1,192 @@
+<h3>   
+      Bank Codes</h3>
+<div class="panel panel-default" ng-controller="BankCodeController">
+<div class="panel-heading">
+  <div class="clearfix">
+
+         <button class="btn btn-info pull-right mr" type="button">
+Batch Entry</button>
+   <button class="btn btn-info pull-right mr" type="button" ng-click="open()">Add New</button>
+        
+      </div>
+    </div>
+   <div class="panel-body " >
+   
+      <div class="table-responsive table-bordered mb-lg">
+         <table class="table" datatable="ng">
+            <thead>
+               <tr>
+                  <th>Bank Code</th>
+                  <th>Branch Code</th>
+                  <th>Bank Name</th>
+                  <th>Branch Name</th>
+                  <th>Swift Code</th>
+                   <th>Action</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr ng-repeat="bank in banks">
+                    <td>{{ bank.bankCode }}</td>
+                    <td>{{ bank.branchCode }}</td>
+                    <td>{{ bank.bankName }}</td>
+                    <td>{{ bank.branchName }}</td>
+                     <td>{{ bank.swiftCode}}</td>
+                 
+            
+                      <td>
+                        <div class="buttons">
+                       <button class="btn btn-info pull-left mr" type="button" ng-click="show(bank)"><em class="fa fa-pencil"></em></button>
+                    
+                     <button class="btn btn-sm btn-danger"  ng-click="delete(bank)" title="Delete">
+                    <em class="fa fa-trash"></em>
+                     </button>
+                    </div>
+                     </td>          
+                 </tr>
+              
+           
+            </tbody>
+         </table>
+      </div>
+     
+
+
+
+<script type="text/ng-template" id="addbankcodes.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Bank</h4></div>
+            <div class="modal-body" ng-controller="BankCodeController"><!-- START panel-->
+
+         <form class="form-horizontal" name="bankform" novalidate >
+
+             <div class="form-group">
+                  <label class="col-lg-3 control-label">Bank Branch Code</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="bank_branchcode" ng-model="bank.bankBranchCode" ng-required="true" placeholder="Enter Bank and Branch Code"/>
+                      <span class="text-danger" ng-show="bankform.$submitted &amp;&amp; bankform.bank_branchcode.$error.required">This field is required</span>
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Bank Code</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="bank_code" ng-model="bank.bankCode" ng-required="true" placeholder="Enter Bank Code"/>
+
+                       <span class="text-danger" ng-show="bankform.$submitted &amp;&amp; bankform.bank_code.$error.required">This field is required</span>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Bank Name</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="bank_name" ng-model="bank.bankName" ng-required="true" placeholder="Enter Bank Name"/>
+                      <span class="text-danger" ng-show="bankform.$submitted &amp;&amp; bankform.bank_name.$error.required">This field is required</span>
+                  </div>
+               </div>
+             
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Branch Code</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="branch_code" ng-model="bank.branchCode" ng-required="true"   placeholder="Enter Branch Code"/>
+                     <span class="text-danger" ng-show="bankform.$submitted &amp;&amp; bankform.branch_code.$error.required">This field is required</span>
+                  </div>
+               </div>
+
+                 <div class="form-group">
+                  <label class="col-lg-3 control-label">Branch Name</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="branch_name" ng-model="bank.branchName" ng-required="true"  placeholder="Enter Branch Name"/>
+                     <span class="text-danger" ng-show="bankform.$submitted &amp;&amp; bankform.branch_name.$error.required">This field is required</span>
+                  </div>
+               </div>
+              
+              
+            
+
+              
+              
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm mr"  ng-click="bankform.$valid && submitBank(bankform)">Save and New</button>
+                     <button class="btn btn-info btn-sm mr"  ng-click="bankform.$valid && submitBankClose(bank)">Save and Close</button>
+                      <button class="btn btn-warning btn-sm mr" type="reset">Reset</button>
+                  </div>
+               </div>
+
+
+                      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+
+
+       <script type="text/ng-template" id="editbankcodes.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Bank</h4></div>
+            <div class="modal-body" ng-controller="BankCodeController"><!-- START panel-->
+
+ <form class="form-horizontal"  name="bankform" novalidate  >
+
+             <div class="form-group">
+                
+                  <div class="col-lg-9">
+                     <input class="form-control" type="hidden"  name="bank_code" ng-model="bank.id" placeholder="Bank Code"/>
+                      
+                  </div>
+               </div>
+
+             <div class="form-group">
+                  <label class="col-lg-3 control-label">Bank Branch Code</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="bank_code" ng-model="bank.bankBranchCode" ng-required="true"  placeholder="Bank Code"/>
+    <span class="text-danger" ng-show="bankform.$submitted &amp;&amp; bankform.bank_code.$error.required">This field is required</span>
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Bank Code</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="bank_code" ng-model="bank.bankCode"  ng-required="true" placeholder="Bank Code"/>
+                      <span class="text-danger" ng-show="bankform.$submitted &amp;&amp; bankform.bank_code.$error.required">This field is required</span>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Bank Name</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="bank_name" ng-model="bank.bankName" ng-required="true"  placeholder="Bank Name"/>
+                      <span class="text-danger" ng-show="bankform.$submitted &amp;&amp; bankform.bank_name.$error.required">This field is required</span>
+                  </div>
+               </div>
+             
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Branch Code</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="branch_code" ng-model="bank.branchCode" ng-required="true"  placeholder="Branch Code"/>
+                      <span class="text-danger" ng-show="bankform.$submitted &amp;&amp; bankform.branch_code.$error.required">This field is required</span>
+                  </div>
+               </div>
+
+                 <div class="form-group">
+                  <label class="col-lg-3 control-label">Branch Name</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="branch_name" ng-model="bank.branchName"   ng-required="true"  placeholder="Branch Code"/>
+                      <span class="text-danger" ng-show="bankform.$submitted &amp;&amp; bankform.branch_name.$error.required">This field is required</span>
+                  </div>
+               </div>
+              
+            
+
+              
+              
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm mr" ng-click="bankform.$valid && updateBank(bank)">Update</button>
+                      <button class="btn btn-warning btn-sm mr" type="reset">Reset</button>
+                  </div>
+               </div>
+            </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+
+
+
+   </div>
+</div>

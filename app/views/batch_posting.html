@@ -1,0 +1,75 @@
+   
+<h3>Batch Posting
+
+    <div class="clearfix">
+     
+      <a class="btn btn-info pull-right mr"  ui-sref="app.payrollposting_import" >
+Import</a>
+      <a class="btn btn-info pull-right mr"  ui-sref="app.common_data_postingt" >
+ Common Data</a>
+          
+     
+        
+      </div>
+</h3>
+
+
+
+
+   <div class="container-fluid" ng-controller="BatchPostingController as table">
+   <!-- Editable row-->
+<!--    <h4 class="page-header"></h4> -->
+   <table class="table table-bordered table-hover bg-white">
+      <tr style="font-weight: bold">
+         <td>Employee Number</td>
+         <td>Payroll Code</td>
+      
+          <td>Amount</td>
+                   <td></td>
+         <td>Edit</td>
+      </tr>
+      <tr ng-repeat="user in table.posting">
+
+        <td>
+            <!-- editable group (select-remote)-->
+            <span editable-select="user.employeeId" e-name="employeeId" onshow="table.loadEmployees()" e-form="rowform" e-ng-options="g.id as g.employeeNumber+'_'+g.firstName+' '+g.lastName for g in table.employees ">{{ table.showEmployees(user) }}</span>
+         </td>
+
+              <td> 
+            <!-- editable status (select-local)-->
+            <span editable-select="user.payrollCodeId"  e-name="payrollCodeId" onshow="table.loadCodes()" e-form="rowform" e-ng-options="code.id as code.code+'_' +code.description for code in table.codes">{{ table.showCode(user) }}</span>
+         </td>
+         <td>
+            <!-- editable username (text with validation)-->
+            <span editable-text="user.amount" e-name="amount" e-form="rowform" " e-required="">{{ user.amount || &apos;empty&apos; }}</span>
+         </td>
+           <td>
+            <!-- editable username (text with validation)-->
+            <span editable-text="user.periodId" e-name="periodId" e-form="rowform" " e-required="" e-ng-show="false"></span>
+         </td>
+         
+    
+      
+         <td style="white-space: nowrap">
+            <!-- form-->
+            <form class="form-buttons form-inline" editable-form="" name="rowform" onbeforesave="table.saveUser($data)" ng-show="rowform.$visible" shown="table.inserted == user">
+               <button class="btn btn-sm btn-info" type="submit" ng-disabled="rowform.$waiting" title="Save">
+                  <em class="fa fa-save"></em>
+               </button>
+               <button class="btn btn-sm btn-default" type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" title="Cancel">
+                  <em class="fa fa-times"></em>
+               </button>
+            </form>
+            <div class="buttons" ng-show="!rowform.$visible">
+               <button class="btn btn-sm btn-info" ng-click="rowform.$show()" title="Edit">
+                  <em class="fa fa-pencil"></em>
+               </button>
+               <button class="btn btn-sm btn-danger" ng-click="table.removeUser($index)" title="Delete">
+                  <em class="fa fa-trash"></em>
+               </button>
+            </div>
+         </td>
+      </tr>
+   </table>
+  <button class="btn btn-info" ng-click="table.addUser()">Add row</button>
+         </div>

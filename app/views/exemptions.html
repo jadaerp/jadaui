@@ -1,0 +1,153 @@
+
+<h3>Exemptions
+   
+</h3>
+
+    <div class="panel panel-default" ng-controller="ExemptionsController">
+     <div class="panel-heading">
+      <div class=" clearfix buttons">
+                       <button class="btn btn-info pull-right mr" type="button" ng-click="open()">Add New</button>  
+                                                      
+                     
+                    </div>
+                  </div>
+     <div class="panel-body"  >
+      <div class="table-responsive">
+       <table class="table table-striped" >
+         <thead>
+          <tr>
+           <th> Code</th>
+           <th>Description</th>
+             <th>Employee</th>
+       
+               <th>Action</th>
+         </tr>
+       </thead>
+       <tbody>
+        <tr ng-repeat="employee in exemptemployees">
+        
+          <td>{{employee.payrollCode}}</td>
+          <td>{{employee.description }}</td>
+          <td>{{employee.employeeName }}</td>
+          
+
+          <td>
+            <div class="buttons" >
+             <button class="btn btn-info pull-left mr" type="button" ng-click="show(employee)" > <em class="fa fa-pencil"></em></button>
+                   
+                        <button class="btn btn-sm btn-danger"  ng-click="delete(employee)" title="Delete">
+                          <em class="fa fa-trash"></em>
+                        </button>
+                      </div>
+                    </td>          
+                  </tr>
+
+                </tbody>
+              </table>
+
+
+            </div>
+           <!--  <button class="btn btn-info pull-left mr" type="button" ng-click="open()">Add New</button> -->
+            
+<script type="text/ng-template" id="addExempt.html">
+        <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Exempt Employee</h4></div>
+        <div class="modal-body" ng-controller="ExemptionsController">
+      
+          <form class="form-horizontal" name="exemptionform" novalidate >
+           
+
+           <div class="form-group">
+            <label class="col-lg-3 control-label"> Payroll Code</label>
+            <div class="col-lg-9">
+            <select class="form-control" name="exemptcode" ng-model="exempt.payrollCodeId" ng-options="code.id as code.description for code in pcodes" ng-required="true" >
+    <option value="" disabled selected>All Codes</option>
+  </select>
+
+   <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.exemptcode.$error.required">This field is required</span>
+           </div>
+         </div>
+         <div class="form-group">
+           <label class="col-lg-3 control-label">Employee</label>
+           <div class="col-lg-9">
+                  <select class="form-control" name="exemptemployee" ng-model="exempt.employeeId" ng-options="employee.id as employee.firstName for employee in employees" ng-required="true">
+    <option value="" disabled selected>All Employees</option>
+  </select>
+  <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.exemptemployee.$error.required">This field is required</span>
+           </div>
+         </div>
+     
+
+     <div class="form-group">
+      <div class="col-lg-offset-3 col-lg-9">
+       <button class="btn btn-info btn-sm" ng-click="exemptionform.$valid && submitExempt(exemptionform)">Save and New</button>
+       <button class="btn btn-info btn-sm" ng-click="exemptionform.$valid && CloseExempt(exempt)">Save and Close</button>
+          <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+     </div>
+   
+   </div>
+      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+
+ </form>
+
+</div>
+<div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+</script>
+
+<script type="text/ng-template" id="EditExempt.html">
+     <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Update </h4></div>
+     <div class="modal-body" ng-controller="ExemptionsController" >
+  
+          <form class="form-horizontal" name="exemptionform" novalidate>
+
+
+        <div class="form-group">
+          
+            <div class="col-lg-9">
+               <input class="form-control" type="hidden"  name="id_number"  ng-model="employee.id" />
+          
+           </div>
+         </div>
+              <div class="form-group">
+            <label class="col-lg-3 control-label"> Payroll Code</label>
+            <div class="col-lg-9">
+            <select class="form-control" name="exemptcode" ng-model="employee.payrollCodeId" ng-options="code.id as code.description for code in pcodes " ng-required="true">
+    <option value="" disabled selected>All Codes</option>
+  </select>
+   <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.exemptcode.$error.required">This field is required</span>
+           </div>
+         </div>
+
+
+
+         <div class="form-group">
+           <label class="col-lg-3 control-label">Employee</label>
+           <div class="col-lg-9">
+                  <select class="form-control" name="exemptemployee" ng-model="employee.employeeId" ng-options="employee.id as employee.firstName for employee in employees" ng-required="true">
+    <option value="" disabled selected>All Employees</option>
+
+    
+  </select>
+   <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.exemptemployee.$error.required">This field is required</span>
+           </div>
+         </div>
+       
+ 
+
+     <div class="form-group">
+      <div class="col-lg-offset-3 col-lg-9">
+       <button class="btn btn-info btn-sm"  ng-click="exemptionform.$valid && updateExempt(employee)" >Update</button>
+          <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+     </div>
+   </div>
+ </form>
+
+</div>
+<div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+
+</script>
+          </div>
+        </div>
+ 
+
+      

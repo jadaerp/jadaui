@@ -1,0 +1,39 @@
+<h3>End Month </h3>
+  <div class="col-md-6">
+<div class="panel panel-default" ng-controller="monthEndController">
+   <div class="panel-body">
+  
+     
+       <div class="row mb-lg companydetails">
+         <div class="col-lg-12   pv">
+            <div class="row">
+               
+               <div class="col-md-10">
+             
+    
+
+             <div class="clearfix" ng-controller="DashboardController">
+               <p class="pull-left mr"><b>Pay Period</b> </p>
+               <p class="pull-left mr">{{dashboard.currentPeriod.month}} {{dashboard.currentPeriod.year}}</p>
+              
+            </div>
+          
+                  </div>
+            </div>
+         </div>
+         </div>
+
+        
+         <div class="col-md-4">
+         <div class="clearfix1">
+        
+         <button class="btn btn-primary pull-left" type="button" ng-class="currentclass"  ng-click="endMonth()">Process</button>
+          <!-- <uib-progressbar class="progress-striped" value="22" type="warning">22%</uib-progressbar> -->
+         </div>
+         </div>
+     
+      
+    
+   </div>
+</div>
+</div>

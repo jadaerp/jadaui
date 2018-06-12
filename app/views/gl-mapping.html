@@ -1,0 +1,290 @@
+<h3>Gl Mapping</h3>
+
+
+
+
+   <div class="container-fluid" ng-controller="GlmappingController">
+
+
+
+
+  <div class="panel panel-default">
+         <div class="panel-heading"><div class="buttons" >
+ <button class="btn btn-info pull-right mr" type="button" ng-click="open()">Add New</button>
+
+            </div></div>
+            <div class="panel-body" >
+         <div class="row">
+           <div class="col-md-10">
+                   <div class="clearfix">
+          <table class="table table-bordered-white"  >
+         <thead>
+          <tr>
+           <th> Mapping Code</th>
+           <th>Mapping Description</th>
+
+            <th> General Ledger Code</th>
+           <th>Payroll Code</th>
+            <th> DR/CR</th>
+
+        
+           <th>Action</th>
+       
+         </tr>
+       </thead>
+       <tbody>
+        <tr ng-repeat="gl in glmappings" >
+        
+    
+            <td>{{gl.code}}</td>
+              <td>{{gl.description}}</td>
+                <td>{{gl.payrollLedgerDescription}}</td> 
+
+                  <td>{{gl.payrollCodeDescription}}</td>
+
+                    <td>{{gl.entryTypeDescription}}</td>
+
+
+
+        
+
+          <td>
+            <div class="buttons" >
+              
+                   <button class="btn btn-sm btn-info  mr" type="button" ng-click="show(gl)"><em class="fa fa-pencil"></em></button>
+                  <button class="btn btn-sm btn-danger mr"  ng-click="delete(gl)" title="Delete">
+                    <em class="fa fa-trash"></em>
+
+         
+                  
+                      </div>
+                    </td>          
+                  </tr>
+
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+            
+               
+            <br/>
+           
+                 
+          </div>
+           
+    
+
+               </div>
+             <br/>
+              
+
+          <script type="text/ng-template" id="newgGLMapping.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">New GLMapping</h4></div>
+            <div class="modal-body" ng-controller="GlmappingController"><!-- START panel-->
+
+ <form class="form-horizontal" name="glform" novalidate=""  >
+    <div class="form-group">
+                  <label class="col-lg-3"> Mapping Code
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="mappingCode" ng-model="gl.code" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder=" Mapping Code"/>
+                       <span class="text-danger" ng-show="glform.mappingCode.$dirty &amp;&amp; glform.mappingCode.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="glform.mappingCode.$dirty &amp;&amp; glform.mappingCode.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+               
+                <div class="form-group">
+                  <label class="col-lg-3"> Mapping Description
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="description" ng-model="gl.description" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder=" Mapping Description"/>
+                       <span class="text-danger" ng-show="glform.description.$dirty &amp;&amp; glform.description.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="glform.description.$dirty &amp;&amp; glform.description.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+
+     
+
+                 
+                      <div class="form-group">
+                        <label class="col-lg-3">General Ledger Code</label>
+                        <div class="col-lg-9">
+                 
+                            <select  class="form-control" name="payrollLedger"  ng-model="gl.payrollLedger" ng-options="code.id as code.code+' - '+code.description for code in legercodes">
+                     <option value="" selected>Select General Ledger Code</option>
+                     </select>
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>
+
+                  
+                      <div class="form-group">
+                        <label class="col-lg-3">Payroll Code</label>
+                        <div class="col-lg-9">
+                 
+                            <select  class="form-control" chosen=""  multiple="multiple"  name="payrollCode"  ng-model="gl.payrollCodeList" ng-options="code.id as code.code+' - '+code.description for code in pcodes">
+                
+                     </select>
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>
+                
+
+               <div class="form-group">
+               <label class="col-lg-3"> DR/CR
+</label>
+               <div class="col-lg-9">
+                  <select class="form-control" ng-model="gl.entryType">
+                     <option value="">Select Financial Category</option>
+                       <option value="1">DR</option>
+                     <option value="0">CR</option>
+                  
+                  </select>
+                 
+               </div>
+            </div>
+              
+
+
+                
+    
+
+           
+
+              
+             
+            
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm mr" ng-disabled="glform.$invalid" ng-click="submitGl()">Save and New</button>
+                         <button class="btn btn-info btn-sm mr" ng-disabled="glform.$invalid" ng-click="submitCloseGl()">Save and Close</button>
+                      <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+                  </div>
+               </div>
+               
+                      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            </form>
+          
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+
+
+             <script type="text/ng-template" id="editgGLMapping.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Edit GlMapping</h4></div><div class="modal-body"  ng-controller="GlmappingController"><!-- START panel-->
+
+<form class="form-horizontal" name="glform" novalidate=""  >
+    <div class="form-group">
+                  <label class="col-lg-3"> Mapping Code
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="mappingCode" ng-model="gl.code" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder=" Mapping Code"/>
+                       <span class="text-danger" ng-show="glform.mappingCode.$dirty &amp;&amp; glform.mappingCode.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="glform.mappingCode.$dirty &amp;&amp; glform.mappingCode.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+               
+                <div class="form-group">
+                  <label class="col-lg-3"> Mapping Description
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="description" ng-model="gl.description" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder=" Mapping Description"/>
+                       <span class="text-danger" ng-show="glform.description.$dirty &amp;&amp; glform.description.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="glform.description.$dirty &amp;&amp; glform.description.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+
+     
+
+                 
+                      <div class="form-group">
+                        <label class="col-lg-3">General Ledger Code</label>
+                        <div class="col-lg-9">
+                 
+                            <select  class="form-control" name="payrollLedger"  ng-model="gl.payrollLedger" ng-options="code.id as code.code for code in legercodes">
+                     <option value="" selected>Select General Ledger Code</option>
+                     </select>
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>
+
+                  
+                      <div class="form-group">
+                        <label class="col-lg-3">Payroll Code</label>
+                        <div class="col-lg-9">
+                 
+                            <select  class="form-control" chosen=""  multiple="multiple"  name="payrollCode"  ng-model="gl.payrollCodeList" ng-options="code.id as code.code+' - '+code.description for code in pcodes">
+                
+                     </select>
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>
+
+               <div class="form-group">
+               <label class="col-lg-3"> DR/CR
+</label>
+               <div class="col-lg-9">
+                  <select class="form-control" ng-model="gl.entryType">
+                     <option value="">Select Financial Category</option>
+                       <option value="1">DR</option>
+                     <option value="0">CR</option>
+                  
+                  </select>
+                 
+               </div>
+            </div>
+              
+
+                
+    
+
+           
+              
+             
+            
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm mr" ng-disabled="glform.$invalid" ng-click="glUpdate(gl)">Update</button>
+                   
+                      <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+                  </div>
+               </div>
+               
+                      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            </form>
+           <!--  {{gl|json}} -->
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+      </div>
+       
+</button>
+
+
+
+
+
+
+
+
+

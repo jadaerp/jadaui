@@ -1,0 +1,380 @@
+
+     <h3>
+      Employee Details</h3>
+   <div class="page" ng-controller="EmployeesDetailsController">
+
+
+
+   <div class="panel" >
+      <div class="panel-body">
+               <div class="row">
+      <a class="btn btn-primary pull-right mr" type="button"  ui-sref="app.employee-edit({EmployeeId:currentemployee.id})">
+       Edit</a>   
+            
+         </div> 
+         <h3 class="mt0">Personal Information</h3>
+         <hr/>
+         <div class="row mb-lg">
+          
+            <div class="col-lg-6 col-xs-6 br pv">
+              
+               <div class="row">
+                
+                  <div class="col-md-10">
+                      <div class="clearfix">
+                  <p class="pull-left"><b>First Name</b></p>
+                  <p class="pull-right mr">{{currentemployee.firstName}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>Middle Name</b></p>
+                  <p class="pull-right mr">{{currentemployee.middleName}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>Last  Name</b></p>
+                  <p class="pull-right mr">{{currentemployee.lastName}}</p>
+               </div>
+                <div class="clearfix">
+                  <p class="pull-left"><b>Employee Number</b></p>
+                  <p class="pull-right mr">{{currentemployee.employeeNumber}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>National ID Number</b></p>
+                  <p class="pull-right mr">{{currentemployee.idNumber}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>Passport Number</b></p>
+                  <p class="pull-right mr">{{currentemployee.passportNumber}}</p>
+               </div>
+
+                 <div class="clearfix">
+                  <p class="pull-left"><b> Country of issue</b></p>
+                  <p class="pull-right mr">{{currentemployee.countryOfIssuance}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>Expiry date</b></p>
+                  <p class="pull-right mr">{{currentemployee.expiryDate}}</p>
+               </div>
+            
+
+
+            </div>
+               </div>
+            </div>
+            <div class="clearfix hidden-md hidden-lg">
+               <hr/>
+            </div>
+            <div class="col-lg-6 col-xs-6 br pv">
+               <div class="row">
+                
+                  <div class="col-md-10">
+                       <div class="clearfix">
+                  <p class="pull-left"><b> Date of Birth</b></p>
+                  <p class="pull-right mr">{{currentemployee.dateOfBirth}}</p>
+               </div>
+                        <div class="clearfix">
+                  <p class="pull-left"><b>Marital Status</b></p>
+                  <p class="pull-right mr">{{currentemployee.maritalStatus}}</p>
+               </div>
+                     
+               <div class="clearfix">
+                  <p class="pull-left"><b>Gender</b></p>
+                  <p class="pull-right mr">{{currentemployee.gender}}</p>
+               </div>
+
+                   <div class="clearfix">
+                  <p class="pull-left"><b>Dependency</b></p>
+                  <p class="pull-right mr">{{currentemployee.dependencies}}</p>
+               </div>
+                   <div class="clearfix">
+                  <p class="pull-left"><b>Next of Kin</b></p>
+                  <p class="pull-right mr">{{currentemployee.nextOfKin}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>Relationship with Next of Kin</b></p>
+                  <p class="pull-right mr">{{currentemployee.nextOfKinRelationship}}</p>
+               </div>
+
+           <div class="clearfix">
+                  <p class="pull-left"><b>Disability</b></p>
+                  <p class="pull-right mr">{{currentemployee.disability}}</p>
+               </div>
+                <div class="clearfix">
+                  <p class="pull-left"><b>Nature of Disability</b></p>
+                  <p class="pull-right mr">{{currentemployee.natureOfDisability}}</p>
+               </div>
+
+            </div>
+               </div>
+            </div>
+            
+         </div>
+         
+       
+   </div>
+
+
+
+   <div class="panel-body">
+      
+         <h3 class="mt0">Contact Information</h3>
+         <hr/>
+         <div class="row mb-lg">
+          
+            <div class="col-lg-6 col-xs-6 br pv">
+               <div class="row">
+                
+                  <div class="col-md-10">
+                      <div class="clearfix">
+                  <p class="pull-left"><b>Phone Number</b></p>
+                  <p class="pull-right mr">{{currentemployee.phoneNumber}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>Email address</b></p>
+                  <p class="pull-right mr">{{currentemployee.emailAddress}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>Physical Address</b></p>
+                  <p class="pull-right mr">{{currentemployee.physicalAddress}}</p>
+               </div>
+                
+            
+
+
+            </div>
+               </div>
+            </div>
+            <div class="clearfix hidden-md hidden-lg">
+               <hr/>
+            </div>
+            <div class="col-lg-6 col-xs-6 br pv">
+               <div class="row">
+                
+                  <div class="col-md-10">
+                        <div class="clearfix">
+                  <p class="pull-left"><b>Postal address</b></p>
+                  <p class="pull-right mr">{{currentemployee.postalAddress}}</p>
+               </div>
+                     
+               <div class="clearfix">
+                  <p class="pull-left"><b>Postal Code</b></p>
+                  <p class="pull-right mr">{{currentemployee.postalCode}}</p>
+               </div>
+
+                 
+            </div>
+               </div>
+            </div>
+            
+         </div>
+         
+        <!-- 
+         <hr class="hidden-print" />
+         <div class="clearfix">
+            <button class="btn btn-info pull-left mr" type="button">Edit</button>
+            <button class="btn btn-default pull-left" type="button" onclick="window.print();">Print</button>
+            <button class="btn btn-success pull-right" type="button">Send Invoice</button>
+         </div>
+      </div> -->
+   </div>
+   <div class="panel-body">
+      
+         <h3 class="mt0">Statutory Information</h3>
+         <hr/>
+         <div class="row mb-lg">
+          
+            <div class="col-lg-6 col-xs-6 br pv">
+               <div class="row">
+                
+                  <div class="col-md-10">
+                      <div class="clearfix">
+                  <p class="pull-left"><b>PIN Number</b></p>
+                  <p class="pull-right mr">{{currentemployee.pinNumber}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>NHIF number</b></p>
+                  <p class="pull-right mr">{{currentemployee.nhifNumber}}</p>
+               </div>
+             
+            
+
+
+            </div>
+               </div>
+            </div>
+            <div class="clearfix hidden-md hidden-lg">
+               <hr/>
+            </div>
+            <div class="col-lg-6 col-xs-6 br pv">
+               <div class="row">
+                
+                  <div class="col-md-10">
+                        <div class="clearfix">
+                  <p class="pull-left"><b>NSSF Number</b></p>
+                  <p class="pull-right mr">{{currentemployee.nssfNumber}}</p>
+               </div>
+                     
+               <div class="clearfix">
+                  <p class="pull-left"><b>HELB Number</b></p>
+                  <p class="pull-right mr">{{currentemployee.helbNumber}}</p>
+               </div>
+
+                  
+
+            </div>
+               </div>
+            </div>
+            
+         </div>
+         
+        <!-- 
+         <hr class="hidden-print" />
+         <div class="clearfix">
+            <button class="btn btn-info pull-left mr" type="button">Edit</button>
+            <button class="btn btn-default pull-left" type="button" onclick="window.print();">Print</button>
+            <button class="btn btn-success pull-right" type="button">Send Invoice</button>
+         </div>
+      </div> -->
+   </div>
+   <div class="panel-body">
+      
+         <h3 class="mt0">Financial Information</h3>
+         <hr/>
+         <div class="row mb-lg">
+          
+            <div class="col-lg-6 col-xs-6 br pv">
+               <div class="row">
+                
+                  <div class="col-md-10">
+                      <div class="clearfix">
+                  <p class="pull-left"><b>Employment Date</b></p>
+                  <p class="pull-right mr">{{currentemployee.employmentDate}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>Pay Point</b></p>
+                  <p class="pull-right mr">{{currentemployee.payPoint}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>Pay Mode</b></p>
+                  <p class="pull-right mr">{{currentemployee.payMode}}</p>
+               </div>
+                  <div class="clearfix">
+                  <p class="pull-left"><b>Bank Code</b></p>
+                  <p class="pull-right mr">{{currentemployee.bankCode}}</p>
+               </div>
+             
+            
+
+
+            </div>
+               </div>
+            </div>
+            <div class="clearfix hidden-md hidden-lg">
+               <hr/>
+            </div>
+            <div class="col-lg-6 col-xs-6 br pv">
+               <div class="row">
+                
+                  <div class="col-md-10">
+                        <div class="clearfix">
+                  <p class="pull-left"><b>Bank Name</b></p>
+                  <p class="pull-right mr">{{currentemployee.bankName}}</p>
+               </div>
+           <div class="clearfix">
+                  <p class="pull-left"><b>Bank Branch Name</b></p>
+                  <p class="pull-right mr">{{currentemployee.bankBranch}}</p>
+               </div>
+            
+               <div class="clearfix">
+                  <p class="pull-left"><b>Bank Account Number</b></p>
+                  <p class="pull-right mr">{{currentemployee.accountNumber}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>Bank Account Name</b></p>
+                  <p class="pull-right mr">{{currentemployee.accountName}}</p>
+               </div>
+
+
+            </div>
+               </div>
+            </div>
+            
+         </div>
+         
+        <!-- 
+         <hr class="hidden-print" />
+         <div class="clearfix">
+            <button class="btn btn-info pull-left mr" type="button">Edit</button>
+            <button class="btn btn-default pull-left" type="button" onclick="window.print();">Print</button>
+            <button class="btn btn-success pull-right" type="button">Send Invoice</button>
+         </div>
+      </div> -->
+   </div>
+
+
+   <div class="panel-body">
+      
+         <h3 class="mt0">Other Information</h3>
+         <hr/>
+         <div class="row mb-lg">
+          
+            <div class="col-lg-6 col-xs-6 br pv">
+               <div class="row">
+                
+                  <div class="col-md-10">
+                      <div class="clearfix">
+                  <p class="pull-left " ><b>Department</b></p>
+                  <p class="pull-right mr">{{currentemployee.department}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>Cost Center</b></p>
+                  <p class="pull-right mr">{{currentemployee.costCenter}}</p>
+               </div>
+            
+                     <div class="clearfix">
+                  <p class="pull-left"><b>Employee category</b></p>
+                  <p class="pull-right mr">{{currentemployee.employeeCategory}}</p>
+               </div>
+             
+            
+
+
+            </div>
+               </div>
+            </div>
+            <div class="clearfix hidden-md hidden-lg">
+               <hr/>
+            </div>
+            <div class="col-lg-6 col-xs-6 br pv">
+               <div class="row">
+                
+                  <div class="col-md-10">
+                  
+               <div class="clearfix">
+                  <p class="pull-left"><b>Employee Group</b></p>
+                  <p class="pull-right mr">{{currentemployee.employeeGroup}}</p>
+               </div>
+               <div class="clearfix">
+                  <p class="pull-left"><b>Position</b></p>
+                  <p class="pull-right mr">{{currentemployee.position}}</p>
+               </div>
+         
+            
+
+            </div>
+               </div>
+            </div>
+            
+         </div>
+         <div class="row">
+      <a class="btn btn-primary pull-right mr" type="button"  ui-sref="app.employee-edit({EmployeeId:currentemployee.id})">
+       Edit</a>   
+            
+         </div>
+         
+       
+   </div>
+
+
+   </div>
+
+   </div>

@@ -1,0 +1,256 @@
+
+  
+<h3>Company Summary Preview</h3>
+
+  <div  ng-controller="CompanySumarryController">
+<div class="row">
+   <div class="col-lg-8">
+      <form class="form-inline">
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Period</div>
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="user.period" ng-options="period.id as period.period for period in periods" >
+        <option value="" disabled selected>Periods</option>
+  </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+</form>
+  
+
+ </div>
+   </div>
+    <div class="panel panel-default">
+         <!-- <div class="panel-heading"></div> -->
+         <div class="panel-body">
+          <div id="printable">
+          <div class="table-responsive table-bordered horiztbl">
+         <table class="table ">
+                 <thead>
+               <tr>
+               <th>P/NO.</th>
+               <th colspan="3" >Employee Name</th>
+               <th>Basic Pay</th>
+               <th>Other Earnings</th>
+               <th>Advance</th>
+               <th>Gross Pay</th>
+               <th>Paye</th>
+               <th>NSSF (Self)</th>
+                  <th>NHIF</th>
+                  <th>Pension</th>
+                  <th>HELB</th>
+                  <th>Insurance</th>
+                  <th>Sacco</th>
+                  <th>Total Deductions</th>
+                  <th>Net Pay</th>
+                  <th>NSSF (EMPL)</th>
+                  <th>Pension (EMPL)</th>
+                  
+                  
+                  
+               </tr>
+            </thead>
+      
+            <tbody>
+               <tr ng-repeat="summary in companysumaries.employeeSummaryList">
+                  <td>{{summary.pinNumber}}</td>
+                  <td colspan="3">{{summary.employeeName}}</td>
+                  <td>{{summary.basicPay}}</td>
+                  <td>{{summary.otherEarnings}}</td>
+                  <td>{{summary.advance}}</td>
+                  <td>{{summary.grossPay}}</td>
+                  <td>{{summary.paye}}</td>
+                  <td>{{summary.NSSF}}</td>
+                   <td>{{summary.NHIF}}</td>
+                  <td>{{summary.pension}}</td>
+                  <td>{{summary.Helb}}</td>
+                  <td>{{summary.insurance}}</td>
+
+                               
+                   <td>{{summary.sacco}}</td>
+                  <td>{{summary.totalDeductions}}</td>
+                   <td>{{summary.netPay}}</td>
+                  <td>{{summary.NSSF}}</td>
+
+                               
+                   <td>{{summary.pension}}</td>
+                 </tr>
+              
+                <tr>
+                  <td><strong>Totals</strong></td>
+                  <td colspan="3"><strong>3</strong></td>
+                  <td> <strong>50000</strong></td>
+                  <td><strong>50000</strong></td>
+                  <td><strong>50000</strong></td>
+                  <td><strong>50000</strong></td>
+                  <td><strong>50000</strong></td>
+                  <td><strong>50000</strong></td>
+                   <td><strong>50000</strong></td>
+                  <td><strong>50000</strong></td>
+                  <td><strong>50000</strong></td>
+                  <td><strong>50000</strong></td>
+
+                               
+                   <td><strong>50000</strong></td>
+                  <td><strong>50000</strong></td>
+                   <td><strong>50000</strong></td>
+                  <td><strong>50000</strong></td>
+
+                               
+                   <td><strong>50000</strong></td>
+
+
+               </tr>
+               
+                  <tr>
+                  <td><strong></strong></td>
+                  <td><strong></strong></td>
+                  <td> <strong></strong></td>
+                  <td><strong></strong></td>
+                  <td><strong></strong></td>
+                  <td><strong></strong></td>
+                  <td><strong></strong></td>
+                  <td><strong></strong></td>
+                   <td><strong></strong></td>
+                  <td><strong></strong></td>
+                  <td><strong></strong></td>
+                  <td><strong></strong></td>
+
+                               
+                   <td><strong></strong></td>
+                  <td><strong></strong></td>
+                   <td><strong></strong></td>
+                  <td><strong></strong></td>
+
+                               
+                   <td><strong></strong></td>
+               </tr>
+            </tbody>
+         </table>
+
+        
+      </div>
+       <br/>
+         <br/>
+         <br/>
+        
+      <div class="table-responsive">
+             <div class="col-lg-8">
+               <table class="table table-bordered-white">
+            
+                  <tbody>
+                     <tr>
+                        
+                        <td >Net Pay - Transfer</td>
+                        <td >2700
+</td>
+                     </tr>
+                     <tr>
+                        
+                        <td>PAYE</td>
+                        <td>10000
+
+</td>
+                     </tr>
+
+                     <tr>
+                        
+
+                        <td>NSSF (Employer)
+</td>
+                        <td>500</td>
+                     </tr>
+                     <tr>
+     
+                        <td>NSSF (self)
+
+</td>
+                        <td>1280
+</td>
+                     </tr>
+                     <tr>
+     
+                        <td>NHIF
+
+</td>
+                        <td>1280
+</td>
+                     </tr>
+                     <tr>
+     
+                        <td>Pension (Employer)
+
+</td>
+                        <td>1280
+</td>
+                     </tr>
+                     <tr>
+     
+                        <td>Pension (Self)
+
+</td>
+                        <td>1280
+</td>
+                     </tr>
+
+                     <tr>
+     
+                        <td>HELB
+
+</td>
+                        <td>1280
+</td>
+                     </tr>
+                     <tr>
+     
+                        <td>Insurance
+
+</td>
+                        <td>1280
+</td>
+                     </tr>
+                     <tr>
+     
+                        <td>SACCO
+
+</td>
+                        <td>1280
+</td>
+                     </tr>
+                     <tr>
+     
+                        <td><strong>Grand Total</strong>
+
+</td>
+                        <td><strong>162 541</strong>
+</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <br/>
+               </div>
+            </div>
+</div>
+
+      <div class="clearfix">
+    
+          <a  class="btn btn-success pull-right mr" ui-sref="app.payroll-approve" ui-sref-active="active">Back</a>
+      </div>
+         </div>
+         </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

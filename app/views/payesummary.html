@@ -1,0 +1,112 @@
+<h3>Paye Summary
+   
+</h3>
+<!-- Zero Configuration-->
+
+<!-- ngRepeat + ngResource-->
+<div class="page"  ng-controller="payeSummaryController">
+<div class="row" >
+   
+
+
+   <div class="col-lg-8">
+      <form class="form-inline">
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Period</div>
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="period" ng-options="period.id as period.period for period in periods" ng-change="showcurrentperiod(period)" >
+        <option value="" disabled selected>Periods</option>
+  </select>
+  </div>
+ 
+  <button ng-click="getByperiod(period)" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+</form>
+  
+
+
+   </div>
+
+
+</div>
+<br/>
+<div class="panel panel-default">
+   <!-- <div class="panel-heading">Datatables |
+      <small>ngRepeat + ngResource</small>
+   </div> -->
+   <div class="panel-body">
+         <hr/> 
+      <div class="row mb-lg">
+      
+   <div class="col-lg-4">
+      
+         <table class="table table-bordered-white " >
+            
+            <tbody >
+               <tr>
+                  <td >Employer Name:</td>
+                  <td >{{psummaries.employer.employerName}}</td>
+              
+                  
+               </tr>
+               <tr>
+                 
+                 
+                  <td >Employer PIN</td>
+                  <td >{{psummaries.employer.pinNumber}}</td>
+
+                  
+               </tr>
+              
+            <tr>
+                 
+                 
+                  <td >Period:</td>
+                  <td >{{currentMonth}}</td>
+                
+                  
+               </tr>
+          
+                  
+            </tbody>
+         </table>
+             
+   </div>
+   
+        
+      </div>
+      <div class="table-responsive">
+         <table class="table table-bordered">
+            <thead>
+               <tr>
+                  
+                  <th>Payroll No </th>
+                  <th>Employee Name</th>
+                    <th>Employee PIN</th>
+                  <th>Taxable Pay</th>
+                   <th>Tax Charged </th>
+                  <th>Relief</th>
+                  <th>PAYE</th>
+                 
+                 
+               </tr>
+            </thead>
+            <tbody>
+               <tr ng-repeat="psummary in psummaries.payeSummaryList">
+                <td>{{psummary.employeeNumber}}</td>
+                  <td>{{psummary.employeeName}}</td>
+                 <td>{{psummary.employeePin}}</td>
+          
+                  <td style="text-align: right;">{{psummary.taxablePay}}</td>
+                  <td style="text-align: right;">{{psummary.taxCharged}}</td>
+                   <td style="text-align: right;">{{psummary.relief}}</td>
+                  <td style="text-align: right;">{{psummary.paye}}</td>
+               
+                  
+               </tr>
+            
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+</div>

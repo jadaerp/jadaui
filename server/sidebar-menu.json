@@ -1,0 +1,296 @@
+[
+  {
+    "text": "Main Navigation",
+    "heading": "true",
+    "translate": "sidebar.heading.HEADER"
+  },
+  {
+    "text": "DASHBOARD",
+    "sref": "app.dashboard",
+    "icon": "fa fa-dashboard",
+   
+    "label": "label label-info"
+   
+
+  },
+
+{
+    "text": "ADMINISTRATION",
+   
+    "icon": "fa fa-user",
+   
+    "label": "label label-info",
+
+     "submenu": [
+       {  "text": "Company Details", "sref": "app.company" },
+          {"text": "Financial Periods","sref": "app.financialperiods"},
+           
+
+         {"text": "Departments ","sref": "app.departmentlistings"},
+         {"text": "Cost Centers ","sref": "app.costcenters"},
+         { "text": "User Setup","sref": "app.user_settings"},
+         { "text": "Task Setup","sref": "app.task"}]
+
+ 
+   
+
+  },
+
+ {
+
+    
+    "text": "PAYROLL",
+    "sref": "#",
+    "icon": "fa fa-briefcase",
+    "submenu": [
+      
+
+ {
+
+
+    "text": "Employee Setup",
+    "sref": "#",
+    "child": "fa fa-chevron-down",
+    
+    "submenu": [
+      {"text": "Categories ","sref": "app.employee-category"},
+      
+     
+       {"text": " Groups", "sref": "app.employee-groups"},
+
+
+      {"text": "Pay Frequency ","sref": "app.Payfrequency"},
+         {"text": "Pay Mode","sref": "app.paymode"},
+          {"text": "Pay Points ","sref": "app.paypointslistings"},
+             {"text": "Employee Details", "sref": "app.listings"},
+   
+       {"text": "Bank Setup", "sref": "app.bankcodes"}
+
+
+     
+
+      
+       
+    ]
+  },
+       
+
+
+ {
+
+
+    "text": "Leave",
+    "sref": "#",
+      "child": "fa fa-chevron-down",
+    "label": "label label-info",
+  
+    "submenu": [
+    
+       {"text": "Types ", "sref": "app.leave-types"},
+       {"text": "Leave Entitlement ","sref": "app.leave-entitlement"},
+         {"text": "Transaction Types ", "sref": "app.Leave-transaction-types"},
+         {"text": "Leave Balance ", "sref": "app.leave-balance"},
+           {"text": "Leave Processing", "sref": "app.leaveposting"}
+      
+  
+       
+    ]
+  },
+
+
+       {
+
+
+    "text": "Payroll Setup",
+    "sref": "#",
+      "child": "fa fa-chevron-down",
+    "label": "label label-info",
+  
+    "submenu": [
+    {"text": "Statutory", "sref": "app.statutory-details"}, 
+       {"text": " Codes ", "sref": "app.payroll-codes"},
+         {"text": "Groups ", "sref": "app.payroll-groups"},
+           {"text": "Exemptions ", "sref": "app.exemptions"},
+            {"text": "Formulas ", "sref": "app.formula-setup"}
+      
+  
+       
+    ]
+  },
+
+       
+
+
+
+       {
+    "text": " Payroll Processing",
+    "sref": "#",
+    "child": "fa fa-chevron-down",
+   
+    "submenu": [
+      {"text": " Employee Posting", "sref": "app.employee-posting"},
+       {"text": "Batch Posting", "sref": "app.bulktrans_input"},
+      
+       {"text": "Payroll Run ", "sref": "app.run"},
+        
+         {"text": "Month End", "sref": "app.endmonth"}
+       
+    ]
+  
+  },
+ 
+       {
+    "text": "Reports",
+    "child": "fa fa-chevron-down",
+    
+   
+    "submenu": [
+   
+       {
+        "text": "Payroll ",
+        "child": "fa fa-chevron-down",
+      
+        
+        "submenu": [
+          {"text": "Payslips", "sref": "app.payslip" },
+          
+          {"text": "Summary Mapping", "sref": "app.companysummarymapping" },
+        
+          {"text": "Company Summary", "sref": "app.companysummary" },
+           {"text": "Company Totals", "sref": "app.companytotals" }
+
+
+            
+        ]
+      },
+
+      {
+        "text": "Statutory ",
+        "child": "fa fa-chevron-down",
+    
+
+        "submenu": [
+          {"text": "Monthly",   "child": "fa fa-chevron-down",
+
+    "submenu": [
+    {"text": "PAYE", "sref": "app.paye" },
+                 {"text": "PAYE summary", "sref": "app.payesummary" },
+               {"text": "NHIF", "sref": "app.nhif" },
+             {"text": "NSSF", "sref": "app.nssf" },
+              {"text": "HELB", "sref": "app.helb" }
+        
+         
+       
+    ]
+  
+           },
+   {"text": "Annual",   "child": "fa fa-chevron-down",
+
+      "submenu": [
+          {"text": "P9A", "sref": "app.p9a" },
+          {
+            "text": "P9B",
+            "sref": "app.p9b"
+            
+       
+          },
+           {
+            "text": "P10",
+            "sref": "app.p10"
+           
+       
+          },
+           {
+            "text": "P10A",
+            "sref": "app.p10a"
+     
+       
+          },
+          {
+            "text": "P10B",
+            "sref": "app.p10b"
+            
+       
+          },
+          {
+            "text": "P10C",
+            "sref": "app.p10c"
+           
+       
+          },
+          {
+            "text": "P10D",
+            "sref": "app.p10d"
+            
+       
+          }
+        ]
+  
+           }
+
+
+        
+     
+         
+        ]
+
+
+      },
+
+
+  {"text": "Scheduler", "sref": "app.scheduler" },
+
+    {"text": "Leave", "sref": "app.leave" }
+
+           
+
+    ]
+  },
+  {
+    "text": " Exports",
+    "sref": "#",
+    "child": "fa fa-chevron-down",
+
+    "submenu": [
+      {"text": " Bank Files", "sref": "app.bankfiles"},
+     
+        {"text": "Payroll Ledger", "sref": "app.payroll-ledger"},
+       {"text": "Gl Mapping", "sref": "app.gl-mapping"}, 
+          
+         {"text": "Gl Journals", "sref": "app.payroll-journals"}
+           
+         
+       
+    ]
+  
+  }
+ 
+
+
+    ]
+  },
+      {
+    "text": " HELP",
+    "sref": "#",
+        
+      "icon": "fa fa-question-circle",
+   
+    "submenu": [
+      {"text": " About", "sref": "app.help-center"},
+       {"text": "Content", "sref": "app.help-center"},
+      
+       {"text": "Support ", "sref": "app.help-center"}
+         
+       
+    ]
+  
+  }
+ 
+ 
+ 
+
+  
+
+   
+
+]

@@ -1,0 +1,1532 @@
+  <h3>
+    PAYE Report
+    </h3>
+  <div class="paye" ng-controller="PayeController">
+
+  <div class="row">
+     
+
+
+     <div class="col-lg-8">
+        <form class="form-inline">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+      <div class="input-group-addon">Period</div>
+    
+           <select name="period" class="slider slider-lg form-control" ng-model="user.period" ng-options="period.id as period.period for period in periods" >
+          <option value="" disabled selected>Periods</option>
+    </select>
+    </div>
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+      <div class="input-group-addon">Employee Number</div>
+      <select name="employeeNumber" class="slider slider-lg form-control" ng-model="user.employeeNumber" ng-options="employee.id as employee.employeeNumber for employee in employees" >
+          <option value="" disabled selected>Employees</option>
+    </select>
+    </div>
+    <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+  </form>
+    
+
+
+     </div>
+
+
+  </div>
+
+        <!-- START panel-->
+        <div class="panel panel-default" id="panelDemo15">
+           <div class="panel-heading"></div>
+           <div class="panel-body">
+              <uib-tabset type="pills">
+                   <uib-tab heading="Basic Information">
+              
+
+                 <div class="col-lg-12  companydetails"><div class="panel panel b">
+           <div class="panel-heading"><h3>Section A: Return Information</h3></div>
+           <div class="panel-body">
+          <div class="list-group mb0">
+                 <div class="list-group-item">
+                  
+                    Employer's Personal Identification Number
+                    <span class="  pull-right">{{payes.payeBasicInfo.employerPin}}</span></div>
+                 <div class="list-group-item">
+                  
+                Type of Return
+                    <span class="label label-default pull-right">{{payes.payeBasicInfo.typeOfReturn
+
+}}</span></div>
+
+   <div class="list-group-item">
+                  
+              Entity Type
+                    <span class="label label-default pull-right">{{payes.payeBasicInfo.entityType
+
+}}</span></div>
+              
+               <div class="list-group-item">
+                  
+                  Return Period From
+                    <span class="label label-default  pull-right">{{payes.payeBasicInfo.returnPeriodFrom
+}}</span></div>
+                    <div class="list-group-item">
+                  
+                    Return Period To
+                    <span class=" label label-default pull-right">{{payes.payeBasicInfo.returnPeriodTo
+}}</span></div>
+              </div>
+
+           
+           </div>
+           </div>
+        </div>
+
+      
+           
+             
+  </uib-tab>
+
+     <uib-tab heading="Employee Details"> <div class=" companydetails"><div class="panel panel-default"> 
+     <div class="panel-heading">
+     <h3>Section B: Details of Salary Paid and Paye deducted from Employee(s)
+   </h3>
+
+            </div>
+
+           <div class="panel-body">
+
+  <div class="table-responsive">
+                 <table class="table table-bordered table-hover table-striped largetbl">
+                    <thead>
+                       <tr>
+                          <th>PIN of Employee</th>
+                          <th>Name of Employee</th>
+                          <th>Residential Status</th>
+                          <th>Type of Employee</th>
+                          <th>Basic Salary</th>
+                          <th>Housing Allowance</th>
+                          <th>Transport Allowance</th>
+                          <th>Leave Pay</th>
+                          <th>Over Time Allowance</th>
+                          <th>Director's Fee</th>
+                          <th>Lump Sum Payment if any</th>
+                          <th>Other Allowance</th>
+                          <th >Total Cash Pay(A)</th>
+                          <th>Value of Car Benefit ("Value of Car Benefit")</th>
+                          <th>Other Non Cash Benefits(C)</th>
+                          <th>Total Non Cash Pay (D)=(B+C)(C is greater than 3,000)</th>
+
+                           <th>Global Income(In case of non full time service director)(Ksh)(E)</th>
+                          <th>Type of Housing</th>
+                          <th>Rent of House/ Market Value</th>
+                          <th>Computed Rent of House(F)</th>
+                          <th>Rent Recovered from Employee (G)</th>
+                          <th>Net Value of Housing (Ksh) (H)=(F)-(G)</th>
+                          <th>Total Gross Pay(Ksh) (I)=(A+D+E+H)</th>
+                          <th>30% of Cash Pay (J)=(A)*30%</th>
+                          <th>Actual contribution (K)</th>
+                          <th>Permissible Limit (L)</th>
+                          <th>Mortgage Interest (Max 25000 Ksh a month) (M)</th>
+                          <th>Deposit on Home Ownership Saving Plan (Max 48,000 Ksh or 4,000 Ksh a month) (N</th>
+                          <th>Amount of Benefit (O) =(Lower of J,K,L + M or N which ever is higher)</th>
+                          <th>Taxable Pay (Ksh) (P) = (I -O)</th>
+                          <th>Tax Payable (Ksh) (Q) =(P)*Slab Rate</th>
+                          <th>Monthly Personal Relief(Ksh) ( R ) </th>
+                            <th>Amount of Insurance Relief (Total of "Amount of Insurance Relief" from E_Computation_of_Insu_Relief) (Ksh) (S)</th>
+                          <th>PAYE Tax (Ksh) (T) =(Q - R - S)</th>
+                          <th>Self Assessed PAYE Tax(Ksh)</th>
+                          
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr ng-repeat="paye in payes.payeEmployeeDetailsList">
+                          <td >{{paye.employeePin}}</td>
+                          <td >{{paye.employeeName}}</td>
+                           <td>{{paye.residentailStatus}}</td>
+                          <td>{{paye.employeeType}}</td>
+                         <td>{{paye.basicSalary}}</td>
+                          <td>{{paye.houseAllowance}}</td>
+                               <td>{{paye.transportAllowance}}</td>
+                          <td>{{paye.leavePay}}</td>
+                               <td>{{paye.overTimeAllowance}}</td>
+                          <td>{{paye.directorsFee}}</td>
+                               <td>{{paye.lumpSumPayment}}</td>
+                          <td>{{paye.otherAllowance}}</td>
+                               <td class="disabled">{{paye.totalCashPay}}</td>
+                          <td>{{paye.valueOfCarBenefit}}</td>
+                               <td>{{paye.otherNonCashBenefits}}</td>
+                           <td class="disabled">{{paye.totalNonCashPay}}</td>
+                                <td class="disabled">{{paye.totalNonCashPay}}</td>
+                              <td>{{paye.globalIncome}}</td>
+                             <td>{{paye.typeOfHousing}}</td>
+                               <td class="disabled">{{paye.rentOfHouse}}</td>
+                          <td class="disabled">{{paye.computedRentOfHouse}}</td>
+                               <td class="disabled">{{paye.rentRecoveredFromEmployee}}</td>
+                          <td class="disabled">{{paye.netValueOfHousing}}</td>
+                            <td class="disabled">{{paye.totalGrossPay}}</td>
+                        <td class="disabled">{{paye.thirtyPercentOfCashPay}}</td>
+                        <td class="disabled">{{paye.actualContribution}}</td>
+                           <td class="disabled">{{paye.permissibleLimit}}</td>
+                        <td class="disabled">{{paye.mortgageInterest}}</td>
+                         <td class="disabled">{{paye.depositOnHomeOwnershipSavingPlan}}</td>
+                        <td class="disabled">{{paye.amountOfBenefit}}</td>
+                         <td class="disabled">{{paye.taxablePay}}</td>
+                        <td class="disabled">{{paye.taxPayable}}</td>
+                          <td class="disabled">{{paye.monthlyPersonalRelief}}</td>
+                        
+                            <td class="disabled">{{paye.payeTax}}</td>
+                      
+                           <td>{{paye.selfAssessedPAYETax}}</td>
+                         
+                          
+                       </tr>
+                      <tr>
+                          <td colspan="32"></td>
+                         
+                               <td><b>Total</b></td>
+                          <td class="disabled"></td>
+                            <td class="disabled"></td>
+                         
+                          
+                       </tr>
+                    
+                    
+                       
+                    
+                        
+                        
+                    </tbody>
+                
+                 </table>
+                
+
+       
+
+           
+           <br/>
+           <br/>
+              </div>
+                  <br/>
+               <div class="clearfix">
+           <button class="btn btn-success pull-left mr" type="button">Export to CSV</button>
+          
+        </div>
+              <!-- END table responsive-->
+                 </div>
+
+           </div>
+           </div>
+       
+
+   </uib-tab>
+           
+
+                 
+  
+
+
+  <uib-tab heading="Disabled Employee Details"> <div class=" companydetails"><div class="panel panel-default">
+           <div class="panel-heading"><h3>Section C: Details of Salary and Benefits Paid and Paye deducted from Persons with Disability
+           </h3></div>
+           <div class="panel-body " ng-controller="ModalController as  trans">
+
+          <div class="table-responsive">
+                 <table class="table table-bordered table-hover table-striped largetbl">
+                    <thead>
+                       <tr>
+                          <th>PIN of Employee</th>
+                          <th>Name of Employee</th>
+
+                          <th>Residential Status</th>
+                          <th>Type of Employee</th>
+                           <th>Exemption Certificate Number</th>
+                          <th>Basic Salary</th>
+                          <th>Housing Allowance</th>
+                          <th>Transport Allowance</th>
+                          <th>Leave Pay</th>
+                          <th>Over Time Allowance</th>
+                          <th>Director's Fee</th>
+                          <th>Lump Sum Payment if any</th>
+                          <th>Other Allowance</th>
+                          <th>Total Cash Pay(A)</th>
+                          <th>Value of Car Benefit ("Value of Car Benefit" from D_Computation_of_Car_Benefit) 
+                            (B)
+  </th>
+                          <th>Other Non Cash Benefits(C)</th>
+                          <th>Total Non Cash Pay (D)=(B+C)(C is greater than 3,000)</th>
+
+                           <th>Global Income(In case of non full time service director)(Ksh)(E)</th>
+                          <th>Type of Housing</th>
+                          <th>Rent of House/ Market Value</th>
+                          <th>Computed Rent of House(F)</th>
+                          <th>Rent Recovered from Employee (G)</th>
+                          <th>Net Vakue of Housing (Ksh) (H)=(F)-(G)</th>
+                          <th>Total Gross Pay(Ksh) (I)=(A+D+E+H)</th>
+                          <th>30% of Cash Pay (J)=(A)*30%</th>
+                          <th>Actual contribution (K)</th>
+                          <th>Permissible Limit (L)</th>
+                          <th>Mortgage Interest (Max 25000 Ksh a month) (M)</th>
+                          <th>Deposit on Home Ownership Saving Plan (Max 48,000 Ksh or 4,000 Ksh a month) (N</th>
+                          <th>Amount of Benefit (O) =(Lower of J,K,L + M or N which ever is higher)</th>
+                          <th>Exemption for Persons with Disability (Ksh) (P)</th>
+                          <th>Taxable Pay (Ksh) (P) = (I -O)</th>
+                          <th>Tax Payable (Ksh) (Q) =(P)*Slab Rate</th>
+                          <th>Monthly Personal Relief(Ksh) ( R ) </th>
+                            <th>Amount of Insurance Relief (Total of "Amount of Insurance Relief" from E_Computation_of_Insu_Relief) (Ksh) (S)</th>
+                          <th>PAYE Tax (Ksh) (T) =(Q - R - S)</th>
+                          <th>Self Assessed PAYE Tax(Ksh)</th>
+                          
+                       </tr>
+                    </thead>
+               <tbody>
+                       <tr ng-repeat="paye in payes.payeEmployeeDetailsList">
+                          <td >{{paye.employeePin}}</td>
+                          <td >{{paye.employeeName}}</td>
+                           <td>{{paye.residentailStatus}}</td>
+                          <td>{{paye.employeeType}}</td>
+                            <td>{{paye.exemptionCertificateNumber}}</td>
+                         <td>{{paye.basicSalary}}</td>
+                          <td>{{paye.houseAllowance}}</td>
+                               <td>{{paye.transportAllowance}}</td>
+                          <td>{{paye.leavePay}}</td>
+                               <td>{{paye.overTimeAllowance}}</td>
+                          <td>{{paye.directorsFee}}</td>
+                               <td>{{paye.lumpSumPayment}}</td>
+                          <td>{{paye.otherAllowance}}</td>
+                               <td class="disabled">{{paye.totalCashPay}}</td>
+                          <td>{{paye.valueOfCarBenefit}}</td>
+                               <td>{{paye.otherNonCashBenefits}}</td>
+                           <td class="disabled">{{paye.totalNonCashPay}}</td>
+                                <td class="disabled">{{paye.totalNonCashPay}}</td>
+                              <td>{{paye.globalIncome}}</td>
+                             <td>{{paye.typeOfHousing}}</td>
+                               <td class="disabled">{{paye.rentOfHouse}}</td>
+                          <td class="disabled">{{paye.computedRentOfHouse}}</td>
+                               <td class="disabled">{{paye.rentRecoveredFromEmployee}}</td>
+                          <td class="disabled">{{paye.netValueOfHousing}}</td>
+                            <td class="disabled">{{paye.totalGrossPay}}</td>
+                        <td class="disabled">{{paye.thirtyPercentOfCashPay}}</td>
+                        <td class="disabled">{{paye.actualContribution}}</td>
+                           <td class="disabled">{{paye.permissibleLimit}}</td>
+                        <td class="disabled">{{paye.mortgageInterest}}</td>
+                         <td class="disabled">{{paye.depositOnHomeOwnershipSavingPlan}}</td>
+                        <td class="disabled">{{paye.amountOfBenefit}}</td>
+                         <td class="disabled">{{paye.exemptionforPersonswithDisability}}</td>
+                         <td class="disabled">{{paye.taxablePay}}</td>
+                        <td class="disabled">{{paye.taxPayable}}</td>
+                          <td class="disabled">{{paye.monthlyPersonalRelief}}</td>
+                        
+                            <td class="disabled">{{paye.payeTax}}</td>
+                      
+                           <td>{{paye.selfAssessedPAYETax}}</td>
+                         
+                          
+                       </tr>
+                      <tr>
+                          <td colspan="34" class="disabled"></td>
+                         
+                               <td class="disabled"><b>Total</b></td>
+                          <td class="disabled"></td>
+                            <td class="disabled"></td>
+                         
+                          
+                       </tr>
+                    
+                    
+                       
+                    
+                        
+                        
+                    </tbody>
+                
+                 
+                 </table>
+                
+
+       
+
+           
+           <br/>
+           <br/>
+              </div>
+                  <br/>
+               <div class="clearfix">
+           <button class="btn btn-success pull-left mr" type="button">Export to CSV</button>
+          
+        </div>
+           
+           </div>
+           </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        </uib-tab>
+
+
+      <uib-tab heading="Car Benefits"> <div class=" companydetails"><div class="panel panel-default">
+           <div class="panel-heading"><h3>Section D: Computation of Value of Car Benefit</h3></div>
+           <div class="panel-body" ng-controller="ModalController as  trans">
+
+            <div class="table-responsive">
+                 <table class="table table-bordered table-hover table-striped largetbl">
+                    <thead>
+                       <tr>
+                          <th>PIN of Employee</th>
+                          <th>Reference to Section</th>
+
+                          <th>Car Registration Number</th>
+                          <th>Make</th>
+                           <th>Body Type</th>
+                           <th>CC Rating </th>
+                          <th>Type of Car Cost </th>
+                          <th>Cost of Hiring / Leasing(Ksh)</th>
+                          <th>Cost of Owned Car (Ksh)</th>
+                          <th>Value of Car Benefit (Ksh)</th>
+                          
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr  ng-repeat="carbenefit in payes.payeCarBenefitComputationList">
+                          <td>{{carbenefit.employeePin}}</td>
+                          <td>{{carbenefit.referenceToSection}}</td>
+                               <td>{{carbenefit.carRegistrationNumber}}</td>
+                          <td>{{carbenefit.make}}</td>
+                         <td>{{carbenefit.bodyType}}</td>
+                          <td>{{carbenefit.ccRating}}</td>
+                               <td>{{carbenefit.typeOfCarCost}}</td>
+                          <td class="disabled">{{carbenefit.costOfHiring}}</td>
+                               <td>{{carbenefit.costOfOwnedCar}}</td>
+                          <td class="disabled">{{carbenefit.valueOfCarBenefit}}</td>
+                            
+                         
+                         
+                       </tr>
+                     
+                    
+                    <tr>
+                          <td colspan="8" class="disabled"></td>
+                         
+                               <td class="disabled"><b>Total</b></td>
+                      
+                           <td class="disabled">0.0</td>
+                         
+                          
+                       </tr>
+                    
+                       
+                    
+                        
+                        
+                    </tbody>
+              
+                 </table>
+                
+
+       
+
+           
+           <br/>
+           <br/>
+              </div>
+                  <br/>
+               <div class="clearfix">
+           <button class="btn btn-success pull-left mr" type="button">Export to CSV</button>
+          
+        </div>
+              <!-- END table responsive-->
+            
+           
+           </div>
+           </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        </uib-tab>
+
+
+                 
+
+         <uib-tab heading="Insurance Relief"> <div class=" companydetails"><div class="panel panel-default">
+           <div class="panel-heading"><h3>Section E: Details of Insurance Relief</h3></div>
+           <div class="panel-body" ng-controller="ModalController as  trans">
+
+               <div class="table-responsive">
+                 <table class="table table-bordered table-hover table-striped largetbl">
+                    <thead>
+                       <tr>
+                          <th>PIN of Employee</th>
+                          <th>Reference to Section</th>
+
+                          <th>PIN of Insurance Company</th>
+                          <th>Name of Insurance Company</th>
+                           <th>Purpose of Policy</th>
+                           <th>Insurance Policy Number</th>
+                          <th>Policy Holder</th>
+                          <th>Age of Child </th>
+                          <th>Commencement Date</th>
+                          <th>Maturity Date</th>
+                           <th>Sum Assured (Ksh) </th>
+                          <th>Premium paid till month(Ksh) (A) </th>
+                          <th>Date of payment of premium</th>
+                          <th>Amount of Insurance Relief (Ksh)(A) * 15%0</th>
+                          
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr>
+                          <td class="disabled"></td>
+                          <td class="disabled"></td>
+                               <td class="disabled"></td>
+                          <td class="disabled"></td>
+                         <td class="disabled">3326</td>
+                          <td class="disabled">10/21/2013</td>
+                               <td class="disabled">3326</td>
+                          <td class="disabled">10/21/2013</td>
+                               <td class="disabled">3326</td>
+                          <td class="disabled">10/21/2013</td>
+                          <td class="disabled">10/21/2013</td>
+                               <td class="disabled">3326</td>
+                          <td class="disabled">10/21/2013</td>
+                             <td class="disabled">10/21/2013</td>
+                            
+                            
+                         
+                         
+                       </tr>
+                     
+                     <tr>
+                          <td colspan="12"></td>
+                         
+                               <td class="disabled"><b>Total</b></td>
+                          <td class="disabled"></td>
+                       
+                         
+                          
+                       </tr>
+                    
+                 
+                    
+                        
+                        
+                    </tbody>
+                
+                 </table>
+                
+
+       
+
+           
+           <br/>
+           <br/>
+              </div>
+                  <br/>
+               <div class="clearfix">
+           <button class="btn btn-success pull-left mr" type="button">Export to CSV</button>
+          
+        </div>
+              <!-- END table responsive-->
+            
+           
+           </div>
+           </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        </uib-tab>
+
+         <uib-tab heading="Lump Sum Payment" > <div class=" companydetails"><div class="panel panel-default">
+           <div class="panel-heading"><h3>Section F : Calculation of PAYE Tax on Lump Sum Payments Paid after Termination
+  </h3></div>
+           <div class="panel-body">
+
+           
+               <div class="table-responsive">
+                 <table class="table table-bordered table-hover table-striped largetbl">
+                    <thead>
+                       <tr>
+                          <th>PIN of Employee</th>
+                          <th>Name of Employee</th>
+
+                          <th>Employment Start Date</th>
+                          <th>Employment End Date</th>
+                           <th>Lump Sum Payment Due Year</th>
+                           <th>Lump Sum Payment Paid Year</th>
+                          <th>Amount of Gross Lump Sum Payment (Ksh) (A</th>
+                          <th>Emoluments of Lump Sum Payment Due Year (Ksh) / Emoluments of Lump SumPayment Due Month (Ksh)(B)</th>
+                          <th>Total Revised Income (Ksh)(C)= (A+B)</th>
+                          <th>PAYE Deducted on Revised Income (Ksh) (D)</th>
+                           <th>
+                            Income (Ksh) (D)
+                            PAYE Paid in Lump Sum
+                            Payment Due Year (Ksh) /
+                            Lump Sum Payment Due
+                            Month (Ksh) (E)          
+                           </th>
+                          <th>Amount of PAYE Tax Payable (Ksh) (F) = (D - E) </th>
+                        
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr ng-repeat="lumpsum in payes.payeLumpSumPaymentDetailsList">
+                          <td>{{lumpsum.employeePin}}</td>
+                          <td>{{lumpsum.employeeName}}</td>
+                               <td>{{lumpsum.employmentStartDate}}</td>
+                          <td>{{lumpsum.employmentEndDate}}</td>
+                         <td>{{lumpsum.lumpSumPaymentDueYear}}</td>
+                          <td>{{lumpsum.lumSumPaymentPaidYear}}</td>
+                               <td>{{lumpsum.amountOfGrossLumpSumPayment}}</td>
+                          <td>{{lumpsum.emolumentsOfLumpSumPaymentDueYear}}</td>
+                               <td class="disabled">{{lumpsum.totalRevisedIncome}}</td>
+                          <td class="disabled">{{lumpsum.payeDeductedOnRevisedIncome}}</td>
+                            <td>{{lumpsum.payePaidInLumpSumPaymentDueYear
+}}</td>
+                          <td class="disabled">{{lumpsum.amountOfPayeTaxPayable}}</td>
+                            
+                         
+                         
+                       </tr>
+                     
+                    
+                      <tr>
+                          <td colspan="10"></td>
+                         
+                               <td><b>Total</b></td>
+                          <td></td>
+                       
+                         
+                          
+                       </tr>
+                    
+                  
+                       
+                    
+                        
+                        
+                    </tbody>
+                
+                 </table>
+                
+
+       
+
+           
+           <br/>
+           <br/>
+              </div>
+               <!-- END table responsive-->
+                  <br/>
+               <div class="clearfix">
+           <button class="btn btn-success pull-left mr" type="button">Export to CSV</button>
+          
+        </div>
+             
+            
+           
+           </div>
+           </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        </uib-tab>
+
+         <uib-tab heading="Arrears Details"> <div class=" companydetails"><div class="panel panel-default">
+           <div class="panel-heading"><h3>Section G : Details of Arrears of Salary and Benefits paid and PAYE deducted from Employee(s)
+  </h3></div>
+           <div class="panel-body " ng-controller="ModalController as  trans">
+
+            <div class="table-responsive">
+                 <table class="table table-bordered table-hover table-striped largetbl">
+                    <thead>
+                       <tr>
+                          <th>PIN of Employee</th>
+                          <th>Name of Employee</th>
+                          <th>Arrears for the Month</th>
+                          <th>Arrears Year</th>
+                          <th>Residential Status</th>
+                          <th>Type of Employee</th>
+                          <th>Basic Salary</th>
+                          <th>Housing Allowance</th>
+                          <th>Transport Allowance</th>
+                          <th>Leave Pay</th>
+                          <th>Over Time Allowance</th>
+                          <th>Director's Fee</th>
+                          <th>Lump Sum Payment if any</th>
+                          <th>Other Allowance</th>
+                          <th>Total Cash Pay(A)</th>
+                          <th>Value of Car Benefit
+                          ("Value of Car Benefit"
+                          from D_Computation
+                          _of_Car_Benefit) (B)
+                         </th>
+                          <th>Other Non Cash Benefits(C)</th>
+                          <th>Total Non Cash Pay (D)=(B+C)(C is greater than 3,000)</th>
+
+                           <th>Global Income(In case of non full time service director)(Ksh)(E)</th>
+                          <th>Type of Housing</th>
+                          <th>Rent of House/ Market Value</th>
+                          <th>Computed Rent of House(F)</th>
+                          <th>Rent Recovered from Employee (G)</th>
+                          <th>Net Value of Housing (Ksh) (H)=(F)-(G)</th>
+                          <th>Total Gross Pay(Ksh) (I)=(A+D+E+H)</th>
+                          <th>30% of Cash Pay (J)=(A)*30%</th>
+                          <th>Actual contribution (K)</th>
+                          <th>Permissible Limit (L)</th>
+                          <th>Mortgage Interest  (M)</th>
+                          <th>Deposit on Home Ownership Saving Plan (Max 48,000 Ksh or 4,000 Ksh a month) (N</th>
+                          <th>Amount of Benefit (O) =(Lower of J,K,L + M or N which ever is higher)</th>
+                          <th>Taxable Pay (Ksh) (P) = (I -O)</th>
+                          <th>Tax Payable (Ksh) (Q) =(P)*Slab Rate</th>
+                          <th>Monthly Personal Relief(Ksh) ( R ) </th>
+                          <th>Amount of Insurance Relief (Total of "Amount of Insurance Relief" from E_Computation_of_Insu_Relief) (Ksh) (S)</th>
+                          <th>PAYE Tax (Ksh) (T) =(Q - R - S)</th>
+                          <th>Amount of PAYE Already
+                            Paid (Ksh) (U)</th>
+                          <th>Final PAYE Tax (Ksh) (V) =(T - U)
+  </th>
+                          
+                          <th>Self Assessed PAYE Tax(Ksh)</th>
+                          
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr ng-repeat="arrears in payes.payeLumpSumPaymentDetailsList">
+                          <td>{{arrears.employeePin}}</td>
+                          <td>{{arrears.employeeName}}</td>
+                               <td>{{arrears.monthArrears}}</td>
+                          <td>{{arrears.yearArrears}}</td>
+                         <td>{{arrears.residentialStatus}}</td>
+                          <td>{{arrears.employeeType}}</td>
+                               <td>{{arrears.basicSalary}}</td>
+                          <td>{{arrears.houseAllowance}}</td>
+                               <td>{{arrears.transportAllowance}}</td>
+                          <td>{{arrears.leavePay}}</td>
+                               <td>{{arrears.overTimeAllowance}}</td>
+                          <td>{{arrears.directorsFee}}</td>
+                               <td>{{arrears.lumpSumPayment}}</td>
+                          <td>{{arrears.otherAllowance}}</td>
+                               <td class="disabled">{{arrears.totalCashPay}}</td>
+                          <td>{{arrears.carBenefitValue}}</td>
+                               <td>{{arrears.othernNonCashBenefits}}</td>
+                          <td class="disabled">{{arrears.totalNonCashPay}}</td>
+                               <td class="disabled">{{arrears.globalIncome}}</td>
+                          <td>{{arrears.housingType}}</td>
+                               <td class="disabled">{{arrears.houseRent}}</td>
+                          <td class="disabled">{{arrears.computedHouseRent}}</td>
+                               <td class="disabled">{{arrears.rentRecoveredFromEmployee}}</td>
+                        
+                               <td class="disabled">{{arrears.housingValue}}</td>
+                          <td class="disabled">{{arrears.totalGrossPay}}</td>
+                               <td class="disabled">{{arrears.thirtyPercentOfCashPay}}</td>
+                          <td class="disabled">{{arrears.actualContribution}}</td>
+                               <td class="disabled">{{arrears.permissibleLimit}}</td>
+                          <td class="disabled">{{arrears.mortgageInterest}}</td>
+                               <td class="disabled">{{arrears.depositOnHomeOwnershipSavingPlan}}</td>
+                       
+                               <td class="disabled">{{arrears.amountOfBenefit}}</td>
+                          <td class="disabled">{{arrears.taxablePay}}</td>
+                              <td class="disabled">{{arrears.taxPayable}}</td>
+                          
+                               <td class="disabled">{{arrears.monthlyPersonalRelief}}</td>
+                           
+                              <td class="disabled">{{arrears.amountOfInsuranceRelief}}</td>
+                          <td class="disabled">{{arrears.payeTax}}</td>
+                             <td>{{arrears.amountOfPayeAlreadyPaid}}</td>
+                               <td class="disabled">{{arrears.finalPayeTax}}</td>
+                                <td>{{arrears.selfAssessedPayeTax}}</td>
+                          
+                       </tr>
+                     
+                      <tr>
+                          <td colspan="37"></td>
+                         
+                               <td class="disabled"><b>Total</b></td>
+                          <td class="disabled"></td>
+                       
+                         
+                          
+                       </tr>
+                    
+                 
+                       
+                    
+                        
+                        
+                    </tbody>
+                
+                 </table>
+                
+
+       
+
+           
+           <br/>
+           <br/>
+              </div>
+               <!-- END table responsive-->
+                  <br/>
+               <div class="clearfix">
+           <button class="btn btn-success pull-left mr" type="button">Export to CSV</button>
+          
+        </div>
+           
+           </div>
+           </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        </uib-tab>
+
+
+           <uib-tab heading="Arrears Details of Employees with Disabilities"> <div class=" companydetails"><div class="panel panel-default">
+           <div class="panel-heading"><h3>Section H:  Details of Arrears of Salary and Benefits paid and PAYE deducted from Persons with Disability
+          </h3></div>
+           <div class="panel-body ">
+
+            <div class="table-responsive">
+                 <table class="table table-bordered table-hover table-striped largetbl">
+                    <thead>
+                       <tr>
+                          <th>PIN of Employee</th>
+                          <th>Name of Employee</th>
+                          <th>Arrears for the Month</th>
+                          <th>Arrears Year</th>
+                          <th>Residential Status</th>
+                          <th>Type of Employee</th>
+                           <th>Exemption Certificate Number</th>
+                          <th>Basic Salary</th>
+                          <th>Housing Allowance</th>
+                          <th>Transport Allowance</th>
+                          <th>Leave Pay</th>
+                          <th>Over Time Allowance</th>
+                          <th>Director's Fee</th>
+                          <th>Lump Sum Payment if any</th>
+                          <th>Other Allowance</th>
+                          <th>Total Cash Pay(A)</th>
+                          <th>Value of Car Benefit
+                          ("Value of Car Benefit"
+                          from D_Computation
+                          _of_Car_Benefit) (B)
+                         </th>
+                          <th>Other Non Cash Benefits(C)</th>
+                          <th>Total Non Cash Pay (D)=(B+C)(C is greater than 3,000)</th>
+
+                           <th>Global Income(In case of non full time service director)(Ksh)(E)</th>
+                          <th>Type of Housing</th>
+                          <th>Rent of House/ Market Value</th>
+                          <th>Computed Rent of House(F)</th>
+                          <th>Rent Recovered from Employee (G)</th>
+                          <th>Net Value of Housing (Ksh) (H)=(F)-(G)</th>
+                          <th>Total Gross Pay(Ksh) (I)=(A+D+E+H)</th>
+                          <th>30% of Cash Pay (J)=(A)*30%</th>
+                          <th>Actual contribution (K)</th>
+                          <th>Permissible Limit (L)</th>
+                          <th>Mortgage Interest  (M)</th>
+                          <th>Deposit on Home Ownership Saving Plan (Max 48,000 Ksh or 4,000 Ksh a month) (N</th>
+                          <th>Amount of Benefit (O) =(Lower of J,K,L + M or N which ever is higher)</th>
+                            <th>Exemption for Persons with Disability (Ksh) (P)</th>
+                          <th>Taxable Pay (Ksh) (P) = (I -O)</th>
+                          <th>Tax Payable (Ksh) (Q) =(P)*Slab Rate</th>
+                          <th>Monthly Personal Relief(Ksh) ( R ) </th>
+                          <th>Amount of Insurance Relief (Total of "Amount of Insurance Relief" from E_Computation_of_Insu_Relief) (Ksh) (S)</th>
+                          <th>PAYE Tax (Ksh) (T) =(Q - R - S)</th>
+                          <th>Amount of PAYE Already
+                            Paid (Ksh) (U)</th>
+                          <th>Final PAYE Tax (Ksh) (V) =(T - U)
+  </th>
+                          
+                          <th>Self Assessed PAYE Tax(Ksh)</th>
+                          
+                       </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="arrears in payes.payeLumpSumPaymentDetailsList">
+                          <td>{{arrears.employeePin}}</td>
+                          <td>{{arrears.employeeName}}</td>
+                               <td>{{arrears.monthArrears}}</td>
+                          <td>{{arrears.yearArrears}}</td>
+                         <td>{{arrears.residentialStatus}}</td>
+                          <td>{{arrears.employeeType}}</td>
+
+                            <td>{{arrears.exemptionCertificateNumber}}</td>
+                               <td>{{arrears.basicSalary}}</td>
+                          <td>{{arrears.houseAllowance}}</td>
+                               <td>{{arrears.transportAllowance}}</td>
+                          <td>{{arrears.leavePay}}</td>
+                               <td>{{arrears.overTimeAllowance}}</td>
+                          <td>{{arrears.directorsFee}}</td>
+                               <td>{{arrears.lumpSumPayment}}</td>
+                          <td>{{arrears.otherAllowance}}</td>
+                               <td class="disabled">{{arrears.totalCashPay}}</td>
+                          <td>{{arrears.carBenefitValue}}</td>
+                               <td>{{arrears.othernNonCashBenefits}}</td>
+                          <td class="disabled">{{arrears.totalNonCashPay}}</td>
+                               <td class="disabled">{{arrears.globalIncome}}</td>
+                          <td>{{arrears.housingType}}</td>
+                               <td class="disabled">{{arrears.houseRent}}</td>
+                          <td class="disabled">{{arrears.computedHouseRent}}</td>
+                               <td class="disabled">{{arrears.rentRecoveredFromEmployee}}</td>
+                        
+                               <td class="disabled">{{arrears.housingValue}}</td>
+                          <td class="disabled">{{arrears.totalGrossPay}}</td>
+                               <td class="disabled">{{arrears.thirtyPercentOfCashPay}}</td>
+                          <td class="disabled">{{arrears.actualContribution}}</td>
+                               <td class="disabled">{{arrears.permissibleLimit}}</td>
+                          <td class="disabled">{{arrears.mortgageInterest}}</td>
+                               <td class="disabled">{{arrears.depositOnHomeOwnershipSavingPlan}}</td>
+                       
+                               <td class="disabled">{{arrears.amountOfBenefit}}</td>
+
+                               <td class="disabled">{{arrears.exemptionforPersonswithDisability }}</td>
+                          <td class="disabled">{{arrears.taxablePay}}</td>
+                              <td class="disabled">{{arrears.taxPayable}}</td>
+                          
+                               <td class="disabled">{{arrears.monthlyPersonalRelief}}</td>
+                           
+                              <td class="disabled">{{arrears.amountOfInsuranceRelief}}</td>
+                          <td class="disabled">{{arrears.payeTax}}</td>
+                             <td>{{arrears.amountOfPayeAlreadyPaid}}</td>
+                               <td class="disabled">{{arrears.finalPayeTax}}</td>
+                                <td>{{arrears.selfAssessedPayeTax}}</td>
+                          
+                       </tr>
+                     
+                      <tr>
+                          <td colspan="38" class="disabled"></td>
+                         
+                               <td class="disabled"><b>Total</b></td>
+                          <td class="disabled"></td>
+                             <td class="disabled"></td>
+                       
+                         
+                          
+                       </tr>
+                    
+                
+                       
+                    
+                        
+                        
+                    </tbody>
+                  
+                 </table>
+                
+
+       
+
+           
+           <br/>
+           <br/>
+              </div>
+               <!-- END table responsive-->
+                  <br/>
+               <div class="clearfix">
+           <button class="btn btn-success pull-left mr" type="button">Export to CSV</button>
+          
+        </div>
+           
+           </div>
+           </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        </uib-tab>
+
+         <uib-tab heading="Gratuity Details"> <div class=" companydetails"><div class="panel panel-default">
+           <div class="panel-heading"><!-- <h3>Section I : Calculation of PAYE Tax Payable on Gratuity
+  </h3> --></div>
+           <div class="panel-body ">
+
+            <div class="table-responsive ">
+            <div class="panel-heading"><h3>Section I : Calculation of PAYE Tax Payable on Gratuity</h3></div>
+                 <table class="table table-bordered table-hover table-striped largetbl">
+                    <thead>
+                       <tr>
+                          <th>PIN of Employee</th>
+                          <th>Name of Employee</th>
+
+                          <th>Gratuity Paid Month</th>
+                       
+                           <th>Gratuity Paid Year  (A)</th>
+                          <th>Gratuity Related/Retirement Year (Ksh)</th>
+                           <th>Gratuity Period in Years</th>
+                          <th>Gratuity Value (Ksh) </th>
+                          <th>Amount of Tax Payable on Gratuity (Ksh)</th>
+                          
+                          
+                          
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr  ng-repeat="gratuity in payes.payeGratuityDetails.payeGratuityDetailsSectionOneList">
+                          <td>{{gratuity.employeePin}}</td>
+                          <td>{{gratuity.employeeName}}</td>
+                          
+                          <td>{{gratuity.monthGratuityPaid}}</td>
+                         <td>{{gratuity.yearGratuityPaid}}</td>
+                          <td>{{gratuity.gratuityRelated}}</td>
+                               <td>{{gratuity.gratuityPeriodInYears}}</td>
+                          <td>{{gratuity.gratuityValue}}</td>
+                               <td class="disabled">{{gratuity.amountOfTaxPayableOnGratuity}}</td>
+                               
+                            
+                         
+                         
+                       </tr>
+                     
+                    
+                      
+                      <tr>
+                          <td colspan="6"></td>
+                         
+                               <td class="disabled"><b>Total</b></td>
+                          <td class="disabled"></td>
+                       
+                         
+                          
+                       </tr>
+                    
+                   
+
+                       
+                    
+                        
+                        
+                    </tbody>
+                 
+
+                 </table>
+                
+
+       
+
+           
+           <br/>
+           <br/>
+              </div>
+               <!-- END table responsive-->
+                  <br/>
+             
+
+            <br/>
+
+         <div class="table-responsive ">
+            <div class="panel-heading" ><h3>Calculation of PAYE Tax Payable on Gratuity for Specific PIN</h3></div>
+                 <table class="table table-bordered table-hover table-striped largetbl">
+                    <thead>
+                       <tr>
+                          <th>PIN of Employee</th>
+                          <th>Gratuity Year </th>
+
+                          <th>Gratuity Value (Ksh) (A)</th>
+                       
+                           <th>Taxable Amounts (Ksh) (B) (A)</th>
+                          <th>Total Revised Income(Ksh)(C)=(A+B)</th>
+                           <th>Tax on Revised Income(Ksh) (D)</th>
+                          <th>Tax Deducted plus Reliefs(Ksh) (E)</th>
+                          <th>Amount of Tax Payable on Gratuity (Ksh) (F) = (D-E)</th>
+                          
+                          
+                          
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr  ng-repeat="specificpingratuity in payes.payeGratuityDetails.payeGratuityDetailsSectionTwoList">
+                          <td class="disabled">{{specificpingratuity.employeePin1}}</td>
+                          <td class="disabled">{{specificpingratuity.gratuityYear}}</td>
+                               <td class="disabled">{{specificpingratuity.gratuityValue}}</td>
+                          <td>{{specificpingratuity.taxableAmount}}</td>
+                         <td class="disabled">{{specificpingratuity.totalRevisedIncome}}</td>
+                          <td class="disabled">{{specificpingratuity.taxOnRevisedIncome}}</td>
+                               <td>{{specificpingratuity.taxDeductedPlusReliefs}}</td>
+                          <td class="disabled">{{specificpingratuity.amountOfTaxPayableOnGratuity}}</td>
+                               
+                            
+                         
+                         
+                       </tr>
+                     
+                    
+             
+
+                       
+                    
+                        
+                        
+                    </tbody>
+                
+
+                 </table>
+              </div>
+              <!-- END table responsive-->
+            <br/>
+
+        
+           
+           </div>
+           </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        </uib-tab>
+
+
+
+
+
+         <uib-tab heading="Fringe Benefits"> <div class=" companydetails"><div class="panel panel-default">
+           <div class="panel-heading"><h3>Section J:Calculation of Fringe Benefit Tax Payable</h3></div>
+           <div class="panel-body">
+
+               <div class="table-responsive">
+                 <table class="table table-bordered table-hover table-striped largetbl">
+                    <thead>
+                       <tr>
+                          <th>PIN of Employee</th>
+                          <th>Name of Employee</th>
+
+                          <th>Loan Account Number</th>
+                          <th>Loan Amount(Ksh)</th>
+                           <th>Amount of Loan Outstanding(Ksh)(A)</th>
+                           <th>Rate of Interest on Loan (%) (B)</th>
+                          <th>Interest on Loan(Ksh) (C)=(A)*(B)</th>
+                          <th>Prescribed Market  Interest Rate (%) (D)</th>
+                          <th>Prescribed Market  Interest  (Ksh) (E)=(A)*(D)</th>
+                          <th>Amount Of Fringe Benefit (Ksh) (F)=(E)-(C)</th>
+                           <th>Amount Of Fringe Benefit Tax(Ksh) (Ksh) (G)=(F)*(30%) </th>
+                        
+                          
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr  ng-repeat="fringeBenefit in payes.payeFBTDetailsList">
+                          <td> {{fringeBenefit.employeePin}}</td>
+                          <td > {{fringeBenefit.employeeName}}</td>
+                               <td > {{fringeBenefit.loanAccountNumber}}</td>
+                          <td >{{fringeBenefit.loanAmount}}</td>
+                         <td >{{fringeBenefit.amountOfLoanOutstanding}}</td>
+                          <td >{{fringeBenefit.rateOfInterestOnLoan}}</td>
+                               <td class="disabled">{{fringeBenefit.interestOnLoan}}</td>
+                          <td>{{fringeBenefit.prescribedMarketInterestRate}}</td>
+                               <td class="disabled">{{fringeBenefit.prescribedMarketInterest}}</td>
+                          <td class="disabled">{{fringeBenefit.amountOfFringeBenefit}}</td>
+                          <td class="disabled">{{fringeBenefit.amountOfFringeBenefitTax}}</td>
+                        
+                            
+                            
+                         
+                         
+                       </tr>
+                     
+                     <tr>
+                          <td colspan="9"></td>
+                         
+                               <td class="disabled"><b>Total</b></td>
+                          <td class="disabled"></td>
+                       
+                         
+                          
+                       </tr>
+                    
+                 
+                    
+                        
+                        
+                    </tbody>
+                
+                 </table>
+                
+
+       
+
+           
+           <br/>
+           <br/>
+              </div>
+                  <br/>
+               <div class="clearfix">
+           <button class="btn btn-success pull-left mr" type="button">Export to CSV</button>
+          
+        </div>
+              <!-- END table responsive-->
+            
+           
+           </div>
+           </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        </uib-tab>
+
+ <uib-tab heading="PAYE payment Credit"> <div class=" companydetails"><div class="panel panel-default">
+           <div class="panel-heading"><h3>Section K : Details of PAYE Tax paid</h3></div>
+           <div class="panel-body" ng-controller="ModalController as  trans">
+             
+          <div class="table-responsive ">
+            <div class="panel-heading"><h4>Section K1 : Advance Payment</h4></div>
+                 <table class="table table-bordered table-hover table-striped largetbl">
+                    <thead>
+                       <tr>
+                          <th>Payment Registration Number</th>
+                          <th>Date of Deposit</th>
+
+                          <th>Amount of PAYE Tax Paid (Ksh)</th>
+                         
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                       
+                               
+                            
+                         
+                         
+                       </tr>
+                     
+                    
+                      
+                      <tr>
+                          <td ></td>
+                         
+                               <td><b>Total</b></td>
+                          <td></td>
+                       
+                         
+                          
+                       </tr>
+                    
+                  
+
+                    
+                        
+                        
+                    </tbody>
+               
+
+                 </table>
+                
+
+       
+
+           
+           <br/>
+           <br/>
+              </div>
+               <!-- END table responsive-->
+                  <br/>
+             
+
+            <br/>
+
+         <div class="table-responsive">
+            <div class="panel-heading" ><h4>Section K2 : Self Assessment Tax</h4></div>
+                 <table class="table table-bordered table-hover table-striped largetbl">
+                    <thead>
+                        <tr>
+                          <th>Payment Registration Number</th>
+                          <th>Date of Deposit</th>
+
+                          <th>Amount of PAYE Tax Paid (Ksh)</th>
+                         
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>  
+                       </tr>
+                     
+                    <tr>
+                          <td ></td>
+                         
+                               <td><b>Total</b></td>
+                          <td></td>
+                       
+                         
+                          
+                       </tr>
+
+                       <tr>
+                          <td ></td>
+                         
+                               <td><b>Total (Section K1 Total + Section K2 Total)  </b></td>
+                          <td></td>
+                       
+                         
+                          
+                       </tr>
+                    
+              
+
+                       
+                    
+                        
+                        
+                    </tbody>
+                 
+
+                 </table>
+                
+
+       
+
+           
+           <br/>
+           <br/>
+              </div>
+               <!-- END table responsive-->
+                  <br/>
+              
+            
+           
+           </div>
+           </div>
+        </div>
+
+
+        </uib-tab>
+
+
+   <uib-tab heading="Tax Due"> <div class=" companydetails"><div class="panel panel-default">
+             <div class="panel-heading"><h3>Section L : Calculation of Tax Due</h3></div>
+           <div class="panel-body" ng-controller="ModalController as  trans">
+
+             <div class="table-responsive">
+          
+                 <table class="table table-bordered table-hover table-striped largetbl">
+                    <thead>
+                       <tr>
+                          <th>Sr. No</th>
+                          <th colspan="5">Description</th>
+
+                          <th>Amount(Ksh)</th>
+                       
+                         
+                          
+                          
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr>
+                          <td>1</td>
+                         <td colspan="5">Total Employees (Total records of B_Employees_Dtls and C_Disabled_Employees_Dtls)
+                         </td>
+                          <td></td>
+                               
+                      </tr>
+                         <tr>
+                          <td>2</td>
+                         <td colspan="5">PAYE Tax deducted from the Employee(s) (Total of "Self Assessed PAYE Tax" from B_Employees_Dtls)
+                         </td>
+                          <td></td>
+                               
+                      </tr>
+                         <tr>
+                          <td>3</td>
+                         <td colspan="5">PAYE Tax deducted from Persons with Disability (Total of "Self Assessed PAYE Tax"
+                          from C_Disabled_Employees_Dtls)
+                         </td>
+                          <td></td>
+                               
+                      </tr>
+
+                       <tr>
+                          <td>4</td>
+                         <td colspan="5">PAYE Tax on Lump Sum Payment on Termination (Total of "Amount of PAYE
+                          Payable" from F_Lump_Sum_Payments_Dtls)
+
+                         </td>
+                          <td></td>
+                               
+                      </tr>
+
+                      <tr>
+                          <td>5</td>
+                         <td colspan="5">PAYE Tax deducted from Employee(s) on Arrears (Total of "Self Assessed PAYE Tax"
+                         from G_Arrears_Dtls_E)
+                         </td>
+                          <td></td>
+                               
+                      </tr>
+
+
+                       <tr>
+                          <td>6</td>
+                         <td colspan="5">
+                          PAYE Tax deducted from Persons with Disability on Arrears (Total of "Self Assessed
+                          PAYE Tax" from H_Arrears_Dtls_DE)
+
+                         </td>
+                          <td></td>
+                               
+                      </tr>
+                    
+                    <tr>
+                          <td>7</td>
+                         <td colspan="5">
+                         PAYE Tax deducted on Gratuity (Total of "Amount of Tax Payable on Gratuity" from
+                         I_Gratuity_Dtls)
+
+                         </td>
+                          <td></td>
+                               
+                      </tr>
+
+
+                    <tr>
+                          <td>8</td>
+                         <td colspan="5">
+                        Fringe Benefit Tax (Total of "Amount of Fringe Benefit Tax" from J_FBT_Dtls)
+
+                         </td>
+                          <td></td>
+                               
+                      </tr>
+
+                      <tr>
+                          <td>9</td>
+                         <td>
+                      Total PAYE Tax Payable for the Month (2+3+4+5+6+7+8)
+
+                         </td>
+                          <td></td>
+                               
+                      </tr>
+
+                      <tr>
+                          <td>10</td>
+                         <td colspan="5">
+                     Previous month PAYE Tax (If the amount was less than 100 Ksh and not paid) 
+
+                         </td>
+                          <td></td>
+                               
+                      </tr>
+
+                       <tr>
+                          <td>11</td>
+                         <td colspan="5">
+                       Total PAYE Tax Payable (9+10)
+
+
+                         </td>
+                          <td></td>
+                               
+                      </tr>
+                       <tr>
+                          <td>12</td>
+                         <td colspan="5">
+                        PAYE Paid in Advance (Total of "Amount of PAYE Tax Paid" from
+                        K_PAYE_Payment_Credits)
+
+                         </td>
+                          <td></td>
+                               
+                      </tr>
+
+                      <tr>
+                          <td>13</td>
+                         <td colspan="5">
+                        Net PAYE Tax Payable (11-12)
+  )
+
+                         </td>
+                          <td></td>
+                               
+                      </tr>
+                  
+
+                       
+                    
+                        
+                        
+                    </tbody>
+              
+
+                 </table>
+                      <br/>
+           <br/>
+           <br/>
+              </div>
+              <!-- END table responsive-->
+            
+           
+           </div>
+           </div>
+        </div>
+
+
+
+
+
+
+
+
+        </uib-tab>
+
+
+
+
+  </uib-tabset>
+
+     </div>
+           </div>
+        </div>
+ 

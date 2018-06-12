@@ -1,0 +1,635 @@
+
+<h3>Employee Posting
+  
+</h3>
+
+
+<div class="container-fluid"  ng-controller="EmployeePostingController" >
+
+
+<div class="row">
+   
+   <div class="col-lg-12">
+      <form class="form-inline">
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Period : </div>
+         <!-- <input class="form-control" type="text"  name="empNumber"  ng-model="postingtrans.periodId" placeholder="Period"/>
+          <input class="form-control" type="text"  name="empNumber"  ng-model="period_description" placeholder="Period" disabled="" /> -->
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="postingtrans.periodId" ng-options="period.id as period.monthDescription+ ' '+ period.year for period in periods" disabled="">
+        <option value=""  selected="selected">Select Period</option>
+  </select>
+  </div>
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Employee : </div>
+    <select name="employeeNumber" class="slider slider-lg form-control" ng-model="postingtrans.employeeId" ng-options="employee.id as employee.employeeNumber+' - '+employee.firstName+ ' '+employee.lastName for employee in employees"  ng-change="searchEmployee(postingtrans)">
+        <option value="0" selected="selected">Select Employee</option>
+  </select>
+  </div>
+  <button  ng-click="searchEmployee(postingtrans)"   class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+<div class="col-lg-2 text-right" style="float: right;" ng-show="payrollpostingTransaction.length" >
+               
+  <button type="button" class="btn btn-primary" ng-disabled="curPage == 0"
+ ng-click="curPage=curPage-1"> Previous</button>
+
+                   
+<button type="button" class="btn btn-primary"
+ ng-disabled="curPage >= payrollpostingTransaction.length/pageSize - 1"
+ ng-click="curPage = curPage+1">Next</button>
+
+            
+               </div>
+ <button class="btn btn-primary pull-right" ng-click="openPayslip(postingtrans)" >View Payslip </button>
+  
+</form>
+
+
+   </div>
+
+
+</div>
+
+<br/>
+          <!-- START panel-->
+
+<div>
+  <div ng-repeat="payrollposting in payrollpostingTransaction| pagination: curPage * pageSize | limitTo: pageSize">
+      <div class="panel panel-default">
+          <div class="panel-heading">Employee Postings
+              
+            </div>
+            <div class="panel-body">
+      <!--       <h3>Search
+   <small>Search and filter results</small>
+</h3> -->
+      
+    
+             <div class="table-responsive">
+
+                    <div class="col-lg-4 col-xs-12 pv">
+            <div class="clearfix">
+               <p class="pull-left">Employee NO.</p>
+               <p class="pull-right mr">{{payrollposting.employeeInfo.employeeNumber}}</p>
+            </div>
+            <div class="clearfix">
+               <p class="pull-left">Employee Name</p>
+               <p  class="pull-right mr">{{payrollposting.employeeInfo.employeeName}}</p>
+            </div>
+          <!--   <div class="clearfix">
+               <p class="pull-left">Pay Period</p>
+               <p class="pull-right mr">{{oneUser.employeeInfo.period}}</p>
+            </div> -->
+         </div>
+         <br/>
+<!--  <h4 class="page-header">Current details</h4> -->
+   <table class="table table-bordered table-hover bg-white">
+      <tr style="font-weight: bold">
+         <td style="width:20%">Code</td>
+         <td style="width:35%">Description </td>
+         <td style="width:20%">Amount</td>
+         <td style="width:20%">Transaction Type</td>
+         <td style="width:20%">Action</td>
+
+      </tr>
+      <div>
+     <tr  ng-repeat="alltransaction in payrollposting.payrollTransactionList">
+         <td>
+                {{alltransaction.payrollCode}}    </td> 
+             <td> {{alltransaction.payrollCodeDescription}}    </td> 
+             
+             <td>  {{alltransaction.amount}}
+            
+         </td>  
+         <td></td> 
+                               
+       
+      
+                                
+       
+         <td style="white-space: nowrap">
+            <!-- form-->
+           
+         <div class="buttons" >
+                <button class="btn btn-sm btn-info" ng-click="show(transaction)"  title="Edit">
+                  <em class="fa fa-pencil"></em>
+               </button>
+               <button class="btn btn-sm btn-danger" ng-click="delete(transaction)" title="Delete">
+                  <em class="fa fa-trash"></em>
+               </button>
+            </div>
+         </td>
+      </tr>
+   </div>
+   </table>
+   <br/>
+
+   <div class="clearfix">
+    
+           <button class="btn btn-primary" ng-click="open(payrollposting.employeeInfo)" >Add New </button>
+      
+      </div>
+ 
+
+                </div>
+
+
+
+            </div>
+         
+         
+       
+      </div>
+      <!-- END panel-->
+
+
+
+          
+</div>
+
+
+<script type="text/ng-template" id="addTransactions.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Transaction posting</h4></div>
+            <div class="modal-body" ng-controller="EmployeePostingController">
+
+  <form class="form-horizontal"  name="employeepostingform" novalidate>
+
+      <div class="form-group">
+                  <label class="col-lg-3 control-label"> Period
+
+                 </label>
+                  <div class="col-lg-9">
+
+                      <select name="period" class="slider slider-lg form-control" ng-model="transactionposting.periodId" ng-options="period.id as period.period+' - '+period.monthDescription+' - '+period.year for period in periods" disabled="">
+        <option value="" disabled selected>Periods</option>
+    }
+  </select>
+          
+                  </div>
+               </div>
+
+      <div class="form-group">
+                  <label class="col-lg-3 control-label"> Employee
+
+                 </label>
+                  <div class="col-lg-9">
+ <!--                     <input class="form-control" type="text" ng-model="transaction.employeeId" name="element_code
+" placeholder="Element code
+
+
+" /> -->
+
+  <select name="employee" class="slider slider-lg form-control" ng-model="transactionposting.employeeId" ng-options="employee.id as employee.employeeNumber+' - '+employee.firstName+' '+employee.lastName for employee in employees" disabled="" >
+        <option value="" disabled selected>Employees</option>
+  </select>
+                  </div>
+               </div>
+           <div class="form-group">
+                  <label class="col-lg-3 control-label">Payroll Code
+
+                 </label>
+                  <div class="col-lg-9">
+                    <select class="form-control" name="payrollcode" ng-model="transactionposting.payrollCodeId"  ng-options="code.id as code.code+'-'+code.description  for code in pcodes" ng-required="true">
+    <option value="" disabled selected>All Codes</option>
+  </select>
+   <span class="text-danger" ng-show="employeepostingform.$submitted &amp;&amp; employeepostingform.payrollcode.$error.required">This field is required</span>
+                  </div>
+               </div>
+            
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Amount
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="amount" ng-model="transactionposting.amount"  ng-required="true" placeholder="Amount
+                   " />
+                    <span class="text-danger" ng-show="employeepostingform.$submitted &amp;&amp; employeepostingform.amount.$error.required">This field is required</span>
+                  </div>
+               </div>
+     
+              <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                  <button class="btn btn-sm btn-info" ng-click="employeepostingform.$valid && submitTransaction(transactionposting)" >Save and New</button>
+                   <button class="btn btn-sm btn-info" ng-click="saveCloseTransaction(transactionposting)" >Save and close</button>
+                    <button class="btn btn-sm btn-warning"  type="reset" >Reset</button>
+                   </div>
+               </div>
+                <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+               
+            </form>
+
+</div>
+<div class="modal-footer"><button class="btn btn-primary" type="button"  ng-click="ok()">Close</button></div>
+         </script>
+
+
+
+
+<script type="text/ng-template" id="viewPayslip.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Payslip</h4></div>
+            <div class="modal-body" ng-controller="EmployeePostingController">
+   <!-- START widget-->
+      <div class="panel panel-default" ng-repeat="payslip in persons">
+        <div  class="panel-body" >
+             <div  id="printable">
+           <div class="row">
+
+<!--    <div class="col-lg-4 col-xs-6 br pv">
+            <div class="col-md-12">
+               <p class="pull-left"><strong>Employee NO.</strong></p>
+               <p class="pull-right mr">{{payslip.payslipInfo.employeeNumber}}</p>
+            </div>
+         </div>
+          <div class="col-lg-4 col-xs-6 br pv">
+            <div class="col-md-12">
+               <p class="pull-left"><strong>Employee Name.</strong></p>
+               <p class="pull-right mr">{{payslip.payslipInfo.employeeName}}</p>
+            </div>
+         </div>
+          <div class="col-lg-4 col-xs-6 br pv">
+            <div class="col-md-10">
+               <p class="pull-left"><strong>Pay Period</strong></p>
+               <p class="pull-right mr">{{payslip.payslipInfo.period}}</p>
+            </div>
+         </div> -->
+
+
+         <div class="col-md-8">
+        <table class="table table-bordered-white" >
+            
+                  <thead>
+                     <!-- <tr>
+                        <th>#</th>
+                        <th>Code</th>
+                        <th>Descriptions
+                        </th>
+                        <th>Amount</th>
+                     </tr> -->
+                  </thead>
+                  <tbody>
+                         <tr >
+                      <td class="boldTotal"> Employee NO:</td>
+                      <td class="text-right">{{payslip.payslipInfo.employeeNumber}}</td>
+                  
+                      
+                    </tr>
+                     <tr >
+                   
+                        <td class="boldTotal"> Employee Name:</td>
+                      <td class="text-right">{{payslip.payslipInfo.employeeName}}</td>
+                      
+                    </tr>
+                  <tr >
+                   
+                          <td class="boldTotal "> Pay Period:</td>
+                      <td class="text-right">{{payslip.payslipInfo.period.month}} {{payslip.payslipInfo.period.year}}</td>
+                    </tr>
+                   
+                  </tbody>
+               </table>
+           
+              
+            </div>
+
+             </div> 
+             <br>
+             <div class="row">
+         <div class="col-md-8">
+        
+           
+               <table class="table table-bordered-white" >
+            
+                  <thead>
+                     <!-- <tr>
+                        <th>#</th>
+                        <th>Code</th>
+                        <th>Descriptions
+                        </th>
+                        <th>Amount</th>
+                     </tr> -->
+                  </thead>
+                  <tbody>
+                         <tr>
+                      <td class="boldTotal"> Earnings</td>
+                    
+                    </tr>
+                     <tr ng-repeat="earning in payslip.earnings.payslipCodeList">
+                     <!--    <td >{{payslipcode.code}}</td> -->
+                        <td>{{earning.description}}</td>
+                        <td class="text-right">{{earning.amount}}</td>
+                     </tr>
+                   
+                  </tbody>
+               </table>
+               
+               <table class="table table-bordered-white">
+                   
+                
+                  <tbody>
+                    
+
+                       <tr>
+                     <!--    <td >{{payslipcode.code}}</td> -->
+                        <td class="boldTotal" >Gross Pay</td>
+                        <td class="boldTotal text-right" >{{payslip.grossPay}}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      <br/>
+         <div class="row">
+         <div class="col-md-8">
+         
+           <div class="table-responsive">
+            
+               <table class="table table-bordered-white">
+            
+                  <!-- <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>Code</th>
+                        <th>Descriptions
+                        </th>
+                        <th>Amount</th>
+                     </tr>
+                  </thead> -->
+                  <tbody>
+        
+                    <tr>
+                      <td class="boldTotal"> Tax Calculations</td>
+                    
+                    </tr>
+
+          <tr ng-repeat="tax in payslip.taxCalculations.payslipCodeList">
+                     <!--    <td >{{payslipcode.code}}</td> -->
+                        <td >{{tax.description}}</td>
+                        <td class="text-right">{{tax.amount}}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         
+      </div>
+ <br/>
+      <div class="row">
+         <div class="col-md-8">
+       
+             <div class="table-responsive">
+        
+               <table class="table table-bordered-white">
+                   
+                 <!--  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>Code</th>
+                        <th>Descriptions
+                        </th>
+                        <th>Amount</th>
+                     </tr>
+                  </thead> -->
+                  <tbody>
+                     <tr style="width:100%">
+                      <td class="boldTotal"> Deductions</td>
+                    
+                    </tr>
+                     <tr ng-repeat="deduction in payslip.deductions.payslipCodeList">
+                     <!--    <td >{{payslipcode.code}}</td> -->
+                        <td >{{deduction.description}}</td>
+                        <td style="text-align: right;" class="justify_right">{{deduction.amount}}</td>
+                     </tr>
+         <tr>
+                         <td class="boldTotal ">Total Deduction</td>
+                        <td class="boldTotal text-right">{{payslip.totalDeduction}}</td>
+                    </tr>
+                      
+                  </tbody>
+               </table>
+
+               <table class="table table-bordered-white">
+                   
+                
+                  <tbody>
+                    
+
+                       <tr>
+                     <!--    <td >{{payslipcode.code}}</td> -->
+                        <td class="boldTotal">Net Pay</td>
+                        <td class="boldTotal text-right">{{payslip.netPay}}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      
+      </div>
+  <br/>
+
+      <div class="row">
+         <div class="col-md-8">
+         
+             <div class="table-responsive">
+        
+               <table class="table table-bordered-white">
+                   
+                 <!--  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>Code</th>
+                        <th>Descriptions
+                        </th>
+                        <th>Amount</th>
+                     </tr>
+                  </thead> -->
+                  <tbody>
+                    <tr style="width:100%">
+                      <td class="boldTotal"> Benefits</td>
+                    
+                    </tr>
+                    <tr ng-repeat="benefit in payslip.benefits.payslipCodeList">
+                     <!--    <td >{{payslipcode.code}}</td> -->
+                        <td >{{benefit.description}}</td>
+                        <td  class="text-right">{{benefit.amount}}</td>
+                     </tr>
+
+                       <tr ng-repeat="benefit in payslip.benefits.payslipCodeList">
+                     <!--    <td >{{payslipcode.code}}</td> -->
+                        <td class="boldTotal">Total Benefits</td>
+                        <td  class="boldTotal text-right">{{payslip.totalBenefits}}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      
+      </div>
+
+      <br/>
+
+      <div class="row">
+         <div class="col-md-8">
+         
+             <div class="table-responsive">
+        
+               <table class="table table-bordered-white">
+                   
+                 <!--  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>Code</th>
+                        <th>Descriptions
+                        </th>
+                        <th>Amount</th>
+                     </tr>
+                  </thead> -->
+                  <tbody>
+                    <tr style="width:100%">
+                      <td class="boldTotal"> Company Contribution</td>
+                    
+                    </tr>
+                    <tr ng-repeat="contributions in payslip.companyContributions
+.payslipCodeList">
+                     <!--    <td >{{payslipcode.code}}</td> -->
+                        <td >{{contributions.description}}</td>
+                        <td  class="text-right">{{contributions.amount}}</td>
+                     </tr>
+
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      
+      </div>
+
+      <br/>
+
+   <!--    <div class="row">
+         <div class="col-md-12">
+            <p class="lead bb">Rates
+</p>
+             <div class="table-responsive">
+        
+               <table class="table table-bordered-white">
+                
+                  <tbody>
+                    <tr ng-repeat="benefit in payslip.benefits.payslipCodeList">
+                        <td style="width:50%">{{benefit.description1}}</td>
+                        <td style="width:50%">{{benefit.amount1}}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      
+      </div> -->
+      <br/>
+
+     <!--   <div class="row">
+         <div class="col-md-12">
+            <p class="lead bb">Messages
+</p>
+             <div class="table-responsive">
+        
+               <table class="table table-bordered-white">
+                   
+        
+                  <tbody>
+                    <tr ng-repeat="benefit in payslip.benefits.payslipCodeList">
+                        <td style="width:50%">{{benefit.description1}}</td>
+                        <td style="width:50%">{{benefit.amount1}}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      
+      </div> -->
+
+<div class="clearfix">
+           
+      
+           <button class="btn btn-info pull-left mr" type="button" ng-click="printDiv('printable');"">Print</button>
+     
+        </div>
+      </div>
+         </div>
+      </div>
+
+</div>
+<div class="modal-footer"><button class="btn btn-primary" type="button"  ng-click="ok()">Close</button></div>
+         </script>
+
+
+         <script type="text/ng-template" id="editTransaction.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Edit</h4></div>
+            <div class="modal-body" ng-controller="EmployeePostingController">
+  <form class="form-horizontal" name="employeepostingform" novalidate >
+
+
+    <div class="form-group">
+                
+                  <div class="col-lg-9">
+                     <input class="form-control" type="hidden" ng-model="transaction.id" name="element_code
+" placeholder="Element code
+" />
+                  </div>
+               </div>
+            <div class="form-group">
+                  <label class="col-lg-3 control-label"> Period
+
+                 </label>
+                  <div class="col-lg-9">
+         <select name="period" class="slider slider-lg form-control" ng-model="transaction.periodId" ng-options="period.id as period.period for period in periods" disabled="" >
+        <option value="" disabled selected>Periods</option>
+  </select>
+          
+                  </div>
+               </div>
+
+      <div class="form-group">
+                  <label class="col-lg-3 control-label"> Employee
+
+                 </label>
+                  <div class="col-lg-9">
+         <select name="employee" class="slider slider-lg form-control" ng-model="transaction.employeeId" ng-options="employee.id as employee.employeeNumber for employee in employees" disabled="">
+        <option value="" disabled selected>Employees</option>
+  </select>         </div>
+               </div>
+           <div class="form-group">
+                  <label class="col-lg-3 control-label"> code
+
+                 </label>
+                  <div class="col-lg-9">
+              <select class="form-control" name="payrollcode" ng-model="transaction.payrollCodeId"  ng-options="code.id as code.code+'-'+code.description  for code in pcodes" ng-required="true">
+    <option value="" disabled selected>Payroll  Codes</option>
+  </select>  
+   <span class="text-danger" ng-show="employeepostingform.$submitted &amp;&amp; employeepostingform.payrollcode.$error.required">This field is required</span>    </div>
+               </div>
+       
+
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Amount
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="amount"  ng-model="transaction.amount" placeholder="Amount" ng-required="true"/>
+                      <span class="text-danger" ng-show="employeepostingform.$submitted &amp;&amp; employeepostingform.amount.$error.required">This field is required</span>
+                  </div>
+               </div>
+      
+              <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                  <button class="btn btn-sm btn-primary mr" ng-click="updateTransaction(transaction)">Update</button>
+                    <button class="btn btn-sm btn-warning mr" type="reset" >Cancel</button>
+                   </div>
+               </div>
+               
+            </form>
+
+</div>
+<div class="modal-footer"><button class="btn btn-primary" type="button"  ng-click="ok()">Close</button></div>
+         </script>
+       </div>
+
+</div>
+       
+       

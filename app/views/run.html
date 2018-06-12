@@ -1,0 +1,106 @@
+
+<h3>Payroll Processing
+  <!--  <small>Native AngularJS form wizard</small> -->
+</h3>
+<!-- START panel-->
+<div class="panel panel-default">
+  <!--  <div class="panel-heading">Form Wizard Horizontal (no validation)</div> -->
+   <div class="panel-body">
+      <section form-wizard="" steps="3">
+          <div id="wizard" class="form_wizard wizard_horizontal">
+            
+
+<ul class='  nav nav-wizard '>
+  
+  <li class="col-md-6"  ng-class="{'active':wizard.active(1)}" ><a ng-click="wizard.go(1)"> Payroll  Run  </a></li>
+
+  <li class="col-md-6"  ng-class="{'active':wizard.active(2)}"><a ng-click="wizard.go(2)"> Preview </a></li>
+
+</ul>
+           
+          
+            <!-- START Wizard Step inputs-->
+            <div ng-show="wizard.active(1)">
+
+
+      <div class="row mb-lg companydetails">
+         <div class="col-lg-6 col-xs-6  pv">
+            <div class="row">
+               
+               <div class="col-md-10">
+             
+           
+            <div class="clearfix" ng-controller="DashboardController">
+               <p class="pull-left mr"><b>Pay Period</b> </p>
+               <p class="pull-left mr">{{dashboard.currentPeriod.month}} {{dashboard.currentPeriod.year}}</p>
+              
+            </div>
+          
+                  </div>
+            </div>
+         </div>
+         </div>
+
+        
+         <div class="col-md-4 " ng-controller="PayrollProcessController">
+         <div class="clearfix1">
+        
+         <button class="btn btn-primary pull-left " ng-class="currentclass" ng-click="process()" type="button">{{buttonText}}</button>
+
+          <!-- <uib-progressbar class="progress-striped" value="22" type="warning">22%</uib-progressbar> -->
+
+  <!--    <div class="whirl traditional" ng-show="process">{{process}}</div> -->
+       <!--   <button ladda="loading" ng-click="clickBtn()">
+  Button
+</button> -->
+         </div>
+
+
+         </div>
+
+     
+  <!--     
+   </div>
+</div>
+
+
+
+
+   </div>
+
+      </div> -->
+                    
+               
+
+
+
+                         
+
+<!-- END panel-->
+               <ul class="pager">
+                  <li class="next"><a href="" ng-click="wizard.go(2)">Next<span>&rarr;</span></a>
+                  </li>
+               </ul>
+            </div>
+            <!-- END Wizard Step inputs-->
+            <!-- START Wizard Step inputs-->
+            <div ng-show="wizard.active(2)">
+            
+   
+   
+<div  ng-include="'app/views/payroll-preview.html'"> </div>
+
+
+
+</div>
+            </div>
+      </section>
+         </div>
+      
+   </div>
+
+<!-- END panel-->
+
+
+
+

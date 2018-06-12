@@ -1,0 +1,74 @@
+
+
+
+ 
+   <div class="col-lg-6">
+      <form class="form-inline">
+
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Month
+    </div>
+    <div ng-controller="DatepickerDemoCtrl as dpick">
+                      <p class="input-group">
+                              <input class="form-control" type="text" name="ex_date" ng-model="empMaster.Emp_Expiry_date" uib-datepicker-popup="{{dpick.format}}" ng-model="dpick.date" is-open="dpick.opened" min-date="dpick.minDate" max-date="'2019-12-22'" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+                           </p>
+                           
+                  </div>
+  </div>
+
+</form>
+  
+
+
+   </div>
+   <br/>
+      <br/>
+
+   <br/>
+
+
+            <div class="panel b">
+               <div class="panel-heading bg-gray-lighter text-bold">Mileage Report</div>
+               <div class="panel-body">
+                  <table class="table table-bordered-white " >
+            <thead>
+               <tr><th>Date </th>
+                   <th>Destination</th>
+                  <th>Description</th>
+                    <th>Mileage</th>
+                 
+                 
+               </tr>
+            </thead>
+            <tbody >
+               <tr>
+                  <td >17/8/2017</td>
+                  <td >Marsabit plaza </td>
+                  <td >Marsabit plaza </td>
+                  <td >200 </td>
+           
+           
+                  
+                 
+                
+               </tr>
+               
+              
+             
+            
+            </tbody>
+         </table>
+         <br/>
+           <div class="clearfix">
+         <button class="btn btn-info pull-left mr" type="button">Add new</button>
+      
+        
+      </div>  
+               </div>
+            </div>

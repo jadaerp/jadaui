@@ -1,0 +1,247 @@
+
+               <div class="col-lg-12  companydetails"><div class="panel panel-default" ng-controller="UserAdminController">
+         <div class="panel-heading">  <div class="clearfix">
+     
+    <button class="btn btn-info pull-right mr" ng-click="open()">
+        Add New
+               </button>
+        
+        
+      </div>
+          
+
+          </div>
+         <div class="panel-body" >
+
+         <div class="table-responsive">
+         <table class="table table-striped" datatable="ng">
+                 <thead>
+               <tr>
+                  <th>First Name</th>
+                   <th>Last Name</th>
+                  <th> Email Address</th>
+              
+                  <th> Phone Number</th>
+                  
+                 
+
+                   <th>Active</th>
+                     <th>Action</th>
+                  
+               </tr>
+            </thead>
+                <tbody>
+              <tr ng-repeat="user in users">
+                   <td>{{ user.firstName }}</td>
+                      <td>{{ user.lastName }}</td>
+                <td>{{ user.emailAddress }}</td>
+            
+                  <td>{{ user.phoneNumber}}</td>
+          
+                  <td>{{ user.isActive }}</td>
+                  <td>  <div class="buttons" >
+                <button class="btn btn-sm btn-info" ng-click="show(user)"  title="Edit">
+                  <em class="fa fa-pencil"></em>
+               </button>
+               <button class="btn btn-sm btn-danger" ng-click="delete(user)"  title="Delete">
+                  <em class="fa fa-trash"></em>
+               </button>
+            </div>
+                  </td>
+                  
+               </tr>
+              
+            
+               
+            </tbody>
+         </table>
+
+          
+      </div>
+             
+         
+         </div>
+         </div>
+      </div>
+
+      <script type="text/ng-template" id="NewUser.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">New User</h4></div><div class="modal-body"><!-- START panel-->
+              <div class="userform" ng-controller="UserAdminController">
+
+ <form class="form-horizontal"  name="userform" novalidate="" >
+
+       <div class="form-group">
+                  <label class="col-lg-3 control-label">First Name</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="fname" ng-model="user.firstName"  placeholder="Enter First Name"  ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/" ng-required="true" />
+                        <span class="text-danger" ng-show="userform.fname.$dirty &amp;&amp; userform.fname.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="userform.fname.$dirty &amp;&amp; userform.fname.$error.pattern">This field is invalid:No special characters allowed </span>
+                  </div>
+
+
+                 
+               </div>
+
+                   <div class="form-group">
+                  <label class="col-lg-3 control-label">Last Name</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="lname" ng-model="user.lastName"  placeholder="Enter Last Name" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/" ng-required="true" />
+
+                    <span class="text-danger" ng-show="userform.lname.$dirty &amp;&amp; userform.lname.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="userform.lname.$dirty &amp;&amp; userform.lname.$error.pattern">This field is invalid:No special characters allowed </span>
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Email Address
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="email"  name="email"  ng-model="user.emailAddress" ng-required="true"  placeholder="Enter Email"/>
+
+                  <span class="text-danger" ng-show="userform.email.$dirty &amp;&amp; userform.email.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="userform.email.$dirty &amp;&amp; userform.email.$error.email">This field must be a valid email address</span>
+                  </div>
+               </div>
+             <!--    <div class="form-group">
+                  <label class="col-lg-3 control-label"> Username</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="username" ng-model="user.username" placeholder="Enter Username"/>
+                  </div>
+               </div> -->
+               <div class="form-group">
+                  <label class="col-lg-3 control-label"> Phone Number </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="phone" ng-model="user.phoneNumber" ng-pattern="/^\+?[0-9]{6,14}$/" ng-required="true" placeholder="Enter Phone Number"/>
+                        <span class="text-danger" ng-show="userform.phone.$dirty &amp;&amp; userform.phone.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="userform.phone.$dirty &amp;&amp; userform.phone.$error.pattern">This field must be a valid phone number</span>
+            </div>
+                  </div>
+            
+              
+          
+                 <div class="form-group">
+ <label class="col-lg-3 control-label">Active</label>
+   <div class="col-lg-9">
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="f_country" ng-value="true" ng-model="user.isActive">
+                   <span class="fa fa-circle"></span> Yes
+                </label>
+            </div>
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="f_custom" ng-value="false" ng-model="user.isActive">
+                    <span class="fa fa-circle"></span>No
+                </label>
+            </div>
+            </div>
+        </div>
+              
+              
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm" ng-disabled="userform.$invalid" ng-click="submitUser(userform)">Save and New</button>
+                            <button class="btn btn-info btn-sm" ng-disabled="userform.$invalid" ng-click="submitUserClose()">Save and Close</button>
+                      <button class="btn btn-warning btn-sm" type="submit">Reset</button>
+                  </div>
+               </div>
+
+                    <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+                   <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+
+            </form>
+          </div>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+
+
+
+         <script type="text/ng-template" id="EditUser.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Edit User</h4></div>
+            <div class="modal-body"  ng-controller="UserAdminController"><!-- START panel-->
+
+ <form class="form-horizontal" name="userform" novalidate="" >
+
+   <div class="form-group">
+                 <div class="col-lg-9">
+                     <input class="form-control" type="hidden"  name="id"  ng-model="user.id" placeholder="Enter Email"/>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">First Name</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="fname" ng-model="user.firstName"  placeholder="Enter First Name"  ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/" ng-required="true" />
+                        <span class="text-danger" ng-show="userform.fname.$dirty &amp;&amp; userform.fname.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="userform.fname.$dirty &amp;&amp; userform.fname.$error.pattern">This field is invalid:No special characters allowed </span>
+                  </div>
+
+
+                 
+               </div>
+
+                   <div class="form-group">
+                  <label class="col-lg-3 control-label">Last Name</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="lname" ng-model="user.lastName"  placeholder="Enter Last Name" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/" ng-required="true" />
+
+                    <span class="text-danger" ng-show="userform.lname.$dirty &amp;&amp; userform.lname.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="userform.lname.$dirty &amp;&amp; userform.lname.$error.pattern">This field is invalid:No special characters allowed </span>
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Email Address
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="email"  name="email"  ng-model="user.emailAddress" ng-required="true"  placeholder="Enter Email"/>
+
+                  <span class="text-danger" ng-show="userform.email.$dirty &amp;&amp; userform.email.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="userform.email.$dirty &amp;&amp; userform.email.$error.email">This field must be a valid email address</span>
+                  </div>
+               </div>
+             <!--    <div class="form-group">
+                  <label class="col-lg-3 control-label"> Username</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="username" ng-model="user.username" placeholder="Enter Username"/>
+                  </div>
+               </div> -->
+               <div class="form-group">
+                  <label class="col-lg-3 control-label"> Phone Number </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="phone" ng-model="user.phoneNumber" ng-pattern="/^\+?[0-9]{6,14}$/" ng-required="true" placeholder="Enter Phone Number"/>
+                        <span class="text-danger" ng-show="userform.phone.$dirty &amp;&amp; userform.phone.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="userform.phone.$dirty &amp;&amp; userform.phone.$error.pattern">This field must be a valid phone number</span>
+            </div>
+                  </div>
+          
+                 <div class="form-group">
+ <label class="col-lg-3 control-label">Active</label>
+   <div class="col-lg-9">
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="f_country" ng-value="true" ng-model="user.isActive">
+                   <span class="fa fa-circle"></span> Yes
+                </label>
+            </div>
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="f_custom" ng-value="false" ng-model="user.isActive">
+                    <span class="fa fa-circle"></span>No
+                </label>
+            </div>
+            </div>
+        </div>
+              
+              
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm" ng-click="updateUser(user)">Update</button>
+                      <button class="btn btn-warning btn-sm" type="submit">Cancel</button>
+                  </div>
+               </div>
+
+                    <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>

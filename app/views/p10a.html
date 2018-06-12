@@ -1,0 +1,121 @@
+<!-- <h3>
+   <button class="btn btn-primary pull-right" type="button">
+      <em class="fa fa-plus-circle fa-fw mr-sm"></em>New Invoice</button>Invoice</h3> -->
+        <div class="page" ng-controller="P10aController">
+         <div class="row">
+   <div class="col-lg-8">
+      <form class="form-inline">
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Period</div>
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="user.period" ng-options="period.id as period.year for period in periods | unique:'year' " 
+         ng-change="showcurrentYear(user.period)" >
+        <option value="" disabled selected>Periods</option>
+  </select>
+  </div>
+
+   <button ng-click="getByperiod(user.period)" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+</form>
+  
+
+ </div>
+   </div>
+<div class="panel">
+   <div class="panel-body">
+     
+     
+      <div class="table-responsive ">
+         <table class="table table-bordered">
+                <tbody>
+
+               <tr>
+                  <td colspan="5" ><b>FORM P.10A</b></td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="text-center">KENYA REVENUE AUTHORITY</td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="text-center">DOMESTIC TAXES DEPARTMENT</td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="text-center"><b>P.AY.E - SUPPORTING LIST FOR END OF YEAR CERTIFICATE</b></td>
+                </tr>
+                <tr>
+                  <td colspan="5">Year {{currentYear}}</td>
+                </tr>
+                <tr>
+                  <td colspan="5" height="30"></td>
+                </tr>
+                <tr>
+                  <td>Employer's Name </td>
+                  <td>{{ptena.employer.employerName}}</td>
+                  <td></td>
+                  <td>Employer's P.I.N. </td>
+                  <td>{{ptena.employer.pinNumber}}</td>
+                </tr>
+                
+                <tr>
+                  <td colspan="5" height="30"></td>
+                </tr>
+               
+                 <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Total Emoluments</th>
+                  <th>Total Tax Deducted</th>
+                 
+               </tr>
+                <tr>
+                  <th>EMPLOYEE P.I.N</th>
+                  <th>Employeee Name</th>
+                  <th>Our Ref</th>
+                  <th>(KES)</th>
+                  <th>(KES)</th>
+                  
+                 
+               </tr>
+               <tr ng-repeat="ptena in ptenas.p10AReportDataList">
+                  <td>{{ptena.employeePin}}</td>
+                  <td>{{ptena.employeeName}}</td>
+                  <td>{{ptena.ourRef}}</td>
+                  <td>{{ptena.totalEmoluments}}</td>
+                  <td>{{ptena.totalTaxDeducted}}</td>
+                  
+               </tr>
+            
+            
+
+               <tr>
+                  <td colspan="5" height="30"></td>
+                </tr>
+              
+               <tr>
+                  <td colspan="3"></td>
+                  
+                  <td>TOTAL EMOLUMENTS</td>
+                  <td>{{ptenas.totalEmoluments}}</td>
+                  </tr>
+               
+                   <tr>
+                  <td colspan="3"></td>
+                  <td>TOTAL PAYE TAX : </td>
+                  <td>{{ptenas.totalDeductions}}</td>
+                  
+                 
+               </tr>
+               
+         
+            </tbody>
+         </table>
+      </div>
+    <br/>
+     
+      <div class="clearfix">
+         
+         <button class="btn btn-info pull-left mr" type="button" onclick="window.print();">Print</button>
+         <button class="btn btn-success pull-left mr" type="button">Excel</button>
+      </div>
+   </div>
+</div>
+</div>

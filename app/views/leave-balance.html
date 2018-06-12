@@ -1,0 +1,205 @@
+
+
+<h3>Leave Balances
+   
+  </h3>
+
+            <div class="panel b" ng-controller="LeaveBalanceController">
+             <div class="panel-heading">
+</div>
+         <div class="panel-body" >
+
+          <div class="row">
+            <form>
+              
+            
+            
+            <div class="col-lg-4  col-sm-4 col-md-4 m-r-5">
+              {{currentPeriodData.year}} - {{currentPeriodData.month}}
+            </div>
+            <div class="input-group col-lg-4 col-sm-4 col-md-4 ml">
+              <div class="input-group-addon">Leave Type</div>
+            
+                   <select name="leaveType" class="slider slider-lg form-control" ng-model="leaveBalance.leaveTypeId" ng-options="leaveType.id as leaveType.description for leaveType in leaveTypeData" ng-change="filterLeaveBalance(leaveBalance)" >
+                  <option value="" disabled selected>Select Leave Type</option>
+            </select>
+            </div>  
+          </form>
+
+            
+              
+             <button class="btn btn-primary pull-right mr " type="button" ng-click="open()"><em class="fa fa-plus-circle fa-fw mr-1"></em> Add New</button>
+            
+              
+            
+          </div>
+
+         <div class="table-responsive">
+         <table class="table table-striped table-hover">
+                 <thead>
+               <tr>
+                  <th>Employee</th>
+                  <th>Leave Type</th>
+                  <th>Balance</th>
+                  
+                   <th>Action</th>
+                  
+               </tr>
+            </thead>
+                <tbody>
+               <tr ng-repeat="leaveBalance in leaveBalanceData">
+                    <td>{{ leaveBalance.employee }}</td>
+                    <td>{{ leaveBalance.leaveTypeDescription }}</td>
+                     <td>{{ leaveBalance.balance }}</td>
+                 
+            
+                      <td>
+                        <div class="buttons">
+                       <button class="btn btn-info pull-left mr" type="button" ng-click="show(leaveBalance)"><em class="fa fa-pencil"></em></button>
+        
+                     <button class="btn btn-sm btn-danger"  ng-click="delete(leaveBalance)" title="Delete">
+                    <em class="fa fa-trash"></em>
+                     </button>
+                    </div>
+                     </td>          
+                 </tr>
+                          
+               
+            </tbody>
+         </table>
+
+          
+      </div>
+           
+          
+         
+         </div>
+         </div>
+
+
+      <script type="text/ng-template" id="addLeave.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Leave</h4></div>
+            <div class="modal-body" ng-controller="LeaveBalanceController"><!-- START panel-->
+
+ <form class="form-horizontal" name="LeaveBalanceForm" novalidate>
+<div class="form-group">
+                  <label class="col-lg-3">Employee
+</label>
+                  <div class="col-lg-9">
+                    <!--  <input class="form-control" type="text"  name="empNumber"  ng-model="leavepost.employeeNumber" placeholder="Number"/> -->
+                      <select class="form-control" name="employeeId" ng-model="leaveBalance.employeeId" ng-options="employee.id as employee.employeeNumber+'-'+ employee.firstName+' '+employee.lastName for employee in employees" ng-required="true" >
+    <option value="" disabled selected>All Employees</option>
+  </select>
+
+  <span class="text-danger" ng-show="leaveBalanceForm.$submitted &amp;&amp; leaveBalanceForm.empNumber.$invalid">This field is required</span>
+                  </div>
+               </div>
+                <div class="form-group">
+                        <label class="col-sm-3 ">Leave Type</label>
+                        <div class="col-lg-9">
+                       
+                  
+
+                   <select name="leaveTypeId" class="slider slider-lg form-control" ng-model="leaveBalance.leaveTypeId" ng-options="leaveType.id as leaveType.description for leaveType in leaveTypeData"  >
+                  <option value="" disabled selected>Select Leave Type</option>
+            </select>
+
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div> 
+                  </div>              
+
+                <div class="form-group">
+                  <label class="col-lg-3">Balance</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="number" name="balance" ng-model="leaveBalance.balance"  ng-required="true" placeholder="eg 21 days"/>
+
+                     
+                          <span class="text-danger" ng-show="LeaveBalanceForm.l_entitlement.$dirty &amp;&amp; LeaveBalanceForm.l_entitlement.$error.required">This field is required
+                       </span>
+
+                        <span class="text-danger" ng-show="LeaveBalanceForm.l_entitlement.$dirty &amp;&amp; LeaveBalanceForm.l_entitlement.$error.number">This field must be a number
+                       </span>
+                  </div>
+               </div>
+
+              
+              
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm" ng-disabled="LeaveBalanceForm.$invalid" ng-click="submitLeaveBalance(leaveBalance,leaveBalanceForm)">Save and New</button>
+                       <button class="btn btn-info btn-sm" ng-disabled="LeaveBalanceForm.$invalid" ng-click="submitLeaveBalanceAndClose(leaveBalance)">Save and Close</button>
+                        <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+                  </div>
+               </div>
+               
+
+                      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+
+            <script type="text/ng-template" id="editLeave.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Edit Leave</h4></div><div class="modal-body"><!-- START panel-->
+
+ <form class="form-horizontal" name="LeaveBalanceForm" novalidate>
+  <div class="form-group">
+                 
+                  <div class="col-lg-9">
+                     <input class="form-control" type="hidden"  name="leave_name"  ng-model="leave.id" placeholder="Leave Type"/>
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Type
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="leave_name"  ng-model="leave.code" ng-required="true"
+        ng-pattern="/^[\w,]+$/" placeholder="Leave Type"/>
+
+        <span class="text-danger" ng-show="LeaveBalanceForm.leave_name.$dirty &amp;&amp; LeaveBalanceForm.leave_name.$error.required">This field is required</span>
+               <span class="text-danger" ng-if="LeaveBalanceForm.leave_name.$dirty &amp;&amp; LeaveBalanceForm.leave_name.$error.pattern">This field is invalid:No special characters allowed </span>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 control-label"> Description</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="leave_desc" ng-model="leave.description" placeholder="eg. Annual"/>
+                      <span class="text-danger" ng-show="LeaveBalanceForm.leave_desc.$dirty &amp;&amp; LeaveBalanceForm.leave_desc.$error.required">This field is required </span>
+               <span class="text-danger" ng-if="LeaveBalanceForm.leave_desc.$dirty &amp;&amp; LeaveBalanceForm.leave_desc.$error.pattern">This field is invalid:No special characters allowed </span>
+
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Entitlement</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="l_entitlement" ng-model="leave.entitlement" ng-required="true" placeholder="eg 21 days"/>
+
+                     <span class="text-danger" ng-show="LeaveBalanceForm.l_entitlement.$dirty &amp;&amp; LeaveBalanceForm.l_entitlement.$error.required">This field is required
+                       </span>
+                  </div>
+               </div>
+
+              
+              
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm" ng-click="UpdateLeaveTypes(leave)">Update</button>
+                          <button class="btn btn-info btn-sm" type="reset">Reset</button>
+                  </div>
+               </div>
+
+                <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            </form>
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+
+
+               
+            
+
+             

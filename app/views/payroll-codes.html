@@ -1,0 +1,346 @@
+
+<h3>Payroll Codes
+
+
+</h3>
+
+       
+
+<div class="container-fluid" >
+<div class="panel panel-default" ng-controller="PayrollCodesController">
+   <div class="panel-heading"> <h3 class="panel-title">
+     <div class=" clearfix buttons">
+                       <button class="btn btn-info pull-right mr" type="button" ng-click="open()">Add New</button>  
+                                                      
+                     
+                    </div>
+   </h3> 
+
+
+
+    </div>
+
+   <div class="panel-body"  >
+
+         <div class="table-responsive">
+          
+         <table class="table table-striped" datatable="ng">
+                 <thead>
+               <tr>
+                
+                  <th> Code</th>
+                   
+                  <th>Description</th>
+                  <th>Group</th>
+                  <th>Recurrent</th>
+                  <th>Formula</th>
+                  <th>Taxable/NonTaxable</th>
+                   <th>Action</th>
+                  
+               </tr>
+            </thead>
+                <tbody>
+               <tr ng-repeat="code in plist">
+                    <td>{{ code.code }}</td>
+                    <td>{{ code.description }}</td>
+                     <td>{{ code.payrollCodeGroupDescription }}</td>
+                     <td>{{ code.isRecurrentString }}</td>
+                     <td>{{ code.isFormulaString }}</td>
+                      <td>{{ code.isTaxableString }}</td>
+
+                 
+                 
+            
+                      <td>
+                        <div class="buttons">
+                       <button class="btn btn-sm btn-info pull-left mr" type="button" ng-click="show(code)">
+                           <em class="fa fa-pencil"></em>
+                                                      
+                     <button class="btn btn-sm btn-danger"  ng-click="delete(code)" title="Delete">
+                    <em class="fa fa-trash"></em>
+                     </button>
+                    </div>
+                     </td>          
+                 </tr>
+              
+              
+              
+               
+            </tbody>
+         </table>
+
+          
+      </div>
+         
+          
+         
+         </div>
+    
+
+
+
+ 
+
+
+
+
+         <script type="text/ng-template" id="addPCodes.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Payroll Code</h4></div>
+            <div class="modal-body"   ng-controller="PayrollCodesController">
+  <form class="form-horizontal"   name="payrollcodeform" novalidate  >
+           <div class="form-group">
+                  <label class="col-lg-3 control-label"> code
+
+                 </label>
+                  <div class="col-lg-9">
+             <input class="form-control" type="text" ng-model="payrollcodes.code" name="code" ng-required="true"
+        ng-pattern="/^[\w,]+$/"  placeholder="Enter Code" />
+
+  <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.code.$error.required">This field is required</span>
+               <span class="text-danger" ng-if="payrollcodeform.code.$dirty &amp;&amp; payrollcodeform.code.$error.pattern">This field is invalid:No special characters allowed </span>
+
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Descriptions
+
+                 </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  ng-model="payrollcodes.description" name="code_desc"  ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder="Enter Descriptions " />
+
+
+  <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.code_desc.$error.required">This field is required</span>
+               <span class="text-danger" ng-if="payrollcodeform.code_desc.$dirty &amp;&amp; payrollcodeform.code_desc.$error.pattern">This field is invalid:No special characters allowed </span>
+                  </div>
+               </div>
+
+
+             
+
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Group code
+                   </label>
+                  <div class="col-lg-9">
+                  
+
+                    <select  class="form-control" name="payrollCodeGroup"  ng-model="payrollcodes.payrollCodeGroupId" ng-options="group.id as group.description for group in pgroups" ng-required="true">
+                     <option value="" disabled selected>Payroll Codes Group</option>
+
+                     
+                     </select>
+                     <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.payrollCodeGroup.$error.required">This field is required</span>
+                  </div>
+               </div>
+
+
+
+
+ <div class="form-group">
+ <label class="col-lg-3 control-label"> Recurrent </label>
+   <div class="col-lg-9">
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="itemstate" ng-value="true" ng-model="payrollcodes.isRecurrent" ng-required="true">
+                   <span class="fa fa-circle"></span> Yes
+                </label>
+            </div>
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="itemstate" ng-value="false"  ng-model="payrollcodes.isRecurrent" ng-required="true">
+                    <span class="fa fa-circle"></span>No
+                </label>
+            </div>
+
+            <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.itemstate.$error.required">This field is required</span>
+            </div>
+        </div>
+               
+               <div class="form-group">
+ <label class="col-lg-3 control-label"> Formula </label>
+   <div class="col-lg-9">
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="Formula" ng-value="true" ng-model="payrollcodes.isFormula" ng-required="true">
+                   <span class="fa fa-circle"></span> Yes
+                </label>
+            </div>
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="Formula" ng-value="false"  ng-model="payrollcodes.isFormula" ng-required="true">
+                    <span class="fa fa-circle"></span>No
+                </label>
+            </div>
+               <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.Formula.$error.required">This field is required</span>
+            </div>
+        </div>
+        <div class="form-group">
+ <label class="col-lg-3 control-label"> Taxable/NonTaxable </label>
+   <div class="col-lg-9">
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="Taxable" ng-value="true" ng-model="payrollcodes.isTaxable" ng-required="true">
+                   <span class="fa fa-circle"></span> Yes
+                </label>
+            </div>
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="Taxable" ng-value="false" ng-model="payrollcodes.isTaxable" ng-required="true">
+                    <span class="fa fa-circle"></span>No
+                </label>
+            </div>
+             <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.Taxable.$error.required">This field is required</span>
+            </div>
+        </div>
+               
+              
+                     
+              <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                  <button class="btn btn-sm btn-primary mr"  ng-click="payrollcodeform.$valid && submitPayrollCode(payrollcodeform)" >Save and New</button>
+                   <button class="btn btn-sm btn-primary mr"  ng-click="payrollcodeform.$valid && submitPayrollCodeClose(payrollcodes)" >Save and Close</button>
+                   <button class="btn btn-sm btn-warning mr"  type="reset">Reset</button>
+                   </div>
+               </div>
+                 <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+         
+            </form>
+
+           
+        
+</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+
+         </script>
+
+
+        <script type="text/ng-template" id="EditPCodes.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Edit Payroll Code</h4></div>
+            <div class="modal-body" ng-controller="PayrollCodesController">
+
+
+            <form class="form-horizontal" name="payrollcodeform" novalidate  >
+                <div class="form-group">
+               
+
+              
+                  <div class="col-lg-9">
+                     <input class="form-control" type="hidden" ng-model="code.id" name="element_code" placeholder="Element code" />
+                  </div>
+               </div>
+           <div class="form-group">
+                  <label class="col-lg-3 control-label"> code
+
+                 </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" ng-model="code.code" name="code" ng-required="true"
+        ng-pattern="/^[\w,]+$/" placeholder="Enter Code" />
+                      <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.code.$error.required">This field is required</span>
+               <span class="text-danger" ng-if="payrollcodeform.code.$dirty &amp;&amp; payrollcodeform.code.$error.pattern">This field is invalid:No special characters allowed </span>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Descriptions
+
+                 </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  ng-model="code.description" name="code_description" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder="Enter Descriptions" />
+
+  <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.code_description.$error.required">This field is required</span>
+               <span class="text-danger" ng-if="payrollcodeform.code_description.$dirty &amp;&amp; payrollcodeform.code_description.$error.pattern">This field is invalid:No special characters allowed </span>
+                  </div>
+               </div>
+
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Group code
+                   </label>
+                  <div class="col-lg-9">
+                  
+
+                    <select  class="form-control" name="group"  ng-model="code.payrollCodeGroupId" ng-options="group.id as group.description for group in pgroups"  ng-required="true" >
+
+                     <option value="" disabled selected>Payroll Codes Group</option>
+
+                     
+                     </select>
+                      <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.group.$error.required">This field is required</span>
+                  </div>
+               </div>
+
+
+
+
+ <div class="form-group">
+ <label class="col-lg-3 control-label"> Recurrent </label>
+   <div class="col-lg-9">
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="itemstate" ng-value="true" ng-model="code.isRecurrent" ng-required="true">
+                   <span class="fa fa-circle"></span> Yes
+                </label>
+            </div>
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="itemstate"  ng-value="false" ng-model="code.isRecurrent" ng-required="true">
+                    <span class="fa fa-circle"></span>No
+                </label>
+            </div>
+              <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.itemstate.$error.required">This field is required</span>
+            </div>
+        </div>
+               
+               <div class="form-group">
+ <label class="col-lg-3 control-label"> Formula </label>
+   <div class="col-lg-9">
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="Formula"  ng-value="true" ng-model="code.isFormula" ng-required="true">
+                   <span class="fa fa-circle"></span> Yes
+                </label>
+            </div>
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="Formula"  ng-value="false" ng-model="code.isFormula" ng-required="true">
+                    <span class="fa fa-circle"></span>No
+                </label>
+            </div>
+             <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.Formula.$error.required">This field is required</span>
+            </div>
+        </div>
+        <div class="form-group">
+ <label class="col-lg-3 control-label"> Taxable/NonTaxable </label>
+   <div class="col-lg-9">
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="Taxable" ng-value="true" ng-model="code.isTaxable" ng-required="true">
+                   <span class="fa fa-circle"></span> Yes
+                </label>
+            </div>
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="Taxable" ng-value="false" ng-model="code.isTaxable" ng-required="true">
+                    <span class="fa fa-circle"></span>No
+                </label>
+            </div>
+            <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.Taxable.$error.required">This field is required</span>
+            </div>
+        </div>
+               
+              
+                     
+              <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                  <button class="btn btn-sm btn-primary mr"  ng-click="updatepayrollcodes(code)">Update</button>
+                  <button class="btn btn-sm btn-warning mr"  type="reset">Reset</button>
+                   </div>
+               </div>
+               
+            </form>
+
+        
+</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script> 
+</div>
+  
+</div>
+
+

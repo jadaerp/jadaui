@@ -1,0 +1,320 @@
+<h3>Payroll Ledger</h3>
+
+
+
+
+   <div class="container-fluid" ng-controller="PayrollLedgerController">
+
+
+
+
+  <div class="panel panel-default">
+         <div class="panel-heading"><div class="buttons" >
+ <button class="btn btn-info pull-right mr" type="button" ng-click="open()">Add New</button>
+
+            </div></div>
+            <div class="panel-body" >
+         <div class="row">
+           <div class="col-md-10">
+                   <div class="clearfix">
+          <table class="table table-bordered-white"  >
+         <thead>
+          <tr>
+           <th>GDC</th>
+        
+
+            <th> General Ledger Code</th>
+               <th>Description</th>
+           <th>Financial Category</th>
+ 
+           <th>Department</th>
+           <th>Cost Center</th>
+        
+           <th>Action</th>
+       
+         </tr>
+       </thead>
+       <tbody>
+        <tr ng-repeat="pledger in payrollLedgers">
+        
+    
+            <td>{{pledger.gdc}}</td>
+              <td>{{pledger.code}}</td>
+                  <td>{{pledger.description}}</td>
+                <td>{{pledger.financialCategory}}</td> 
+
+                  <td>{{pledger.departmentDecription}}</td>
+
+              <td>{{pledger.costCenterDescription}}</td>
+
+              
+
+        
+
+          <td>
+            <div class="buttons" >
+              
+                   <button class="btn btn-sm btn-info  mr" type="button" ng-click="show(pledger)"><em class="fa fa-pencil"></em></button>
+                  <button class="btn btn-sm btn-danger mr"  ng-click="delete(pledger)" title="Delete">
+                    <em class="fa fa-trash"></em>
+
+         
+                  
+                      </div>
+                    </td>          
+                  </tr>
+
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+            
+               
+            <br/>
+           
+                 
+          </div>
+           
+    
+
+               </div>
+             <br/>
+              
+
+          <script type="text/ng-template" id="newgpayrollLedger.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">New payroll Ledger</h4></div>
+            <div class="modal-body" ng-controller="PayrollLedgerController"><!-- START panel-->
+
+ <form class="form-horizontal" name="glform" novalidate=""  >
+    <div class="form-group">
+                  <label class="col-lg-3"> GDC
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="gdc" ng-model="pl.gdc" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"   placeholder="GDC"/>
+                      <!--  <span class="text-danger" ng-show="glform.gdc.$dirty &amp;&amp; glform.gdc.$error.required">This field is required</span> -->
+               <span class="text-danger" ng-show="glform.gdc.$dirty &amp;&amp; glform.gdc.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+               
+
+                   <div class="form-group">
+                  <label class="col-lg-3">  General Ledger Code
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="glCode" ng-model="pl.code" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder="General Ledger Code"/>
+                       <span class="text-danger" ng-show="glform.mappingCode.$dirty &amp;&amp; glform.generalLedgerCode.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="glform.glCode.$dirty &amp;&amp; glform.glCode.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+
+
+                <div class="form-group">
+                  <label class="col-lg-3"> Description </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="description" ng-model="pl.description" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder=" Description"/>
+                       <span class="text-danger" ng-show="glform.description.$dirty &amp;&amp; glform.description.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="glform.description.$dirty &amp;&amp; glform.description.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+<!-- 
+                   <div class="form-group">
+                  <label class="col-lg-3">Financial Category
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="financialCategory" ng-model="pl.financialCategory" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder="Financial Category"/>
+                       <span class="text-danger" ng-show="glform.financialCategory.$dirty &amp;&amp; glform.financialCategory.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="glform.financialCategory.$dirty &amp;&amp; glform.financialCategory.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+ -->
+
+                <div class="form-group">
+               <label class="col-lg-3 control-label">Financial Category</label>
+               <div class="col-lg-9">
+                  <select class="form-control" ng-model="pl.financialCategory">
+                     <option value="">Select Financial Category</option>
+                       <option value="Income Statement">Income Statement</option>
+                     <option value="Balance Sheet">Balance Sheet</option>
+                  
+                  </select>
+                 
+               </div>
+            </div>
+
+               
+                  
+    
+
+       <div class="form-group">
+                        <label class="col-sm-3 "> Department Code</label>
+                        <div class="col-lg-9">
+                    <select  class="form-control" name="department"  ng-model="pl.department" ng-options="department.id as department.code+' - '+department.description for department in departments" ng-disabled="pl.costCenter">
+                     <option value=""  selected>Select Department</option>
+
+                     
+                     </select>
+             
+                     
+                  </div>
+                           
+                     </div>
+
+           
+              
+                                   <div class="form-group">
+                        <label class="col-lg-3"> Cost Center</label>
+                        <div class="col-lg-9">
+                 
+                            <select  class="form-control" name="costCentre"   ng-model="pl.costCenter" ng-options="center.id as center.code+' - '+center.description for center in centers" ng-disabled="pl.department">
+                     <option value=""  selected>Select Cost Center</option>
+                     </select>
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>
+            
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm mr" ng-disabled="glform.$invalid" ng-click="submitPayrollLedger(pl)">Save and New</button>
+                         <button class="btn btn-info btn-sm mr" ng-disabled="glform.$invalid" ng-click="submitClosesubmitPayrollLedger(pl)">Save and Close</button>
+                      <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+                  </div>
+               </div>
+               
+                      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            </form>
+          
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+
+
+             <script type="text/ng-template" id="editgpayrollLedger.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Edit Payroll Ledger</h4></div><div class="modal-body"  ng-controller="PayrollLedgerController"><!-- START panel-->
+<form class="form-horizontal" name="glform" novalidate=""  >
+
+                     <input class="form-control" type="hidden"  name="gdc" ng-model="pl.id" placeholder="id"/>
+         
+    <div class="form-group">
+                  <label class="col-lg-3"> GDC
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="gdc" ng-model="pl.gdc" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"   placeholder="GDC"/>
+                      <!--  <span class="text-danger" ng-show="glform.gdc.$dirty &amp;&amp; glform.gdc.$error.required">This field is required</span> -->
+               <span class="text-danger" ng-show="glform.gdc.$dirty &amp;&amp; glform.gdc.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+               
+
+                   <div class="form-group">
+                  <label class="col-lg-3">  General Ledger Code
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="glCode" ng-model="pl.code" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder="General Ledger Code"/>
+                       <span class="text-danger" ng-show="glform.mappingCode.$dirty &amp;&amp; glform.generalLedgerCode.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="glform.glCode.$dirty &amp;&amp; glform.glCode.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+
+
+                <div class="form-group">
+                  <label class="col-lg-3"> Description </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="description" ng-model="pl.description" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder=" Description"/>
+                       <span class="text-danger" ng-show="glform.description.$dirty &amp;&amp; glform.description.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="glform.description.$dirty &amp;&amp; glform.description.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+<!-- 
+                   <div class="form-group">
+                  <label class="col-lg-3">Financial Category
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="financialCategory" ng-model="pl.financialCategory" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true" placeholder="Financial Category"/>
+                       <span class="text-danger" ng-show="glform.financialCategory.$dirty &amp;&amp; glform.financialCategory.$error.required">This field is required</span>
+               <span class="text-danger" ng-show="glform.financialCategory.$dirty &amp;&amp; glform.financialCategory.$error.pattern"> No special characters allowed </span>
+                  </div>
+               </div>
+ -->
+
+                <div class="form-group">
+               <label class="col-lg-3 control-label">Financial Category</label>
+               <div class="col-lg-9">
+                  <select class="form-control" ng-model="pl.financialCategory">
+                     <option value="">Select Financial Category</option>
+                       <option value="Income Statement">Income Statement</option>
+                     <option value="Balance Sheet">Balance Sheet</option>
+                  
+                  </select>
+                 
+               </div>
+            </div>
+
+               
+                  
+
+       <div class="form-group">
+                        <label class="col-sm-3 "> Department Code</label>
+                        <div class="col-lg-9">
+                    <select  class="form-control" name="department"  ng-model="pl.department" ng-options="department.id as department.code+' - '+department.description for department in departments" ng-disabled="pl.costCenter">
+                     <option value=""  selected>Select Department</option>
+
+                     
+                     </select>
+             
+                     
+                  </div>
+                           
+                     </div>
+
+           
+              
+                                   <div class="form-group">
+                        <label class="col-lg-3"> Cost Center</label>
+                        <div class="col-lg-9">
+                 
+                            <select  class="form-control" name="costCentre"   ng-model="pl.costCenter" ng-options="center.id as center.code+' - '+center.description for center in centers" ng-disabled="pl.department">
+                     <option value=""  selected>Select Cost Center</option>
+                     </select>
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>         
+             
+            
+              
+               <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                     <button class="btn btn-info btn-sm mr" ng-disabled="glform.$invalid" ng-click="updatePayrollLedge(pl)">Update</button>
+                  
+                      <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+                  </div>
+               </div>
+               
+                      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+            </form>
+
+<!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+         </script>
+      </div>
+       
+</button>
+
+
+
+
+
+
+
+
+
