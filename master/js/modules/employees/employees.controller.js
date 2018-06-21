@@ -87,7 +87,7 @@
 
              var id = $stateParams.EmployeeId;
         $scope.employee={};
-        console.log("employee id : "+id );
+        // console.log("employee id : "+id );
             if(id!=null){
                $http.get(jadaApiUrl+'api/employee/'+id).success(function(data) {
 
@@ -151,13 +151,13 @@
 
   $http.get(jadaApiUrl+'api/paymode').success(function(data) {
                 $scope.paymodes = data;
-                console.log($scope.paymodes);
+                // console.log($scope.paymodes);
 
               });
 
   $http.get(jadaApiUrl+'api/bankbranchcode').success(function(data) {
                 $scope.bankcodes = data;
-                console.log($scope.bankcodes)
+                // console.log($scope.bankcodes)
 
               });
 
@@ -174,7 +174,7 @@
 
     
 
-      console.log($scope.bankBranchName);
+      // console.log($scope.bankBranchName);
     }
 
     

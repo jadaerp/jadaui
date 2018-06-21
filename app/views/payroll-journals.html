@@ -97,7 +97,7 @@
                </tr>
             </thead>
             <tbody >
-               <tr ng-repeat="jreport in jounalreports">
+               <tr ng-repeat="jreport in jounalreports.payrollLedgerReportItemList">
                   <td >{{jreport.payrollLedgerMappingCode}}
 </td>
                   <td >{{jreport.payrollLedgerMappingDescription}}</td>
@@ -121,8 +121,8 @@
                   <td ></td>
                    <td > </td>
                    <td > </td>
-                  <td  class="h3"  style="text-align: right;">{{jounalreports.totalDebit}}</td>
-                   <td class="h3"   style="text-align: right;">{{jounalreports.totalCredit}}</td>
+                  <td   style="text-align: right;">{{jounalreports.totalDebit}}</td>
+                   <td   style="text-align: right;">{{jounalreports.totalCredit}}</td>
                    <td ></td>
                   
                  

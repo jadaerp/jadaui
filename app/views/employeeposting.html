@@ -17,13 +17,14 @@
           <input class="form-control" type="text"  name="empNumber"  ng-model="period_description" placeholder="Period" disabled="" /> -->
   
          <select name="period" class="slider slider-lg form-control" ng-model="postingtrans.periodId" ng-options="period.id as period.monthDescription+ ' '+ period.year for period in periods" disabled="">
-        <option value=""  selected="selected">Select Period</option>
+        <option value="0"  selected="selected">Select Period</option>
   </select>
   </div>
   <div class="input-group mb-2 mr-sm-2 mb-sm-0">
     <div class="input-group-addon">Employee : </div>
-    <select name="employeeNumber" class="slider slider-lg form-control" ng-model="postingtrans.employeeId" ng-options="employee.id as employee.employeeNumber+' - '+employee.firstName+ ' '+employee.lastName for employee in employees"  ng-change="searchEmployee(postingtrans)">
-        <option value="0" selected="selected">Select Employee</option>
+    <select name="employeeNumber" class="form-control" ng-model="postingtrans.employeeId"  ng-change="searchEmployee(postingtrans)">
+        <option value="" selected="selected">Select Employee</option>
+        <option ng-repeat="employee in employees | orderBy : 'employeeNumber'" value="{{employee.id}}">{{employee.employeeNumber}} - {{employee.firstName}} {{employee.lastName}}</option>
   </select>
   </div>
   <button  ng-click="searchEmployee(postingtrans)"   class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>

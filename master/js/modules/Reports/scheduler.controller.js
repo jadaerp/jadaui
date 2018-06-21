@@ -7,18 +7,23 @@
         .module('app.reports')
         .controller('SchedulerController', SchedulerController);
 
-    SchedulerController.$inject = ['$scope','$http','$resource','SchedulerService','jadaApiUrl'];
-    function SchedulerController($scope,$http,$resource,SchedulerService,jadaApiUrl) {
+    SchedulerController.$inject = ['$rootScope','$state','$scope','$http','$resource','SchedulerService','jadaApiUrl'];
+    function SchedulerController($rootScope,$state,$scope,$http,$resource,SchedulerService,jadaApiUrl) {
         var vm = this;
 
         activate();
 
         ////////////////
+        $scope.$on('reportdata', function(event, data) {
+            console.log("data received");
+            console.log(data); 
+            $scope.periodBasedSchedulerReport=data;
+        }); 
 
         function activate() {
 
         
-
+        $scope.employeeFilterArray=[{description:"Employee Category",value:"1"},{description:"Department",value:"2"},{description:"Cost Center",value:"3"},{description:"Employee Group",value:"4"}];
        $scope.scheduler={};
      
             
@@ -37,15 +42,38 @@
      var id=1;
               $http.get(jadaApiUrl+'api/company/'+id).success(function(data) {
               $scope.companyDetails= data;
-              console.log($scope.companyDetails)
+              // console.log($scope.companyDetails)
           
             });
 
                $http.get(jadaApiUrl+'api/payrollcode').success(function(data) {
                  $scope.pcodes = data;
-           console.log($scope.pcodes);
+           // console.log($scope.pcodes);
 
               });
+               $scope.employeeBasedReport=function(scheduler){
+                $state.go('app.employee-based-scheduler-report');
+                var saveScheduler=new SchedulerService(scheduler);
+                        saveScheduler.$save().then(function(data){
+                          var response=angular.fromJson(data);
+                          $rootScope.$emit('reportdata', response);
+                          $scope.periodBasedSchedulerReport=response;
+                          // console.log(response);
+
+                        },
+                         function() {
+                           $scope.SuccessMsg=false;
+                               $scope.errorMsg = 'Server Request Error';
+                              });
+                      
+
+
+
+               }
+
+               $scope.periodBasedReport=function(scheduler){
+                $state.go('app.period-based-scheduler-report');
+               }
 
   //              $scope.selectedPeriod=function(id){
 
@@ -152,20 +180,20 @@ $scope.details=model;
 
 $scope.periodBasedSchedulerReport=null;
 
-   $scope.submitScheduler=function(scheduler) {
-    var saveScheduler=new SchedulerService(scheduler);
-            saveScheduler.$save().then(function(data){
-              var response=angular.fromJson(data);
-              $scope.periodBasedSchedulerReport=response;
-              console.log(response);
+   // $scope.submitScheduler=function(scheduler) {
+   //  var saveScheduler=new SchedulerService(scheduler);
+   //          saveScheduler.$save().then(function(data){
+   //            var response=angular.fromJson(data);
+   //            $scope.periodBasedSchedulerReport=response;
+   //            console.log(response);
 
-            },
-             function() {
-               $scope.SuccessMsg=false;
-                   $scope.errorMsg = 'Server Request Error';
-                  });
+   //          },
+   //           function() {
+   //             $scope.SuccessMsg=false;
+   //                 $scope.errorMsg = 'Server Request Error';
+   //                });
           
-            };
+   //          };
 
 
 

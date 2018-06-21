@@ -1,0 +1,286 @@
+<h3>Employee Based Scheduler
+</h3>
+
+<div class="container-fluid" ng-controller="SchedulerController">
+<!-- START panel-->
+
+<div class="panel panel-default">
+   <div class="panel-heading">Setup a Scheduler</div>
+   <div class="panel-body">
+      <div class="row">
+      <div class="col-lg-12" style="margin-bottom: 10px;" ><a class="btn btn-inverse" ui-sref="app.scheduler"><i class="fa fa-arrow-left"></i></a></div>
+            
+    </div>
+      <form form-wizard="" steps="5"  name="wizardValidation" validate-steps="true"  ng-submit="submitEmpMaster()">
+         <div id="wizard" class="form_wizard wizard_horizontal">
+            <!-- START wizard steps indicator-->
+   
+
+            <ul class="wizard_steps">
+                        <li >
+                          <a ng-class="{'active':wizard.active(1)}" ng-click="wizard.go(1)">
+                            <span class="step_no">1</span>
+                            <span class="step_descr">
+                                        Period
+                                             
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a  ng-class="{'active':wizard.active(3)}" ng-click="wizard.go(3)">
+                            <span class="step_no">3</span>
+                            <span class="step_descr">
+                                              Company Details
+                                          </span>
+                          </a>
+                        </li>                        
+                        <li>
+                          <a  ng-class="{'active':wizard.active(2)}" ng-click="wizard.go(2)">
+                            <span class="step_no">2</span>
+                            <span class="step_descr">
+                                            Employee Filter
+                                          </span>
+                          </a>
+                        </li>
+
+                        <li>
+                          <a  ng-class="{'active':wizard.active(4)}" ng-click="wizard.go(4)">
+                            <span class="step_no">4</span>
+                            <span class="step_descr">
+                                             Employee Details
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a  ng-class="{'active':wizard.active(5)}" ng-click="wizard.go(5)">
+                            <span class="step_no">5</span>
+                            <span class="step_descr">
+                                             Payroll Codes
+                                          </span>
+                          </a>
+                        </li>
+                      </ul>
+           
+            <!-- END wizard steps indicator-->
+            <!-- START Wizard Step inputs-->
+            <div id="step1" ng-show="wizard.active(1)">
+               <!-- Wizard with validation require inner forms to group step inputs to be validated-->
+               <section ng-form="formStep1">
+                  <legend>Period</legend>
+                  <!-- START row-->
+                  <div class="row">
+          <div class="col-lg-12">
+                  <div class="form-horizontal">
+               
+              
+               
+   <div class="form-group" ng-repeat="period in periods">
+               <label class="col-lg-6 control-label">{{period.monthDescription}} {{period.year}} </label>
+               <div class="col-lg-6">
+                  <div class="checkbox c-checkbox needsclick">
+                     <label class="needsclick">
+                        <input type="checkbox"  data-checklist-model="scheduler.periodScheduler" data-checklist-value="period.id"/>
+                        <span class="fa fa-check"></span></label>
+
+                  </div>
+                
+               </div>
+             </div>              
+                     
+              
+               </div>
+               </div>
+                   
+                     
+                  </div>
+                  <!-- END row-->
+               </section>
+               <ul class="pager">
+                  <li class="next"><a href="" ng-click="wizard.go(2)">Next<span>&rarr;</span></a>
+                  </li>
+               </ul>
+            </div>
+            <!-- END Wizard Step inputs-->
+            <!-- START Wizard Step inputs-->
+            <div id="step3" ng-show="wizard.active(3)">
+               <!-- Wizard with validation require inner forms to group step inputs to be validated-->
+               <section ng-form="formStep3">
+                  <legend>Company Details</legend>
+             <!-- START row-->
+                  <div class="row">
+                    
+                      <div class="col-lg-12">
+                  <div class="form-horizontal">
+<div class="form-group" ng-repeat="company in details.company">
+               <label class="col-lg-6 control-label">{{company.description}}</label>
+               <div class="col-lg-6">
+                  <div class="checkbox c-checkbox needsclick">
+                     <label class="needsclick">
+                        <input class="needsclick" type="checkbox" data-checklist-model="scheduler.companyScheduler" data-checklist-value="company.name"/>
+                        <span class="fa fa-check"></span></label>
+                  </div>
+               </div>
+            </div>               
+             
+               
+               </div>
+               </div>
+                </div>
+                  <!-- END row-->
+                 
+
+
+               </section>
+               <ul class="pager">
+                  <li class="previous">
+                     <a href="" ng-click="wizard.go(2)">
+                        <span>&larr; Previous</span>
+                     </a>
+                  </li>
+                  <li class="next"><a href="" ng-click="wizard.go(4)">Next<span>&rarr;</span></a>
+                  </li>
+               </ul>
+            </div>
+            <!-- END Wizard Step inputs-->            
+            <!-- START Wizard Step inputs-->
+            <div id="step2" ng-show="wizard.active(2)">
+               <!-- Wizard with validation require inner forms to group step inputs to be validated-->
+               <section ng-form="formStep2">
+                  <legend>Employee Filter</legend>
+                  <!-- START row-->
+                  <div class="row">
+                   
+<div class="col-lg-12">
+                  <div class="form-horizontal">
+                 <div class="form-group" ng-repeat="employeeFilter in employeeFilterArray">
+               <label class="col-lg-6 control-label">{{employeeFilter.description}}</label>
+               <div class="col-lg-6">
+                  <div class="checkbox c-checkbox needsclick">
+                     <label class="needsclick">
+                        <input class="needsclick" type="checkbox" data-checklist-model="employeeFilter.value" data-checklist-value="employee.name"/>
+                        <span class="fa fa-check"></span></label>
+                  </div>
+               </div>
+            </div>                                                
+
+               </div>
+               </div>
+                  </div>
+                  <!-- END row-->
+               </section>
+               <ul class="pager">
+                  <li class="previous">
+                     <a href="" ng-click="wizard.go(1)">
+                        <span>&larr; Previous</span>
+                     </a>
+                  </li>
+                  <li class="next"><a href="" ng-click="wizard.go(3)">Next<span>&rarr;</span></a>
+                  </li>
+               </ul>
+            </div>
+            <!-- END Wizard Step inputs-->
+
+            <!-- START Wizard Step inputs-->
+             <div id="step4" ng-show="wizard.active(4)">
+               <!-- Wizard with validation require inner forms to group step inputs to be validated-->
+               <section ng-form="formStep4">
+                  <legend>Employee Details</legend>
+                  <!-- START row-->
+                  <div class="row">
+                    
+                      <div class="col-lg-12">
+                  <div class="form-horizontal">
+               
+            
+                 
+                 <div class="form-group" ng-repeat="employee in details.employee">
+               <label class="col-lg-6 control-label">{{employee.description}}</label>
+               <div class="col-lg-6">
+                  <div class="checkbox c-checkbox needsclick">
+                     <label class="needsclick">
+                        <input class="needsclick" type="checkbox" data-checklist-model="scheduler.employee" data-checklist-value="employee.name"/>
+                        <span class="fa fa-check"></span></label>
+                  </div>
+               </div>
+            </div>
+               
+         
+              
+                     
+              
+               </div>
+               </div>
+                </div>
+                  <!-- END row-->
+               </section>
+               <ul class="pager">
+                  <li class="previous">
+                     <a href="" ng-click="wizard.go(3)">
+                        <span>&larr; Previous</span>
+                     </a>
+                  </li>
+                  <li class="next"><a href="" ng-click="wizard.go(5)">Next<span>&rarr;</span></a>
+                  </li>
+               </ul>
+            </div>
+            <!-- END Wizard Step inputs-->
+            <!-- END Wizard Step inputs-->
+
+              <!-- START Wizard Step inputs-->
+             <!-- START Wizard Step inputs-->
+            <div id="step5" ng-show="wizard.active(5)">
+               <!-- Wizard with validation require inner forms to group step inputs to be validated-->
+               <section ng-form="formStep5">
+                  <legend>Payroll Codes</legend>
+                  <!-- START row-->
+                  <div class="row">
+                    
+                      <div class="col-lg-12">
+                  <div class="form-horizontal">
+               
+               
+                 
+                 <div class="form-group" ng-repeat="code in pcodes">
+               <label class="col-lg-6 control-label">{{code.code}} {{code.description}}</label>
+               <div class="col-lg-6">
+                  <div class="checkbox c-checkbox needsclick">
+                     <label class="needsclick">
+                        <input class="needsclick" type="checkbox" data-checklist-model="scheduler.PayrollCodes" data-checklist-value="code.id"/>
+                        <span class="fa fa-check"></span></label>
+                  </div>
+               </div>
+            </div>
+
+                      
+              <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                  <button class="btn btn-sm btn-primary mr" type="submit" ng-click="employeeBasedReport(scheduler)">Generate</button>
+                     <button class="btn btn-sm btn-warning mr" type="reset">Reset</button>
+                   </div>
+               </div>
+                     
+              <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+               </div>
+               </div>
+                </div>
+                  <!-- END row-->
+               </section>
+               <ul class="pager">
+                  <li class="previous">
+                     <a href="" ng-click="wizard.go(4)">
+                        <span>&larr; Previous</span>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+            <!-- END Wizard Step inputs-->
+
+         </div>
+      </form>
+      <!-- {{empMaster|json}} -->
+   </div>
+</div>
+</div>
+<!-- END panel-->
+

@@ -58,7 +58,7 @@
     postingdata.$save().then(function(data){
                     var response=angular.fromJson(data);
                     $scope.res.push(data);
-                    console.log(data);
+                    // console.log(data);
                   },
                    function() {
                     

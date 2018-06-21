@@ -1,0 +1,127 @@
+<h3>Schedules</h3>
+
+
+
+<div ng-controller="SchedulerController">
+
+ 
+         <div class="panel b">
+         <div class="panel-heading bg-gray-lighter" >
+
+            <h3 class="panel-title">Period Based Scheduler Report</h3>
+         
+
+         </div>
+         <div class="panel-body">
+      <div class="row">
+      <div class="col-lg-12" style="margin-bottom: 10px;" ><a class="btn btn-inverse" ui-sref="app.period-based-scheduler"><i class="fa fa-arrow-left"></i></a></div>
+            
+    </div>          
+          <div class="row">
+          <!-- {{scheduler}} -->
+          <div class="col-sm-3 text-bold m-t-1" ng-show="periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.companyName !=null">
+            Company Name : 
+          </div>
+          <div class="col-sm-3" ng-show=" periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.companyName !=null">{{periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.companyName}}
+          </div>
+
+          <div class="col-sm-3 text-bold" ng-show="periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.companyPin !=null">
+            Company Pin : 
+          </div>
+          <div class="col-sm-3" ng-show=" periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.companyPin !=null">{{periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.companyPin}}
+          </div>
+
+          <div class="col-sm-3 text-bold m-t-1" ng-show="periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.nhifNumber !=null">
+            NHIF Number : 
+          </div>
+          <div class="col-sm-3" ng-show=" periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.nhifNumber !=null">{{periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.nhifNumber}}
+          </div>
+
+          <div class="col-sm-3 text-bold" ng-show="periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.nssfNumber !=null">
+            NSSF Number : 
+          </div>
+          <div class="col-sm-3" ng-show=" periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.nssfNumber !=null">{{periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.nssfNumber}}
+          </div>
+
+
+          <div class="col-sm-3 text-bold" ng-show="periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.helbNumber !=null">
+            HELB Number : 
+          </div>
+          <div class="col-sm-3" ng-show=" periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.helbNumber !=null">{{periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.helbNumber}}
+          </div>
+
+          <div class="col-sm-3 text-bold" ng-show="periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.country !=null">
+            Country : 
+          </div>
+          <div class="col-sm-3" ng-show=" periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.country !=null">{{periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.country}}
+          </div>
+
+          <div class="col-sm-3 text-bold" ng-show="periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.emailAddress !=null">
+            Email Address : 
+          </div>
+          <div class="col-sm-3" ng-show=" periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.emailAddress !=null">{{periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.emailAddress}}
+          </div>
+
+          <div class="col-sm-3 text-bold" ng-show="periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.physicalAddress !=null">
+            Physical Address : 
+          </div>
+          <div class="col-sm-3" ng-show=" periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.physicalAddress !=null">{{periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.physicalAddress}}
+          </div>
+
+          <div class="col-sm-3 text-bold" ng-show="periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.postalCode !=null">
+            Postal Code : 
+          </div>
+          <div class="col-sm-3" ng-show=" periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.postalCode !=null">{{periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.postalCode}}
+          </div>
+
+          <div class="col-sm-3 text-bold" ng-show="periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.telephoneNumber !=null">
+            Telephone Number : 
+          </div>
+          <div class="col-sm-3" ng-show=" periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.telephoneNumber !=null">{{periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.telephoneNumber}}
+          </div>
+
+          <div class="col-sm-3 text-bold" ng-show="periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.webstie !=null">
+            Website : 
+          </div>
+          <div class="col-sm-3" ng-show=" periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.webstie !=null">{{periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.website}}
+          </div>
+
+          <div class="col-sm-3 text-bold" ng-show="periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.workDays !=null">
+            Workdays : 
+          </div>
+          <div class="col-sm-3" ng-show=" periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.workDays !=null">{{periodBasedSchedulerReport.periodBasedSchedulerHeader.companyScheduler.workDays}}
+          </div>
+
+          <div class="col-sm-3 text-bold" ng-show="periodBasedSchedulerReport.periodBasedSchedulerHeader.periodScheduler.month !=null">
+            Period : 
+          </div>
+          <div class="col-sm-3" ng-show=" periodBasedSchedulerReport.periodBasedSchedulerHeader.periodScheduler.month !=null">{{periodBasedSchedulerReport.periodBasedSchedulerHeader.periodScheduler.month}} - {{periodBasedSchedulerReport.periodBasedSchedulerHeader.periodScheduler.year}}
+          </div>
+            
+          </div>
+          <div class="row">
+            <div class="table-responsive ">
+              <table class="table table-striped" datatable="ng">
+                <thead>
+                  <tr>
+                   <th ng-repeat="column
+     in periodBasedSchedulerReport.periodBasedSchedulerBody.columnListScheduler track by $index
+    ">{{column}}</th>                  
+                  </tr>
+                  <tr ng-repeat="row
+     in periodBasedSchedulerReport.periodBasedSchedulerBody.dataList">
+                    <td ng-repeat="data
+     in row track by $index
+    ">{{data}}
+                      
+                    </td>
+                  </tr>
+                </thead>
+              </table>
+              
+            </div>
+          </div>
+         </div>
+      </div>
+
+</div>

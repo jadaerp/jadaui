@@ -22,12 +22,17 @@ vm.val = {
     // var data = new Blob([text], { type: 'text/plain;charset=utf-8' });
     // FileSaver.saveAs(data, 'text.txt');
 
+              $http.get(jadaApiUrl+'api/bankfileexport').success(function(data) {
+                console.log(data);
+              // $scope.employees = data;
+          
+            });
 
-  var ele = document.getElementById(table);
-var blob = new Blob([ele.innerText], {
-        type: "text/plain;charset=utf-8"
-    });
-    FileSaver.saveAs(blob, "bank-file.txt");
+//   var ele = document.getElementById(table);
+// var blob = new Blob([ele.innerText], {
+//         type: "text/plain;charset=utf-8"
+//     });
+//     FileSaver.saveAs(blob, "bank-file.txt");
 };
 
 
