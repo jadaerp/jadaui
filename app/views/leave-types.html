@@ -19,7 +19,7 @@
                <tr>
                   <th> Type</th>
                   <th>Description</th>
-                  <th> Entitlement</th>
+
                   
                    <th>Action</th>
                   
@@ -29,7 +29,7 @@
                <tr ng-repeat="leave in leaves">
                     <td>{{ leave.code }}</td>
                     <td>{{ leave.description }}</td>
-                     <td>{{ leave.entitlement }}</td>
+
                  
             
                       <td>
@@ -82,18 +82,7 @@
 
                   </div>
                </div>
-                <div class="form-group">
-                  <label class="col-lg-3 control-label">Entitlement</label>
-                  <div class="col-lg-9">
-                     <input class="form-control" type="number" name="l_entitlement" ng-model="leave.entitlement"  ng-required="true" placeholder="eg 21 days"/>
 
-                          <span class="text-danger" ng-show="leavetypesform.l_entitlement.$dirty &amp;&amp; leavetypesform.l_entitlement.$error.required">This field is required
-                       </span>
-
-                        <span class="text-danger" ng-show="leavetypesform.l_entitlement.$dirty &amp;&amp; leavetypesform.l_entitlement.$error.number">This field must be a number
-                       </span>
-                  </div>
-               </div>
 
               
               
@@ -143,15 +132,7 @@
 
                   </div>
                </div>
-                <div class="form-group">
-                  <label class="col-lg-3 control-label">Entitlement</label>
-                  <div class="col-lg-9">
-                     <input class="form-control" type="text" name="l_entitlement" ng-model="leave.entitlement" ng-required="true" placeholder="eg 21 days"/>
 
-                     <span class="text-danger" ng-show="leavetypesform.l_entitlement.$dirty &amp;&amp; leavetypesform.l_entitlement.$error.required">This field is required
-                       </span>
-                  </div>
-               </div>
 
               
               

@@ -21,3 +21,49 @@
     }
 
 })();
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.reports')
+        .factory('SchedulerEmployeeBasedReportService', SchedulerEmployeeBasedReportService);
+
+    SchedulerEmployeeBasedReportService.$inject = ['$resource','jadaApiUrl'];
+    function SchedulerEmployeeBasedReportService() {
+      var myjsonObj = null;//the object to hold our data
+     return {
+     getJson:function(){
+       return myjsonObj;
+     },
+     setJson:function(value){
+      myjsonObj = value;
+     }
+    }
+       
+    }
+
+})();
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.reports')
+        .factory('SchedulerPeriodBasedReportService', SchedulerPeriodBasedReportService);
+
+    SchedulerPeriodBasedReportService.$inject = ['$resource','jadaApiUrl'];
+    function SchedulerPeriodBasedReportService() {
+      var myjsonObj = null;//the object to hold our data
+     return {
+     getJson:function(){
+       return myjsonObj;
+     },
+     setJson:function(value){
+      myjsonObj = value;
+     }
+    }
+       
+    }
+
+})();

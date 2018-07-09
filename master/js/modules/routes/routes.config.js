@@ -1173,7 +1173,7 @@
 
            .state('app.companyedit', {
               url: '/company:id',
-              title: 'user details',
+              title: 'Company details',
                 templateUrl: helper.basepath('companyedit.html')
                  
              
@@ -1234,7 +1234,40 @@
           })
 
 //User Adminisration
- .state('app.user_settings', {
+ .state('app.users', {
+              url: '/users',
+              title: 'Users',
+                templateUrl: helper.basepath('users.html'),
+                    resolve: helper.resolveFor('datatables'),
+                 
+             
+          })
+  .state('app.user-accounts', {
+              url: '/user-accounts',
+              title: 'User Accounts',
+                templateUrl: helper.basepath('user-accounts.html'),
+                    resolve: helper.resolveFor('datatables'),
+                 
+             
+          })
+    .state('app.accounts-rights', {
+              url: '/accounts-rights',
+              title: 'Accounts Rights',
+                templateUrl: helper.basepath('accounts-rights.html'),
+                    resolve: helper.resolveFor('datatables'),
+                 
+             
+          })
+    // .state('app.accounts', {
+    //           url: '/accounts',
+    //           title: 'Accounts',
+    //             templateUrl: helper.basepath('accounts.html'),
+    //                 resolve: helper.resolveFor('datatables'),
+                 
+             
+    //       })
+
+  .state('app.user_settings', {
               url: '/adminsettings',
               title: 'user settings',
                 templateUrl: helper.basepath('user-settings.html'),

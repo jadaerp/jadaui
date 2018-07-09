@@ -21,6 +21,8 @@
    $scope.rights=userRightsService.query();
 
 
+
+
    $scope.loadUserRights = function () {
        
    $scope.rights=userRightsService.query();

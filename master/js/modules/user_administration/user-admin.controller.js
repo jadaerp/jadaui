@@ -5,8 +5,8 @@
         .module('app.useradministration')
         .controller('UserAdminController', UserAdminController);
 
-    UserAdminController.$inject = ['$scope','$rootScope', '$http', '$stateParams', '$state', '$uibModal', '$log', 'userAdminService'];
-        function UserAdminController($scope, $rootScope, $http, $stateParams, $state, $uibModal, $log,userAdminService) {
+    UserAdminController.$inject = ['$scope','$rootScope', '$http', '$stateParams', '$state', '$uibModal', '$log', 'userAdminService','jadaApiUrl'];
+        function UserAdminController($scope, $rootScope, $http, $stateParams, $state, $uibModal, $log,userAdminService,jadaApiUrl) {
         var vm = this;
 
         activate();
@@ -40,7 +40,10 @@ $scope.loadUsers();
 }
 
 
+  $http.get(jadaApiUrl+'api/account').success(function(data) {
+                $scope.accountsData = data;
 
+              });
 
    $scope.open = function (size) {
 
@@ -64,18 +67,29 @@ $scope.loadUsers();
 
 
 
- $scope.show = function(user) {
+ $scope.show = function(_user) {
+  $http.get(jadaApiUrl+'api/user/'+_user.id).success(function(data) {
+               var user = data;
+                  var date = new Date(user.dateOfBirth);
+                  // console.log(date);
+                  // console.log("account : "+user.account);
+                   
+                 user.dateOfBirth= new Date(date.getFullYear(), date.getMonth(), 1);                
+                 // console.log("dob : "+user.dateOfBirth);
 
-      var modalInstance = $uibModal.open({
-        templateUrl: 'EditUser.html',
-        controller: ModalInstanceCtrl,
-        resolve: {
-           user: function () {
-             return user;
-           }
-         }        
+                var modalInstance = $uibModal.open({
+                  templateUrl: 'EditUser.html',
+                  controller: ModalInstanceCtrl,
+                  resolve: {
+                     user: function () {
+                       return user;
+                     }
+                   }        
 
-      });
+                });              
+
+              });
+
     };
 
 

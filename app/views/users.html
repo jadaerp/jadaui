@@ -18,8 +18,14 @@
                  <thead>
                <tr>
                   <th>First Name</th>
+                   <th>Middle Name</th>
                    <th>Last Name</th>
+                   <th>Date Of Birth</th>
+                   <th>Gender</th>
+                   <th>Account</th>
                   <th> Email Address</th>
+                  <th> Username</th>
+                  
               
                   <th> Phone Number</th>
                   
@@ -33,12 +39,17 @@
                 <tbody>
               <tr ng-repeat="user in users">
                    <td>{{ user.firstName }}</td>
+                   <td>{{ user.middleName }}</td>
                       <td>{{ user.lastName }}</td>
+                      <td>{{ user.dateOfBirth }}</td>
+                      <td>{{ user.gender }}</td>
+                      <td>{{ user.accountDescription }}</td>
                 <td>{{ user.emailAddress }}</td>
-            
+                
+                <td>{{ user.userName }}</td>
                   <td>{{ user.phoneNumber}}</td>
           
-                  <td>{{ user.isActive }}</td>
+                  <td>{{ user.isActive?"YES":"NO" }}</td>
                   <td>  <div class="buttons" >
                 <button class="btn btn-sm btn-info" ng-click="show(user)"  title="Edit">
                   <em class="fa fa-pencil"></em>
@@ -81,6 +92,13 @@
 
                  
                </div>
+                   <div class="form-group">
+                  <label class="col-lg-3 control-label">Middle Name</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="middleName" ng-model="user.middleName"  placeholder="Enter Middle Name" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  />
+
+                  </div>
+               </div>
 
                    <div class="form-group">
                   <label class="col-lg-3 control-label">Last Name</label>
@@ -91,6 +109,63 @@
                <span class="text-danger" ng-show="userform.lname.$dirty &amp;&amp; userform.lname.$error.pattern">This field is invalid:No special characters allowed </span>
                   </div>
                </div>
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">  Date of Birth
+                   </label>
+
+
+                     <div class="col-lg-9" ng-controller="DatepickerDemoCtrl as dpick">
+                      <p class="input-group">
+                              <input class="form-control" type="text" name="ex_date" ng-model="user.dateOfBirth" uib-datepicker-popup="{{dpick.format}}" is-open="dpick.opened" min-date="dpick.minDate" max-date="'2019-12-22'" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+                           </p>
+                           
+                  </div>
+               </div>   
+                <div class="form-group">
+                        <label class="col-lg-3 control-label">Gender </label>
+                        <div class="col-lg-9">
+                       
+                         
+                           
+                           <div class="radio c-radio">
+                              <label>
+                                 <input type="radio"  name="gender" value="1" ng-model="user.gender" required="" />
+                                 <span class="fa fa-circle"></span>Male
+</label>
+                           </div>
+                           <div class="radio c-radio">
+                              <label>
+                                 <input type="radio"  name="gender"  value="2" ng-model="user.gender" required=""  />
+
+                                 <span class="fa fa-circle"></span>Female
+</label>
+                           </div>
+                           <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.gender.$invalid">This field is required</span>
+                        </div>
+                        <div class="col-sm-4"></div>
+                     </div> 
+<div class="form-group">
+                        <label class="col-lg-3 control-label">Account</label>
+                        <div class="col-lg-9">
+                       <select  class="form-control" name="userAccount" ng-model="user.account" ng-options="account.id as account.description for account in accountsData" required="">
+    <option value="" disabled selected >Select Account</option>
+
+ 
+  </select>
+                            <span class="text-danger" ng-show="formStep4.$submitted &amp;&amp; formStep4.userAccount.$invalid">This field is required</span>
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>                                              
                 <div class="form-group">
                   <label class="col-lg-3 control-label">Email Address
 </label>
@@ -101,6 +176,23 @@
                <span class="text-danger" ng-show="userform.email.$dirty &amp;&amp; userform.email.$error.email">This field must be a valid email address</span>
                   </div>
                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">User Name
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="userName"  ng-model="user.userName" ng-required="true"  placeholder="Enter Username"/>
+
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Password
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="password"  name="password"  ng-model="user.password" ng-required="true"  placeholder="Enter Password"/>
+
+    
+                  </div>
+               </div>                              
              <!--    <div class="form-group">
                   <label class="col-lg-3 control-label"> Username</label>
                   <div class="col-lg-9">
@@ -167,7 +259,7 @@
                      <input class="form-control" type="hidden"  name="id"  ng-model="user.id" placeholder="Enter Email"/>
                   </div>
                </div>
-               <div class="form-group">
+       <div class="form-group">
                   <label class="col-lg-3 control-label">First Name</label>
                   <div class="col-lg-9">
                      <input class="form-control" type="text" name="fname" ng-model="user.firstName"  placeholder="Enter First Name"  ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/" ng-required="true" />
@@ -177,6 +269,13 @@
 
 
                  
+               </div>
+                   <div class="form-group">
+                  <label class="col-lg-3 control-label">Middle Name</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text" name="middleName" ng-model="user.middleName"  placeholder="Enter Middle Name" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  />
+
+                  </div>
                </div>
 
                    <div class="form-group">
@@ -188,6 +287,63 @@
                <span class="text-danger" ng-show="userform.lname.$dirty &amp;&amp; userform.lname.$error.pattern">This field is invalid:No special characters allowed </span>
                   </div>
                </div>
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">  Date of Birth
+                   </label>
+
+
+                     <div class="col-lg-9" ng-controller="DatepickerDemoCtrl as dpick">
+                      <p class="input-group">
+                              <input class="form-control" type="text" name="ex_date" ng-model="user.dateOfBirth" uib-datepicker-popup="{{dpick.format}}" is-open="dpick.opened" min-date="dpick.minDate" max-date="'2019-12-22'" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+                           </p>
+                           
+                  </div>
+               </div>   
+                <div class="form-group">
+                        <label class="col-lg-3 control-label">Gender </label>
+                        <div class="col-lg-9">
+                       
+                         
+                           
+                           <div class="radio c-radio">
+                              <label>
+                                 <input type="radio"  name="gender" value="1" ng-model="user.gender" required="" />
+                                 <span class="fa fa-circle"></span>Male
+</label>
+                           </div>
+                           <div class="radio c-radio">
+                              <label>
+                                 <input type="radio"  name="gender"  value="2" ng-model="user.gender" required=""  />
+
+                                 <span class="fa fa-circle"></span>Female
+</label>
+                           </div>
+                           <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.gender.$invalid">This field is required</span>
+                        </div>
+                        <div class="col-sm-4"></div>
+                     </div> 
+<div class="form-group">
+                        <label class="col-lg-3 control-label">Account</label>
+                        <div class="col-lg-9">
+                       <select  class="form-control" name="account" ng-model="user.account" ng-options="account.id as account.description for account in accountsData" required="">
+    <option value="" disabled selected >Select Account</option>
+
+ 
+  </select>
+                            <span class="text-danger" ng-show="formStep4.$submitted &amp;&amp; formStep4.userAccount.$invalid">This field is required</span>
+                     
+                        <!-- <div class="col-sm-4">
+                           <small class="text-muted">type='number'</small>
+                        </div> -->
+                  </div>
+                           
+                     </div>                                              
                 <div class="form-group">
                   <label class="col-lg-3 control-label">Email Address
 </label>
@@ -198,6 +354,23 @@
                <span class="text-danger" ng-show="userform.email.$dirty &amp;&amp; userform.email.$error.email">This field must be a valid email address</span>
                   </div>
                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">User Name
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="userName"  ng-model="user.userName" ng-required="true"  placeholder="Enter Username"/>
+
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Password
+</label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="password"  name="password"  ng-model="user.password" ng-required="true"  placeholder="Enter Password"/>
+
+    
+                  </div>
+               </div>                              
              <!--    <div class="form-group">
                   <label class="col-lg-3 control-label"> Username</label>
                   <div class="col-lg-9">
@@ -212,6 +385,8 @@
                <span class="text-danger" ng-show="userform.phone.$dirty &amp;&amp; userform.phone.$error.pattern">This field must be a valid phone number</span>
             </div>
                   </div>
+            
+              
           
                  <div class="form-group">
  <label class="col-lg-3 control-label">Active</label>
@@ -229,8 +404,7 @@
                 </label>
             </div>
             </div>
-        </div>
-              
+        </div>        
               
               
                <div class="form-group">

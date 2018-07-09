@@ -28,8 +28,10 @@
 
          {"text": "Departments ","sref": "app.departmentlistings"},
          {"text": "Cost Centers ","sref": "app.costcenters"},
-         { "text": "User Setup","sref": "app.user_settings"},
-         { "text": "Task Setup","sref": "app.task"}]
+         { "text": "Accounts","sref": "app.accounts"},
+         { "text": "Users","sref": "app.users"},
+         { "text": "Account Rights","sref": "app.accounts-rights"}
+         ]
 
  
    

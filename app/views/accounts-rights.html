@@ -1,63 +1,70 @@
+<h3>
+  Account Rights
+</h3>
 <div class=" companydetails"><div class="panel panel-default" ng-controller="UserRightsController">
          <div class="panel-heading">
-     
- <div class="clearfix">
-     
-    <button class="btn btn-info pull-right mr" ng-click="open()">
-        Add New
-               </button>
-        
-        
-      </div>
-          
-        
+
       </div>
          <div class="panel-body" >
+          <div class="row">
+            <div class="col-lg-6">
 
-         <div class="table-responsive">
-         <table class="table table-striped" datatable="ng">
-                 <thead>
-               <tr>
-                  
-                  <th>user</th>
-                 
-                  <th>Approve payroll</th>
-                   <th>Approve Leave</th>
-                  <th>Action</th>
-               </tr>
-            </thead>
-                <tbody>
-             <tr  ng-repeat="right in rights">
-                    <td> {{right.username}}</td>
-                        <td> {{right.name}}</td>
-           
-                <td>{{right.id}}</td>
+              <div class="form-group col-lg-12">
+                <div class="col-lg-3">
+                  <label>Account</label>
+                </div>
+                <div class="col-lg-9">
+                  <select class="form-control">
+                    
+                  </select>                  
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+               <div class="table-responsive">
+               <table class="table table-striped" datatable="ng">
+                       <thead>
+                     <tr>
+                       
+                        <th>Module</th>
+                         <th>Add</th>
+                        <th>List</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <th>Report</th>
+                     </tr>
+                  </thead>
+                      <tbody>
+                   <tr  ng-repeat="right in rights">
+                    <td></td>
+                    <td><input type="checkbox"  name="add" value="Add"/></td>
+                    <td><input type="checkbox"  name="List" value="List"/></td>
+                    <td><input type="checkbox"  name="Edit" value="Edit"/></td>
+                    <td><input type="checkbox"  name="Delete" value="Delete"/></td>
+                    <td><input type="checkbox"  name="Report" value="Report"/></td>
+
+                    
+                        
+                        
+                      
+                     </tr>
+                    
+                     
+                     
+                  </tbody>
+               </table>
 
                 
+            </div>              
+            </div>
 
-                  <td> <div class="clearfix">
-        
-     <button class="btn btn-sm btn-info  mr" type="button" ng-click="show(right)"><em class="fa fa-pencil fa-fw mr"></em></button>
-
-     <button class="btn btn-sm btn-danger  mr" type="button" ng-click="delete(right)"><em class="fa fa-trash fa-fw mr"></em></button>
-       
-      
-     
- 
-      </div></td>
                   
-                  
-                
-               </tr>
-              
-               
-               
-            </tbody>
-         </table>
+          </div>
 
-          
-      </div>
-      
+
           
          
          </div>
