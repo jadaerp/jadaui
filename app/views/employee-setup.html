@@ -512,7 +512,7 @@
                    </label>
                   <div class="col-lg-9">
                     <p class="input-group"> 
-                              <input class="form-control" type="text" name="date_of_employment" uib-datepicker-popup="{{dpick.format}}" ng-model="employee.terminationDate" is-open="dpick.opened" min-date="dpick.minDate" uib-datepicker-options="dpick.dateOptions"
+                              <input class="form-control" type="text" name="date_of_employment" ng-disabled="!employee.isTerminated" uib-datepicker-popup="{{dpick.format}}" ng-model="employee.terminationDate" is-open="dpick.opened" min-date="dpick.minDate" uib-datepicker-options="dpick.dateOptions"
                               date-disabled="dpick.disabled(date, mode)" close-text="Close" required="" />
                               <span class="input-group-btn">
                                  <button class="btn btn-default" type="button" ng-click="dpick.open($event)">

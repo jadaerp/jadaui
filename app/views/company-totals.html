@@ -7,15 +7,16 @@
   <div class="input-group mb-2 mr-sm-2 mb-sm-0">
     <div class="input-group-addon">Period</div>
   
-         <select name="period" class="slider slider-lg form-control" ng-model="ctotal.period" ng-options="period.period as period.period for period in periods"  >
+         <select name="period" class="slider slider-lg form-control" ng-model="ctotal.period" ng-options="period.id as period.period+' - '+period.monthDescription+' - '+period.year for period in periods"  >
         <option value="" disabled selected>Periods</option>
   </select>
   </div>
 
   <div class="input-group mb-2 mr-sm-2 mb-sm-0">
     <div class="input-group-addon">Department</div>
-  
-         <select name="period" class="slider slider-lg form-control" ng-model="ctotal.department" ng-options="department.ID as department.description for department in departments" >
+
+
+         <select name="period" class="slider slider-lg form-control" ng-model="ctotal.department" ng-options="department.id as department.description for department in departments" >
         <option value=""  selected>All Departments</option>
   </select>
   </div>

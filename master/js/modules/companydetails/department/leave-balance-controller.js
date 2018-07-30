@@ -34,6 +34,7 @@
 
 
 
+
         $scope.leaveBalance={};
 $http.get(jadaApiUrl+'api/currentperiod').then(function(data) {
     
@@ -90,7 +91,6 @@ $http.get(jadaApiUrl+'api/leaveBalance/'+$scope.periodId).success(function(data)
 
 
 
-
         $scope.delete= function (leaveBalance) {
           var leaveBalanceService=new LeaveBalanceService(leaveBalance);
       leaveBalanceService.$delete().then(function () {
@@ -102,7 +102,7 @@ $http.get(jadaApiUrl+'api/leaveBalance/'+$scope.periodId).success(function(data)
                 $scope.open = function (size) {
 
                   var modalInstance = $uibModal.open({
-                    templateUrl: 'addLeave.html',
+                    templateUrl: 'addLeaveBalance.html',
                     controller: ModalOpenLeaveInstanceCtrl,
                     size: size
                   });
@@ -124,14 +124,15 @@ $http.get(jadaApiUrl+'api/leaveBalance/'+$scope.periodId).success(function(data)
 
 
 
-      $scope.show = function(leaveBalance) {
+      $scope.show = function(leaveB) {
+
             // $scope.x = x;
             var modalInstance = $uibModal.open({
               templateUrl: 'editLeave.html',
               controller: ModalInstanceCtrl,
               resolve: {
-                 leaveBalance: function () {
-                   return leaveBalance;
+                 leaveB: function () {
+                   return leaveB;
                  }
                }        
               // scope : $scope
@@ -161,7 +162,7 @@ $http.get(jadaApiUrl+'api/leaveBalance/'+$scope.periodId).success(function(data)
                   
                      
 
-                 $scope.submitLeaveBalance=function(leave,leaveForm) {
+                 $scope.submit=function(leave,leaveForm) {
                   
                   
 
@@ -198,7 +199,7 @@ $http.get(jadaApiUrl+'api/leaveBalance/'+$scope.periodId).success(function(data)
                   
                   leaveForm.$setPristine();
                   };
-                   $scope.submitLeaveBalanceAndClose=function(leave) {
+                   $scope.submitAndClose=function(leave) {
                     var saveleave=new LeaveBalanceService(leave);
                  saveleave.$save().then(function(){
                    $rootScope.$emit("CallLoadLeaveBalances", {});
@@ -214,10 +215,12 @@ $http.get(jadaApiUrl+'api/leaveBalance/'+$scope.periodId).success(function(data)
 
               }
 
-                   ModalInstanceCtrl.$inject = ['$scope','$http', '$rootScope','$uibModalInstance','LeaveBalanceService','leaveBalance','jadaApiUrl','$resource'];
-                function ModalInstanceCtrl($scope, $http,$rootScope,$uibModalInstance,LeaveBalanceService,leaveBalance,jadaApiUrl,$resource) {
-       var id=leaveBalance.id;
-                $scope.leave=LeaveBalanceService.get({id:id});
+                   ModalInstanceCtrl.$inject = ['$scope','$http', '$rootScope','$uibModalInstance','LeaveBalanceService','leaveB','jadaApiUrl','$resource'];
+                function ModalInstanceCtrl($scope, $http,$rootScope,$uibModalInstance,LeaveBalanceService,leaveB,jadaApiUrl,$resource) {
+                  console.log(leaveB);
+                  $scope.leave=leaveB;
+       var id=leaveB.id;
+                $scope.leaveBalance=LeaveBalanceService.get({id:id});
               
          
 
@@ -233,10 +236,10 @@ $http.get(jadaApiUrl+'api/leaveBalance/'+$scope.periodId).success(function(data)
                   
                   
 
-                     $scope.UpdateLeaveBalances=function(leave){
-              
-
-                 leave.$update().then(function(data){
+                     $scope.update=function(leave){
+                      console.log(leave);
+                      var updateleave=new LeaveBalanceService(leave)
+                 updateleave.$update().then(function(data){
                            var response=angular.fromJson(data);
                   console.log($scope.leave);
                   // $scope.authMsg=response.Message;

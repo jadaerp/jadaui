@@ -141,7 +141,7 @@ $http.get(jadaApiUrl+'api/department').success(function(data) {
 
             });
 
-$http.get(jadaApiUrl+'api/employee').success(function(data) {
+$http.get(jadaApiUrl+'api/employee/active').success(function(data) {
             // $scope.postingtrans={};
               $scope.employees=data;
               var empId=$scope.employees[0].id;

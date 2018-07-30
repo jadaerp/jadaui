@@ -32,6 +32,7 @@
           
              var employeeCategoryId=ctotal.category==null?"0":ctotal.category;
              var employeeGroupId=ctotal.group==null?"0":ctotal.group;
+             
                $http.get(jadaApiUrl+'api/CompanyTotalsReport/'+periodId+'/'+departmentId+'/'+employeeGroupId+'/'+employeeCategoryId).success(function(data){
              $scope.companytotals=data;
              
