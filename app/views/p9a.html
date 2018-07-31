@@ -16,7 +16,7 @@
   </div>
   <div class="input-group mb-2 mr-sm-2 mb-sm-0">
     <div class="input-group-addon">Employee Number</div>
-    <select name="employeeNumber" class="slider slider-lg form-control" ng-model="user.employeeId" ng-options="employee.id as employee.employeeNumber for employee in employees" >
+    <select name="employeeNumber" class="slider slider-lg form-control" ng-model="user.employeeId" ng-options="employee.id as employee.employeeNumber for employee in employees" ng-change="searchP9a(user)">
         <option value="" disabled selected>Employees</option>
   </select>
   </div>
@@ -52,7 +52,7 @@
                  
                </tr>
                  <tr>
-                  <td colspan="15" class=" text-center"><h4>TAX DEDUCTION CARD YEAR 2014</h4></td>
+                  <td colspan="15" class=" text-center"><h4>TAX DEDUCTION CARD YEAR {{p9as.year}}</h4></td>
                  
                </tr>
                
@@ -178,14 +178,14 @@ COL D - G</td>
                   <td  colspan="4"></td>
                   <td  colspan="2"> TOTAL TAX (COL L) Kshs.    
                    </td>
-                    <td  colspan="2"> 106018.8    
+                    <td  colspan="2"> {{p9as.totalTaxCollected}}   
                    </td>
                   
                </tr>
                 <tr>  
 
                   <td  colspan="3"> TOTAL CHARGEABLE PAY (COL H) Kshs </td>
-                  <td  colspan="2">596100</td>
+                  <td  colspan="2">{{p9as.totalChargeablePay}}</td>
                   <td  colspan="3"></td>
                    <td  colspan="1"> (B) Attach </td>
                   <td  colspan="6">(i) Photostat copy of interest certificate and statement of account from the Financial Institution.</td>

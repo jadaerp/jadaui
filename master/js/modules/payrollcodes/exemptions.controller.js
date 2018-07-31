@@ -23,17 +23,23 @@
    var errorMsg;
 
 
-              $scope.exemptemployees=ExemptionsService.query();
+              $scope.exemptionData=ExemptionsService.query();
 
-                $http.get(jadaApiUrl+'api/employee').success(function(data) {
-                $scope.employees = data;
+
+                $http.get(jadaApiUrl+'api/employeegroup').success(function(data) {
+                $scope.employeeGroupData = data;
             
               });
 
 
+                $http.get(jadaApiUrl+'api/period').success(function(data) {
+                $scope.periodData = data;
+            
+              });
    $scope.loadExemptemployees = function () {
        
-   $scope.exemptemployees=ExemptionsService.query();
+   $scope.exemptionData=ExemptionsService.query();
+
      }
 
    $rootScope.$on("CallExemptemployees", function(){
@@ -173,7 +179,7 @@
 
             ModalInstanceCtrl.$inject = ['$scope','$rootScope', '$http','$uibModalInstance','ExemptionsService','exemptEmployee','jadaApiUrl'];
             function ModalInstanceCtrl($scope, $rootScope,$http,$uibModalInstance, ExemptionsService,exemptEmployee,jadaApiUrl) {
-            $scope.employee=exemptEmployee;
+            $scope.exempt=exemptEmployee;
               $scope.ok = function () {
                 $uibModalInstance.close('closed');
               };

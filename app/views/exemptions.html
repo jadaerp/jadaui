@@ -16,26 +16,27 @@
        <table class="table table-striped" >
          <thead>
           <tr>
-           <th> Code</th>
-           <th>Description</th>
-             <th>Employee</th>
+           <th>Period</th>
+           <th>Employee Group</th>
+           <th>Payroll Code</th>
+             <th></th>
        
                <th>Action</th>
          </tr>
        </thead>
        <tbody>
-        <tr ng-repeat="employee in exemptemployees">
+        <tr ng-repeat="exemption in exemptionData">
         
-          <td>{{employee.payrollCode}}</td>
-          <td>{{employee.description }}</td>
-          <td>{{employee.employeeName }}</td>
+          <td>{{exemption.periodDescription}}</td>
+          <td>{{exemption.employeeGroupDescription }}</td>
+          <td>{{exemption.payrollCodeDescription }}</td>
           
 
           <td>
             <div class="buttons" >
-             <button class="btn btn-info pull-left mr" type="button" ng-click="show(employee)" > <em class="fa fa-pencil"></em></button>
+             <button class="btn btn-info pull-left mr" type="button" ng-click="show(exemption)" > <em class="fa fa-pencil"></em></button>
                    
-                        <button class="btn btn-sm btn-danger"  ng-click="delete(employee)" title="Delete">
+                        <button class="btn btn-sm btn-danger"  ng-click="delete(exemption)" title="Delete">
                           <em class="fa fa-trash"></em>
                         </button>
                       </div>
@@ -54,27 +55,36 @@
         <div class="modal-body" ng-controller="ExemptionsController">
       
           <form class="form-horizontal" name="exemptionform" novalidate >
-           
+            <div class="form-group">
+            <label class="col-lg-3 control-label">Period</label>
+            <div class="col-lg-9">
+            <select class="form-control" name="period" ng-model="exempt.periodId" ng-options="period.id as period.monthDescription+' - '+period.year for period in periodData" ng-required="true" >
+    <option value="" disabled selected>Select Period</option>
+  </select>
 
+   <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.period.$error.required">This field is required</span>
+           </div>
+         </div>          
+         <div class="form-group">
+           <label class="col-lg-3 control-label">Employee Group</label>
+           <div class="col-lg-9">
+                  <select class="form-control" name="employeeGroup" ng-model="exempt.employeeGroupId" ng-options="employeeGroup.id as employeeGroup.description for employeeGroup in employeeGroupData" ng-required="true">
+    <option value="" disabled selected>Seelct Employee Group</option>
+  </select>
+  <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.employeeGroup.$error.required">This field is required</span>
+           </div>
+         </div>
            <div class="form-group">
             <label class="col-lg-3 control-label"> Payroll Code</label>
             <div class="col-lg-9">
-            <select class="form-control" name="exemptcode" ng-model="exempt.payrollCodeId" ng-options="code.id as code.description for code in pcodes" ng-required="true" >
-    <option value="" disabled selected>All Codes</option>
+            <select class="form-control" name="period" ng-model="exempt.payrollCodeId" ng-options="code.id as code.code+' - '+code.description for code in pcodes" ng-required="true" >
+    <option value="" disabled selected>Select Payroll Code</option>
   </select>
 
-   <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.exemptcode.$error.required">This field is required</span>
+   <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.period.$error.required">This field is required</span>
            </div>
          </div>
-         <div class="form-group">
-           <label class="col-lg-3 control-label">Employee</label>
-           <div class="col-lg-9">
-                  <select class="form-control" name="exemptemployee" ng-model="exempt.employeeId" ng-options="employee.id as employee.firstName for employee in employees" ng-required="true">
-    <option value="" disabled selected>All Employees</option>
-  </select>
-  <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.exemptemployee.$error.required">This field is required</span>
-           </div>
-         </div>
+
      
 
      <div class="form-group">
@@ -100,35 +110,33 @@
   
           <form class="form-horizontal" name="exemptionform" novalidate>
 
-
-        <div class="form-group">
-          
+<div class="form-group">
+            <label class="col-lg-3 control-label">Period</label>
             <div class="col-lg-9">
-               <input class="form-control" type="hidden"  name="id_number"  ng-model="employee.id" />
-          
+            <select class="form-control" name="period" ng-model="exempt.periodId" ng-options="period.id as period.monthDescription+' - '+period.year for period in periodData" ng-required="true" >
+    <option value="" disabled selected>Select Period</option>
+  </select>
+
+   <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.period.$error.required">This field is required</span>
+           </div>
+         </div>          
+         <div class="form-group">
+           <label class="col-lg-3 control-label">Employee Group</label>
+           <div class="col-lg-9">
+                  <select class="form-control" name="employeeGroup" ng-model="exempt.employeeGroupId" ng-options="employeeGroup.id as employeeGroup.description for employeeGroup in employeeGroupData" ng-required="true">
+    <option value="" disabled selected>Seelct Employee Group</option>
+  </select>
+  <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.employeeGroup.$error.required">This field is required</span>
            </div>
          </div>
-              <div class="form-group">
+           <div class="form-group">
             <label class="col-lg-3 control-label"> Payroll Code</label>
             <div class="col-lg-9">
-            <select class="form-control" name="exemptcode" ng-model="employee.payrollCodeId" ng-options="code.id as code.description for code in pcodes " ng-required="true">
-    <option value="" disabled selected>All Codes</option>
+            <select class="form-control" name="period" ng-model="exempt.payrollCodeId" ng-options="code.id as code.code+' - '+code.description for code in pcodes" ng-required="true" >
+    <option value="" disabled selected>Select Payroll Code</option>
   </select>
-   <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.exemptcode.$error.required">This field is required</span>
-           </div>
-         </div>
 
-
-
-         <div class="form-group">
-           <label class="col-lg-3 control-label">Employee</label>
-           <div class="col-lg-9">
-                  <select class="form-control" name="exemptemployee" ng-model="employee.employeeId" ng-options="employee.id as employee.firstName for employee in employees" ng-required="true">
-    <option value="" disabled selected>All Employees</option>
-
-    
-  </select>
-   <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.exemptemployee.$error.required">This field is required</span>
+   <span class="text-danger" ng-show="exemptionform.$submitted &amp;&amp; exemptionform.period.$error.required">This field is required</span>
            </div>
          </div>
        
@@ -136,7 +144,7 @@
 
      <div class="form-group">
       <div class="col-lg-offset-3 col-lg-9">
-       <button class="btn btn-info btn-sm"  ng-click="exemptionform.$valid && updateExempt(employee)" >Update</button>
+       <button class="btn btn-info btn-sm"  ng-click="exemptionform.$valid && updateExempt(exempt)" >Update</button>
           <button class="btn btn-warning btn-sm" type="reset">Reset</button>
      </div>
    </div>
