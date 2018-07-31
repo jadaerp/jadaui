@@ -185,6 +185,8 @@ for(var r=0;r< $scope.periods.length;r++){
 
 
         $scope.delete= function (transaction) {
+          console.log("transaction");
+          console.log(transaction);
              var deletetransaction= new employeePostingService(transaction);
                   deletetransaction.$delete().then(function () {
                  $state.reload();
