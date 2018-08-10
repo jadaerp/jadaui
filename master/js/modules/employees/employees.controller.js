@@ -103,8 +103,13 @@
              $scope.employee.employmentDate= new Date($scope.date.getFullYear(), $scope.date.getMonth(), 1);
          
 
-                  $scope.date = new Date($scope.employee.terminationDate);
-             $scope.employee.terminationDate= new Date($scope.date.getFullYear(), $scope.date.getMonth(), 1);
+          console.log($scope.employee.terminationDate);
+                  $scope.employee.terminationDate= new Date($scope.employee.terminationDate);
+                  console.log($scope.date);
+             // $scope.employee.terminationDate= new Date($scope.date.getFullYear(), $scope.date.getMonth(), 1);
+             // console.log($scope.employee.terminationDate);
+
+             $scope.updateBankCodes($scope.employee.bankCode);
          
          
 
@@ -163,19 +168,24 @@
 
 
 
-  $scope.updateBankCodes=function(id){
-    
-    $scope.bankBranchName=[];
-    for(var r=0;r<$scope.bankcodes.length;r++){
-      if($scope.bankcodes[r].bankCode==id){
-        $scope.bankBranchName.push($scope.bankcodes[r]);
+  $scope.updateBankCodes=function(code){
+    console.log(code);
+  $http.get(jadaApiUrl+'api/bankbranchname/'+code).success(function(data) {
+                $scope.bankBranchNameList = data;
+                // console.log($scope.bankcodes)
+
+              });    
+    // $scope.bankBranchName=[];
+    // for(var r=0;r<$scope.bankcodes.length;r++){
+    //   if($scope.bankcodes[r].bankCode==id){
+    //     $scope.bankBranchName.push($scope.bankcodes[r]);
      
-      }
+    //   }
 
     
 
       // console.log($scope.bankBranchName);
-    }
+    // }
 
     
   }

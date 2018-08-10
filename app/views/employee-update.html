@@ -579,7 +579,7 @@
                     <!--  <input class="form-control" type="text"  name="branch_name" ng-model="empMaster.bankBranch" placeholder="Bank Branch Name
                    " /> -->
 
-                         <select  class="form-control" name="bankBranch" ng-model="employee.bankBranch" ng-options="bank.bankBranchCode as bank.bankBranchCode +' -'+bank.branchName for bank in bankBranchName" ng-change="updateBankName(employee.bankBranch)" >
+                         <select  class="form-control" name="bankBranch" ng-model="employee.bankBranch" ng-options="list.branchName as list.bankBranchCode +' - '+list.branchName for list in bankBranchNameList"  >
     <option value="" disabled selected > Select Bank Branch</option>
 
  

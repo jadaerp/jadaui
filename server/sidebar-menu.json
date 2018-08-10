@@ -265,12 +265,34 @@
        
     ]
   
-  }
+  },
+{
+    "text": " Casual Management",
+    "sref": "#",
+    "child": "fa fa-chevron-down",
+
+    "submenu": [
+      {"text": "Gl Journals", "sref": "app.payroll-journals"},
+      {"text": "Casuals", "sref": "app.gl-mapping"},
+      {"text": " Transactions", "sref": "app.bankfiles"},
+     
+        {"text": "Categories", "sref": "app.payroll-ledger"}
+        
+          
+         
+           
+         
+       
+    ]
+  
+  }  
  
 
 
     ]
   },
+       
+
       {
     "text": " HELP",
     "sref": "#",

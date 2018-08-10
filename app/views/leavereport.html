@@ -62,12 +62,12 @@
     
       <div class="col-md-12"  ng-controller="LeaveReportController" >
     
-            <div class="panel b">
+            <div class="panel b" id="printable">
                <div class="panel-heading bg-gray-lighter text-bold">{{currentleaveType}}</div>
                <div class="panel-body">
                 <div class="clearfix">
                <p class="pull-left mr h3">Month</p>
-               <p class="pull-left mr h3">Jan-2017</p>
+               <p class="pull-left mr h3">{{leaveReportData.leavePeriod}}</p>
             </div>
           
                   <table class="table table-bordered-white " >
@@ -121,6 +121,7 @@
              
                </div>
             </div>
+            <button class="btn btn-info pull-left mr" type="button" ng-click="printDiv('printable');"">Print</button>
       </div>
        </div>
      
@@ -226,6 +227,7 @@
                </div>
             </div></div>
            <!--  <div class="modal-footer"><button class="btn btn-primary" ng-click="ok()"></button></div> -->
+
          </script>
       </div>
    </div>

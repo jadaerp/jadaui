@@ -1,0 +1,67 @@
+
+<h3>Casuals    
+</h3>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="clearfix">
+     
+          
+         <a class="btn btn-info pull-right mr"
+        ui-sref="app.employee-setup">  
+      Add New</a>
+        
+      </div>
+    </div>
+   <div class="panel-body">
+      <div ng-controller="EmployeesController">
+
+    
+         <table class=" table row-border hover" datatable="ng">
+            <thead>
+               <tr>
+                  <th>Casual Number</th>
+
+                  <th>NAME </th>
+                  <th>Department</th>
+                  <th>Cost Center</th>
+                  <th>Status</th>
+                  <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+               <tr ng-repeat="employee in employees">
+                <td>{{employee.employeeNumber }}</td>
+                  <td>{{ employee.firstName}} {{ employee.lastName}}</td>
+                  
+                  
+                  <td>{{employee.departmentDescription}}</td>
+                  <td>{{employee.costCenterDescription}}</td>
+                  <td>{{employee.isTerminated==false || employee.isTerminated==null?'ACTIVE':'TERMINATED'}}</td>
+                  <td> 
+                    <div class="buttons" >
+                        <a class="btn btn-info pull-left mr"  ui-sref="app.employeeinfo({Employee:employee.id})">Details 
+                        </a>
+                     <a class="btn btn-primary" title="edit"
+                          ui-sref="app.employee-edit({EmployeeId:employee.id})">  <em class="fa fa-pencil"></em></a>
+                       
+                        <button  class="btn btn-sm btn-danger"  ng-click="delete(employee)" title="Delete">
+                          <em class="fa fa-trash"></em>
+                        </button>
+                      </div>
+
+                 </td>  
+               </tr>
+            </tbody>
+         </table>
+
+
+
+      
+</div> 
+      </div>
+   </div>
+
+
+
+

@@ -40,7 +40,8 @@
               title: 'Dashboard',
               authenticate: true,
               templateUrl: helper.basepath('dashboard.html'),
-              resolve: helper.resolveFor('flot-chart','flot-chart-plugins', 'weather-icons'),
+              resolve: helper.resolveFor('flot-chart','flot-chart-plugins', 'weather-icons','moment', 'ui.calendar'),
+             
 
           })
           .state('app.dashboard_v2', {
@@ -672,7 +673,7 @@
              .state('app.leave-types', {
               url: '/leave-types',
               title: 'leave-types',
-              templateUrl: helper.basepath('leave-types.html')
+              templateUrl: helper.basepath('leave-types.html','datatables')
           })
               .state('app.leave-approve', {
               url: '/leave_approve',
@@ -697,7 +698,7 @@
             .state('app.gl-mapping', {
               url: '/glMapping',
               title: 'gl mapping',
-              templateUrl: helper.basepath('gl-mapping.html'),
+              templateUrl: helper.basepath('gl-mapping.html','datatables'),
             
                  resolve: helper.resolveFor('ui.select', 'taginput','inputmask','localytics.directives','xeditable')
           })
@@ -804,7 +805,7 @@
              .state('app.leaveposting', {
               url: '/leaveposting',
               title: 'Leave Posting',
-              templateUrl: helper.basepath('leaveposting.html')
+              templateUrl: helper.basepath('leaveposting.html','datatables')
           })
 
              .state('app.endmonth', {
@@ -832,7 +833,7 @@
             .state('app.financialperiods', {
               url: '/financialperiods',
               title: 'Financial Periods',
-                templateUrl: helper.basepath('financialperiods.html')
+                templateUrl: helper.basepath('financialperiods.html','datatables')
              
           })
 
@@ -848,14 +849,14 @@
             .state('app.companysummary', {
               url: '/company summary',
               title: 'companysummary',
-                templateUrl: helper.basepath('company-summary.html')
+                templateUrl: helper.basepath('company-summary.html','datatables')
              
           })
 
             .state('app.ctotals-review', {
               url: '/company-totals-review',
               title: 'Company totals',
-                templateUrl: helper.basepath('ctotals-review.html')
+                templateUrl: helper.basepath('ctotals-review.html','datatables')
              
           })
 
@@ -893,7 +894,7 @@
             .state('app.paye', {
               url: '/paye',
               title: 'PAYE  Report',
-                templateUrl: helper.basepath('paye.html')
+                templateUrl: helper.basepath('paye.html','datatables')
              
           })
 
@@ -901,7 +902,7 @@
             .state('app.payesummary', {
               url: '/payesummary',
               title: 'PAYE  Report',
-                templateUrl: helper.basepath('payesummary.html')
+                templateUrl: helper.basepath('payesummary.html','datatables')
              
           })
 
@@ -909,7 +910,7 @@
              .state('app.nhif', {
               url: '/nhif  reports',
               title: 'NHIF byproduct',
-                templateUrl: helper.basepath('nhif.html')
+                templateUrl: helper.basepath('nhif.html','datatables')
              
           })
 
@@ -920,7 +921,7 @@
          .state('app.nssf', {
               url: '/nssf reports',
               title: 'NSSF schedule',
-                templateUrl: helper.basepath('nssfschedule.html')
+                templateUrl: helper.basepath('nssfschedule.html','datatables')
              
           })
 
@@ -928,7 +929,7 @@
          .state('app.helb', {
               url: '/helb  schedule',
               title: 'HELB schedule',
-                templateUrl: helper.basepath('helb-schedule.html')
+                templateUrl: helper.basepath('helb-schedule.html','datatables')
              
           })
 
@@ -986,7 +987,7 @@
               url: '/bankfiles',
               title: 'schedules',
                 templateUrl: helper.basepath('bankfiles.html'),
-                 resolve: helper.resolveFor('angular-file-saver')
+                 resolve: helper.resolveFor('angular-file-saver','datatables')
 
              
           })
@@ -995,7 +996,7 @@
               url: '/payroll-journals',
               title: 'payroll journals',
                 templateUrl: helper.basepath('payroll-journals.html'),
-                 resolve: helper.resolveFor('angular-file-saver')
+                 resolve: helper.resolveFor('angular-file-saver','datatables')
              
           })
 
@@ -1082,7 +1083,13 @@
                  resolve: helper.resolveFor('datatables')
              
           })
-
+         .state('app.casuals', {
+              url: '/casuals',
+              title: 'casuals',
+                templateUrl: helper.basepath('casuals.html'),
+                 resolve: helper.resolveFor('datatables')
+             
+          })
           .state('app.employee-groups', {
               url: '/Employee-groups',
               title: 'list',
@@ -1116,7 +1123,8 @@
          .state('app.Payfrequency', {
               url: '/Payfrequency',
               title: 'Payfrequency',
-                templateUrl: helper.basepath('payfrequency.html')
+                templateUrl: helper.basepath('payfrequency.html'),
+                resolve: helper.resolveFor('datatables')
            
              
           })
@@ -1150,6 +1158,7 @@
               url: '/paymode',
               title: 'pay mode',
                 templateUrl: helper.basepath('paymode.html'),
+                resolve: helper.resolveFor('datatables')
               
              
           })
@@ -1335,6 +1344,7 @@
               url: '/leaves',
               title: 'leaves',
                 templateUrl: helper.basepath('leavereport.html'),
+                resolve: helper.resolveFor('datatables')
                  
              
           })
@@ -1349,6 +1359,7 @@
               url: '/claims',
               title: 'Claims',
                 templateUrl: helper.basepath('claims.html'),
+                resolve: helper.resolveFor('datatables')
                  
              
           })
