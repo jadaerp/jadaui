@@ -41,7 +41,7 @@
           };
 
           vm.changed = function () {
-            console.log('Time changed to: ' + vm.mytime);
+            // console.log('Time changed to: ' + vm.mytime);
           };
 
           vm.clear = function() {

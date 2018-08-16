@@ -1,0 +1,162 @@
+
+  <h3>Casual Categories
+     
+  </h3>
+  <div class="panel panel-default" ng-controller="CasualCategoryController">
+                   <div class="panel-heading"><div class="clearfix">
+     <button class="btn btn-info pull-right mr" type="button" ng-click="open()">Add New</button>
+          
+          
+        </div></div>
+                   <div class="panel-body" >
+
+                    <div class="table-responsive">
+                     <table class="table table-striped" datatable="ng">
+                       <thead>
+                         <tr>
+
+                          <th> Code</th>
+                          <th>Description</th>
+                          <th>Rate</th>
+                          <th>Action</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                       <tr ng-repeat="casualCategory in casualCategoryList">
+                        <td>{{ casualCategory.code}}</td>
+                        <td>{{ casualCategory.description}}</td>
+                         <td>{{ casualCategory.rate}}</td>
+
+
+                        <td>
+                          <div class="buttons">
+                           <button class="btn btn-info pull-left mr" type="button" ng-click="show(casualCategory)"><em class="fa fa-pencil"></em></button>
+                      
+                          <button class="btn btn-sm btn-danger"  ng-click="delete(casualCategory)" title="Delete">
+                            <em class="fa fa-trash"></em>
+                          </button>
+                        </div>
+                      </td>          
+                    </tr>
+
+                  </tbody>
+                </table>
+
+
+              </div>
+      
+              
+
+
+            </div>
+          </div>
+    
+
+
+        <script type="text/ng-template" id="create.html">
+          <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Pay casualCategory</h4></div>
+          <div class="modal-body" ng-controller="CasualCategoryController" ><!-- START panel-->
+
+           <form class="form-horizontal" name="casualCategoryform" novalidate >
+
+             <div class="form-group">
+              <label class="col-lg-3 control-label">Code</label>
+              <div class="col-lg-9">
+               <input class="form-control" type="text" name="casualCategoryModel_code"  ng-model="casualCategoryModel.code" ng-required="true"
+          ng-pattern="/^[\w,]+$/"   placeholder=" Enter Code"/>
+
+                 <span class="text-danger" ng-show="casualCategoryform.casualCategoryModel_code.$dirty &amp;&amp; casualCategoryform.casualCategoryModel_code.$error.required">This field is required</span>
+                 <span class="text-danger" ng-if="casualCategoryform.casualCategoryModel_code.$dirty &amp;&amp; casualCategoryform.casualCategoryModel_code.$error.pattern">This field is invalid:No special characters allowed </span>
+             </div>
+           </div>
+           <div class="form-group">
+            <label class="col-lg-3 control-label">Descriptions</label>
+            <div class="col-lg-9">
+             <input class="form-control" type="text" name="casualCategoryModel_description" ng-model="casualCategoryModel.description" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true"  placeholder="Enter Descriptions"/>
+
+             <span class="text-danger" ng-show="casualCategoryform.casualCategoryModel_description.$dirty &amp;&amp; casualCategoryform.casualCategoryModel_description.$error.required">This field is required
+           </span>
+                 <span class="text-danger" ng-if="casualCategoryform.casualCategoryModel_description.$dirty &amp;&amp; casualCategoryform.casualCategoryModel_description.$error.pattern">This field is invalid:No special characters allowed </span>
+           </div>
+         </div>
+
+             <div class="form-group">
+              <label class="col-lg-3 control-label">Rate</label>
+              <div class="col-lg-9">
+               <input class="form-control" type="text" name="casualCategoryModel_rate"  ng-model="casualCategoryModel.rate" ng-required="true"
+          ng-pattern="/^[0-9]+\.?[0-9]*$/"   placeholder=" Enter Rate"/>
+
+                 <span class="text-danger" ng-show="casualCategoryform.casualCategoryModel_code.$dirty &amp;&amp; casualCategoryform.casualCategoryModel_rate.$error.required">This field is required</span>
+                 <span class="text-danger" ng-if="casualCategoryform.casualCategoryModel_rate.$dirty &amp;&amp; casualCategoryform.casualCategoryModel_rate.$error.pattern">This field is invalid:No special characters allowed </span>
+             </div>
+           </div>
+
+
+         <div class="form-group">
+          <div class="col-lg-offset-3 col-lg-9">
+           <button class="btn btn-info btn-sm" ng-disabled="casualCategoryform.$invalid"  ng-click="submit(casualCategoryModel)">Save and New</button>
+             <button class="btn btn-info btn-sm" ng-disabled="casualCategoryform.$invalid"  ng-click="submitAndClose(casualCategoryModel)">Save and Close</button>
+             <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+         </div>
+       </div>
+
+                        <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+               <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+     </form>
+     <!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+   </script>
+
+
+<script type="text/ng-template" id="edit.html">
+          <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Pay casualCategory</h4></div>
+          <div class="modal-body" ng-controller="CasualCategoryController" ><!-- START panel-->
+
+           <form class="form-horizontal" name="casualCategoryform" novalidate >
+
+             <div class="form-group">
+              <label class="col-lg-3 control-label">Code</label>
+              <div class="col-lg-9">
+               <input class="form-control" type="text" name="casualCategoryModel_code"  ng-model="casualCategoryModel.code" ng-required="true"
+          ng-pattern="/^[\w,]+$/"   placeholder=" Enter Code"/>
+
+                 <span class="text-danger" ng-show="casualCategoryform.casualCategoryModel_code.$dirty &amp;&amp; casualCategoryform.casualCategoryModel_code.$error.required">This field is required</span>
+                 <span class="text-danger" ng-if="casualCategoryform.casualCategoryModel_code.$dirty &amp;&amp; casualCategoryform.casualCategoryModel_code.$error.pattern">This field is invalid:No special characters allowed </span>
+             </div>
+           </div>
+           <div class="form-group">
+            <label class="col-lg-3 control-label">Descriptions</label>
+            <div class="col-lg-9">
+             <input class="form-control" type="text" name="casualCategoryModel_description" ng-model="casualCategoryModel.description" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true"  placeholder="Enter Descriptions"/>
+
+             <span class="text-danger" ng-show="casualCategoryform.casualCategoryModel_description.$dirty &amp;&amp; casualCategoryform.casualCategoryModel_description.$error.required">This field is required
+           </span>
+                 <span class="text-danger" ng-if="casualCategoryform.casualCategoryModel_description.$dirty &amp;&amp; casualCategoryform.casualCategoryModel_description.$error.pattern">This field is invalid:No special characters allowed </span>
+           </div>
+         </div>
+
+             <div class="form-group">
+              <label class="col-lg-3 control-label">Rate</label>
+              <div class="col-lg-9">
+               <input class="form-control" type="text" name="casualCategoryModel_rate"  ng-model="casualCategoryModel.rate" ng-required="true"
+          ng-pattern="/^[0-9]+\.?[0-9]*$/"   placeholder=" Enter Rate"/>
+
+                 <span class="text-danger" ng-show="casualCategoryform.casualCategoryModel_code.$dirty &amp;&amp; casualCategoryform.casualCategoryModel_rate.$error.required">This field is required</span>
+                 <span class="text-danger" ng-if="casualCategoryform.casualCategoryModel_rate.$dirty &amp;&amp; casualCategoryform.casualCategoryModel_rate.$error.pattern">This field is invalid:No special characters allowed </span>
+             </div>
+           </div>
+
+
+ <div class="form-group">
+  <div class="col-lg-offset-3 col-lg-9">
+   <button class="btn btn-info btn-sm mr"  ng-disabled="costcentre.$invalid" ng-click="updateCasualCategory(casualCategoryModel)">Update</button>
+    <button class="btn btn-warning btn-sm "  type="reset">Reset</button>
+
+ </div>
+</div>
+
+                        <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+               <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+     </form>
+     <!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+   </script>

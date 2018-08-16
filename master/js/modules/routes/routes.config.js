@@ -1090,6 +1090,20 @@
                  resolve: helper.resolveFor('datatables')
              
           })
+         .state('app.casual-categories', {
+              url: '/casual-categories',
+              title: 'casual Categories',
+                templateUrl: helper.basepath('casual-categories.html'),
+                 resolve: helper.resolveFor('datatables')
+             
+          })     
+         .state('app.casual-transactions', {
+              url: '/casual-transactions',
+              title: 'casual transactions',
+                templateUrl: helper.basepath('casual-transactions.html'),
+                 resolve: helper.resolveFor('datatables')
+             
+          })              
           .state('app.employee-groups', {
               url: '/Employee-groups',
               title: 'list',

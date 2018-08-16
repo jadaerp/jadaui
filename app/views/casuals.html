@@ -2,19 +2,17 @@
 <h3>Casuals    
 </h3>
 
-<div class="panel panel-default">
+<div class="panel panel-default" ng-controller="CasualsController">
     <div class="panel-heading">
       <div class="clearfix">
      
           
-         <a class="btn btn-info pull-right mr"
-        ui-sref="app.employee-setup">  
-      Add New</a>
+ <button class="btn btn-info pull-right mr" type="button" ng-click="open()">Add New</button>
         
       </div>
     </div>
    <div class="panel-body">
-      <div ng-controller="EmployeesController">
+      <div >
 
     
          <table class=" table row-border hover" datatable="ng">
@@ -42,8 +40,9 @@
                     <div class="buttons" >
                         <a class="btn btn-info pull-left mr"  ui-sref="app.employeeinfo({Employee:employee.id})">Details 
                         </a>
-                     <a class="btn btn-primary" title="edit"
-                          ui-sref="app.employee-edit({EmployeeId:employee.id})">  <em class="fa fa-pencil"></em></a>
+                        
+        
+                    <button class="btn btn-info"  ng-click="edit(employee)" title="Edit"><em class="fa fa-pencil"></em> </button>
                        
                         <button  class="btn btn-sm btn-danger"  ng-click="delete(employee)" title="Delete">
                           <em class="fa fa-trash"></em>
@@ -65,3 +64,192 @@
 
 
 
+
+   <script type="text/ng-template" id="create-casuals.html">
+    <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Casual</h4></div>
+    <div class="modal-body" ng-controller="CasualsController"><!-- START panel-->
+
+     <form class="form-horizontal"  name="casualform" novalidate  >
+
+        <div class="form-group">
+          <div class="col-lg-12"><label class="col-lg-12 ">First Name
+                   </label></div>
+                  
+                  <div class="col-lg-12">
+                     <input class="form-control" type="text" name="firstname" ng-model="empMaster.firstName" placeholder="First Name " required=""  />
+                    <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.firstname.$invalid">This field is required</span>
+                  </div>
+               </div>
+
+               <div class="form-group">
+                <div class="col-lg-12"><label class="col-lg-12 ">Middle Name
+                   </label></div>
+                  
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text" name=" surname" ng-model="empMaster.middleName" placeholder="Middle Name
+                   " required="" />
+                     <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.surname.$invalid">This field is required</span>
+                  </div>
+               </div>
+                 <div class="form-group">
+                  <div class="col-lg-12"><label class="col-lg-12 "> Surname
+                   </label></div>
+                  
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="lastname" ng-model="empMaster.lastName" placeholder="Surname" required="" />
+                   <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.lastname.$invalid">This field is required</span>
+                  </div>
+               </div>
+                 <div class="form-group">
+                  <div class="col-lg-12"><label class="col-lg-12 "> Payroll number
+                   </label></div>
+                  
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="payroll_number" ng-model="empMaster.employeeNumber" placeholder="Payroll number"  required="" />
+                       <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.payroll_number.$invalid">This field is required</span>
+                  </div>
+               </div>
+           
+
+               <div class="form-group">
+                <div class="col-lg-12"><label class="col-lg-12 ">  National ID Number
+                   </label></div>
+                  
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="id_number"  ng-model="empMaster.idNumber" placeholder="National ID Number
+                   " />
+                  </div>
+               </div>
+                <div class="form-group">
+                  <div class="col-lg-12"><label class="col-lg-12 ">Gender </label></div>
+                        
+                        <div class="col-sm-6">
+                       
+                         
+                           
+                           <div class="radio c-radio">
+                              <label>
+                                 <input type="radio"  name="gender" value="1" ng-model="empMaster.gender" required="" />
+                                 <span class="fa fa-circle"></span>Male
+</label>
+                           </div>
+                           <div class="radio c-radio">
+                              <label>
+                                 <input type="radio"  name="gender"  value="2" ng-model="empMaster.gender" required=""  />
+
+                                 <span class="fa fa-circle"></span>Female
+</label>
+                           </div>
+                           <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.gender.$invalid">This field is required</span>
+                        </div>
+                        <div class="col-sm-4"></div>
+                     </div>
+
+         <div class="form-group">
+          <div class="col-lg-offset-3 col-lg-9">
+           <button class="btn btn-info btn-sm" ng-disabled="casualform.$invalid"  ng-click="submitcasual(empMaster)">Save and New</button>
+             <button class="btn btn-info btn-sm" ng-disabled="casualform.$invalid"  ng-click="Closecasual(ppoint)">Save and Close</button>
+             <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+         </div>
+       </div>
+  <!-- 
+                        <div class="alert alert-success text-center" margin-top="md" ng-show="SuccessMsg">{{reg.authMsg}}</div>
+               <div class="alert alert-danger text-center" margin-top="md" ng-show="error">{{errorMsg}}</div> -->
+  </form>
+  <!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+  </script>
+
+
+     <script type="text/ng-template" id="edit-casuals.html">
+    <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Casual</h4></div>
+    <div class="modal-body" ng-controller="CasualsController"><!-- START panel-->
+
+     <form class="form-horizontal"  name="casualform" novalidate  >
+
+        <div class="form-group">
+          <div class="col-lg-12"><label class="col-lg-12 ">First Name
+                   </label></div>
+                  
+                  <div class="col-lg-12">
+                     <input class="form-control" type="text" name="firstname" ng-model="empMaster.firstName" placeholder="First Name " required=""  />
+                    <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.firstname.$invalid">This field is required</span>
+                  </div>
+               </div>
+
+               <div class="form-group">
+                <div class="col-lg-12"><label class="col-lg-12 ">Middle Name
+                   </label></div>
+                  
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text" name=" surname" ng-model="empMaster.middleName" placeholder="Middle Name
+                   " required="" />
+                     <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.surname.$invalid">This field is required</span>
+                  </div>
+               </div>
+                 <div class="form-group">
+                  <div class="col-lg-12"><label class="col-lg-12 "> Surname
+                   </label></div>
+                  
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="lastname" ng-model="empMaster.lastName" placeholder="Surname" required="" />
+                   <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.lastname.$invalid">This field is required</span>
+                  </div>
+               </div>
+                 <div class="form-group">
+                  <div class="col-lg-12"><label class="col-lg-12 "> Payroll number
+                   </label></div>
+                  
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="payroll_number" ng-model="empMaster.employeeNumber" placeholder="Payroll number"  required="" />
+                       <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.payroll_number.$invalid">This field is required</span>
+                  </div>
+               </div>
+           
+
+               <div class="form-group">
+                <div class="col-lg-12"><label class="col-lg-12 ">  National ID Number
+                   </label></div>
+                  
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="id_number"  ng-model="empMaster.idNumber" placeholder="National ID Number
+                   " />
+                  </div>
+               </div>
+                <div class="form-group">
+                  <div class="col-lg-12"><label class="col-lg-12 ">Gender </label></div>
+                        
+                        <div class="col-sm-6">
+                       
+                         
+                           
+                           <div class="radio c-radio">
+                              <label>
+                                 <input type="radio"  name="gender" value="1" ng-model="empMaster.gender" required="" />
+                                 <span class="fa fa-circle"></span>Male
+</label>
+                           </div>
+                           <div class="radio c-radio">
+                              <label>
+                                 <input type="radio"  name="gender"  value="2" ng-model="empMaster.gender" required=""  />
+
+                                 <span class="fa fa-circle"></span>Female
+</label>
+                           </div>
+                           <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.gender.$invalid">This field is required</span>
+                        </div>
+                        <div class="col-sm-4"></div>
+                     </div>
+
+         <div class="form-group">
+          <div class="col-lg-offset-3 col-lg-9">
+           <button class="btn btn-info btn-sm" ng-disabled="casualform.$invalid"  ng-click="updateCasual(empMaster)">Update</button>
+             <button class="btn btn-info btn-sm" ng-disabled="casualform.$invalid"  ng-click="Closecasual(ppoint)">Save and Close</button>
+             <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+         </div>
+       </div>
+  <!-- 
+                        <div class="alert alert-success text-center" margin-top="md" ng-show="SuccessMsg">{{reg.authMsg}}</div>
+               <div class="alert alert-danger text-center" margin-top="md" ng-show="error">{{errorMsg}}</div> -->
+  </form>
+  <!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+  </script>

@@ -272,11 +272,11 @@
     "child": "fa fa-chevron-down",
 
     "submenu": [
-      {"text": "Gl Journals", "sref": "app.payroll-journals"},
-      {"text": "Casuals", "sref": "app.gl-mapping"},
-      {"text": " Transactions", "sref": "app.bankfiles"},
+
+      {"text": "Casuals", "sref": "app.casuals"},
+      {"text": "Casual Transactions", "sref": "app.casual-transactions"},
      
-        {"text": "Categories", "sref": "app.payroll-ledger"}
+        {"text": "Casual Categories", "sref": "app.casual-categories"}
         
           
          
