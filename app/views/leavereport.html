@@ -17,14 +17,14 @@
   <div class="input-group mb-2 mr-sm-2 mb-sm-0">
     <div class="input-group-addon">Period</div>
   
-         <select name="period" class="slider slider-lg form-control" ng-model="leaveReportFilter.periodId" ng-options="period.id as period.period+' - '+period.year+' - '+period.monthDescription for period in periods" ng-change="getReport(leaveReportFilter.periodId,leaveReportFilter.leaveTypeId)">
+         <select name="period" class="slider slider-lg form-control" ng-model="leaveReportFilter.periodId" ng-options="period.id as period.period+' - '+period.year+' - '+period.monthDescription for period in periods" >
         <option value="" disabled selected>Periods</option>
   </select>
   </div>
   <div class="input-group mb-2 mr-sm-2 mb-sm-0">
     <div class="input-group-addon">Leave Type</div>
   
-         <select name="period" class="slider slider-lg form-control" ng-model="leaveReportFilter.leaveTypeId" ng-options="l.id as l.code+' - '+l.description for l in leavetypes" ng-change="getReport(leaveReportFilter.periodId,leaveReportFilter.leaveTypeId)" >
+         <select name="period" class="slider slider-lg form-control" ng-model="leaveReportFilter.leaveTypeId" ng-options="l.id as l.code+' - '+l.description for l in leavetypes"  >
         <option value="" disabled selected>Types</option>
   </select>
   </div>
@@ -38,27 +38,7 @@
 
 </div>      
    <div class="row m-t-10">
-<!--       <div class="col-md-3">
-         <div class="panel b">
-            <div class="panel-heading bg-gray-lighter text-bold">Leave Types</div>
-            
-       <div class="list-group"    ng-repeat="leave in leavetypes">
 
-            <button class="list-group-item" type="button" ng-click="show(leave.id)"> {{leave.description}}</button>
-            </div> 
-
-                 <div class="list-group" ng-init="settingActive = 1"  >
-
-            <a class="list-group-item" href="" ng-click="settingActive=1" ng-class="{'active': (settingActive == 1)}">{{leave.description}}</a><a class="list-group-item" href="" ng-click="settingActive=2" ng-class="{'active': (settingActive == 2)}">Sick Leave</a><a class="list-group-item"
-               href="" ng-click="settingActive=3" ng-class="{'active': (settingActive == 3)}">Exam Leave</a><a class="list-group-item" href="" ng-click="settingActive=4" ng-class="{'active': (settingActive == 4)}">Maternity Leave</a><a class="list-group-item"
-               href="" ng-click="settingActive=5" ng-class="{'active': (settingActive == 5)}">Paternity Leave</a> 
-            </div> 
-
-
-            </div>
-
-       
-         </div> -->
     
       <div class="col-md-12"  ng-controller="LeaveReportController" >
     
@@ -66,9 +46,18 @@
                <div class="panel-heading bg-gray-lighter text-bold">{{currentleaveType}}</div>
                <div class="panel-body">
                 <div class="clearfix">
-               <p class="pull-left mr h3">Month</p>
+
+               <p class="pull-left mr h3">{{leaveReportData.employer.employerName}}</p>
+            </div>
+                <div class="clearfix">
+
+               <p class="pull-left mr h3">{{leaveReportData.leaveType.description}}</p>
+            </div>                            
+                <div class="clearfix">
+
                <p class="pull-left mr h3">{{leaveReportData.leavePeriod}}</p>
             </div>
+
           
                   <table class="table table-bordered-white " >
 
@@ -85,14 +74,14 @@
                </tr>
             </thead>
             <tbody >
-               <tr  ng-repeat="leaveReportData in leaveReport">
-                  <td >{{leaveReportData.employeeNumber}}</td>
-                  <td >{{leaveReportData.employeeName}}</td>
-                  <td >{{leaveReportData.broughtForward}}</td>
-                   <td >{{leaveReportData.accrued}}</td>
+               <tr  ng-repeat="leaveReportList in leaveReport">
+                  <td >{{leaveReportList.employeeNumber}}</td>
+                  <td >{{leaveReportList.employeeName}}</td>
+                  <td >{{leaveReportList.broughtForward}}</td>
+                   <td >{{leaveReportList.accrued}}</td>
              
-                  <td >{{leaveReportData.taken}}</td>
-                  <td >{{leaveReportData.carriedForward}}</td>
+                  <td >{{leaveReportList.taken}}</td>
+                  <td >{{leaveReportList.carriedForward}}</td>
 
                   
                  
@@ -102,12 +91,13 @@
            
              
                    <tr>
-                  <td ></td>
-<!--                   <td class="boldTotal">Total </td>
-                  <td class=" boldTotal">4.25</td>
-                   <td class=" boldTotal">1.75</td>
-                   <td class=" boldTotal">1.00</td>
-                  <td class=" boldTotal">5.00</td> -->
+                 
+                  <td class="boldTotal">Totals </td>
+                  <td class="boldTotal">{{leaveReportData.employeeLeaveReportTotals.employeeCount}}</td>
+                  <td class=" boldTotal">{{leaveReportData.employeeLeaveReportTotals.broughtForward}}</td>
+                   <td class=" boldTotal">{{leaveReportData.employeeLeaveReportTotals.accrued}}</td>
+                   <td class=" boldTotal">{{leaveReportData.employeeLeaveReportTotals.taken}}</td>
+                  <td class=" boldTotal">{{leaveReportData.employeeLeaveReportTotals.carriedForward}}</td>
                   
                  
                 
