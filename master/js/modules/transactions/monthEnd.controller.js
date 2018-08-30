@@ -21,7 +21,10 @@
         function activate() {
 
 
-
+ $http.get(jadaApiUrl+'api/currentperiod').success(function(data){
+  $scope.currentPeriod=data;
+ });
+      
 
 $scope.currentclass='danger';
     $scope.buttonText="Process";

@@ -8,7 +8,7 @@
 
     CompanyInfoService.$inject = ['$resource','jadaApiUrl'];
     function CompanyInfoService($resource,jadaApiUrl) {
-     var data=$resource(jadaApiUrl+'api/companyinfo/:id', {id: '@id'},
+     var data=$resource(jadaApiUrl+'api/statutory/:id', {id: '@id'},
     { 'get':    {method:'GET', isArray:false},
   'save':   {method:'POST'},
   'query':  {method:'GET', isArray:true},

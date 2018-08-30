@@ -51,93 +51,72 @@
 
       <!-- START widget-->
       <div class="panel panel-default" ng-repeat="payslip in persons| pagination: curPage * pageSize | limitTo: pageSize">
-         <div  class="panel-body" >
-          <div  id="printable">
-           <div class="row">
+         <div   id="printable"  class="panel-body" >
 
-<!--    <div class="col-lg-4 col-xs-6 br pv">
-            <div class="col-md-12">
-               <p class="pull-left"><strong>Employee NO.</strong></p>
-               <p class="pull-right mr">{{payslip.payslipInfo.employeeNumber}}</p>
-            </div>
-         </div>
-          <div class="col-lg-4 col-xs-6 br pv">
-            <div class="col-md-12">
-               <p class="pull-left"><strong>Employee Name.</strong></p>
-               <p class="pull-right mr">{{payslip.payslipInfo.employeeName}}</p>
-            </div>
-         </div>
-          <div class="col-lg-4 col-xs-6 br pv">
-            <div class="col-md-10">
-               <p class="pull-left"><strong>Pay Period</strong></p>
-               <p class="pull-right mr">{{payslip.payslipInfo.period}}</p>
-            </div>
-         </div> -->
-
-
-         <div class="col-md-6">
         <table class="table table-bordered-white" >
-            
-                  <thead>
-                     <!-- <tr>
-                        <th>#</th>
-                        <th>Code</th>
-                        <th>Descriptions
-                        </th>
-                        <th>Amount</th>
-                     </tr> -->
-                  </thead>
-                  <tbody>
-                         <tr >
-                      <td class="boldTotal"> Employee NO:</td>
-                      <td class="text-right">{{payslip.payslipInfo.employeeNumber}}</td>
-                  
-                      
-                    </tr>
+                            <tbody>
+            <tr >
+              <td  style="width:100%; text-align: center; font-weight: bold; font-size: 18px;" colspan="4">{{payslip.employer.employerName}}</td>
+            </tr>                              
+            <tr >
+              <td class="boldTotal" style="width:25%;">Employee NO :</td>
+              <td  style="width:25%; text-align: left;">{{payslip.payslipInfo.employeeNumber}}</td>
+                        <td class="boldTotal" style="width:25%;"> Employee Name :</td>
+                      <td class="text-right" style="width:25%; text-align: left;">{{payslip.payslipInfo.employeeName}}</td>
+            </tr>
+ 
+             
                      <tr >
                    
-                        <td class="boldTotal"> Employee Name:</td>
-                      <td class="text-right">{{payslip.payslipInfo.employeeName}}</td>
+                        <td class="boldTotal" style="width:25%;"> Pin Number :</td>
+                      <td class="text-right" style="width:25%; text-align: left;">{{payslip.payslipInfo.pinNumber}}</td>
+                   
+                        <td class="boldTotal" style="width:25%;"> NSSF Number :</td>
+                      <td class="text-right" style="width:25%; text-align: left;">{{payslip.payslipInfo.nssfNumber}}</td>
                       
                     </tr>
-                  <tr >
+ 
+                     <tr >
                    
-                          <td class="boldTotal "> Pay Period:</td>
-                      <td class="text-right">{{payslip.payslipInfo.period.month}} {{payslip.payslipInfo.period.year}}</td>
+                        <td class="boldTotal" style="width:25%;"> NHIF Number :</td>
+                      <td class="text-right" style="width:25%; text-align: left;">{{payslip.payslipInfo.nhifNumber}}</td>
+                 <td class="boldTotal " style="width:25%;"> Pay Period:</td>
+                      <td class="text-right" style="width:25%;  text-align: left;">{{payslip.payslipInfo.period.month}} {{payslip.payslipInfo.period.year}}</td>
+                      
                     </tr>
                    
+
                   </tbody>
+                   
+
                </table>
            
-              
-            </div>
+           <div  style="border:1px solid #D3D3D3; width: 100%; "></div>
 
-             </div> 
-             <br>
-             <div class="row">
-         <div class="col-md-6">
+             
+               <table class="table table-bordered-white" >
+
+                  <tbody>
+                         <tr>
+                      <td class="boldTotal " style="width:50%;"> Earnings</td>
+              <td class="text-right" style="width:25%;"></td>
+              <td class="text-right" style="width:25%;"></td>  
+
+            </tr>
+          </tbody>
+        </table>
         
            
                <table class="table table-bordered-white" >
-            
-                  <thead>
-                     <!-- <tr>
-                        <th>#</th>
-                        <th>Code</th>
-                        <th>Descriptions
-                        </th>
-                        <th>Amount</th>
-                     </tr> -->
-                  </thead>
+
                   <tbody>
-                         <tr>
-                      <td class="boldTotal"> Earnings</td>
-                    
-                    </tr>
+
                      <tr ng-repeat="earning in payslip.earnings.payslipCodeList">
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td>{{earning.description}}</td>
-                        <td class="text-right">{{earning.amount}}</td>
+                        <td class="" style="width:50%;">{{earning.description}}</td>
+                        <td class="text-right" style="width:25%;">{{earning.amount}}</td>
+              <td class="text-right" style="width:25%;"></td>
+                       
                      </tr>
                    
                   </tbody>
@@ -151,78 +130,57 @@
 
                        <tr>
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td class="boldTotal" >Gross Pay</td>
-                        <td class="boldTotal text-right" >{{payslip.grossPay}}</td>
+                        <td class="boldTotal" style="width:50%;" >Gross Pay</td>
+                        <td class="boldTotal text-right" style="width:25%;" >{{payslip.grossPay}}</td>
+              <td class="text-right" style="width:25%;"></td>
+                       
                      </tr>
                   </tbody>
                </table>
-            </div>
-         </div>
-      <br/>
-         <div class="row">
-         <div class="col-md-6">
+
          
-           <div class="table-responsive">
+
             
                <table class="table table-bordered-white">
             
-                  <!-- <thead>
-                     <tr>
-                        <th>#</th>
-                        <th>Code</th>
-                        <th>Descriptions
-                        </th>
-                        <th>Amount</th>
-                     </tr>
-                  </thead> -->
+
                   <tbody>
         
                     <tr>
-                      <td class="boldTotal"> Tax Calculations</td>
+                      <td class="boldTotal" style="width:50%;"> Tax Calculations</td>
                     
                     </tr>
 
           <tr ng-repeat="tax in payslip.taxCalculations.payslipCodeList">
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td >{{tax.description}}</td>
-                        <td class="text-right">{{tax.amount}}</td>
+                        <td class="" style="width:50%;">{{tax.description}}</td>
+                        <td class="text-right" style="width:25%;">{{tax.amount}}</td>
+              <td class="text-right" style="width:25%;"></td>
+                       
                      </tr>
                   </tbody>
                </table>
-            </div>
-         </div>
-         
-      </div>
- <br/>
-      <div class="row">
-         <div class="col-md-6">
+
        
-             <div class="table-responsive">
+
         
                <table class="table table-bordered-white">
-                   
-                 <!--  <thead>
-                     <tr>
-                        <th>#</th>
-                        <th>Code</th>
-                        <th>Descriptions
-                        </th>
-                        <th>Amount</th>
-                     </tr>
-                  </thead> -->
+
                   <tbody>
-                     <tr style="width:100%">
-                      <td class="boldTotal"> Deductions</td>
+                     <tr>
+                      <td class="boldTotal"  style="width:50%;"> Deductions</td>
                     
                     </tr>
                      <tr ng-repeat="deduction in payslip.deductions.payslipCodeList">
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td >{{deduction.description}}</td>
-                        <td style="text-align: right;" class="justify_right">{{deduction.amount}}</td>
+                        <td class="col-lg-3"  style="width:50%;">{{deduction.description}}</td>
+                        <td style="text-align: right;" class="justify_right" style="width:25%;">{{deduction.amount}}</td>
                      </tr>
          <tr>
-                         <td class="boldTotal ">Total Deduction</td>
-                        <td class="boldTotal text-right">{{payslip.totalDeduction}}</td>
+                         <td class="boldTotal" style="width:50%;">Total Deduction</td>
+                        <td class="boldTotal text-right" style="width:25%;">{{payslip.totalDeduction}}</td>
+              <td class="text-right" style="width:25%;"></td>
+                      
                     </tr>
                       
                   </tbody>
@@ -236,136 +194,79 @@
 
                        <tr>
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td class="boldTotal">Net Pay</td>
-                        <td class="boldTotal text-right">{{payslip.netPay}}</td>
+                        <td class="boldTotal" style="width:50%;">Net Pay</td>
+                        <td class="boldTotal text-right" style="width:25%;">{{payslip.netPay}}</td>
+              <td class="text-right" style="width:25%;"></td>
+
                      </tr>
                   </tbody>
                </table>
-            </div>
-         </div>
-      
-      </div>
-  <br/>
 
-      <div class="row">
-         <div class="col-md-6">
-         
-             <div class="table-responsive">
         
                <table class="table table-bordered-white">
                    
-                 <!--  <thead>
-                     <tr>
-                        <th>#</th>
-                        <th>Code</th>
-                        <th>Descriptions
-                        </th>
-                        <th>Amount</th>
-                     </tr>
-                  </thead> -->
+
                   <tbody>
-                    <tr style="width:100%">
+                    <tr >
                       <td class="boldTotal"> Benefits</td>
                     
                     </tr>
                     <tr ng-repeat="benefit in payslip.benefits.payslipCodeList">
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td >{{benefit.description}}</td>
-                        <td  class="text-right">{{benefit.amount}}</td>
+                        <td class="" style="width:50%;" >{{benefit.description}}</td>
+                        <td  class="text-right" style="width:25%;">{{benefit.amount}}</td>
+              <td class="text-right" style="width:25%;"></td>
+                       
                      </tr>
 
                        <tr ng-repeat="benefit in payslip.benefits.payslipCodeList">
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td class="boldTotal">Total Benefits</td>
-                        <td  class="boldTotal text-right">{{payslip.totalBenefits}}</td>
+                        <td class="boldTotal " style="width:50%;">Total Benefits</td>
+                        <td  class="boldTotal text-right" style="width:25%;">{{payslip.totalBenefits}}</td>
+              <td class="text-right" style="width:25%;"></td>
+                     
                      </tr>
                   </tbody>
                </table>
-            </div>
-         </div>
-      
-      </div>
 
-      <br/>
-
-      <div class="row">
-         <div class="col-md-6">
-         
-             <div class="table-responsive">
         
                <table class="table table-bordered-white">
-                   
-                 <!--  <thead>
-                     <tr>
-                        <th>#</th>
-                        <th>Code</th>
-                        <th>Descriptions
-                        </th>
-                        <th>Amount</th>
-                     </tr>
-                  </thead> -->
+
                   <tbody>
                     <tr style="width:100%">
-                      <td class="boldTotal"> Company Contribution</td>
+                      <td class="boldTotal " style="width:50%;"> Company Contribution</td>
                     
                     </tr>
                     <tr ng-repeat="contributions in payslip.companyContributions
 .payslipCodeList">
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td >{{contributions.description}}</td>
-                        <td  class="text-right">{{contributions.amount}}</td>
+                        <td class="" style="width:50%;">{{contributions.description}}</td>
+                        <td  class="text-right" style="width:25%;">{{contributions.amount}}</td>
+              <td class="text-right" style="width:25%;"></td>
+                     
                      </tr>
 
                   </tbody>
                </table>
-            </div>
-         </div>
-      
-      </div>
 
-      <br/>
+               <div  style="border:1px solid #D3D3D3; width: 100%; "></div>
 
-   <!--    <div class="row">
-         <div class="col-md-12">
-            <p class="lead bb">Rates
-</p>
-             <div class="table-responsive">
-        
                <table class="table table-bordered-white">
-                
-                  <tbody>
-                    <tr ng-repeat="benefit in payslip.benefits.payslipCodeList">
-                        <td style="width:50%">{{benefit.description1}}</td>
-                        <td style="width:50%">{{benefit.amount1}}</td>
-                     </tr>
-                  </tbody>
-               </table>
-            </div>
-         </div>
-      
-      </div> -->
-      <br/>
 
-     <!--   <div class="row">
-         <div class="col-md-12">
-            <p class="lead bb">Messages
-</p>
-             <div class="table-responsive">
-        
-               <table class="table table-bordered-white">
-                   
-        
                   <tbody>
-                    <tr ng-repeat="benefit in payslip.benefits.payslipCodeList">
-                        <td style="width:50%">{{benefit.description1}}</td>
-                        <td style="width:50%">{{benefit.amount1}}</td>
+
+                    <tr >
+                     <!--    <td >{{payslipcode.code}}</td> -->
+                        <td class="" style="width:25%;">Bank : </td>
+                        <td  class="text-right" style="width:25%; text-align: left;">{{payslip.payslipInfo.bankName}}</td>
+              <td class="text-right" style="width:25%;">Account Number</td>
+              <td class="text-right" style="width:25%; text-align: left;">{{payslip.payslipInfo.accountNumber}}</td>                        
                      </tr>
+
                   </tbody>
                </table>
-            </div>
-         </div>
-      
-      </div> -->
+
+ 
 
 <div class="clearfix">
            

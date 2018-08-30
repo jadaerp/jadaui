@@ -140,12 +140,38 @@
    </div>
    </div>
       </div>
-   
+   <div >
+         <table id="dvData" class="table table-bordered-white " >
+            
+            <thead>
+                <tr>
+                  <th >NAMES</th>
+                  <th >Ih NUMBER</th>
+                  
+                  <th >STAFF NUMBER</th>
+                  <th >AMOUNT(No Commas)</th>
+                  
+               </tr>              
+            </thead>
+
+            <tbody >
+               <tr ng-repeat="helb in helbs.employeeHelbReportList">
+                  <td>{{helb.employeeName}}</td>
+                  <td>{{helb.idNumber}}</td>
+                  <td>{{helb.employeeNumber}}</td>
+                  <td>{{helb.amount}}</td>
+
+               </tr>               
+                
+                  
+            </tbody>
+         </table>
+      </div>
       <hr class="hidden-print" />
       <div class="clearfix">
          
          <button class="btn btn-info pull-left mr" type="button" ng-click="printDiv('printable');">Print</button>
-         
+         <a href="#" id ="export" role='button' class="btn btn-info pull-left mr" ng-click="exportToCSV();">Export To CSV</a>
       </div>
  
 </div>

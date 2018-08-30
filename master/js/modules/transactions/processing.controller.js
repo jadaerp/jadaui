@@ -16,11 +16,15 @@
 
         activate();
 
+       
         ////////////////
 
         function activate() {
 
-
+ $http.get(jadaApiUrl+'api/currentperiod').success(function(data){
+  $scope.currentPeriod=data;
+ })
+          
 $scope.groups=PayrollProcessingService.query();
 
 $scope.currentclass='danger';
