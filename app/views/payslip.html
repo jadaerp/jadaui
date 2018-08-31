@@ -10,7 +10,7 @@
   <div class="input-group mb-2 mr-sm-2 mb-sm-0">
     <div class="input-group-addon">Period</div>
   
-         <select name="period" class="slider slider-lg form-control" ng-model="user.period" ng-options="period.id as period.period+' - '+period.monthDescription+' '+peiod.year for period in periods" ng-change="searchpayslipByperiod(user.period)" >
+         <select name="period" class="slider slider-lg form-control" ng-model="user.period" ng-options="period.id as period.period+' - '+period.monthDescription+' '+peiod.year for period in periods"  >
         <option value="" disabled selected>Periods</option>
   </select>
   </div>
@@ -51,7 +51,7 @@
 
       <!-- START widget-->
       <div ng-repeat="payslip in persons| pagination: curPage * pageSize | limitTo: pageSize">
-         <div   id="printable">
+         <div   id="printable" style="background-color:#fff; padding:20px;">
 
         <table style="background-color:#fff; margin:auto;">
 
@@ -63,14 +63,14 @@
             </tr>                
             <tr >
             <td class="text-right" style="width:10%;"></td>  
-              <td class="boldTotal" style="width:40%;">Employee NO :</td>
+              <td class="boldTotal" style="width:40%;">Employee NO </td>
               <td  style="width:50%; text-align: left;" colspan="2">{{payslip.payslipInfo.employeeNumber}}</td>
  
               
             </tr>
             <tr>
                           <td class="text-right" style="width:10%;"></td>  
-                        <td class="boldTotal" style="width:40%;"> Employee Name :</td>
+                        <td class="boldTotal" style="width:40%;"> Employee Name </td>
                       <td class="text-right" style="width:50%; text-align: left;" colspan="2">{{payslip.payslipInfo.employeeName}}</td>
  
                                  
@@ -79,14 +79,14 @@
              
                      <tr >
                    <td class="text-right" style="width:10%;"></td>  
-                        <td class="boldTotal" style="width:40%;"> Pin Number :</td>
+                        <td class="boldTotal" style="width:40%;"> Pin Number </td>
                       <td class="text-right" style="width:50%; text-align: left;" colspan="2">{{payslip.payslipInfo.pinNumber}}</td>
 
                       
             </tr>
             <tr>                  
             <td class="text-right" style="width:10%;"></td>   
-                        <td class="boldTotal" style="width:40%;"> NSSF Number :</td>
+                        <td class="boldTotal" style="width:40%;"> NSSF Number </td>
                       <td class="text-right" style="width:50%; text-align: left;" colspan="2">{{payslip.payslipInfo.nssfNumber}}</td>
  
                    
@@ -95,20 +95,35 @@
  
                      <tr >
                    <td class="text-right" style="width:10%;"></td>  
-                        <td class="boldTotal" style="width:40%;"> NHIF Number :</td>
+                        <td class="boldTotal" style="width:40%;"> NHIF Number </td>
                       <td class="text-right" style="width:50%; text-align: left;" colspan="2">{{payslip.payslipInfo.nhifNumber}}</td>
  
                    
             </tr>
             <tr>         
             <td class="text-right" style="width:10%;"></td>               
-                 <td class="boldTotal " style="width:40%;"> Pay Period:</td>
+                 <td class="boldTotal " style="width:40%;"> Pay Period </td>
                       <td class="text-right" style="width:50%;  text-align: left;" colspan="2">{{payslip.payslipInfo.period.month}} {{payslip.payslipInfo.period.year}}</td>
       
                      
                       
                     </tr>
-                   
+            <tr>         
+            <td class="text-right" style="width:10%;"></td>               
+                 <td class="boldTotal " style="width:40%;"> Bank</td>
+                      <td class="text-right" style="width:50%;  text-align: left;" colspan="2">{{payslip.payslipInfo.bankName}}</td>
+      
+                     
+                      
+                    </tr>
+            <tr>         
+            <td class="text-right" style="width:10%;"></td>               
+                 <td class="boldTotal " style="width:40%;">Account Number</td>
+                      <td class="text-right" style="width:50%;  text-align: left;" colspan="2">{{payslip.payslipInfo.accountNumber}}</td>
+      
+                     
+                      
+                    </tr>                                       
 
                          <tr>
                           <td class="text-right" style="width:10%;"></td>  
@@ -226,19 +241,44 @@
                      </tr>
 
 
-                    <tr >
-                     <!--    <td >{{payslipcode.code}}</td> -->
-                     <td class="text-right" style="width:10%;"></td>  
-                        <td class="" style="width:40%;">Bank : </td>
-                        <td  style="width:40%; text-align: left;">{{payslip.payslipInfo.bankName}}</td>
-                         </tr>
-                         <tr style="padding-bottom: 10px;">
-                          <td class="text-right" style="width:10%;"></td>  
-              <td  style="width:40%;">Account Number</td>
+           <tr>         
+            <td class="text-right" style="width:10%;"></td>               
+                 <td class="boldTotal " style="width:40%;">Approved By</td>
 
-              <td style="width:40%; text-align: left;">{{payslip.payslipInfo.accountNumber}}</td>                        
-                     </tr>
+      
+                     
+                      
+                    </tr>
 
+           <tr>         
+            <td class="text-right" style="width:10%;"></td>               
+                 <td class="boldTotal " style="width:40%;">Name</td>
+                      <td class="text-right" style="width:50%;  text-align: left;" colspan="2">..........................................</td>
+      
+                     
+                      
+                    </tr>
+
+           <tr>         
+            <td class="text-right" style="width:10%;"></td>               
+                 <td class="boldTotal " style="width:40%;">Signature</td>
+                      <td class="text-right" style="width:50%;  text-align: left;" colspan="2">..........................................</td>
+      
+                     
+                      
+                    </tr>
+
+           <tr>         
+            <td class="text-right" style="width:10%;"></td>               
+                 <td class="boldTotal " style="width:40%;">Date</td>
+                      <td class="text-right" style="width:50%;  text-align: left;" colspan="2">..........................................</td>
+      
+                     
+                      
+                    </tr>                                                            
+    
+
+           
                   </tbody>
                </table>
 

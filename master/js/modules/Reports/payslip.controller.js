@@ -20,9 +20,10 @@
 $scope.getp=function(){
 
 return $http.get(jadaApiUrl+'api/currentperiod').then(function(data) {
-            
+          $scope.searchpayslipByperiod(data.data.id);  
          
           return data.data.id;
+          
       
   
             });
@@ -92,9 +93,7 @@ $scope.searchpayslipByperiod=function(id){
                 $scope.persons= data;
 
 
-                 $scope.message="hellow period";
-      console.log('////hapa');
-              console.log($scope.persons);
+
 
          $scope.numberOfPages = function() {
         return Math.ceil($scope.persons.length / $scope.pageSize);
@@ -109,15 +108,15 @@ $scope.searchpayslipByperiod=function(id){
          };
 
 
-$http.get(jadaApiUrl+'api/currentperiod').then(function(data) {
-          $scope.user={};
-          $scope.currentPeriodData=data.data;
-    $scope.currentperiod=$scope.currentPeriodData.period;
-      $scope.user.period=$scope.currentperiod;
+// $http.get(jadaApiUrl+'api/currentperiod').then(function(data) {
+//           $scope.user={};
+//           $scope.currentPeriodData=data.data;
+//     $scope.currentperiod=$scope.currentPeriodData.period;
+//       $scope.user.period=$scope.currentperiod;
      
 
-      $scope.searchpayslipByperiod($scope.currentperiod);
-     });
+//       $scope.searchpayslipByperiod($scope.currentperiod);
+//      });
 
 
 
@@ -138,7 +137,7 @@ $http.get(jadaApiUrl+'api/currentperiod').then(function(data) {
 
 
 $scope.printDiv = function (div) {
-    console.log('hellow print');
+ 
   var docHead = document.head.outerHTML;
   var printContents = document.getElementById(div).outerHTML;
   var winAttr = "location=yes, statusbar=no, menubar=no, titlebar=no, toolbar=no,dependent=no, width=865, height=600, resizable=yes, screenX=200, screenY=200, personalbar=no, scrollbars=yes";
