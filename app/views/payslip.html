@@ -64,15 +64,15 @@
             <tr >
             <td class="text-right" style="width:10%;"></td>  
               <td class="boldTotal" style="width:40%;">Employee NO :</td>
-              <td  style="width:40%; text-align: left;">{{payslip.payslipInfo.employeeNumber}}</td>
-              <td class="text-right" style="width:10%;"></td>  
+              <td  style="width:50%; text-align: left;" colspan="2">{{payslip.payslipInfo.employeeNumber}}</td>
+ 
               
             </tr>
             <tr>
                           <td class="text-right" style="width:10%;"></td>  
                         <td class="boldTotal" style="width:40%;"> Employee Name :</td>
-                      <td class="text-right" style="width:40%; text-align: left;">{{payslip.payslipInfo.employeeName}}</td>
-              <td class="text-right" style="width:10%;"></td>  
+                      <td class="text-right" style="width:50%; text-align: left;" colspan="2">{{payslip.payslipInfo.employeeName}}</td>
+ 
                                  
             </tr>
  
@@ -80,31 +80,31 @@
                      <tr >
                    <td class="text-right" style="width:10%;"></td>  
                         <td class="boldTotal" style="width:40%;"> Pin Number :</td>
-                      <td class="text-right" style="width:40%; text-align: left;">{{payslip.payslipInfo.pinNumber}}</td>
-              <td class="text-right" style="width:10%;"></td>  
+                      <td class="text-right" style="width:50%; text-align: left;" colspan="2">{{payslip.payslipInfo.pinNumber}}</td>
+
                       
             </tr>
             <tr>                  
             <td class="text-right" style="width:10%;"></td>   
                         <td class="boldTotal" style="width:40%;"> NSSF Number :</td>
-                      <td class="text-right" style="width:40%; text-align: left;">{{payslip.payslipInfo.nssfNumber}}</td>
+                      <td class="text-right" style="width:50%; text-align: left;" colspan="2">{{payslip.payslipInfo.nssfNumber}}</td>
  
-              <td class="text-right" style="width:10%;"></td>                      
+                   
                       
                     </tr>
  
                      <tr >
                    <td class="text-right" style="width:10%;"></td>  
                         <td class="boldTotal" style="width:40%;"> NHIF Number :</td>
-                      <td class="text-right" style="width:40%; text-align: left;">{{payslip.payslipInfo.nhifNumber}}</td>
+                      <td class="text-right" style="width:50%; text-align: left;" colspan="2">{{payslip.payslipInfo.nhifNumber}}</td>
  
-              <td class="text-right" style="width:10%;"></td>                      
+                   
             </tr>
             <tr>         
             <td class="text-right" style="width:10%;"></td>               
                  <td class="boldTotal " style="width:40%;"> Pay Period:</td>
-                      <td class="text-right" style="width:40%;  text-align: left;">{{payslip.payslipInfo.period.month}} {{payslip.payslipInfo.period.year}}</td>
-              <td class="text-right" style="width:10%;"></td>  
+                      <td class="text-right" style="width:50%;  text-align: left;" colspan="2">{{payslip.payslipInfo.period.month}} {{payslip.payslipInfo.period.year}}</td>
+      
                      
                       
                     </tr>
@@ -168,7 +168,7 @@
                      </tr>
          <tr>
           <td class="text-right" style="width:10%;"></td>  
-                         <td class="boldTotal" style="width:40%; color:green;">Total Deduction</td>
+                         <td class="boldTotal" style="width:40%;">Total Deduction</td>
                         <td class="boldTotal text-right" style="width:40%;">{{payslip.totalDeduction}}</td>
 
               <td class="text-right" style="width:10%;"></td>                        
@@ -232,7 +232,7 @@
                         <td class="" style="width:40%;">Bank : </td>
                         <td  style="width:40%; text-align: left;">{{payslip.payslipInfo.bankName}}</td>
                          </tr>
-                         <tr>
+                         <tr style="padding-bottom: 10px;">
                           <td class="text-right" style="width:10%;"></td>  
               <td  style="width:40%;">Account Number</td>
 
