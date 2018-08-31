@@ -42,225 +42,201 @@
 
 <br/>
 <br/>
-<div class="row">
+<div>
     
 
 
 
-   <div class="col-lg-12" >
+   <div >
 
       <!-- START widget-->
-      <div class="panel panel-default" ng-repeat="payslip in persons| pagination: curPage * pageSize | limitTo: pageSize">
-         <div   id="printable"  class="panel-body" >
+      <div ng-repeat="payslip in persons| pagination: curPage * pageSize | limitTo: pageSize">
+         <div   id="printable">
 
-        <table class="table table-bordered-white" >
-                            <tbody>
+        <table style="background-color:#fff; margin:auto;">
+
             <tr >
               <td  style="width:100%; text-align: center; font-weight: bold; font-size: 18px;" colspan="4">{{payslip.employer.employerName}}</td>
             </tr>                              
+<tr >
+              <td  style="width:100%; text-align: center; font-weight: bold; font-size: 18px; color:green;" colspan="4">Payslip</td>
+            </tr>                
             <tr >
-              <td class="boldTotal" style="width:25%;">Employee NO :</td>
-              <td  style="width:25%; text-align: left;">{{payslip.payslipInfo.employeeNumber}}</td>
-                        <td class="boldTotal" style="width:25%;"> Employee Name :</td>
-                      <td class="text-right" style="width:25%; text-align: left;">{{payslip.payslipInfo.employeeName}}</td>
+            <td class="text-right" style="width:10%;"></td>  
+              <td class="boldTotal" style="width:40%;">Employee NO :</td>
+              <td  style="width:40%; text-align: left;">{{payslip.payslipInfo.employeeNumber}}</td>
+              <td class="text-right" style="width:10%;"></td>  
+              
+            </tr>
+            <tr>
+                          <td class="text-right" style="width:10%;"></td>  
+                        <td class="boldTotal" style="width:40%;"> Employee Name :</td>
+                      <td class="text-right" style="width:40%; text-align: left;">{{payslip.payslipInfo.employeeName}}</td>
+              <td class="text-right" style="width:10%;"></td>  
+                                 
             </tr>
  
              
                      <tr >
-                   
-                        <td class="boldTotal" style="width:25%;"> Pin Number :</td>
-                      <td class="text-right" style="width:25%; text-align: left;">{{payslip.payslipInfo.pinNumber}}</td>
-                   
-                        <td class="boldTotal" style="width:25%;"> NSSF Number :</td>
-                      <td class="text-right" style="width:25%; text-align: left;">{{payslip.payslipInfo.nssfNumber}}</td>
+                   <td class="text-right" style="width:10%;"></td>  
+                        <td class="boldTotal" style="width:40%;"> Pin Number :</td>
+                      <td class="text-right" style="width:40%; text-align: left;">{{payslip.payslipInfo.pinNumber}}</td>
+              <td class="text-right" style="width:10%;"></td>  
+                      
+            </tr>
+            <tr>                  
+            <td class="text-right" style="width:10%;"></td>   
+                        <td class="boldTotal" style="width:40%;"> NSSF Number :</td>
+                      <td class="text-right" style="width:40%; text-align: left;">{{payslip.payslipInfo.nssfNumber}}</td>
+ 
+              <td class="text-right" style="width:10%;"></td>                      
                       
                     </tr>
  
                      <tr >
-                   
-                        <td class="boldTotal" style="width:25%;"> NHIF Number :</td>
-                      <td class="text-right" style="width:25%; text-align: left;">{{payslip.payslipInfo.nhifNumber}}</td>
-                 <td class="boldTotal " style="width:25%;"> Pay Period:</td>
-                      <td class="text-right" style="width:25%;  text-align: left;">{{payslip.payslipInfo.period.month}} {{payslip.payslipInfo.period.year}}</td>
+                   <td class="text-right" style="width:10%;"></td>  
+                        <td class="boldTotal" style="width:40%;"> NHIF Number :</td>
+                      <td class="text-right" style="width:40%; text-align: left;">{{payslip.payslipInfo.nhifNumber}}</td>
+ 
+              <td class="text-right" style="width:10%;"></td>                      
+            </tr>
+            <tr>         
+            <td class="text-right" style="width:10%;"></td>               
+                 <td class="boldTotal " style="width:40%;"> Pay Period:</td>
+                      <td class="text-right" style="width:40%;  text-align: left;">{{payslip.payslipInfo.period.month}} {{payslip.payslipInfo.period.year}}</td>
+              <td class="text-right" style="width:10%;"></td>  
+                     
                       
                     </tr>
                    
 
-                  </tbody>
-                   
-
-               </table>
-           
-           <div  style="border:1px solid #D3D3D3; width: 100%; "></div>
-
-             
-               <table class="table table-bordered-white" >
-
-                  <tbody>
                          <tr>
-                      <td class="boldTotal " style="width:25%;"> Earnings</td>
-              <td class="text-right" style="width:25%;"></td>
-              <td class="text-right" style="width:25%;"></td>  
-              <td class="text-right" style="width:25%;"></td>
-            </tr>
-          </tbody>
-        </table>
-        
-           
-               <table class="table table-bordered-white" >
+                          <td class="text-right" style="width:10%;"></td>  
+                      <td class="boldTotal " style="width:40%; color:green;"> Earnings</td>
+              <td class="text-right" style="width:40%;"></td>
+              <td class="text-right" style="width:10%;"></td>  
 
-                  <tbody>
+            </tr>
+
 
                      <tr ng-repeat="earning in payslip.earnings.payslipCodeList">
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td class="" style="width:25%;">{{earning.description}}</td>
-                        <td class="text-right" style="width:25%;">{{earning.amount}}</td>
-              <td class="text-right" style="width:25%;"></td>
-              <td class="text-right" style="width:25%;"></td>                        
+                     <td class="text-right" style="width:10%;"></td>  
+                        <td class="" style="width:40%;">{{earning.description}}</td>
+                        <td class="text-right" style="width:40%;">{{earning.amount}}</td>
+
+              <td class="text-right" style="width:10%;"></td>                        
                      </tr>
-                   
-                  </tbody>
-               </table>
-               
-               <table class="table table-bordered-white">
-                   
-                
-                  <tbody>
-                    
+
 
                        <tr>
+                        <td class="text-right" style="width:10%;"></td>  
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td class="boldTotal" style="width:25%;" >Gross Pay</td>
-                        <td class="boldTotal text-right" style="width:25%;" >{{payslip.grossPay}}</td>
-              <td class="text-right" style="width:25%;"></td>
-              <td class="text-right" style="width:25%;"></td>                        
+                        <td class="boldTotal" style="width:40%;" >Gross Pay</td>
+                        <td class="boldTotal text-right" style="width:40%;" >{{payslip.grossPay}}</td>
+    
+              <td class="text-right" style="width:10%;"></td>                        
                      </tr>
-                  </tbody>
-               </table>
-
-         
-
-            
-               <table class="table table-bordered-white">
-            
-
-                  <tbody>
+      
         
                     <tr>
-                      <td class="boldTotal"> Tax Calculations</td>
+                      <td class="text-right" style="width:10%;"></td>  
+                      <td class="boldTotal" style="color:green; "> Tax Calculations</td>
                     
                     </tr>
 
           <tr ng-repeat="tax in payslip.taxCalculations.payslipCodeList">
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td class="" style="width:25%;">{{tax.description}}</td>
-                        <td class="text-right" style="width:25%;">{{tax.amount}}</td>
-              <td class="text-right" style="width:25%;"></td>
-              <td class="text-right" style="width:25%;"></td>                        
+                     <td class="text-right" style="width:10%;"></td>  
+                        <td class="" style="width:40%;">{{tax.description}}</td>
+                        <td class="text-right" style="width:40%;">{{tax.amount}}</td>
+
+              <td class="text-right" style="width:10%;"></td>                        
                      </tr>
-                  </tbody>
-               </table>
 
-       
-
-        
-               <table class="table table-bordered-white">
-
-                  <tbody>
                      <tr style="width:100%">
-                      <td class="boldTotal"> Deductions</td>
+                      <td class="text-right" style="width:10%;"></td>  
+                      <td class="boldTotal" style="color:green;"> Deductions</td>
                     
                     </tr>
                      <tr ng-repeat="deduction in payslip.deductions.payslipCodeList">
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td class="col-lg-3">{{deduction.description}}</td>
-                        <td style="text-align: right;" class="justify_right" style="width:25%;">{{deduction.amount}}</td>
+                     <td class="text-right" style="width:10%;"></td>  
+                        <td  style="width:40%;">{{deduction.description}}</td>
+                        <td style="text-align: right;" class="justify_right" style="width:40%;">{{deduction.amount}}</td>
+                                 <td class="text-right" style="width:10%;"></td>  
                      </tr>
          <tr>
-                         <td class="boldTotal" style="width:25%;">Total Deduction</td>
-                        <td class="boldTotal text-right" style="width:25%;">{{payslip.totalDeduction}}</td>
-              <td class="text-right" style="width:25%;"></td>
-              <td class="text-right" style="width:25%;"></td>                        
+          <td class="text-right" style="width:10%;"></td>  
+                         <td class="boldTotal" style="width:40%; color:green;">Total Deduction</td>
+                        <td class="boldTotal text-right" style="width:40%;">{{payslip.totalDeduction}}</td>
+
+              <td class="text-right" style="width:10%;"></td>                        
                     </tr>
                       
-                  </tbody>
-               </table>
-
-               <table class="table table-bordered-white">
-                   
-                
-                  <tbody>
+  
                     
 
                        <tr>
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td class="boldTotal" style="width:25%;">Net Pay</td>
-                        <td class="boldTotal text-right" style="width:25%;">{{payslip.netPay}}</td>
-              <td class="text-right" style="width:25%;"></td>
-              <td class="text-right" style="width:25%;"></td>                        
+                     <td class="text-right" style="width:10%;"></td>  
+                        <td class="boldTotal" style="width:40%; ">Net Pay</td>
+                        <td class="boldTotal text-right" style="width:40%;">{{payslip.netPay}}</td>
+              <td class="text-right" style="width:10%;"></td>
+                       
                      </tr>
-                  </tbody>
-               </table>
-
-        
-               <table class="table table-bordered-white">
-                   
-
-                  <tbody>
+             
+ 
                     <tr style="width:100%">
-                      <td class="boldTotal"> Benefits</td>
+                      <td class="text-right" style="width:10%;"></td>  
+                      <td class="boldTotal" style="color:green;"> Benefits</td>
                     
                     </tr>
                     <tr ng-repeat="benefit in payslip.benefits.payslipCodeList">
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td class="" style="width:25%;" >{{benefit.description}}</td>
-                        <td  class="text-right" style="width:25%;">{{benefit.amount}}</td>
-              <td class="text-right" style="width:25%;"></td>
-              <td class="text-right" style="width:25%;"></td>                        
+                     <td class="text-right" style="width:10%;"></td>  
+                        <td class="" style="width:40%;" >{{benefit.description}}</td>
+                        <td  class="text-right" style="width:40%;">{{benefit.amount}}</td>
+
+              <td class="text-right" style="width:10%;"></td>                        
                      </tr>
 
                        <tr ng-repeat="benefit in payslip.benefits.payslipCodeList">
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td class="boldTotal " style="width:25%;">Total Benefits</td>
-                        <td  class="boldTotal text-right" style="width:25%;">{{payslip.totalBenefits}}</td>
-              <td class="text-right" style="width:25%;"></td>
-              <td class="text-right" style="width:25%;"></td>                        
+                     <td class="text-right" style="width:10%;"></td>  
+                        <td class="boldTotal " style="width:40%; color:green;">Total Benefits</td>
+                        <td  class="boldTotal text-right" style="width:40%;">{{payslip.totalBenefits}}</td>
+
+              <td class="text-right" style="width:10%;"></td>                        
                      </tr>
-                  </tbody>
-               </table>
 
-        
-               <table class="table table-bordered-white">
-
-                  <tbody>
                     <tr style="width:100%">
-                      <td class="boldTotal " style="width:25%;"> Company Contribution</td>
+                      <td class="text-right" style="width:10%;"></td>  
+                      <td class="boldTotal " style="width:40%; color:green;"> Company Contribution</td>
                     
                     </tr>
                     <tr ng-repeat="contributions in payslip.companyContributions
 .payslipCodeList">
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td class="" style="width:25%;">{{contributions.description}}</td>
-                        <td  class="text-right" style="width:25%;">{{contributions.amount}}</td>
-              <td class="text-right" style="width:25%;"></td>
-              <td class="text-right" style="width:25%;"></td>                        
+                     <td class="text-right" style="width:10%;"></td>  
+                        <td class="" style="width:40%;">{{contributions.description}}</td>
+                        <td  class="text-right" style="width:40%;">{{contributions.amount}}</td>
+
+              <td class="text-right" style="width:10%;"></td>                        
                      </tr>
 
-                  </tbody>
-               </table>
-
-               <div  style="border:1px solid #D3D3D3; width: 100%; "></div>
-
-               <table class="table table-bordered-white">
-
-                  <tbody>
 
                     <tr >
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td class="" style="width:25%;">Bank : </td>
-                        <td  class="text-right" style="width:25%; text-align: left;">{{payslip.payslipInfo.bankName}}</td>
-              <td class="text-right" style="width:25%;">Account Number</td>
-              <td class="text-right" style="width:25%; text-align: left;">{{payslip.payslipInfo.accountNumber}}</td>                        
+                     <td class="text-right" style="width:10%;"></td>  
+                        <td class="" style="width:40%;">Bank : </td>
+                        <td  style="width:40%; text-align: left;">{{payslip.payslipInfo.bankName}}</td>
+                         </tr>
+                         <tr>
+                          <td class="text-right" style="width:10%;"></td>  
+              <td  style="width:40%;">Account Number</td>
+
+              <td style="width:40%; text-align: left;">{{payslip.payslipInfo.accountNumber}}</td>                        
                      </tr>
 
                   </tbody>
