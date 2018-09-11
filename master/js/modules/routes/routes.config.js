@@ -1103,7 +1103,28 @@
                 templateUrl: helper.basepath('casual-transactions.html'),
                  resolve: helper.resolveFor('datatables')
              
-          })              
+          })  
+         .state('app.casual-monthly-summary', {
+              url: '/casual-monthly-summary',
+              title: 'casual Monthly Summary',
+                templateUrl: helper.basepath('casual-monthly-summary.html'),
+                 resolve: helper.resolveFor('datatables')
+             
+          }) 
+         .state('app.casual-paye-report', {
+              url: '/casual-paye-report',
+              title: 'casual Paye Report',
+                templateUrl: helper.basepath('casual-paye-report.html'),
+                 resolve: helper.resolveFor('datatables')
+             
+          }) 
+         .state('app.casual-nssf-report', {
+              url: '/casual-nssf-report',
+              title: 'casual Nssf Report',
+                templateUrl: helper.basepath('casual-nssf-report.html'),
+                 resolve: helper.resolveFor('datatables')
+             
+          })                                           
           .state('app.employee-groups', {
               url: '/Employee-groups',
               title: 'list',
