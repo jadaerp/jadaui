@@ -1,15 +1,43 @@
 
-  <h3>Casual Tansactions
+  <h3>Casuals NSSF Report
+
      
   </h3>
-  <div class="panel panel-default" ng-controller="CasualTransactionController">
-                   <div class="panel-heading"><div class="clearfix">
-     <button class="btn btn-info pull-right mr" type="button" ng-click="open()">Add New</button>
-          
-          
-        </div></div>
-                   <div class="panel-body" >
+  <div class="panel panel-default" ng-controller="CasualMonthlySummaryController">
+    <div class="panel-body">
+           <form class="form-horizontal" name="CasualMonthlySummaryform" novalidate >
+             <div class="row col-lg-12">
+           <div class="form-group col-lg-6">
+            <label class="col-lg-4 control-label">Select Period</label>
+            <div class="col-lg-8">
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="postingtrans.periodId" ng-options="period.id as period.monthDescription+ ' '+ period.year for period in periods" disabled="">
+        <option value="0"  selected="selected">Select Period</option>
+  </select>
+            
+                 <span class="text-danger" ng-if="CasualMonthlySummaryform.CasualMonthlySummaryModel_description.$dirty &amp;&amp; CasualMonthlySummaryform.CasualMonthlySummaryModel_description.$error.pattern">This field is invalid:No special characters allowed </span>
+           </div>
+         </div>
 
+  
+          <div class="form-group col-lg-4">
+              <label class="col-lg-4 control-label"></label>
+              <div class="col-lg-8">
+                 <input type="button" class="btn btn-primary" value="Submit"   />
+             </div>
+           </div>                                          
+            </div>
+     </form>       
+    </div>
+    
+  </div>
+  <div class="panel panel-default" ng-controller="CasualMonthlySummaryController">
+                   <div class="panel-heading"></div>
+                   <div class="panel-body" >
+                   
+                     
+                    
+                    <div class="row col-lg-12">
                     <div class="table-responsive">
                      <table class="table table-striped" datatable="ng">
                        <thead>
@@ -17,28 +45,17 @@
 
                           <th> Casual</th>
                           <th>Casual Name</th>
-                          <th>Category</th>
-                          <th>Date</th>
-                          <th>Clock In</th>
-                          <th>Clock Out</th>
-                          <th>Hours Done</th>
-                          <th>Amount Due</th>
-                          <th>Approved</th>
-                          <th>Paid</th>
+                          <th>Total Payment</th>
+                          <th> Company NSSF@ 5% </th>
                         </tr>
                       </thead>
                       <tbody>
-                       <tr ng-repeat="CasualTransaction in CasualTransactionList">
-                        <td>{{ CasualTransaction.casualNumber}}</td>
-                        <td>{{ CasualTransaction.casualName}}</td>
-                         <td>{{ CasualTransaction.casualCategoryDescription}}</td>
-                         <td>{{ CasualTransaction.date}}</td>
-                         <td>{{ CasualTransaction.clockIn}}</td>
-                         <td>{{ CasualTransaction.clockOut}}</td>
-                         <td>{{ CasualTransaction.hoursDone}}</td>
-                         <td>{{ CasualTransaction.amountDue}}</td>
-                         <td>{{ CasualTransaction.isApproved?'YES':'NO'}}</td>
-                         <td>{{ CasualTransaction.isPaid?'YES':'NO'}}</td>
+                       <tr ng-repeat="CasualMonthlySummary in CasualMonthlySummaryList">
+                        <td>{{ CasualMonthlySummary.casualNumber}}</td>
+                        <td>{{ CasualMonthlySummary.casualName}}</td>
+                         <td>{{ CasualMonthlySummary.casualCategoryDescription}}</td>
+                         <td>{{ CasualMonthlySummary.date}}</td>
+
 
         
                     </tr>
@@ -47,7 +64,9 @@
                 </table>
 
 
-              </div>
+              </div>                      
+                    </div>
+
       
               
 
@@ -56,150 +75,3 @@
           </div>
     
 
-
-        <script type="text/ng-template" id="create.html">
-          <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Pay CasualTransaction</h4></div>
-          <div class="modal-body" ng-controller="CasualTransactionController" ><!-- START panel-->
-
-           <form class="form-horizontal" name="CasualTransactionform" novalidate >
-
-             <div class="form-group">
-              <label class="col-lg-3 control-label">Casual</label>
-              <div class="col-lg-9">
-                            <select  class="form-control" name="casual"  ng-model="CasualTransactionModel.casualId" ng-options="casual.id as casual.employeeNumber+' - '+casual.firstName+' '+casual.middleName+' '+casual.lastName for casual in casualList">
-                     <option value=""  disabled  selected>Select Casual</option>
-                     </select>
-
-             </div>
-           </div>
-           <div class="form-group">
-            <label class="col-lg-3 control-label">Casual Category</label>
-            <div class="col-lg-9">
-                            <select  class="form-control" name="casual-category"  ng-model="CasualTransactionModel.casualCategoryId" ng-change="getHoursDone(CasualTransactionModel)" ng-options="casualCategory.id as casualCategory.code+' - '+casualCategory.description for casualCategory in casualCategoryList">
-                     <option value=""  disabled selected>Select Casual Category</option>
-                     </select>
-             <span class="text-danger" ng-show="CasualTransactionform.CasualTransactionModel_description.$dirty &amp;&amp; CasualTransactionform.CasualTransactionModel_description.$error.required">This field is required
-           </span>
-                 <span class="text-danger" ng-if="CasualTransactionform.CasualTransactionModel_description.$dirty &amp;&amp; CasualTransactionform.CasualTransactionModel_description.$error.pattern">This field is invalid:No special characters allowed </span>
-           </div>
-         </div>
-
-             <div class="form-group">
-              <label class="col-lg-3 control-label">Date</label>
-              <div class="col-lg-9" ng-controller="DatepickerDemoCtrl as dp">
-                    <p class="input-group">
-                        <input class="form-control" type="text" uib-datepicker-popup="{{dp.format}}" ng-model="CasualTransactionModel.date" is-open="dp.opened" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
-                        ng-required="true" close-text="Close" />
-                        <span class="input-group-btn">
-                           <button class="btn btn-default" type="button" ng-click="dp.open($event)">
-                              <em class="fa fa-calendar"></em>
-                           </button>
-                        </span>
-                     </p>
-             </div>
-           </div>
-             <div class="form-group">
-              <label class="col-lg-3 control-label">Clock In</label>
-              <div class="col-lg-9" ng-controller="TimepickerDemoCtrl as tp">
-                  <div uib-timepicker="uib-timepicker" ng-model="CasualTransactionModel.clockIn" ng-change="getHoursDone(CasualTransactionModel)" hour-step="tp.hstep" minute-step="tp.mstep" show-meridian="tp.ismeridian"></div>
-             </div>
-           </div>
-             <div class="form-group">
-              <label class="col-lg-3 control-label">Clock Out</label>
-              <div class="col-lg-9" ng-controller="TimepickerDemoCtrl as tp">
-                  <div uib-timepicker="uib-timepicker" ng-model="CasualTransactionModel.clockOut" ng-change="getHoursDone(CasualTransactionModel)" hour-step="tp.hstep" minute-step="tp.mstep" show-meridian="tp.ismeridian"></div>
-             </div>
-           </div>
-          <div class="form-group">
-              <label class="col-lg-3 control-label">Hours Done</label>
-              <div class="col-lg-9">
-                <label class="col-lg-3 control-label">{{CasualTransactionModel.hoursDone}}</label>
-             </div>
-           </div>
-          <div class="form-group">
-              <label class="col-lg-3 control-label">Amount Due</label>
-              <div class="col-lg-9">
-                <label class="col-lg-3 control-label">{{CasualTransactionModel.amountDue}}</label>
-             </div>
-           </div>           
-          <div class="form-group">
-              <label class="col-lg-3 control-label">Is Approved</label>
-              <div class="col-lg-9">
-                 <input type="checkbox" name="isApproved"  ng-model="CasualTransactionModel.isApproved" ng-required="true"
-          ng-pattern="/^[\w,]+$/"   />
-             </div>
-           </div> 
-          <div class="form-group">
-              <label class="col-lg-3 control-label">Is Paid</label>
-              <div class="col-lg-9">
-                 <input type="checkbox" name="isPaid"  ng-model="CasualTransactionModel.isPaid" ng-required="true"
-          ng-pattern="/^[\w,]+$/"   />
-             </div>
-           </div>                                 
-         <div class="form-group">
-          <div class="col-lg-offset-3 col-lg-9">
-           <button class="btn btn-info btn-sm" ng-disabled="CasualTransactionform.$invalid"  ng-click="submit(CasualTransactionModel)">Save and New</button>
-             <button class="btn btn-info btn-sm" ng-disabled="CasualTransactionform.$invalid"  ng-click="submitAndClose(CasualTransactionModel)">Save and Close</button>
-             <button class="btn btn-warning btn-sm" type="reset">Reset</button>
-         </div>
-       </div>
-
-                        <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
-               <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
-     </form>
-     <!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
-   </script>
-
-
-<script type="text/ng-template" id="edit.html">
-          <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Pay CasualTransaction</h4></div>
-          <div class="modal-body" ng-controller="CasualTransactionController" ><!-- START panel-->
-
-           <form class="form-horizontal" name="CasualTransactionform" novalidate >
-
-             <div class="form-group">
-              <label class="col-lg-3 control-label">Code</label>
-              <div class="col-lg-9">
-               <input class="form-control" type="text" name="CasualTransactionModel_code"  ng-model="CasualTransactionModel.code" ng-required="true"
-          ng-pattern="/^[\w,]+$/"   placeholder=" Enter Code"/>
-
-                 <span class="text-danger" ng-show="CasualTransactionform.CasualTransactionModel_code.$dirty &amp;&amp; CasualTransactionform.CasualTransactionModel_code.$error.required">This field is required</span>
-                 <span class="text-danger" ng-if="CasualTransactionform.CasualTransactionModel_code.$dirty &amp;&amp; CasualTransactionform.CasualTransactionModel_code.$error.pattern">This field is invalid:No special characters allowed </span>
-             </div>
-           </div>
-           <div class="form-group">
-            <label class="col-lg-3 control-label">Descriptions</label>
-            <div class="col-lg-9">
-             <input class="form-control" type="text" name="CasualTransactionModel_description" ng-model="CasualTransactionModel.description" ng-pattern="/^[a-zA-Z0-9\s.\-_']+$/"  ng-required="true"  placeholder="Enter Descriptions"/>
-
-             <span class="text-danger" ng-show="CasualTransactionform.CasualTransactionModel_description.$dirty &amp;&amp; CasualTransactionform.CasualTransactionModel_description.$error.required">This field is required
-           </span>
-                 <span class="text-danger" ng-if="CasualTransactionform.CasualTransactionModel_description.$dirty &amp;&amp; CasualTransactionform.CasualTransactionModel_description.$error.pattern">This field is invalid:No special characters allowed </span>
-           </div>
-         </div>
-
-             <div class="form-group">
-              <label class="col-lg-3 control-label">Rate</label>
-              <div class="col-lg-9">
-               <input class="form-control" type="text" name="CasualTransactionModel_rate"  ng-model="CasualTransactionModel.rate" ng-required="true"
-          ng-pattern="/^[0-9]+\.?[0-9]*$/"   placeholder=" Enter Rate"/>
-
-                 <span class="text-danger" ng-show="CasualTransactionform.CasualTransactionModel_code.$dirty &amp;&amp; CasualTransactionform.CasualTransactionModel_rate.$error.required">This field is required</span>
-                 <span class="text-danger" ng-if="CasualTransactionform.CasualTransactionModel_rate.$dirty &amp;&amp; CasualTransactionform.CasualTransactionModel_rate.$error.pattern">This field is invalid:No special characters allowed </span>
-             </div>
-           </div>
-
-
- <div class="form-group">
-  <div class="col-lg-offset-3 col-lg-9">
-   <button class="btn btn-info btn-sm mr"  ng-disabled="costcentre.$invalid" ng-click="updateCasualTransaction(CasualTransactionModel)">Update</button>
-    <button class="btn btn-warning btn-sm "  type="reset">Reset</button>
-
- </div>
-</div>
-
-                        <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
-               <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
-     </form>
-     <!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
-   </script>

@@ -345,8 +345,8 @@
                    </label>
                   <div class="col-lg-9">
                      <input class="form-control" type="text"  name="physical_address" ng-model="empMaster.physicalAddress" placeholder="Physical Address
-                   " required="" />
-                    <span class="text-danger" ng-show="formStep2.$submitted &amp;&amp; formStep2.physical_address.$invalid">This field is invalid</span>
+                   "  />
+
                   </div>
                  
                </div>
@@ -354,8 +354,8 @@
                   <label class="col-lg-3 "> Postal address
                    </label>
                   <div class="col-lg-9">
-                     <input class="form-control" type="text"  name="postal_address"  ng-model="empMaster.postalAddress" placeholder="Physical Address " required="" />
-                     <span class="text-danger" ng-show="formStep2.$submitted &amp;&amp; formStep2.postal_address.$invalid">This field is invalid</span>
+                     <input class="form-control" type="text"  name="postal_address"  ng-model="empMaster.postalAddress" placeholder="Physical Address "  />
+
 
                   </div>
                   
@@ -365,8 +365,8 @@
                   <label class="col-lg-3"> Postal Code
                    </label>
                   <div class="col-lg-9">
-                     <input class="form-control" type="text"  name="postal_code"  ng-model="empMaster.postalCode"  placeholder="Postal Code" required="" />
-                     <span class="text-danger" ng-show="formStep2.$submitted &amp;&amp; formStep2.postal_code.$invalid">This field is invalid</span>
+                     <input class="form-control" type="text"  name="postal_code"  ng-model="empMaster.postalCode"  placeholder="Postal Code"/>
+  
                   </div>
                </div>
               
@@ -492,7 +492,7 @@
                                  </button>
                               </span>
 
-                                 <span class="text-danger" ng-show="formStep4.$submitted &amp;&amp; formStep4.date_of_employment.$invalid">This field is required  ></span>
+                                 <span class="text-danger" ng-show="formStep4.$submitted &amp;&amp; formStep4.date_of_employment.$invalid">This field is required  </span>
                            </p>
                   </div>
                </div>
@@ -512,8 +512,8 @@
                    </label>
                   <div class="col-lg-9">
                     <p class="input-group"> 
-                              <input class="form-control" type="text" name="date_of_employment" ng-disabled="!employee.isTerminated" uib-datepicker-popup="{{dpick.format}}" ng-model="employee.terminationDate" is-open="dpick.opened" min-date="dpick.minDate" uib-datepicker-options="dpick.dateOptions"
-                              date-disabled="dpick.disabled(date, mode)" close-text="Close" required="" />
+                              <input class="form-control" type="text" name="terminationDate" ng-disabled="!employee.isTerminated" uib-datepicker-popup="{{dpick.format}}" ng-model="employee.terminationDate" is-open="dpick.opened" min-date="dpick.minDate" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close"  />
                               <span class="input-group-btn">
                                  <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
                                     <em class="fa fa-calendar"></em>
@@ -579,7 +579,7 @@
                   <label class="col-lg-3 ">Bank Code
                    </label>
                   <div class="col-lg-9">
-                    <select  class="form-control" name="bank_code" ng-model="empMaster.bankCode" ng-options="bank.bankCode as bank.bankCode for bank in bankcodes | unique:'bankCode' " ng-change="updateBankCodes(empMaster.bankCode)">
+                    <select  class="form-control" name="bank_code" ng-model="empMaster.bankCode" ng-options="bank.bankCode as bank.bankCode+' - '+bank.bankName for bank in bankcodes | unique:'bankCode' " ng-change="updateBankCodes(empMaster.bankCode)">
     <option value="" disabled selected > Select Bank Code</option>
 
  
@@ -598,7 +598,7 @@
                     <!--  <input class="form-control" type="text"  name="branch_name" ng-model="empMaster.bankBranch" placeholder="Bank Branch Name
                    " /> -->
 
-                         <select  class="form-control" name="bankBranch" ng-model="empMaster.bankBranch" ng-options="bank.bankBranchCode as bank.bankBranchCode +' -'+bank.branchName for bank in bankBranchName" ng-change="populateBankName(empMaster.bankBranch)" >
+                         <select  class="form-control" name="bankBranch" ng-model="empMaster.bankBranch" ng-options="bank.bankBranchCode+' - '+bank.bankBranchName as bank.bankBranchCode +' -'+bank.branchName for bank in bankBranchNameList" ng-change="populateBankName(empMaster.bankBranch)" >
     <option value="" disabled selected > Select Bank Branch</option>
 
  
