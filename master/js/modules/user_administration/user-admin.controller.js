@@ -34,6 +34,7 @@ $scope.users=userAdminService.query();
 
 
   $scope.delete= function (user) {
+    console.log(user);
 user.$remove().then(function () {
 $scope.loadUsers();
 });

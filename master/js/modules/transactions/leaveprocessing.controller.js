@@ -51,7 +51,7 @@ $http.get(jadaApiUrl+'api/currentperiod').then(function(data) {
          $scope.leavepost={};
           $scope.currentPeriod=data.data;
       
-      $scope.leavepost.period=$scope.currentPeriod.id;
+      $scope.leavepost.periodId=$scope.currentPeriod.id;
       $scope.period_description=$scope.currentPeriod.month +' '+ $scope.currentPeriod.year; 
       console.log($scope.currentPeriod);
   
@@ -80,7 +80,7 @@ $scope.employeeChange=function(id){
               if(leavepost.employee==null){
                 alert("Select employee first!");
               }else{
-                $http.get(jadaApiUrl+'api/leavebalance/'+leavepost.employee+'/'+leavepost.period+'/'+leavepost.leaveType).then(function(data) {
+                $http.get(jadaApiUrl+'api/leavebalance/'+leavepost.employee+'/'+leavepost.periodId+'/'+leavepost.leaveType).then(function(data) {
                 
 
                 $scope.leavepost.leavebalance=data.data.balance;
