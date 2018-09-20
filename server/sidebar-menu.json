@@ -272,12 +272,12 @@
     "child": "fa fa-chevron-down",
 
     "submenu": [
-      {"text": "Casual Categories", "sref": "app.casual-categories"},
+      {"text": "Categories", "sref": "app.casual-categories"},
       {"text": "Casuals", "sref": "app.casuals"},
-      {"text": "Casual Transactions", "sref": "app.casual-transactions"},
-      {"text": "Casual Monthly Summary", "sref": "app.casual-monthly-summary"},
-      {"text": "Casual Paye Report", "sref": "app.casual-paye-report"},
-      {"text": "Casual Nssf Report", "sref": "app.casual-nssf-report"}
+      {"text": "Transactions", "sref": "app.casual-transactions"},
+      {"text": "Monthly Summary Report", "sref": "app.casual-monthly-summary"},
+      {"text": "Paye Report", "sref": "app.casual-paye-report"},
+      {"text": "Nssf Report", "sref": "app.casual-nssf-report"}
      
         
         

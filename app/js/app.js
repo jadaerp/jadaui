@@ -63,7 +63,25 @@
     'use strict';
 
     angular
+        .module('app.colors', []);
+})();
+(function() {
+    'use strict';
+
+    angular
         .module('app.charts', []);
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.company', [ ]);
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.companydetails', []);
 })();
 (function() {
     'use strict';
@@ -90,24 +108,6 @@
     'use strict';
 
     angular
-        .module('app.company', [ ]);
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('app.companydetails', []);
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('app.colors', []);
-})();
-(function() {
-    'use strict';
-
-    angular
         .module('app.dashboard', []);
 })();
 (function() {
@@ -126,31 +126,7 @@
     'use strict';
 
     angular
-        .module('app.flatdoc', []);
-})();
-(function() {
-    'use strict';
-
-    angular
         .module('app.extras', []);
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('app.icons', []);
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('app.lazyload', []);
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('app.locale', []);
 })();
 (function() {
     'use strict';
@@ -162,13 +138,43 @@
     'use strict';
 
     angular
+        .module('app.icons', []);
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.flatdoc', []);
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.lazyload', []);
+})();
+(function() {
+    'use strict';
+
+    angular
         .module('app.loadingbar', []);
 })();
 (function() {
     'use strict';
 
     angular
+        .module('app.locale', []);
+})();
+(function() {
+    'use strict';
+
+    angular
         .module('app.maintenance', ['ui.bootstrap']);
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.mailbox', []);
 })();
 (function() {
     'use strict';
@@ -186,13 +192,25 @@
     'use strict';
 
     angular
-        .module('app.mailbox', []);
+        .module('app.notify', []);
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.panels', []);
 })();
 (function() {
     'use strict';
 
     angular
         .module('app.pages', []);
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.payrollcodes', [ ]);
 })();
 (function() {
     'use strict';
@@ -206,31 +224,13 @@
     'use strict';
 
     angular
-        .module('app.payrollcodes', [ ]);
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('app.notify', []);
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('app.panels', []);
-})();
-(function() {
-    'use strict';
-
-    angular
         .module('app.reports', []);
 })();
 (function() {
     'use strict';
 
     angular
-        .module('app.sidebar', []);
+        .module('app.settings', []);
 })();
 (function() {
     'use strict';
@@ -244,19 +244,13 @@
     'use strict';
 
     angular
-        .module('app.settings', []);
+        .module('app.sidebar', []);
 })();
 (function() {
     'use strict';
 
     angular
         .module('app.tables', []);
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('app.translate', []);
 })();
 (function() {
     'use strict';
@@ -269,6 +263,12 @@
 
     angular
         .module('app.useradministration', [ ]);
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.translate', []);
 })();
 (function() {
     'use strict';
@@ -996,6 +996,56 @@ angular.module('app.bootstrapui').controller('YearpickerCtrl', ["$scope", functi
     opened: false
   };
 }]);
+(function() {
+    'use strict';
+
+    angular
+        .module('app.colors')
+        .constant('APP_COLORS', {
+          'primary':                '#5d9cec',
+          'success':                '#27c24c',
+          'info':                   '#23b7e5',
+          'warning':                '#ff902b',
+          'danger':                 '#f05050',
+          'inverse':                '#131e26',
+          'green':                  '#37bc9b',
+          'pink':                   '#f532e5',
+          'purple':                 '#7266ba',
+          'dark':                   '#3a3f51',
+          'yellow':                 '#fad732',
+          'gray-darker':            '#232735',
+          'gray-dark':              '#3a3f51',
+          'gray':                   '#dde6e9',
+          'gray-light':             '#e4eaec',
+          'gray-lighter':           '#edf1f2'
+        })
+        ;
+})();
+/**=========================================================
+ * Module: colors.js
+ * Services to retrieve global colors
+ =========================================================*/
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.colors')
+        .service('Colors', Colors);
+
+    Colors.$inject = ['APP_COLORS'];
+    function Colors(APP_COLORS) {
+        this.byName = byName;
+
+        ////////////////
+
+        function byName(name) {
+          return (APP_COLORS[name] || '#fff');
+        }
+    }
+
+})();
+
 /**=========================================================
  * Module: chartist.js
  =========================================================*/
@@ -2658,172 +2708,6 @@ angular.module('app.bootstrapui').controller('YearpickerCtrl', ["$scope", functi
 
 })();
 
-(function() {
-    'use strict';
-
-    angular
-        .module('app.core')
-        .config(coreConfig);
-
-    coreConfig.$inject = ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$animateProvider'];
-    function coreConfig($controllerProvider, $compileProvider, $filterProvider, $provide, $animateProvider){
-
-      var core = angular.module('app.core');
-      // registering components after bootstrap
-      core.controller = $controllerProvider.register;
-      core.directive  = $compileProvider.directive;
-      core.filter     = $filterProvider.register;
-      core.factory    = $provide.factory;
-      core.service    = $provide.service;
-      core.constant   = $provide.constant;
-      core.value      = $provide.value;
-
-
-      // Disables animation on items with class .ng-no-animation
-      $animateProvider.classNameFilter(/^((?!(ng-no-animation)).)*$/);
-
-      // Improve performance disabling debugging features
-      // $compileProvider.debugInfoEnabled(false);
-
-    }
-
-
-})();
-    
-
-
-/**=========================================================
- * Module: constants.js
- * Define constants to inject across the application
- =========================================================*/
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.core')
-        .constant('APP_MEDIAQUERY', {
-          'desktopLG':             1200,
-          'desktop':                992,
-          'tablet':                 768,
-          'mobile':                 480
-        })
-      ;
-
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('app.core')
-        .run(appRun);
-
-    appRun.$inject = ['$http','$rootScope', '$state', '$stateParams', '$window', '$templateCache', 'Colors','$location', '$localStorage'];
-
-    function appRun($http,$rootScope, $state, $stateParams, $window, $templateCache, Colors , $location, $localStorage) {
-
-if ($localStorage.currentUser) {
-            $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
-        }
-
-
-        // Hook into ocLazyLoad to setup AngularGrid before inject into the app
-        // See "Creating the AngularJS Module" at
-        // https://www.ag-grid.com/best-angularjs-data-grid/index.php
-        var offevent = $rootScope.$on('ocLazyLoad.fileLoaded', function(e, file) {
-            if (file.indexOf('ag-grid.js') > -1) {
-                agGrid.initialiseAgGridWithAngular1(angular);
-                offevent();
-            }
-        });
-
-        // Set reference to access them from any scope
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-        $rootScope.$storage = $window.localStorage;
-
-        // Uncomment this to disable template cache
-        /*$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-            if (typeof(toState) !== 'undefined'){
-              $templateCache.remove(toState.templateUrl);
-            }
-        });*/
-   $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            var publicPages = ['/page/login'];
-            var restrictedPage = publicPages.indexOf($location.path()) === -1;
-            if (restrictedPage && !$localStorage.currentUser) {
-                $location.path('/page/login');
-                 
-            }
-        });
-
-
-
-// routerApp.run(function ($rootScope, $state, AuthService) {
-//     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-//         if (toState.authenticate && !AuthService.IsAuthenticated()) {
-//             alert("Not Authenticated");
-//             // User isn’t authenticated
-//             $state.transitionTo("login");
-//             event.preventDefault(); 
-//         }
-//     });
-// });
-
-        // Allows to use branding color with interpolation
-        // {{ colorByName('primary') }}
-        $rootScope.colorByName = Colors.byName;
-
-        // cancel click event easily
-        $rootScope.cancel = function($event) {
-            $event.stopPropagation();
-        };
-
-        // Hooks Example
-        // -----------------------------------
-
-        // Hook not found
-        $rootScope.$on('$stateNotFound',
-            function(event, unfoundState /*, fromState, fromParams*/ ) {
-                console.log(unfoundState.to); // "lazy.state"
-                console.log(unfoundState.toParams); // {a:1, b:2}
-                console.log(unfoundState.options); // {inherit:false} + default options
-            });
-        // Hook error
-        $rootScope.$on('$stateChangeError',
-            function(event, toState, toParams, fromState, fromParams, error) {
-                console.log(error);
-            });
-        // Hook success
-        $rootScope.$on('$stateChangeSuccess',
-            function( /*event, toState, toParams, fromState, fromParams*/ ) {
-                // display new view from top
-                $window.scrollTo(0, 0);
-                // Save the route title
-                $rootScope.currTitle = $state.current.title;
-            });
-
-        // Load a title dynamically
-        $rootScope.currTitle = $state.current.title;
-        $rootScope.pageTitle = function() {
-            var title = $rootScope.app.name + ' - ' + ($rootScope.currTitle || $rootScope.app.description);
-            document.title = title;
-            return title;
-        };
-
-    }
-
-})();
-
-
-
-// routerApp.service('AuthService', function () {
-//     this._isAuthenticated = false;
-//     this._isAccessToken = '';
-//     this.IsAuthenticated = function () {
-//         return this._isAuthenticated;
-//     }
-// });
 
 
 
@@ -6606,52 +6490,168 @@ for(var r=0;r<accountRights.length;r++){
     'use strict';
 
     angular
-        .module('app.colors')
-        .constant('APP_COLORS', {
-          'primary':                '#5d9cec',
-          'success':                '#27c24c',
-          'info':                   '#23b7e5',
-          'warning':                '#ff902b',
-          'danger':                 '#f05050',
-          'inverse':                '#131e26',
-          'green':                  '#37bc9b',
-          'pink':                   '#f532e5',
-          'purple':                 '#7266ba',
-          'dark':                   '#3a3f51',
-          'yellow':                 '#fad732',
-          'gray-darker':            '#232735',
-          'gray-dark':              '#3a3f51',
-          'gray':                   '#dde6e9',
-          'gray-light':             '#e4eaec',
-          'gray-lighter':           '#edf1f2'
-        })
-        ;
+        .module('app.core')
+        .config(coreConfig);
+
+    coreConfig.$inject = ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$animateProvider'];
+    function coreConfig($controllerProvider, $compileProvider, $filterProvider, $provide, $animateProvider){
+
+      var core = angular.module('app.core');
+      // registering components after bootstrap
+      core.controller = $controllerProvider.register;
+      core.directive  = $compileProvider.directive;
+      core.filter     = $filterProvider.register;
+      core.factory    = $provide.factory;
+      core.service    = $provide.service;
+      core.constant   = $provide.constant;
+      core.value      = $provide.value;
+
+
+      // Disables animation on items with class .ng-no-animation
+      $animateProvider.classNameFilter(/^((?!(ng-no-animation)).)*$/);
+
+      // Improve performance disabling debugging features
+      // $compileProvider.debugInfoEnabled(false);
+
+    }
+
+
 })();
+    
+
+
 /**=========================================================
- * Module: colors.js
- * Services to retrieve global colors
+ * Module: constants.js
+ * Define constants to inject across the application
  =========================================================*/
 
 (function() {
     'use strict';
 
     angular
-        .module('app.colors')
-        .service('Colors', Colors);
+        .module('app.core')
+        .constant('APP_MEDIAQUERY', {
+          'desktopLG':             1200,
+          'desktop':                992,
+          'tablet':                 768,
+          'mobile':                 480
+        })
+      ;
 
-    Colors.$inject = ['APP_COLORS'];
-    function Colors(APP_COLORS) {
-        this.byName = byName;
+})();
+(function() {
+    'use strict';
 
-        ////////////////
+    angular
+        .module('app.core')
+        .run(appRun);
 
-        function byName(name) {
-          return (APP_COLORS[name] || '#fff');
+    appRun.$inject = ['$http','$rootScope', '$state', '$stateParams', '$window', '$templateCache', 'Colors','$location', '$localStorage'];
+
+    function appRun($http,$rootScope, $state, $stateParams, $window, $templateCache, Colors , $location, $localStorage) {
+
+if ($localStorage.currentUser) {
+            $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
         }
+
+
+        // Hook into ocLazyLoad to setup AngularGrid before inject into the app
+        // See "Creating the AngularJS Module" at
+        // https://www.ag-grid.com/best-angularjs-data-grid/index.php
+        var offevent = $rootScope.$on('ocLazyLoad.fileLoaded', function(e, file) {
+            if (file.indexOf('ag-grid.js') > -1) {
+                agGrid.initialiseAgGridWithAngular1(angular);
+                offevent();
+            }
+        });
+
+        // Set reference to access them from any scope
+        $rootScope.$state = $state;
+        $rootScope.$stateParams = $stateParams;
+        $rootScope.$storage = $window.localStorage;
+
+        // Uncomment this to disable template cache
+        /*$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+            if (typeof(toState) !== 'undefined'){
+              $templateCache.remove(toState.templateUrl);
+            }
+        });*/
+   $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            var publicPages = ['/page/login'];
+            var restrictedPage = publicPages.indexOf($location.path()) === -1;
+            if (restrictedPage && !$localStorage.currentUser) {
+                $location.path('/page/login');
+                 
+            }
+        });
+
+
+
+// routerApp.run(function ($rootScope, $state, AuthService) {
+//     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+//         if (toState.authenticate && !AuthService.IsAuthenticated()) {
+//             alert("Not Authenticated");
+//             // User isn’t authenticated
+//             $state.transitionTo("login");
+//             event.preventDefault(); 
+//         }
+//     });
+// });
+
+        // Allows to use branding color with interpolation
+        // {{ colorByName('primary') }}
+        $rootScope.colorByName = Colors.byName;
+
+        // cancel click event easily
+        $rootScope.cancel = function($event) {
+            $event.stopPropagation();
+        };
+
+        // Hooks Example
+        // -----------------------------------
+
+        // Hook not found
+        $rootScope.$on('$stateNotFound',
+            function(event, unfoundState /*, fromState, fromParams*/ ) {
+                console.log(unfoundState.to); // "lazy.state"
+                console.log(unfoundState.toParams); // {a:1, b:2}
+                console.log(unfoundState.options); // {inherit:false} + default options
+            });
+        // Hook error
+        $rootScope.$on('$stateChangeError',
+            function(event, toState, toParams, fromState, fromParams, error) {
+                console.log(error);
+            });
+        // Hook success
+        $rootScope.$on('$stateChangeSuccess',
+            function( /*event, toState, toParams, fromState, fromParams*/ ) {
+                // display new view from top
+                $window.scrollTo(0, 0);
+                // Save the route title
+                $rootScope.currTitle = $state.current.title;
+            });
+
+        // Load a title dynamically
+        $rootScope.currTitle = $state.current.title;
+        $rootScope.pageTitle = function() {
+            var title = $rootScope.app.name + ' - ' + ($rootScope.currTitle || $rootScope.app.description);
+            document.title = title;
+            return title;
+        };
+
     }
 
 })();
 
+
+
+// routerApp.service('AuthService', function () {
+//     this._isAuthenticated = false;
+//     this._isAccessToken = '';
+//     this.IsAuthenticated = function () {
+//         return this._isAuthenticated;
+//     }
+// });
 (function() {
     'use strict';
 
@@ -8102,6 +8102,193 @@ for(var r=0;r<accountRights.length;r++){
 
   angular
   .module('app.bootstrapui')
+  .controller('CasualApprovalController', CasualApprovalController);
+
+  CasualApprovalController.$inject = ['jadaApiUrl','$http','$scope','$rootScope', '$uibModal','CasualApprovalService','$stateParams', '$state'];
+  function CasualApprovalController(jadaApiUrl,$http,$scope, $rootScope, $uibModal, CasualApprovalService,$stateParams, $state) {
+    var vm = this;
+
+    activate();
+
+        ////////////////
+
+        function activate() {
+
+          $scope.CasualApprovalModel={};
+         $scope.CasualApprovalModel.clockIn = new Date();          
+         $scope.CasualApprovalModel.clockOut = new Date(); 
+         $scope.CasualApprovalModel.date = new Date(); 
+         var SuccessMsg;
+         var errorMsg;
+
+
+         $scope.CasualApprovalList=CasualApprovalService.query();
+
+       $http.get(jadaApiUrl+'api/casuals/').success(function(data) {
+                 $scope.casualList = data;
+           
+
+              });
+
+       $http.get(jadaApiUrl+'api/casualcategory/').success(function(data) {
+                 $scope.casualCategoryList = data;
+           
+
+              });       
+
+         $scope.loadCasualApprovals = function () {
+           $scope.CasualApprovalList=CasualApprovalService.query();
+
+         }
+
+         $rootScope.$on("CallLoadCasualApprovals", function(){
+           $scope.loadCasualApprovals();
+         });
+
+
+
+
+
+         $scope.delete= function (CasualApproval) {
+          $scope.CasualApproval=new CasualApprovalService(CasualApproval);
+          CasualApproval.$remove().then(function () {
+            $scope.loadCasualApprovals();
+          });
+        }
+
+        $scope.getHoursDone=function (CasualApprovalModel){
+          
+          var startDate = new Date(CasualApprovalModel.clockIn);
+          // Do your operations
+          var endDate   = new Date(CasualApprovalModel.clockOut);
+          var hoursDone = (endDate.getTime() - startDate.getTime())/1000/3600;  
+          CasualApprovalModel.hoursDone=hoursDone;
+              if(CasualApprovalModel.casualCategoryId==null || CasualApprovalModel.casualCategoryId==""){
+                alert("Casual Category not selected");
+                return;
+              } 
+              if(CasualApprovalModel.hoursDone==null || CasualApprovalModel.hoursDone<=0 ){
+                alert("Hours Done must be greater than zero");
+                return;
+              }                 
+       $http.get(jadaApiUrl+'api/casualcategory/'+CasualApprovalModel.casualCategoryId).success(function(data) {
+                 var casualCategory=data;
+                 CasualApprovalModel.amountDue=casualCategory.rate*CasualApprovalModel.hoursDone;
+                 
+           
+
+              });           
+        }
+        
+        $scope.open = function (size) {
+
+          var modalInstance = $uibModal.open({
+            templateUrl: 'create.html',
+            controller: ModalOpenCostInstanceCtrl,
+            size: size
+          });
+
+
+
+
+
+          var state = $('#modal-state');
+          modalInstance.result.then(function () {
+            state.text('Modal dismissed with OK status');
+          }, function () {
+            state.text('Modal dismissed with Cancel status');
+          });
+        };
+
+
+
+
+
+
+        $scope.show = function(CasualApproval) {
+      // $scope.x = x;
+      var modalInstance = $uibModal.open({
+        templateUrl: 'casual-approval-modal.html',
+        controller: ModalInstanceCtrl,
+        resolve: {
+         CasualApproval: function () {
+           return CasualApproval;
+         }
+       }        
+        // scope : $scope
+      });
+    };
+
+
+
+
+    
+
+
+          // Please note that $uibModalInstance represents a modal window (instance) dependency.
+          // It is not the same as the $uibModal service used above.
+         ModalInstanceCtrl.$inject = ['$scope', '$rootScope','$uibModalInstance','CasualApprovalService','CasualApproval'];
+         function ModalInstanceCtrl($scope, $rootScope,$uibModalInstance, CasualApprovalService,CasualApproval) {
+          $scope.CasualApprovalModel=CasualApproval;
+          $scope.ok = function () {
+            $uibModalInstance.close('closed');
+          };
+
+          $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+          };
+          
+          
+
+          $scope.approveCasual=function(CasualApprovalModel){
+           
+          CasualApprovalModel.$update().then(function(){
+             $rootScope.$emit("CallLoadCasualApprovals", {});
+             $scope.CasualApprovalModel=CasualApprovalModel;
+           });
+         };
+
+       }
+     }
+   }
+
+ })();
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.maintenance')
+        .factory('CasualApprovalService', CasualApprovalService);
+
+    CasualApprovalService.$inject = ['$resource','jadaApiUrl'];
+    function CasualApprovalService($resource,jadaApiUrl) {
+     var data=$resource(jadaApiUrl+'api/pendingapprovalcasualtransaction/:id', {id: '@id'},
+    { 'get':    {method:'GET', isArray:false},
+  'save':   {method:'POST'},
+  'query':  {method:'GET', isArray:true},
+  'update': { method:'PUT' },
+  'remove': {method:'DELETE'},
+  'delete': {method:'DELETE'} 
+});
+     return data
+          
+       
+    }
+
+})();
+
+
+
+/**=========================================================
+ * Module: modals.js
+ * Provides a simple way to implement bootstrap modals from templates
+ =========================================================*/
+ (function() {
+  'use strict';
+
+  angular
+  .module('app.bootstrapui')
   .controller('CasualCategoryController', CasualCategoryController);
 
   CasualCategoryController.$inject = ['$scope','$rootScope', '$uibModal','CasualCategoryService','$stateParams', '$state'];
@@ -8342,32 +8529,51 @@ for(var r=0;r<accountRights.length;r++){
 
         function activate() {
 
-          $scope.CasualMonthlySummaryModel={};
-         $scope.CasualMonthlySummaryModel.clockIn = new Date();          
-         $scope.CasualMonthlySummaryModel.clockOut = new Date(); 
-         $scope.CasualMonthlySummaryModel.date = new Date(); 
+
          var SuccessMsg;
          var errorMsg;
 
+         CasualMonthlySummaryService.get()
+       .$promise
+       .then(function(data){
+                 $scope.CasualMonthlySummaryList = data.casualMonthlySummaryList;
+                 console.log($scope.CasualMonthlySummaryList);
 
-         $scope.CasualMonthlySummaryList=CasualMonthlySummaryService.query();
+       });
+          
+          // $scope.CasualMonthlySummaryList=$scope.list.casualMonthlySummaryList;
+          //  console.log($scope.list.data);
+       // $http.get(jadaApiUrl+'api/casualmonthlysummary/').success(function(data) {
+       //           $scope.CasualMonthlySummaryList = data;
+                
 
-       $http.get(jadaApiUrl+'api/casuals/').success(function(data) {
-                 $scope.casualList = data;
-           
+       //        });
+         
+         
 
-              });
+    
 
        $http.get(jadaApiUrl+'api/casualcategory/').success(function(data) {
                  $scope.casualCategoryList = data;
            
 
-              });       
+              });     
+        $scope.CasualMonthlySummaryModel=new CasualMonthlySummaryService();
+       $scope.processReport=function(CasualMonthlySummaryModel){
+     
+        
+        CasualMonthlySummaryModel.$save().then(function(data){
+    
+    console.log(data); 
+                 $scope.CasualMonthlySummaryList = data.casualMonthlySummaryList;
+                 console.log($scope.CasualMonthlySummaryList);          
+        });
+       }
 
-         $scope.loadCasualMonthlySummarys = function () {
-           $scope.CasualMonthlySummaryList=CasualMonthlySummaryService.query();
+         // $scope.loadCasualMonthlySummarys = function () {
+         //   $scope.CasualMonthlySummaryList=CasualMonthlySummaryService.query();
 
-         }
+         // }
 
 
 
@@ -8387,6 +8593,410 @@ for(var r=0;r<accountRights.length;r++){
     CasualMonthlySummaryService.$inject = ['$resource','jadaApiUrl'];
     function CasualMonthlySummaryService($resource,jadaApiUrl) {
      var data=$resource(jadaApiUrl+'api/casualMonthlySummary/:id', {id: '@id'},
+    { 'get':    {method:'GET', isArray:false},
+  'save':   {method:'POST'},
+  'query':  {method:'GET', isArray:true},
+  'update': { method:'PUT' },
+  'remove': {method:'DELETE'},
+  'delete': {method:'DELETE'} 
+});
+     return data
+          
+       
+    }
+
+})();
+
+
+
+/**=========================================================
+ * Module: modals.js
+ * Provides a simple way to implement bootstrap modals from templates
+ =========================================================*/
+ (function() {
+  'use strict';
+
+  angular
+  .module('app.bootstrapui')
+  .controller('CasualNSSFReportController', CasualNSSFReportController);
+
+  CasualNSSFReportController.$inject = ['jadaApiUrl','$http','$scope','$rootScope', '$uibModal','CasualNSSFReportService','$stateParams', '$state'];
+  function CasualNSSFReportController(jadaApiUrl,$http,$scope, $rootScope, $uibModal, CasualNSSFReportService,$stateParams, $state) {
+    var vm = this;
+
+    activate();
+
+        ////////////////
+
+        function activate() {
+
+
+         var SuccessMsg;
+         var errorMsg;
+
+         $scope.CasualNSSFReportModel=new CasualNSSFReportService();
+       $scope.processReport=function(CasualNSSFReportModel){
+     
+        // var casualNSSFReportService=new CasualNSSFReportService(CasualNSSFReportModel);
+        $scope.CasualNSSFReportModel.$save().then(function(data){
+    
+    // console.log(data); 
+                 $scope.CasualNSSFReportList = data.casualNSSFList;
+                 console.log($scope.CasualNSSFReportList);          
+        });
+       }
+
+         // $scope.loadCasualNSSFReports = function () {
+         //   $scope.CasualNSSFReportList=CasualNSSFReportService.query();
+
+         // }
+
+
+
+
+     }
+   }
+
+ })();
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.maintenance')
+        .factory('CasualNSSFReportService', CasualNSSFReportService);
+
+    CasualNSSFReportService.$inject = ['$resource','jadaApiUrl'];
+    function CasualNSSFReportService($resource,jadaApiUrl) {
+     var data=$resource(jadaApiUrl+'api/casualNSSFReport/:id', {id: '@id'},
+    { 'get':    {method:'GET', isArray:false},
+  'save':   {method:'POST'},
+  'query':  {method:'GET', isArray:true},
+  'update': { method:'PUT' },
+  'remove': {method:'DELETE'},
+  'delete': {method:'DELETE'} 
+});
+     return data
+          
+       
+    }
+
+})();
+
+
+
+/**=========================================================
+ * Module: modals.js
+ * Provides a simple way to implement bootstrap modals from templates
+ =========================================================*/
+ (function() {
+  'use strict';
+
+  angular
+  .module('app.bootstrapui')
+  .controller('CasualPayeReportController', CasualPayeReportController);
+
+  CasualPayeReportController.$inject = ['jadaApiUrl','$http','$scope','$rootScope', '$uibModal','CasualPayeReportService','$stateParams', '$state'];
+  function CasualPayeReportController(jadaApiUrl,$http,$scope, $rootScope, $uibModal, CasualPayeReportService,$stateParams, $state) {
+    var vm = this;
+
+    activate();
+
+        ////////////////
+
+        function activate() {
+
+
+         var SuccessMsg;
+         var errorMsg;
+
+         $scope.CasualPayeReportModel=new CasualPayeReportService();
+       $scope.processReport=function(CasualPayeReportModel){
+     
+        
+        $scope.CasualPayeReportModel.$save().then(function(data){
+    
+    console.log(data); 
+                 $scope.CasualPayeReportList = data.casualPayeList;
+                 console.log($scope.CasualPayeReportList);          
+        });
+       }
+
+         // $scope.loadCasualPayeReports = function () {
+         //   $scope.CasualPayeReportList=CasualPayeReportService.query();
+
+         // }
+
+
+
+
+     }
+   }
+
+ })();
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.maintenance')
+        .factory('CasualPayeReportService', CasualPayeReportService);
+
+    CasualPayeReportService.$inject = ['$resource','jadaApiUrl'];
+    function CasualPayeReportService($resource,jadaApiUrl) {
+     var data=$resource(jadaApiUrl+'api/casualPayeReport/:id', {id: '@id'},
+    { 'get':    {method:'GET', isArray:false},
+  'save':   {method:'POST'},
+  'query':  {method:'GET', isArray:true},
+  'update': { method:'PUT' },
+  'remove': {method:'DELETE'},
+  'delete': {method:'DELETE'} 
+});
+     return data
+          
+       
+    }
+
+})();
+
+
+
+/**=========================================================
+ * Module: modals.js
+ * Provides a simple way to implement bootstrap modals from templates
+ =========================================================*/
+ (function() {
+  'use strict';
+
+  angular
+  .module('app.bootstrapui')
+  .controller('CasualPaymentController', CasualPaymentController);
+
+  CasualPaymentController.$inject = ['jadaApiUrl','$http','$scope','$rootScope', '$uibModal','CasualPaymentService','$stateParams', '$state'];
+  function CasualPaymentController(jadaApiUrl,$http,$scope, $rootScope, $uibModal, CasualPaymentService,$stateParams, $state) {
+    var vm = this;
+
+    activate();
+
+        ////////////////
+
+        function activate() {
+
+          $scope.CasualPaymentModel={};
+         $scope.CasualPaymentModel.clockIn = new Date();          
+         $scope.CasualPaymentModel.clockOut = new Date(); 
+         $scope.CasualPaymentModel.date = new Date(); 
+         var SuccessMsg;
+         var errorMsg;
+
+
+         $scope.CasualPaymentList=CasualPaymentService.query();
+
+       $http.get(jadaApiUrl+'api/casuals/').success(function(data) {
+                 $scope.casualList = data;
+           
+
+              });
+
+       $http.get(jadaApiUrl+'api/casualcategory/').success(function(data) {
+                 $scope.casualCategoryList = data;
+           
+
+              });       
+
+         $scope.loadCasualPayments = function () {
+           $scope.CasualPaymentList=CasualPaymentService.query();
+
+         }
+
+         $rootScope.$on("CallLoadCasualPayments", function(){
+           $scope.loadCasualPayments();
+         });
+
+
+
+
+
+         $scope.delete= function (CasualPayment) {
+          $scope.CasualPayment=new CasualPaymentService(CasualPayment);
+          CasualPayment.$remove().then(function () {
+            $scope.loadCasualPayments();
+          });
+        }
+
+        $scope.getHoursDone=function (CasualPaymentModel){
+          
+          var startDate = new Date(CasualPaymentModel.clockIn);
+          // Do your operations
+          var endDate   = new Date(CasualPaymentModel.clockOut);
+          var hoursDone = (endDate.getTime() - startDate.getTime())/1000/3600;  
+          CasualPaymentModel.hoursDone=hoursDone;
+              if(CasualPaymentModel.casualCategoryId==null || CasualPaymentModel.casualCategoryId==""){
+                alert("Casual Category not selected");
+                return;
+              } 
+              if(CasualPaymentModel.hoursDone==null || CasualPaymentModel.hoursDone<=0 ){
+                alert("Hours Done must be greater than zero");
+                return;
+              }                 
+       $http.get(jadaApiUrl+'api/casualcategory/'+CasualPaymentModel.casualCategoryId).success(function(data) {
+                 var casualCategory=data;
+                 CasualPaymentModel.amountDue=casualCategory.rate*CasualPaymentModel.hoursDone;
+                 
+           
+
+              });           
+        }
+        
+        $scope.open = function (size) {
+
+          var modalInstance = $uibModal.open({
+            templateUrl: 'create.html',
+            controller: ModalOpenCostInstanceCtrl,
+            size: size
+          });
+
+
+
+
+
+          var state = $('#modal-state');
+          modalInstance.result.then(function () {
+            state.text('Modal dismissed with OK status');
+          }, function () {
+            state.text('Modal dismissed with Cancel status');
+          });
+        };
+
+
+
+
+
+        $scope.show = function(CasualPayment) {
+      // $scope.x = x;
+      var modalInstance = $uibModal.open({
+        templateUrl: 'casual-payment-modal.html',
+        controller: ModalInstanceCtrl,
+        resolve: {
+         CasualPayment: function () {
+           return CasualPayment;
+         }
+       }        
+        // scope : $scope
+      });
+    };
+
+        $scope.showSlip = function(CasualPayment) {
+      // $scope.x = x;
+      var modalInstance = $uibModal.open({
+        templateUrl: 'casual-slip.html',
+        controller: SlipModalInstanceCtrl,
+        resolve: {
+         CasualPayment: function () {
+           return CasualPayment;
+         }
+       }        
+        // scope : $scope
+      });
+    };    
+
+
+
+
+    
+
+
+          // Please note that $uibModalInstance represents a modal window (instance) dependency.
+          // It is not the same as the $uibModal service used above.
+         ModalInstanceCtrl.$inject = ['$scope', '$rootScope','$uibModalInstance','CasualPaymentService','CasualPayment'];
+         function ModalInstanceCtrl($scope, $rootScope,$uibModalInstance, CasualPaymentService,CasualPayment) {
+          $scope.CasualPaymentModel=CasualPayment;
+          $scope.ok = function () {
+            $uibModalInstance.close('closed');
+          };
+
+          $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+          };
+          
+          
+
+          $scope.payCasual=function(CasualPaymentModel){
+           
+          CasualPaymentModel.$update().then(function(){
+             $rootScope.$emit("CallLoadCasualPayments", {});
+             $scope.CasualPaymentModel=CasualPaymentModel;
+             $scope.ok();
+           });
+         };
+
+       }
+
+         SlipModalInstanceCtrl.$inject = ['$scope', '$rootScope','$uibModalInstance','CasualPaymentService','CasualPayment'];
+         function SlipModalInstanceCtrl($scope, $rootScope,$uibModalInstance, CasualPaymentService,CasualPayment) {
+          $scope.CasualPaymentModel=CasualPayment;
+          var today = new Date();
+          var dd = today.getDate();
+          var mm = today.getMonth()+1; //January is 0!
+
+          var yyyy = today.getFullYear();
+          if(dd<10){
+              dd='0'+dd;
+          } 
+          if(mm<10){
+              mm='0'+mm;
+          } 
+          $scope.date = dd+'/'+mm+'/'+yyyy;
+
+          $scope.ok = function () {
+            $uibModalInstance.close('closed');
+          };
+
+          $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+          };
+          
+          
+
+          $scope.approveCasual=function(CasualPaymentModel){
+           
+          CasualPaymentModel.$update().then(function(){
+             $rootScope.$emit("CallLoadCasualPayments", {});
+             $scope.CasualPaymentModel=CasualPaymentModel;
+           });
+         };
+
+        $scope.printSlip = function (div) {
+         
+          var docHead = document.head.outerHTML;
+          var printContents = document.getElementById(div).outerHTML;
+          var winAttr = "location=yes, statusbar=no, menubar=no, titlebar=no, toolbar=no,dependent=no, width=865, height=600, resizable=yes, screenX=200, screenY=200, personalbar=no, scrollbars=yes";
+
+          var newWin = window.open("", "_blank", winAttr);
+          var writeDoc = newWin.document;
+          writeDoc.open();
+          writeDoc.write('<!doctype html><html>' + docHead + '<body onLoad="window.print()">' + printContents + '</body></html>');
+          writeDoc.close();
+          newWin.focus();
+          $scope.ok();
+        }           
+
+       }       
+     }
+   }
+
+ })();
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.maintenance')
+        .factory('CasualPaymentService', CasualPaymentService);
+
+    CasualPaymentService.$inject = ['$resource','jadaApiUrl'];
+    function CasualPaymentService($resource,jadaApiUrl) {
+     var data=$resource(jadaApiUrl+'api/pendingPaymentcasualtransaction/:id', {id: '@id'},
     { 'get':    {method:'GET', isArray:false},
   'save':   {method:'POST'},
   'query':  {method:'GET', isArray:true},
@@ -8628,7 +9238,7 @@ for(var r=0;r<accountRights.length;r++){
     
   }
 
-  $http.get(jadaApiUrl+'api/Casual').success(function(data) {
+  $http.get(jadaApiUrl+'api/Casuals').success(function(data) {
                 $scope.points = data;
 
               });
@@ -9769,67 +10379,6 @@ for(var r=0;r<accountRights.length;r++){
 
 
 /**=========================================================
- * Module: flatdoc.js
- * Creates the flatdoc markup and initializes the plugin
- =========================================================*/
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.flatdoc')
-        .directive('flatdoc', flatdoc);
-
-    function flatdoc() {
-
-        var directive = {
-            template: '<div role="flatdoc"><div role="flatdoc-menu"></div><div role="flatdoc-content"></div></div>',
-            link: link,
-            restrict: 'EA'
-        };
-        return directive;
-
-        function link(scope, element, attrs) {
-
-            Flatdoc.run({
-                fetcher: Flatdoc.file(attrs.src)
-            });
-
-            var $root = $('html, body');
-            var menuLinks;
-
-            var $doc = $(document).on('flatdoc:ready', function() {
-
-                var docMenu = $('[role="flatdoc-menu"]');
-
-                menuLinks = docMenu.find('a').on('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    var $this = $(this);
-
-                    docMenu.find('a.active').removeClass('active');
-                    $this.addClass('active');
-
-                    $root.animate({
-                        scrollTop: $(this.getAttribute('href')).offset().top - ($('.topnavbar').height() + 10)
-                    }, 800);
-                });
-
-            });
-
-            // dettach all events
-            scope.$on('$destroy', function() {
-                menuLinks && menuLinks.off();
-                $doc.off('flatdoc:ready');
-            });
-
-        }
-    }
-
-})();
-
-/**=========================================================
  * Module: article.js
  =========================================================*/
 (function() {
@@ -10371,265 +10920,6 @@ for(var r=0;r<accountRights.length;r++){
                 weight: 5
               }
           ];
-        }
-    }
-})();
-
-/**=========================================================
- * Module: skycons.js
- * Include any animated weather icon from Skycons
- =========================================================*/
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.icons')
-        .directive('skycon', skycon);
-
-    function skycon () {
-
-        var directive = {
-            link: link,
-            restrict: 'A'
-        };
-        return directive;
-
-        function link(scope, element, attrs) {
-          var skycons = new Skycons({'color': (attrs.color || 'white')});
-
-          element.html('<canvas width="' + attrs.width + '" height="' + attrs.height + '"></canvas>');
-
-          skycons.add(element.children()[0], attrs.skycon);
-
-          skycons.play();
-        }
-    }
-
-})();
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.lazyload')
-        .config(lazyloadConfig);
-
-    lazyloadConfig.$inject = ['$ocLazyLoadProvider', 'APP_REQUIRES'];
-    function lazyloadConfig($ocLazyLoadProvider, APP_REQUIRES){
-
-      // Lazy Load modules configuration
-      $ocLazyLoadProvider.config({
-        debug: false,
-        events: true,
-        modules: APP_REQUIRES.modules
-      });
-
-    }
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('app.lazyload')
-        .constant('APP_REQUIRES', {
-          // jQuery based and standalone scripts
-          scripts: {
-            'whirl':              ['vendor/whirl/dist/whirl.css'],
-            'classyloader':       ['vendor/jquery-classyloader/js/jquery.classyloader.min.js'],
-            'animo':              ['vendor/animo.js/animo.js'],
-            'fastclick':          ['vendor/fastclick/lib/fastclick.js'],
-            'modernizr':          ['vendor/modernizr/modernizr.custom.js'],
-            'animate':            ['vendor/animate.css/animate.min.css'],
-            'skycons':            ['vendor/skycons/skycons.js'],
-            'icons':              ['vendor/fontawesome/css/font-awesome.min.css',
-                                   'vendor/simple-line-icons/css/simple-line-icons.css'],
-            'weather-icons':      ['vendor/weather-icons/css/weather-icons.min.css',
-                                   'vendor/weather-icons/css/weather-icons-wind.min.css'],
-            'sparklines':         ['vendor/sparkline/index.js'],
-            'wysiwyg':            ['vendor/bootstrap-wysiwyg/bootstrap-wysiwyg.js',
-                                   'vendor/bootstrap-wysiwyg/external/jquery.hotkeys.js'],
-            'slimscroll':         ['vendor/slimScroll/jquery.slimscroll.min.js'],
-            'screenfull':         ['vendor/screenfull/dist/screenfull.js'],
-            'vector-map':         ['vendor/ika.jvectormap/jquery-jvectormap-1.2.2.min.js',
-                                   'vendor/ika.jvectormap/jquery-jvectormap-1.2.2.css'],
-            'vector-map-maps':    ['vendor/ika.jvectormap/jquery-jvectormap-world-mill-en.js',
-                                   'vendor/ika.jvectormap/jquery-jvectormap-us-mill-en.js'],
-            'loadGoogleMapsJS':   ['vendor/load-google-maps/load-google-maps.js'],
-            'flot-chart':         ['vendor/Flot/jquery.flot.js'],
-            'flot-chart-plugins': ['vendor/flot.tooltip/js/jquery.flot.tooltip.min.js',
-                                   'vendor/Flot/jquery.flot.resize.js',
-                                   'vendor/Flot/jquery.flot.pie.js',
-                                   'vendor/Flot/jquery.flot.time.js',
-                                   'vendor/Flot/jquery.flot.categories.js',
-                                   'vendor/flot-spline/js/jquery.flot.spline.min.js'],
-            'moment' :            ['vendor/moment/min/moment-with-locales.min.js'],
-            'inputmask':          ['vendor/jquery.inputmask/dist/jquery.inputmask.bundle.js'],
-            'flatdoc':            ['vendor/flatdoc/flatdoc.js'],
-            'codemirror':         ['vendor/codemirror/lib/codemirror.js',
-                                   'vendor/codemirror/lib/codemirror.css'],
-            // modes for common web files
-            'codemirror-modes-web': ['vendor/codemirror/mode/javascript/javascript.js',
-                                     'vendor/codemirror/mode/xml/xml.js',
-                                     'vendor/codemirror/mode/htmlmixed/htmlmixed.js',
-                                     'vendor/codemirror/mode/css/css.js'],
-            'taginput' :          ['vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.css',
-                                   'vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js'],
-            'filestyle':          ['vendor/bootstrap-filestyle/src/bootstrap-filestyle.js'],
-            'chartjs':            ['vendor/Chart.js/Chart.js'],
-            'morris':             ['vendor/raphael/raphael.js',
-                                   'vendor/morris.js/morris.js',
-                                   'vendor/morris.js/morris.css'],
-            'loaders.css':          ['vendor/loaders.css/loaders.css'],
-            'spinkit':              ['vendor/spinkit/css/spinkit.css']
-          },
-          // Angular based script (use the right module name)
-          modules: [
-            {name: 'toaster',                   files: ['vendor/angularjs-toaster/toaster.js',
-                                                       'vendor/angularjs-toaster/toaster.css']},
-            {name: 'localytics.directives',     files: ['vendor/chosen_v1.2.0/chosen.jquery.min.js',
-                                                       'vendor/chosen_v1.2.0/chosen.min.css',
-                                                       'vendor/angular-chosen-localytics/dist/angular-chosen.js'],
-                                                        serie: true},
-            {name: 'ngDialog',                  files: ['vendor/ngDialog/js/ngDialog.min.js',
-                                                       'vendor/ngDialog/css/ngDialog.min.css',
-                                                       'vendor/ngDialog/css/ngDialog-theme-default.min.css'] },
-            {name: 'ngWig',                     files: ['vendor/ngWig/dist/ng-wig.min.js'] },
-            {name: 'ngTable',                   files: ['vendor/ng-table/dist/ng-table.min.js',
-                                                        'vendor/ng-table/dist/ng-table.min.css']},
-            {name: 'ngTableExport',             files: ['vendor/ng-table-export/ng-table-export.js']},
-            {name: 'angularBootstrapNavTree',   files: ['vendor/angular-bootstrap-nav-tree/dist/abn_tree_directive.js',
-                                                        'vendor/angular-bootstrap-nav-tree/dist/abn_tree.css']},
-            {name: 'xeditable',                 files: ['vendor/angular-xeditable/dist/js/xeditable.js',
-                                                        'vendor/angular-xeditable/dist/css/xeditable.css']},
-            {name: 'angularFileUpload',         files: ['vendor/angular-file-upload/dist/angular-file-upload.js']},
-            {name: 'ngImgCrop',                 files: ['vendor/ng-img-crop/compile/unminified/ng-img-crop.js',
-                                                        'vendor/ng-img-crop/compile/unminified/ng-img-crop.css']},
-            {name: 'ui.select',                 files: ['vendor/angular-ui-select/dist/select.js',
-                                                        'vendor/angular-ui-select/dist/select.css']},
-            {name: 'ui.codemirror',             files: ['vendor/angular-ui-codemirror/ui-codemirror.js']},
-            {name: 'angular-carousel',          files: ['vendor/angular-carousel/dist/angular-carousel.css',
-                                                        'vendor/angular-carousel/dist/angular-carousel.js']},
-            {name: 'infinite-scroll',           files: ['vendor/ngInfiniteScroll/build/ng-infinite-scroll.js']},
-            {name: 'ui.bootstrap-slider',       files: ['vendor/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js',
-                                                        'vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css',
-                                                        'vendor/angular-bootstrap-slider/slider.js'], serie: true},
-            {name: 'ui.grid',                   files: ['vendor/angular-ui-grid/ui-grid.min.css',
-                                                        'vendor/angular-ui-grid/ui-grid.min.js']},
-            {name: 'summernote',                files: ['vendor/bootstrap/js/modal.js',
-                                                        'vendor/bootstrap/js/dropdown.js',
-                                                        'vendor/bootstrap/js/tooltip.js',
-                                                        'vendor/summernote/dist/summernote.css',
-                                                        'vendor/summernote/dist/summernote.js',
-                                                        'vendor/angular-summernote/dist/angular-summernote.js'
-                                                        ], serie: true},
-            {name: 'angular-rickshaw',          files: ['vendor/d3/d3.min.js',
-                                                        'vendor/rickshaw/rickshaw.js',
-                                                        'vendor/rickshaw/rickshaw.min.css',
-                                                        'vendor/angular-rickshaw/rickshaw.js'], serie: true},
-            {name: 'angular-chartist',          files: ['vendor/chartist/dist/chartist.min.css',
-                                                        'vendor/chartist/dist/chartist.js',
-                                                        'vendor/angular-chartist.js/dist/angular-chartist.js'], serie: true},
-            {name: 'ui.map',                    files: ['vendor/angular-ui-map/ui-map.js']},
-            {name: 'datatables',                files: ['vendor/datatables/media/css/jquery.dataTables.css',
-                                                        'vendor/datatables/media/js/jquery.dataTables.js',
-                                                        'vendor/datatables-buttons/js/dataTables.buttons.js',
-                                                        //'vendor/datatables-buttons/css/buttons.bootstrap.css',
-                                                        'vendor/datatables-buttons/js/buttons.bootstrap.js',
-                                                        'vendor/datatables-buttons/js/buttons.colVis.js',
-                                                        'vendor/datatables-buttons/js/buttons.flash.js',
-                                                        'vendor/datatables-buttons/js/buttons.html5.js',
-                                                        'vendor/datatables-buttons/js/buttons.print.js',
-                                                        'vendor/angular-datatables/dist/angular-datatables.js',
-                                                        'vendor/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js'],
-                                                        serie: true},
-            {name: 'angular-jqcloud',           files: ['vendor/jqcloud2/dist/jqcloud.css',
-                                                        'vendor/jqcloud2/dist/jqcloud.js',
-                                                        'vendor/angular-jqcloud/angular-jqcloud.js']},
-            {name: 'angularGrid',               files: ['vendor/ag-grid/dist/styles/ag-grid.css',
-                                                        'vendor/ag-grid/dist/ag-grid.js',
-                                                        'vendor/ag-grid/dist/styles/theme-dark.css',
-                                                        'vendor/ag-grid/dist/styles/theme-fresh.css']},
-            {name: 'ng-nestable',               files: ['vendor/ng-nestable/src/angular-nestable.js',
-                                                        'vendor/nestable/jquery.nestable.js']},
-            {name: 'akoenig.deckgrid',          files: ['vendor/angular-deckgrid/angular-deckgrid.js']},
-            {name: 'oitozero.ngSweetAlert',     files: ['vendor/sweetalert/dist/sweetalert.css',
-                                                        'vendor/sweetalert/dist/sweetalert.min.js',
-                                                        'vendor/angular-sweetalert/SweetAlert.js']},
-            {name: 'bm.bsTour',                 files: ['vendor/bootstrap-tour/build/css/bootstrap-tour.css',
-                                                        'vendor/bootstrap-tour/build/js/bootstrap-tour-standalone.js',
-                                                        'vendor/angular-bootstrap-tour/dist/angular-bootstrap-tour.js'], serie: true},
-            {name: 'ui.knob',                   files: ['vendor/angular-knob/src/angular-knob.js',
-                                                        'vendor/jquery-knob/dist/jquery.knob.min.js']},
-            {name: 'easypiechart',              files: ['vendor/jquery.easy-pie-chart/dist/angular.easypiechart.min.js']},
-            {name: 'colorpicker.module',        files: ['vendor/angular-bootstrap-colorpicker/css/colorpicker.css',
-                                                        'vendor/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js']},
-            {name: 'ui.sortable',               files: ['vendor/jquery-ui/jquery-ui.min.js',
-                                                        'vendor/angular-ui-sortable/sortable.js'], serie: true},
-            {name: 'ui.calendar',               files: ['vendor/jquery-ui/jquery-ui.min.js',
-                                                        'vendor/jqueryui-touch-punch/jquery.ui.touch-punch.min.js',
-                                                        'vendor/fullcalendar/dist/fullcalendar.min.js',
-                                                        'vendor/fullcalendar/dist/gcal.js',
-                                                        'vendor/fullcalendar/dist/fullcalendar.css',
-                                                        'vendor/angular-ui-calendar/src/calendar.js'], serie: true},
-         {name: 'angular-file-saver',          files: ['vendor/angular-file-saver/dist/angular-file-saver.bundle.js']},
-          {name: 'checklist-model',          files: ['vendor/checklist-model/checklist-model.js']},
-
-          ]
-        })
-        ;
-
-})();
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.locale')
-        .config(localeConfig)
-        ;
-    localeConfig.$inject = ['tmhDynamicLocaleProvider'];
-    function localeConfig(tmhDynamicLocaleProvider){
-  
-      tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
-      // tmhDynamicLocaleProvider.useStorage('$cookieStore');
-
-    }
-})();
-/**=========================================================
- * Module: locale.js
- * Demo for locale settings
- =========================================================*/
-(function() {
-    'use strict';
-
-    angular
-        .module('app.locale')
-        .controller('LocalizationController', LocalizationController);
-
-    LocalizationController.$inject = ['$rootScope', 'tmhDynamicLocale', '$locale'];
-    function LocalizationController($rootScope, tmhDynamicLocale, $locale) {
-
-        activate();
-
-        ////////////////
-
-        function activate() {
-          $rootScope.availableLocales = {
-            'en': 'English',
-            'es': 'Spanish',
-            'de': 'German',
-            'fr': 'French',
-            'ar': 'Arabic',
-            'ja': 'Japanese',
-            'ko': 'Korean',
-            'zh': 'Chinese'};
-          
-          $rootScope.model = {selectedLocale: 'en'};
-          
-          $rootScope.$locale = $locale;
-          
-          $rootScope.changeLocale = tmhDynamicLocale.set;
         }
     }
 })();
@@ -11633,6 +11923,273 @@ for(var r=0;r<accountRights.length;r++){
     }
 })();
 
+/**=========================================================
+ * Module: skycons.js
+ * Include any animated weather icon from Skycons
+ =========================================================*/
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.icons')
+        .directive('skycon', skycon);
+
+    function skycon () {
+
+        var directive = {
+            link: link,
+            restrict: 'A'
+        };
+        return directive;
+
+        function link(scope, element, attrs) {
+          var skycons = new Skycons({'color': (attrs.color || 'white')});
+
+          element.html('<canvas width="' + attrs.width + '" height="' + attrs.height + '"></canvas>');
+
+          skycons.add(element.children()[0], attrs.skycon);
+
+          skycons.play();
+        }
+    }
+
+})();
+
+/**=========================================================
+ * Module: flatdoc.js
+ * Creates the flatdoc markup and initializes the plugin
+ =========================================================*/
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.flatdoc')
+        .directive('flatdoc', flatdoc);
+
+    function flatdoc() {
+
+        var directive = {
+            template: '<div role="flatdoc"><div role="flatdoc-menu"></div><div role="flatdoc-content"></div></div>',
+            link: link,
+            restrict: 'EA'
+        };
+        return directive;
+
+        function link(scope, element, attrs) {
+
+            Flatdoc.run({
+                fetcher: Flatdoc.file(attrs.src)
+            });
+
+            var $root = $('html, body');
+            var menuLinks;
+
+            var $doc = $(document).on('flatdoc:ready', function() {
+
+                var docMenu = $('[role="flatdoc-menu"]');
+
+                menuLinks = docMenu.find('a').on('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    var $this = $(this);
+
+                    docMenu.find('a.active').removeClass('active');
+                    $this.addClass('active');
+
+                    $root.animate({
+                        scrollTop: $(this.getAttribute('href')).offset().top - ($('.topnavbar').height() + 10)
+                    }, 800);
+                });
+
+            });
+
+            // dettach all events
+            scope.$on('$destroy', function() {
+                menuLinks && menuLinks.off();
+                $doc.off('flatdoc:ready');
+            });
+
+        }
+    }
+
+})();
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.lazyload')
+        .config(lazyloadConfig);
+
+    lazyloadConfig.$inject = ['$ocLazyLoadProvider', 'APP_REQUIRES'];
+    function lazyloadConfig($ocLazyLoadProvider, APP_REQUIRES){
+
+      // Lazy Load modules configuration
+      $ocLazyLoadProvider.config({
+        debug: false,
+        events: true,
+        modules: APP_REQUIRES.modules
+      });
+
+    }
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.lazyload')
+        .constant('APP_REQUIRES', {
+          // jQuery based and standalone scripts
+          scripts: {
+            'whirl':              ['vendor/whirl/dist/whirl.css'],
+            'classyloader':       ['vendor/jquery-classyloader/js/jquery.classyloader.min.js'],
+            'animo':              ['vendor/animo.js/animo.js'],
+            'fastclick':          ['vendor/fastclick/lib/fastclick.js'],
+            'modernizr':          ['vendor/modernizr/modernizr.custom.js'],
+            'animate':            ['vendor/animate.css/animate.min.css'],
+            'skycons':            ['vendor/skycons/skycons.js'],
+            'icons':              ['vendor/fontawesome/css/font-awesome.min.css',
+                                   'vendor/simple-line-icons/css/simple-line-icons.css'],
+            'weather-icons':      ['vendor/weather-icons/css/weather-icons.min.css',
+                                   'vendor/weather-icons/css/weather-icons-wind.min.css'],
+            'sparklines':         ['vendor/sparkline/index.js'],
+            'wysiwyg':            ['vendor/bootstrap-wysiwyg/bootstrap-wysiwyg.js',
+                                   'vendor/bootstrap-wysiwyg/external/jquery.hotkeys.js'],
+            'slimscroll':         ['vendor/slimScroll/jquery.slimscroll.min.js'],
+            'screenfull':         ['vendor/screenfull/dist/screenfull.js'],
+            'vector-map':         ['vendor/ika.jvectormap/jquery-jvectormap-1.2.2.min.js',
+                                   'vendor/ika.jvectormap/jquery-jvectormap-1.2.2.css'],
+            'vector-map-maps':    ['vendor/ika.jvectormap/jquery-jvectormap-world-mill-en.js',
+                                   'vendor/ika.jvectormap/jquery-jvectormap-us-mill-en.js'],
+            'loadGoogleMapsJS':   ['vendor/load-google-maps/load-google-maps.js'],
+            'flot-chart':         ['vendor/Flot/jquery.flot.js'],
+            'flot-chart-plugins': ['vendor/flot.tooltip/js/jquery.flot.tooltip.min.js',
+                                   'vendor/Flot/jquery.flot.resize.js',
+                                   'vendor/Flot/jquery.flot.pie.js',
+                                   'vendor/Flot/jquery.flot.time.js',
+                                   'vendor/Flot/jquery.flot.categories.js',
+                                   'vendor/flot-spline/js/jquery.flot.spline.min.js'],
+            'moment' :            ['vendor/moment/min/moment-with-locales.min.js'],
+            'inputmask':          ['vendor/jquery.inputmask/dist/jquery.inputmask.bundle.js'],
+            'flatdoc':            ['vendor/flatdoc/flatdoc.js'],
+            'codemirror':         ['vendor/codemirror/lib/codemirror.js',
+                                   'vendor/codemirror/lib/codemirror.css'],
+            // modes for common web files
+            'codemirror-modes-web': ['vendor/codemirror/mode/javascript/javascript.js',
+                                     'vendor/codemirror/mode/xml/xml.js',
+                                     'vendor/codemirror/mode/htmlmixed/htmlmixed.js',
+                                     'vendor/codemirror/mode/css/css.js'],
+            'taginput' :          ['vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.css',
+                                   'vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js'],
+            'filestyle':          ['vendor/bootstrap-filestyle/src/bootstrap-filestyle.js'],
+            'chartjs':            ['vendor/Chart.js/Chart.js'],
+            'morris':             ['vendor/raphael/raphael.js',
+                                   'vendor/morris.js/morris.js',
+                                   'vendor/morris.js/morris.css'],
+            'loaders.css':          ['vendor/loaders.css/loaders.css'],
+            'spinkit':              ['vendor/spinkit/css/spinkit.css']
+          },
+          // Angular based script (use the right module name)
+          modules: [
+            {name: 'toaster',                   files: ['vendor/angularjs-toaster/toaster.js',
+                                                       'vendor/angularjs-toaster/toaster.css']},
+            {name: 'localytics.directives',     files: ['vendor/chosen_v1.2.0/chosen.jquery.min.js',
+                                                       'vendor/chosen_v1.2.0/chosen.min.css',
+                                                       'vendor/angular-chosen-localytics/dist/angular-chosen.js'],
+                                                        serie: true},
+            {name: 'ngDialog',                  files: ['vendor/ngDialog/js/ngDialog.min.js',
+                                                       'vendor/ngDialog/css/ngDialog.min.css',
+                                                       'vendor/ngDialog/css/ngDialog-theme-default.min.css'] },
+            {name: 'ngWig',                     files: ['vendor/ngWig/dist/ng-wig.min.js'] },
+            {name: 'ngTable',                   files: ['vendor/ng-table/dist/ng-table.min.js',
+                                                        'vendor/ng-table/dist/ng-table.min.css']},
+            {name: 'ngTableExport',             files: ['vendor/ng-table-export/ng-table-export.js']},
+            {name: 'angularBootstrapNavTree',   files: ['vendor/angular-bootstrap-nav-tree/dist/abn_tree_directive.js',
+                                                        'vendor/angular-bootstrap-nav-tree/dist/abn_tree.css']},
+            {name: 'xeditable',                 files: ['vendor/angular-xeditable/dist/js/xeditable.js',
+                                                        'vendor/angular-xeditable/dist/css/xeditable.css']},
+            {name: 'angularFileUpload',         files: ['vendor/angular-file-upload/dist/angular-file-upload.js']},
+            {name: 'ngImgCrop',                 files: ['vendor/ng-img-crop/compile/unminified/ng-img-crop.js',
+                                                        'vendor/ng-img-crop/compile/unminified/ng-img-crop.css']},
+            {name: 'ui.select',                 files: ['vendor/angular-ui-select/dist/select.js',
+                                                        'vendor/angular-ui-select/dist/select.css']},
+            {name: 'ui.codemirror',             files: ['vendor/angular-ui-codemirror/ui-codemirror.js']},
+            {name: 'angular-carousel',          files: ['vendor/angular-carousel/dist/angular-carousel.css',
+                                                        'vendor/angular-carousel/dist/angular-carousel.js']},
+            {name: 'infinite-scroll',           files: ['vendor/ngInfiniteScroll/build/ng-infinite-scroll.js']},
+            {name: 'ui.bootstrap-slider',       files: ['vendor/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js',
+                                                        'vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css',
+                                                        'vendor/angular-bootstrap-slider/slider.js'], serie: true},
+            {name: 'ui.grid',                   files: ['vendor/angular-ui-grid/ui-grid.min.css',
+                                                        'vendor/angular-ui-grid/ui-grid.min.js']},
+            {name: 'summernote',                files: ['vendor/bootstrap/js/modal.js',
+                                                        'vendor/bootstrap/js/dropdown.js',
+                                                        'vendor/bootstrap/js/tooltip.js',
+                                                        'vendor/summernote/dist/summernote.css',
+                                                        'vendor/summernote/dist/summernote.js',
+                                                        'vendor/angular-summernote/dist/angular-summernote.js'
+                                                        ], serie: true},
+            {name: 'angular-rickshaw',          files: ['vendor/d3/d3.min.js',
+                                                        'vendor/rickshaw/rickshaw.js',
+                                                        'vendor/rickshaw/rickshaw.min.css',
+                                                        'vendor/angular-rickshaw/rickshaw.js'], serie: true},
+            {name: 'angular-chartist',          files: ['vendor/chartist/dist/chartist.min.css',
+                                                        'vendor/chartist/dist/chartist.js',
+                                                        'vendor/angular-chartist.js/dist/angular-chartist.js'], serie: true},
+            {name: 'ui.map',                    files: ['vendor/angular-ui-map/ui-map.js']},
+            {name: 'datatables',                files: ['vendor/datatables/media/css/jquery.dataTables.css',
+                                                        'vendor/datatables/media/js/jquery.dataTables.js',
+                                                        'vendor/datatables-buttons/js/dataTables.buttons.js',
+                                                        //'vendor/datatables-buttons/css/buttons.bootstrap.css',
+                                                        'vendor/datatables-buttons/js/buttons.bootstrap.js',
+                                                        'vendor/datatables-buttons/js/buttons.colVis.js',
+                                                        'vendor/datatables-buttons/js/buttons.flash.js',
+                                                        'vendor/datatables-buttons/js/buttons.html5.js',
+                                                        'vendor/datatables-buttons/js/buttons.print.js',
+                                                        'vendor/angular-datatables/dist/angular-datatables.js',
+                                                        'vendor/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js'],
+                                                        serie: true},
+            {name: 'angular-jqcloud',           files: ['vendor/jqcloud2/dist/jqcloud.css',
+                                                        'vendor/jqcloud2/dist/jqcloud.js',
+                                                        'vendor/angular-jqcloud/angular-jqcloud.js']},
+            {name: 'angularGrid',               files: ['vendor/ag-grid/dist/styles/ag-grid.css',
+                                                        'vendor/ag-grid/dist/ag-grid.js',
+                                                        'vendor/ag-grid/dist/styles/theme-dark.css',
+                                                        'vendor/ag-grid/dist/styles/theme-fresh.css']},
+            {name: 'ng-nestable',               files: ['vendor/ng-nestable/src/angular-nestable.js',
+                                                        'vendor/nestable/jquery.nestable.js']},
+            {name: 'akoenig.deckgrid',          files: ['vendor/angular-deckgrid/angular-deckgrid.js']},
+            {name: 'oitozero.ngSweetAlert',     files: ['vendor/sweetalert/dist/sweetalert.css',
+                                                        'vendor/sweetalert/dist/sweetalert.min.js',
+                                                        'vendor/angular-sweetalert/SweetAlert.js']},
+            {name: 'bm.bsTour',                 files: ['vendor/bootstrap-tour/build/css/bootstrap-tour.css',
+                                                        'vendor/bootstrap-tour/build/js/bootstrap-tour-standalone.js',
+                                                        'vendor/angular-bootstrap-tour/dist/angular-bootstrap-tour.js'], serie: true},
+            {name: 'ui.knob',                   files: ['vendor/angular-knob/src/angular-knob.js',
+                                                        'vendor/jquery-knob/dist/jquery.knob.min.js']},
+            {name: 'easypiechart',              files: ['vendor/jquery.easy-pie-chart/dist/angular.easypiechart.min.js']},
+            {name: 'colorpicker.module',        files: ['vendor/angular-bootstrap-colorpicker/css/colorpicker.css',
+                                                        'vendor/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js']},
+            {name: 'ui.sortable',               files: ['vendor/jquery-ui/jquery-ui.min.js',
+                                                        'vendor/angular-ui-sortable/sortable.js'], serie: true},
+            {name: 'ui.calendar',               files: ['vendor/jquery-ui/jquery-ui.min.js',
+                                                        'vendor/jqueryui-touch-punch/jquery.ui.touch-punch.min.js',
+                                                        'vendor/fullcalendar/dist/fullcalendar.min.js',
+                                                        'vendor/fullcalendar/dist/gcal.js',
+                                                        'vendor/fullcalendar/dist/fullcalendar.css',
+                                                        'vendor/angular-ui-calendar/src/calendar.js'], serie: true},
+         {name: 'angular-file-saver',          files: ['vendor/angular-file-saver/dist/angular-file-saver.bundle.js']},
+          {name: 'checklist-model',          files: ['vendor/checklist-model/checklist-model.js']},
+
+          ]
+        })
+        ;
+
+})();
+
 (function() {
     'use strict';
 
@@ -11677,6 +12234,59 @@ for(var r=0;r<accountRights.length;r++){
     }
 
 })();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.locale')
+        .config(localeConfig)
+        ;
+    localeConfig.$inject = ['tmhDynamicLocaleProvider'];
+    function localeConfig(tmhDynamicLocaleProvider){
+  
+      tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
+      // tmhDynamicLocaleProvider.useStorage('$cookieStore');
+
+    }
+})();
+/**=========================================================
+ * Module: locale.js
+ * Demo for locale settings
+ =========================================================*/
+(function() {
+    'use strict';
+
+    angular
+        .module('app.locale')
+        .controller('LocalizationController', LocalizationController);
+
+    LocalizationController.$inject = ['$rootScope', 'tmhDynamicLocale', '$locale'];
+    function LocalizationController($rootScope, tmhDynamicLocale, $locale) {
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+          $rootScope.availableLocales = {
+            'en': 'English',
+            'es': 'Spanish',
+            'de': 'German',
+            'fr': 'French',
+            'ar': 'Arabic',
+            'ja': 'Japanese',
+            'ko': 'Korean',
+            'zh': 'Chinese'};
+          
+          $rootScope.model = {selectedLocale: 'en'};
+          
+          $rootScope.$locale = $locale;
+          
+          $rootScope.changeLocale = tmhDynamicLocale.set;
+        }
+    }
+})();
+
 
   /**=========================================================
    * Module: modals.js
@@ -12549,6 +13159,144 @@ for(var r=0;r<accountRights.length;r++){
 
   })();
 /**=========================================================
+ * Module: demo-pagination.js
+ * Provides a simple demo for pagination
+ =========================================================*/
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.mailbox')
+        .controller('MailboxController', MailboxController);
+
+    function MailboxController() {
+        var vm = this;
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+          vm.folders = [
+            {name: 'Inbox',   folder: 'inbox',   alert: 42, icon: 'fa-inbox' },
+            {name: 'Starred', folder: 'starred', alert: 10, icon: 'fa-star' },
+            {name: 'Sent',    folder: 'sent',    alert: 0,  icon: 'fa-paper-plane-o' },
+            {name: 'Draft',   folder: 'draft',   alert: 5,  icon: 'fa-edit' },
+            {name: 'Trash',   folder: 'trash',   alert: 0,  icon: 'fa-trash'}
+          ];
+
+          vm.labels = [
+            {name: 'Red',     color: 'danger'},
+            {name: 'Pink',    color: 'pink'},
+            {name: 'Blue',    color: 'info'},
+            {name: 'Yellow',  color: 'warning'}
+          ];
+
+          vm.mail = {
+            cc: false,
+            bcc: false
+          };
+          // Mailbox editr initial content
+          vm.content = '<p>Type something..</p>';
+        }
+    }
+})();
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.mailbox')
+        .controller('MailFolderController', MailFolderController);
+
+    MailFolderController.$inject = ['mails', '$stateParams'];
+    function MailFolderController(mails, $stateParams) {
+        var vm = this;
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+          
+          vm.folder = {};
+          // no filter for inbox
+          vm.folder.folder = $stateParams.folder === 'inbox' ? '' : $stateParams.folder;
+
+          mails.all().then(function(mails){
+            vm.mails = mails;
+          });
+        }
+    }
+})();
+
+// A RESTful factory for retrieving mails from json file
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.mailbox')
+        .factory('mails', mails);
+
+    mails.$inject = ['$http'];
+    function mails($http) {
+        var service = {
+            all: all,
+            get: get
+        };
+        return service;
+
+        ////////////////
+        
+        function readMails() {
+          var path = 'server/mails.json';
+          return $http.get(path).then(function (resp) {
+            return resp.data.mails;
+          });
+        }
+
+        function all() {
+          return readMails();
+        }
+
+        function get(id) {
+          return readMails().then(function(mails){
+            for (var i = 0; i < mails.length; i++) {
+              if (+mails[i].id === +id) return mails[i];
+            }
+            return null;
+          });
+        }
+    }
+})();
+
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.mailbox')
+        .controller('MailViewController', MailViewController);
+
+    MailViewController.$inject = ['mails', '$stateParams'];
+    function MailViewController(mails, $stateParams) {
+        var vm = this;
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+          mails.get($stateParams.mid).then(function(mail){
+            vm.mail = mail;
+          });
+        }
+    }
+})();
+
+/**=========================================================
  * Module: modals.js
  * Provides a simple way to implement bootstrap modals from templates
  =========================================================*/
@@ -12996,1398 +13744,6 @@ for(var r=0;r<accountRights.length;r++){
         }
     }
 })();
-
-/**=========================================================
- * Module: demo-pagination.js
- * Provides a simple demo for pagination
- =========================================================*/
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.mailbox')
-        .controller('MailboxController', MailboxController);
-
-    function MailboxController() {
-        var vm = this;
-
-        activate();
-
-        ////////////////
-
-        function activate() {
-          vm.folders = [
-            {name: 'Inbox',   folder: 'inbox',   alert: 42, icon: 'fa-inbox' },
-            {name: 'Starred', folder: 'starred', alert: 10, icon: 'fa-star' },
-            {name: 'Sent',    folder: 'sent',    alert: 0,  icon: 'fa-paper-plane-o' },
-            {name: 'Draft',   folder: 'draft',   alert: 5,  icon: 'fa-edit' },
-            {name: 'Trash',   folder: 'trash',   alert: 0,  icon: 'fa-trash'}
-          ];
-
-          vm.labels = [
-            {name: 'Red',     color: 'danger'},
-            {name: 'Pink',    color: 'pink'},
-            {name: 'Blue',    color: 'info'},
-            {name: 'Yellow',  color: 'warning'}
-          ];
-
-          vm.mail = {
-            cc: false,
-            bcc: false
-          };
-          // Mailbox editr initial content
-          vm.content = '<p>Type something..</p>';
-        }
-    }
-})();
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.mailbox')
-        .controller('MailFolderController', MailFolderController);
-
-    MailFolderController.$inject = ['mails', '$stateParams'];
-    function MailFolderController(mails, $stateParams) {
-        var vm = this;
-
-        activate();
-
-        ////////////////
-
-        function activate() {
-          
-          vm.folder = {};
-          // no filter for inbox
-          vm.folder.folder = $stateParams.folder === 'inbox' ? '' : $stateParams.folder;
-
-          mails.all().then(function(mails){
-            vm.mails = mails;
-          });
-        }
-    }
-})();
-
-// A RESTful factory for retrieving mails from json file
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.mailbox')
-        .factory('mails', mails);
-
-    mails.$inject = ['$http'];
-    function mails($http) {
-        var service = {
-            all: all,
-            get: get
-        };
-        return service;
-
-        ////////////////
-        
-        function readMails() {
-          var path = 'server/mails.json';
-          return $http.get(path).then(function (resp) {
-            return resp.data.mails;
-          });
-        }
-
-        function all() {
-          return readMails();
-        }
-
-        function get(id) {
-          return readMails().then(function(mails){
-            for (var i = 0; i < mails.length; i++) {
-              if (+mails[i].id === +id) return mails[i];
-            }
-            return null;
-          });
-        }
-    }
-})();
-
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.mailbox')
-        .controller('MailViewController', MailViewController);
-
-    MailViewController.$inject = ['mails', '$stateParams'];
-    function MailViewController(mails, $stateParams) {
-        var vm = this;
-
-        activate();
-
-        ////////////////
-
-        function activate() {
-          mails.get($stateParams.mid).then(function(mail){
-            vm.mail = mail;
-          });
-        }
-    }
-})();
-
-// /**=========================================================
-//  * Module: access-login.js
-//  * Demo for login api
-//  =========================================================*/
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.pages')
-        .controller('LoginFormController', LoginFormController);
-
-    LoginFormController.$inject = ['$scope','$http', '$state','$localStorage','jadaApiUrl'];
-    function LoginFormController($scope, $http, $state,$localStorage,jadaApiUrl) {
-
-        var vm = this;
-
-        activate();
-
-        ////////////////
-
-        function activate() {
-          // bind here all data from the form
-          vm.account = {};
-          // place the message if something goes wrong
-          vm.authMsg = '';
-
-         $scope.formlg={};
-
-
-  
-$scope.buttonText="Login";
-// $scope.login=function(){
-//   $scope.authMsg = '';
-// $scope.buttonText="Logging in. . .";
-// authService.login($scope.formlg.userName,  $scope.
-// formlg.password).then(function(data, status){
-   
-// alert(data);
-
-//    // if ( !response.token ) {
-//    //             vm.authMsg = 'Incorrect credentials.';
-//    //              }else{
-//    //              $state.go('app.dashboard');
-//    //              }
-              
-
-// },function(error,status){
-//  $scope.authMsg = 'Server Request Error';
-// }).finally(function(){
-// $scope.buttonText="Login";
-// });
-// }
-
-
-    // $scope.login = function () {
-    //                         var env = {
-    //                             username:$scope.formlg.username,
-    //                             DBName:$scope.formlg.DBName, 
-    //                             password:$scope.formlg.password
-    //                         };
-
-    //                         $http({
-    //                             method: 'POST',
-    //                             url: 'http://localhost:9418/jada/login',
-    //                             data: env,
-    //                             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    //                             transformRequest: function(obj) {
-    //                               var str = [];
-    //                               for(var p in obj)
-    //                               str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-    //                               return str.join("&");
-    //                             }
-    //                         }).
-    //                         then(function (data, status, headers, config) {
-    //                             $scope.postStatus = 'success: ' + data;
-    //                         },
-    //                         function (error, status, headers, config) {
-    //                             $scope.postStatus = 'error: ' + status;
-    //                         });
-                            
-    //                     }
-
-
-
-
-
-
-       $scope.login = function() {
-            $scope.authMsg = '';
-            $scope.errMsg='';
-
-            if($scope.loginForm.$valid) {
-
-              $http
-                .post(jadaApiUrl+'api/login', {username: $scope.formlg.userName, password:$scope.formlg.password})
-                .success(function(data){
-               $scope.buttonText="Logging in. . .";
-                  var response=angular.fromJson(data.response);
-                  var userAccount=angular.fromJson(data.userAccount);
-
-
-
-                  // alert(response.Message);  
-                  if(response.Status=="1"){
-                     if (data.token) {
-                        // store username and token in local storage to keep user logged in between page refreshes
-                        $localStorage.currentUser = { username: userAccount.userName, token: data.token ,accountRights:data.accountRights};
-                        
-                        // add jwt token to auth header for all requests made by the $http service
-                        $http.defaults.headers.common.Authorization = 'Bearer ' + data.token;
-
-                        // execute callback with true to indicate successful login
-                      
-                    }      
-                               
-                    $state.go('app.dashboard')
-                  }  
-                  else {
-                       $scope.buttonText="Login";
-              
-                    $scope.errMsg =  'Incorrect credentials.';           
-                  }
-
-                    
-                },
-                function(){
-                  $scope.errMsg = 'Server Request Error';
-                })
-                // .then(function(result) {
-                
-                //   // assumes if ok, response is an object with some data, if not, a string with error
-                //   // customize according to your api
-                //   if ( !result.formlg) {
-                //    $scope.authMsg = 'Incorrect credentials.';
-                //   }else{
-                //     // $state.go('app.dashboard');
-                //       vm.authMsg = 'hellow';
-                //   }
-                //      alert(result.token);
-                // }, function() {
-                //   vm.authMsg = 'Server Request Error';
-                // });
-            
-            }
-            else {
-              // set as dirty if the user click directly to login so we show the validation messages
-              /*jshint -W106*/
-              vm.loginForm.account_email.$dirty = true;
-              vm.loginForm.account_password.$dirty = true;
-            }
-
-          };
-        }
-    }
-
-
-})();
-
-/**=========================================================
- * Module: access-register.js
- * Demo for register account api
- =========================================================*/
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.pages')
-        .controller('RegisterFormController', RegisterFormController);
-
-    RegisterFormController.$inject = ['$scope','$http', '$state', 'register'];
-    function RegisterFormController($scope,$http, $state,register) {
-      // $scope.message=register.query();
-        var vm = this;
-
-        activate();
-
-        ////////////////
-
-        function activate() {
-          // bind here all data from the form
-          vm.account = {};
-          // place the message if something goes wrong
-          vm.authMsg = '';
-
-          vm.auth=false;
-             vm.account= new register();
-  //     $scope.submitCompany = function() {
-  //       $scope.company.$save(function(){
-  //           console.log($scope.company.Company_Name);});
-  // }
-          vm.register = function() {
-            vm.authMsg = '';
-               vm.error='';
-
-            if(vm.registerForm.$valid) {
-
-              vm.account.$save(function(data){
-
-            var response=angular.fromJson(data);
-            console.log(response.Message);
-            vm.authMsg=response.Message;
-            if(response.Status=="1"){
-                    vm.authMsg =response.Message;
-            }else{
-              vm.auth=false;
-               
-                   vm.error=response.Message;
-              // vm.auth=true;
-            }
-            ;},
-            function(){
-              vm.error = 'Server Request Error';
-            });
-
-              // $http
-              //   .post('api/account/register', {email: vm.account.email, password: vm.account.password})
-              //   .then(function(response) {
-              //     // assumes if ok, response is an object with some data, if not, a string with error
-              //     // customize according to your api
-              //     if (!response.account ) {
-              //       vm.authMsg = response;
-              //     }else{
-              //       $state.go('app.dashboard');
-              //     }
-              //   }, function() {
-              //     vm.authMsg = 'Server Request Error';
-              //   });
-            }
-            // else {
-            //   // set as dirty if the user click directly to login so we show the validation messages
-            //   /*jshint -W106*/
-            //   vm.registerForm.password.$dirty = true;
-            //   vm.registerForm.account_password.$dirty = true;
-            //   // vm.registerForm.account_agreed.$dirty = true;
-              
-            // }
-          };
-        }
-    }
-})();
-
-// (function () {
-//     'use strict';
-
-//     angular
-//         .module('app.pages')
-//         .factory('AuthenticationService', Service);
-
-//     function Service($http, $localStorage) {
-//         var service = {};
-
-//                          service.authMsg="";
-//         service.Login = Login;
-//         service.Logout = Logout;
-
-//         return service;
-
-//         function Login(username, password, callback) {
-//             $http.post('http://localhost:56135/api/login', { username: username, password: password })
-//                 .success(function (response) {
-
-//                     // login successful if there's a token in the response
-//                     if (response.token) {
-//                         // store username and token in local storage to keep user logged in between page refreshes
-//                         $localStorage.currentUser = { username: username, token: response.token, isAuthenticated:true };
-
-
-//                         // add jwt token to auth header for all requests made by the $http service
-//                         $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
-
-//                         // execute callback with true to indicate successful login
-//                         callback(true);
-//                     } else {
-//                         // execute callback with false to indicate failed login
-//                         callback(false);
-
-//                          service.authMsg = response;
-                     
-//                     }
-//                 });
-//         }
-
-//         function Logout() {
-//             // remove user from local storage and clear http auth header
-//             delete $localStorage.currentUser;
-//             $http.defaults.headers.common.Authorization = '';
-//         }
-//     }
-// })();
-
-
-//    // $http
-//    //              .post('api/account/register', {email: vm.account.email, password: vm.account.password})
-//    //              .then(function(response) {
-//    //                // assumes if ok, response is an object with some data, if not, a string with error
-//    //                // customize according to your api
-//    //                if (!response.account ) {
-//    //                  vm.authMsg = response;
-//    //                }else{
-//    //                  $state.go('app.dashboard');
-//    //                }
-//    //              }, function() {
-//    //                vm.authMsg = 'Server Request Error';
-//    //              });
-// angular.module('app.pages').factory('authService',
-// ['AUTH_ENDPOINT','LOGOUT_ENDPOINT','$http','$cookieStore',
-// function(AUTH_ENDPOINT,LOGOUT_ENDPOINT,$http,$cookieStore){
-// var auth={};
-
-// auth.login=function(username, password){
-// 	var env = {
-//                                 username:username,
-                                                    
-//                                 password:password
-//                             };
-//                          return $http({
-//                                 method: 'POST',
-//                                 url: 'http://localhost:56135/api/login',
-//                                 data: env,
-//                                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-//                                 transformRequest: function(obj) {
-//                                   var str = [];
-//                                   for(var p in obj)
-//                                   str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-//                                   return str.join("&");
-//                                 }
-//                             })
-//                            .then(function(response,status){
-
-//                             alert(response.token);
-//                             // login successful if there's a token in the response
-//                     if (response.token) {
-//                         // store username and token in local storage to keep user logged in between page refreshes
-//                         $localStorage.currentUser = { username: username, token: response.token };
-
-//                         // add jwt token to auth header for all requests made by the $http service
-//                         $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
-
-
-//                     }
-//                     //      auth.user=response.data;
-//                     // $cookieStore.put('user',auth.user);
-//                     //    return auth.postStatus = 'success: ' + status;
-//                       },
-//                             function (error, status, headers, config) {
-//                              return   auth.postStatus = 'error: ' + status;
-//                             });
-                            
-//                         }
-
-// // return $http.post(AUTH_ENDPOINT,{env},
-// // {
-// //     headers: {
-// //       'Content-Type': 'application/x-www-form-urlencoded'
-    
-// //     }
-// //   },{
-// //   	   transformRequest: function(obj) {
-// //                                   var str = [];
-// //                                   for(var p in obj)
-// //                                   str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-// //                                   return str.join("&");
-// //                                 }
-// //   }).then(function(response,status){
-// // auth.user=response.data;
-// // $cookieStore.put('user',auth.user);
-// // return auth.user;
-// // });
-// // }
-// auth.logout=function(){
-// return $http.post(LOGOUT_ENDPOINT).then(function(response){
-// auth.user=undefined;
-// $cookieStore.remove('user');
-// });
-// }
-// return auth;
-// }]);
-
-// angular.module('app.pages').value('AUTH_ENDPOINT',
-// 'http://localhost:56135/api/login');
-// angular.module('app.pages').value('LOGOUT_ENDPOINT',
-// 'http://spblogger-sitepointdemos.rhcloud.com/logout');
-// // 'http://spblogger-sitepointdemos.rhcloud.com/login');
-// (function () {
-//     'use strict';
-
-//     angular
-//         .module('app.pages')
-//         .controller('AuthLoginController', Controller);
-
-//     function Controller($location, AuthenticationService) {
-//         var vm = this;
-
-//         vm.login = login;
-
-//         initController();
-
-//         function initController() {
-//             // reset login status
-//             AuthenticationService.Logout();
-//         };
-
-//         function login() {
-
-
-//             vm.loading = true;
-//             AuthenticationService.Login(vm.username, vm.password, function (result,status) {
-              
-//                 if (result === true) {
-//                     $location.path('/app/dashboard');
-//                 } else {
-//                       vm.loading = false;
-             
-
-
-
-//                        vm.error = 'Username or password is incorrect';
-
-//                 }
-//             });
-//         };
-//     }
-
-// })();
-
-
-
-// /**=========================================================
-//  * Module: access-login.js
-//  * Demo for login api
-//  =========================================================*/
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.pages')
-        .controller('LogoutController', LoginFormController);
-
-    LoginFormController.$inject = ['$scope','$http', '$state','$localStorage','jadaApiUrl'];
-    function LoginFormController($scope, $http, $state,$localStorage,jadaApiUrl) {
-
-
- $scope.Logout=function() {
-            // remove user from local storage and clear http auth header
-            delete $localStorage.currentUser;
-            $http.defaults.headers.common.Authorization = '';
-                $state.go('page.login');
-        }
-
-
-    }
-
-
-})();
-
-// (function() {
-//     'use strict';
-
-//     angular
-//         .module('app.pages')
-//         .factory('register',  function($resource) {
-        
-//         return $resource('http://localhost:56135/api/systemsetup');
-//         // return $resource('http://localhost:9418/jada/Management/CompanyRegistration/');
-//         // http://localhost:9418/jada/Authentication/CompanyRegistration
-//     });
-// })();
-
-
-
-
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.pages')
-        .factory('register', register);
-
-    register.$inject = ['$resource','jadaApiUrl'];
-    function register($resource,jadaApiUrl) {
-    	  return $resource(jadaApiUrl+'api/systemsetup');
-    
-          
-       
-    }
-
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('app.preloader')
-        .directive('preloader', preloader);
-
-    preloader.$inject = ['$animate', '$timeout', '$q'];
-    function preloader ($animate, $timeout, $q) {
-
-        var directive = {
-            restrict: 'EAC',
-            template: 
-              '<div class="preloader-progress">' +
-                  '<div class="preloader-progress-bar" ' +
-                       'ng-style="{width: loadCounter + \'%\'}"></div>' +
-              '</div>'
-            ,
-            link: link
-        };
-        return directive;
-
-        ///////
-
-        function link(scope, el) {
-
-          scope.loadCounter = 0;
-
-          var counter  = 0,
-              timeout;
-
-          // disables scrollbar
-          angular.element('body').css('overflow', 'hidden');
-          // ensure class is present for styling
-          el.addClass('preloader');
-
-          appReady().then(endCounter);
-
-          timeout = $timeout(startCounter);
-
-          ///////
-
-          function startCounter() {
-
-            var remaining = 100 - counter;
-            counter = counter + (0.015 * Math.pow(1 - Math.sqrt(remaining), 2));
-
-            scope.loadCounter = parseInt(counter, 10);
-
-            timeout = $timeout(startCounter, 20);
-          }
-
-          function endCounter() {
-
-            $timeout.cancel(timeout);
-
-            scope.loadCounter = 100;
-
-            $timeout(function(){
-              // animate preloader hiding
-              $animate.addClass(el, 'preloader-hidden');
-              // retore scrollbar
-              angular.element('body').css('overflow', '');
-            }, 300);
-          }
-
-          function appReady() {
-            var deferred = $q.defer();
-            var viewsLoaded = 0;
-            // if this doesn't sync with the real app ready
-            // a custom event must be used instead
-            var off = scope.$on('$viewContentLoaded', function () {
-              viewsLoaded ++;
-              // we know there are at least two views to be loaded 
-              // before the app is ready (1-index.html 2-app*.html)
-              if ( viewsLoaded === 2) {
-                // with resolve this fires only once
-                $timeout(function(){
-                  deferred.resolve();
-                }, 3000);
-
-                off();
-              }
-
-            });
-
-            return deferred.promise;
-          }
-
-        } //link
-    }
-
-})();
-  /**=========================================================
-   * Module: modals.js
-   * Provides a simple way to implement bootstrap modals from templates
-   =========================================================*/
-  (function() {
-      'use strict';
-
-      angular
-          .module('app.bootstrapui')
-          .controller('ExemptionsController', ExemptionsController);
-
-      ExemptionsController.$inject = ['$scope','$http','$rootScope', '$uibModal','ExemptionsService','$stateParams', '$state','jadaApiUrl'];
-      function ExemptionsController($scope,$http,$rootScope, $uibModal, ExemptionsService,$stateParams, $state,jadaApiUrl) {
-          var vm = this;
-
-          activate();
-
-          ////////////////
-
-          function activate() {
-
-   var SuccessMsg;
-   var errorMsg;
-
-
-              $scope.exemptionData=ExemptionsService.query();
-
-
-                $http.get(jadaApiUrl+'api/employeegroup').success(function(data) {
-                $scope.employeeGroupData = data;
-            
-              });
-
-
-                $http.get(jadaApiUrl+'api/period').success(function(data) {
-                $scope.periodData = data;
-            
-              });
-   $scope.loadExemptemployees = function () {
-       
-   $scope.exemptionData=ExemptionsService.query();
-
-     }
-
-   $rootScope.$on("CallExemptemployees", function(){
-             $scope.loadExemptemployees();
-          });
-
-
-  $http.get(jadaApiUrl+'api/payrollcode').success(function(data) {
-                 $scope.pcodes = data;
-           
-
-              });
-
-
-  $http.get(jadaApiUrl+'api/employee').success(function(data) {
-                $scope.employees = data;
-              });
-
-
-
-
-
-    $scope.delete= function (employee) {
-  employee.$remove().then(function () {
-   $scope.loadExemptemployees();
-  });
-  }
-
-           $scope.open = function (size) {
-
-              var modalInstance = $uibModal.open({
-                templateUrl: 'addExempt.html',
-                controller: ModalOpenInstanceCtrl,
-                size: size
-              });
-          var state = $('#modal-state');
-              modalInstance.result.then(function () {
-                state.text('Modal dismissed with OK status');
-              }, function () {
-                state.text('Modal dismissed with Cancel status');
-              });
-            };
-
-
-
-
-
-      
-
-
-           $scope.show = function(exemptEmployee) {
-
-                var modalInstance = $uibModal.open({
-                  templateUrl: 'EditExempt.html',
-                  controller: ModalInstanceCtrl,
-                  resolve: {
-                     exemptEmployee: function () {
-                       return exemptEmployee;
-                     }
-                   }        
-
-                });
-              };
-
-
-
-     
-   
-
-
-            // Please note that $uibModalInstance represents a modal window (instance) dependency.
-            // It is not the same as the $uibModal service used above.
-
-            ModalOpenInstanceCtrl.$inject = ['$scope','$http','$rootScope', '$uibModalInstance','ExemptionsService','jadaApiUrl'];
-            function ModalOpenInstanceCtrl($scope, $http,$rootScope,$uibModalInstance, ExemptionsService,jadaApiUrl) {
-            
-              $scope.ok = function () {
-                $uibModalInstance.close('closed');
-              };
-
-              $scope.cancel = function () {
-                $uibModalInstance.dismiss('cancel');
-              };
-              $scope.exempt=new ExemptionsService();
-               $scope.submitExempt=function(exemptionform) {
-            $scope.exempt.$save().then(function(data){
-              var response=angular.fromJson(data);
-            
-              if(response.Status=="1"){
-                $scope.errorMsg=false;
-                      $scope.SuccessMsg =response.Message;
-              }else{
-             
-                 $scope.SuccessMsg=false;
-                     $scope.errorMsg=response.Message;
-             
-              }
-             
-                  $rootScope.$emit("CallExemptemployees", {});
-
-              $scope.exempReset(exemptionform);
-            },
-             function() {
-               $scope.SuccessMsg=false;
-                   $scope.errorMsg = 'Server Request Error';
-                  });
-          
-            };
-            
-              $scope.exempReset=function(exemptionform){
-               $scope.exemptionform={};
-              $scope.exempt="";
-              exemptionform.$setPristine();
-              };
-
-               $scope.CloseExempt=function() {
-            $scope.exempt.$save().then(function(){
-             
-                  $rootScope.$emit("CallExemptemployees", {});
-                    $scope.ok();
-            }, function() {
-               $scope.SuccessMsg=false;
-                   $scope.errorMsg = 'Server Request Error';
-                  });
-          
-            };
-
-
-
-
-
-
-
-            }
-
-
-
-            ModalInstanceCtrl.$inject = ['$scope','$rootScope', '$http','$uibModalInstance','ExemptionsService','exemptEmployee','jadaApiUrl'];
-            function ModalInstanceCtrl($scope, $rootScope,$http,$uibModalInstance, ExemptionsService,exemptEmployee,jadaApiUrl) {
-            $scope.exempt=exemptEmployee;
-              $scope.ok = function () {
-                $uibModalInstance.close('closed');
-              };
-
-              $scope.cancel = function () {
-                $uibModalInstance.dismiss('cancel');
-              };
-            
-
-             
-
-              
-                  $scope.updateExempt=function(employee){
-               employee.$update().then(function(){
-                   $rootScope.$emit("CallExemptemployees", {});
-              });
-            
-                };
-              
-
-
-           
-            }
-          }
-      }
-
-  })();
-
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.payrollcodes')
-        .factory('ExemptionsService', ExemptionsService);
-
-    ExemptionsService.$inject = ['$resource','jadaApiUrl'];
-    function ExemptionsService($resource,jadaApiUrl) {
-     var data=$resource(jadaApiUrl+'api/exemption/:id', {id: '@id'},
-    { 'get':    {method:'GET', isArray:false},
-  'save':   {method:'POST'},
-  'query':  {method:'GET', isArray:true},
-  'update': { method:'PUT' },
-  'remove': {method:'DELETE'},
-  'delete': {method:'DELETE'} 
-});
-     return data
-          
-       
-    }
-
-})();
-
-
-
-  (function() {
-      'use strict';
-
-      angular
-          .module('app.bootstrapui')
-          .controller('PayrollCodesController', PayrollCodesController);
-
-      PayrollCodesController.$inject =['$scope','$http','$rootScope', '$uibModal','PayrollCodesService','$stateParams', '$state','jadaApiUrl'];
-      function PayrollCodesController($scope,$http,$rootScope, $uibModal, PayrollCodesService,$stateParams, $state,jadaApiUrl) {
-          var vm = this;
-
-          activate();
-
-          ////////////////
-
-          function activate() {
-
-   var SuccessMsg;
-   var errorMsg;
-
-  $scope.plist=PayrollCodesService.query();
-
-
-
-    $scope.loadPlist = function () {
-            $http.get(jadaApiUrl+'api/payrollcode').success(function(data) {
-                $scope.plist = data;
-              });      
-          // $scope.plist=PayrollCodesService.query();
-     }
-
-   $rootScope.$on("CallloadPlist", function(){
-             $scope.loadPlist();
-          });
-    
-            
-            $http.get(jadaApiUrl+'api/payrollcodegroup').success(function(data) {
-                $scope.pgroups = data;
-              });
-
-    $scope.delete= function (code) {
-  code.$remove().then(function () {
-    $scope.loadPlist();
-  // $scope.plist.splice($scope.plist.indexOf(code), 1);
-  });
-  }
-
-
-            $scope.open = function (size) {
-
-              var modalInstance = $uibModal.open({
-                templateUrl: 'addPCodes.html',
-                controller: ModalOpenInstanceCtrl,
-                size: size
-              });
-
-
-
-
-
-              var state = $('#modal-state');
-              modalInstance.result.then(function () {
-                state.text('Modal dismissed with OK status');
-              }, function () {
-                state.text('Modal dismissed with Cancel status');
-              });
-            };
-
-
-
-
-    $scope.show = function(code) {
-        // $scope.x = x;
-        var modalInstance = $uibModal.open({
-          templateUrl: 'EditPCodes.html',
-          controller: ModalInstanceCtrl,
-          resolve: {
-             code: function () {
-               return code;
-             }
-           }        
-          // scope : $scope
-        });
-      };
-
-      
-
-
-
-   
-
-
-            // Please note that $uibModalInstance represents a modal window (instance) dependency.
-            // It is not the same as the $uibModal service used above.
-        
-
-         ModalOpenInstanceCtrl.$inject = ['$scope','$rootScope', '$uibModalInstance','PayrollCodesService'];
-            function ModalOpenInstanceCtrl($scope,$rootScope, $uibModalInstance, PayrollCodesService) {
-              
-              
-              $scope.ok = function () {
-                $uibModalInstance.close('closed');
-                
-              };
-
-              $scope.cancel = function () {
-                $uibModalInstance.dismiss('cancel');
-              };
-           $scope.payrollcodes=new PayrollCodesService();
-               $scope.submitPayrollCode=function(payrollcodeform) {
-            $scope.payrollcodes.$save().then(function(data){
-               var response=angular.fromJson(data);
-            
-              if(response.Status=="1"){
-                $scope.errorMsg=false;
-                      $scope.SuccessMsg =response.Message;
-              }else{
-             
-                 $scope.SuccessMsg=false;
-                     $scope.errorMsg=response.Message;
-             
-              }
-               $rootScope.$emit("CallloadPlist", {});
-
-            $scope.pcodeReset(payrollcodeform);
-            },
-            function() {
-               $scope.SuccessMsg=false;
-                   $scope.errorMsg = 'Server Request Error';
-                  });
-            
-          
-            };
-
-
-            $scope.pcodeReset=function(payrollcodeform){
-               $scope.payrollcodeform={};
-              $scope.payrollcodes="";
-              payrollcodeform.$setPristine();
-              };
-
-                $scope.submitPayrollCodeClose=function(payrollcodes) {
-
-                  var pcodes=new PayrollCodesService(payrollcodes)
-            pcodes.$save().then(function(){
-               $rootScope.$emit("CallloadPlist", {});
-               $scope.ok();
-            },function() {
-               $scope.SuccessMsg=false;
-                   $scope.errorMsg = 'Server Request Error';
-                  });
-            
-          
-            };
-                
-            // console.log('Saving paypoint: ' +$scope.ppoint.code);
-           // $scope.points.push(data);
-            
-           
-            }
-            ModalInstanceCtrl.$inject = ['$scope','$rootScope', '$uibModalInstance','PayrollCodesService','code'];
-            function ModalInstanceCtrl($scope,$rootScope, $uibModalInstance, PayrollCodesService,code) {
-              
-              $scope.code=code;
-             
-
-              $scope.ok = function () {
-                $uibModalInstance.close('closed');
-                
-              };
-
-              $scope.cancel = function () {
-                $uibModalInstance.dismiss('cancel');
-              };
-        $scope.updatepayrollcodes=function(code){
-   code.$update().then(function(){
-                     $rootScope.$emit("CallloadPlist", {});
-              });
-
-  };
-
-           
-            }
-          }
-      }
-
-  })();
-
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.payrollcodes')
-        .factory('PayrollCodesService', PayrollCodesService);
-
-    PayrollCodesService.$inject = ['$resource','jadaApiUrl'];
-    function PayrollCodesService($resource,jadaApiUrl) {
-     var data=$resource(jadaApiUrl+'api/payrollcode/:id', {id: '@id'},
-    { 'get':    {method:'GET', isArray:false},
-  'save':   {method:'POST'},
-  'query':  {method:'GET', isArray:true},
-  'update': { method:'PUT' },
-  'remove': {method:'DELETE'},
-  'delete': {method:'DELETE'} 
-});
-     return data
-          
-       
-    }
-
-})();
-
-
-
-
-
-
-/**=========================================================
- * Module: modals.js
- * Provides a simple way to implement bootstrap modals from templates
- =========================================================*/
-(function() {
-    'use strict';
-
-    angular
-        .module('app.bootstrapui')
-        .controller('PayrollGroupController', PayrollGroupController);
-
-   PayrollGroupController.$inject = ['$scope','$rootScope', '$uibModal','PayrollGroupService','$stateParams', '$state'];
-    function PayrollGroupController($scope, $rootScope,$uibModal, PayrollGroupService,$stateParams, $state) {
-        var vm = this;
-
-        activate();
-
-        ////////////////
-
-        function activate() {
-
- var SuccessMsg;
- var errorMsg;
-$scope.groups=PayrollGroupService.query();
-
-
- $scope.loadPayrollGroups = function () {
-    $http.get(jadaApiUrl+'api/payrollcodegroup').success(function(data) {
-                $scope.groups = data;
-              });
-        // $scope.groups=PayrollGroupService.query();
-   }
-
- $rootScope.$on("CallLoadPayrollGroups", function(){
-           $scope.loadPayrollGroups();
-        });
-
-
-  
-  $scope.delete= function (group) {
-group.$remove().then(function () {
-   $scope.loadPayrollGroups();
-});
-}
-          
-          $scope.open = function (size) {
-
-            var modalInstance = $uibModal.open({
-              templateUrl: 'AddPgroups.html',
-              controller: ModalOpenGroupInstanceCtrl,
-              size: size
-            });
-
-
-
-
-
-            var state = $('#modal-state');
-            modalInstance.result.then(function () {
-              state.text('Modal dismissed with OK status');
-            }, function () {
-              state.text('Modal dismissed with Cancel status');
-            });
-          };
-
-
-
-
-
- $scope.show = function(codegroup) {
-      // $scope.x = x;
-      var modalInstance = $uibModal.open({
-        templateUrl: 'EditPgroups.html',
-        controller: ModalInstanceCtrl,
-        resolve: {
-           codegroup: function () {
-             return codegroup;
-           }
-         }        
-        // scope : $scope
-      });
-    };
-
-
-
-
-
- 
-
-
-          // Please note that $uibModalInstance represents a modal window (instance) dependency.
-          // It is not the same as the $uibModal service used above.
-
-          ModalOpenGroupInstanceCtrl.$inject = ['$scope','$rootScope', '$uibModalInstance','PayrollGroupService'];
-          function ModalOpenGroupInstanceCtrl($scope, $rootScope,$uibModalInstance, PayrollGroupService) {
-          
-            $scope.ok = function () {
-              $uibModalInstance.close('closed');
-            };
-
-            $scope.cancel = function () {
-              $uibModalInstance.dismiss('cancel');
-            };
-            
-
-
-           $scope.pgroup=new PayrollGroupService();
-             $scope.submitPayrollGroup=function(payrollgroupform) {
-            
-            $scope.pgroup.$save().then(function(data){
-                 var response=angular.fromJson(data);
-          
-            if(response.Status=="1"){
-              $scope.errorMsg=false;
-                    $scope.SuccessMsg =response.Message;
-            }else{
-           
-               $scope.SuccessMsg=false;
-                   $scope.errorMsg=response.Message;
-           
-            }
-               $rootScope.$emit("CallLoadPayrollGroups", {});
-                  $scope.pgroupReset(payrollgroupform);
-            },
-            function() {
-             $scope.SuccessMsg=false;
-                 $scope.errorMsg = 'Server Request Error';
-                });
-    
-          };
-
-
-            $scope.pgroupReset=function(payrollgroupform){
-             $scope.payrollgroupform={};
-            $scope.pgroup="";
-            payrollgroupform.$setPristine();
-            };
-
-           $scope.ClosePayrollGroup=function(pgroup) {
-            var savepgroup=new PayrollGroupService(pgroup);
-            
-            savepgroup.$save().then(function(){
-                $rootScope.$emit("CallLoadPayrollGroups", {});
-                $scope.ok();
-            },
-                function() {
-             $scope.SuccessMsg=false;
-                 $scope.errorMsg = 'Server Request Error';
-                });
-    
-          };
-         
-         
-          }
-
-
-
-          ModalInstanceCtrl.$inject = ['$scope','$rootScope', '$uibModalInstance','PayrollGroupService','codegroup'];
-          function ModalInstanceCtrl($scope, $rootScope,$uibModalInstance, PayrollGroupService,codegroup) {
-          $scope.group=codegroup;
-            $scope.ok = function () {
-              $uibModalInstance.close('closed');
-            };
-
-            $scope.cancel = function () {
-              $uibModalInstance.dismiss('cancel');
-            };
-            
-
-             $scope.updatePayrollGroup=function(group){
-             group.$update().then(function(){
-                   $rootScope.$emit("CallLoadPayrollGroups", {});
-            });
-          
-              };
-
-
-           
-          }
-        }
-    }
-
-})();
-
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.payrollcodes')
-        .factory('PayrollGroupService', PayrollGroupService);
-
-    PayrollGroupService.$inject = ['$resource','jadaApiUrl'];
-    function PayrollGroupService($resource,jadaApiUrl) {
-     var data=$resource(jadaApiUrl+'api/payrollcodegroup/:id', {id: '@id'},
-    { 'get':    {method:'GET', isArray:false},
-  'save':   {method:'POST'},
-  'query':  {method:'GET', isArray:true},
-  'update': { method:'PUT' },
-  'remove': {method:'DELETE'},
-  'delete': {method:'DELETE'} 
-});
-     return data
-          
-       
-    }
-
-})();
-
-
-
-
-
-
 
 /**=========================================================
  * Module: demo-notify.js
@@ -15102,6 +14458,1260 @@ group.$remove().then(function () {
 
         }
     }
+})();
+// /**=========================================================
+//  * Module: access-login.js
+//  * Demo for login api
+//  =========================================================*/
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.pages')
+        .controller('LoginFormController', LoginFormController);
+
+    LoginFormController.$inject = ['$scope','$http', '$state','$localStorage','jadaApiUrl'];
+    function LoginFormController($scope, $http, $state,$localStorage,jadaApiUrl) {
+
+        var vm = this;
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+          // bind here all data from the form
+          vm.account = {};
+          // place the message if something goes wrong
+          vm.authMsg = '';
+
+         $scope.formlg={};
+
+
+  
+$scope.buttonText="Login";
+// $scope.login=function(){
+//   $scope.authMsg = '';
+// $scope.buttonText="Logging in. . .";
+// authService.login($scope.formlg.userName,  $scope.
+// formlg.password).then(function(data, status){
+   
+// alert(data);
+
+//    // if ( !response.token ) {
+//    //             vm.authMsg = 'Incorrect credentials.';
+//    //              }else{
+//    //              $state.go('app.dashboard');
+//    //              }
+              
+
+// },function(error,status){
+//  $scope.authMsg = 'Server Request Error';
+// }).finally(function(){
+// $scope.buttonText="Login";
+// });
+// }
+
+
+    // $scope.login = function () {
+    //                         var env = {
+    //                             username:$scope.formlg.username,
+    //                             DBName:$scope.formlg.DBName, 
+    //                             password:$scope.formlg.password
+    //                         };
+
+    //                         $http({
+    //                             method: 'POST',
+    //                             url: 'http://localhost:9418/jada/login',
+    //                             data: env,
+    //                             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    //                             transformRequest: function(obj) {
+    //                               var str = [];
+    //                               for(var p in obj)
+    //                               str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+    //                               return str.join("&");
+    //                             }
+    //                         }).
+    //                         then(function (data, status, headers, config) {
+    //                             $scope.postStatus = 'success: ' + data;
+    //                         },
+    //                         function (error, status, headers, config) {
+    //                             $scope.postStatus = 'error: ' + status;
+    //                         });
+                            
+    //                     }
+
+
+
+
+
+
+       $scope.login = function() {
+            $scope.authMsg = '';
+            $scope.errMsg='';
+
+            if($scope.loginForm.$valid) {
+
+              $http
+                .post(jadaApiUrl+'api/login', {username: $scope.formlg.userName, password:$scope.formlg.password})
+                .success(function(data){
+               $scope.buttonText="Logging in. . .";
+                  var response=angular.fromJson(data.response);
+                  var userAccount=angular.fromJson(data.userAccount);
+
+
+
+                  // alert(response.Message);  
+                  if(response.Status=="1"){
+                     if (data.token) {
+                        // store username and token in local storage to keep user logged in between page refreshes
+                        $localStorage.currentUser = { username: userAccount.userName, token: data.token ,accountRights:data.accountRights};
+                        
+                        // add jwt token to auth header for all requests made by the $http service
+                        $http.defaults.headers.common.Authorization = 'Bearer ' + data.token;
+
+                        // execute callback with true to indicate successful login
+                      
+                    }      
+                               
+                    $state.go('app.dashboard')
+                  }  
+                  else {
+                       $scope.buttonText="Login";
+              
+                    $scope.errMsg =  'Incorrect credentials.';           
+                  }
+
+                    
+                },
+                function(){
+                  $scope.errMsg = 'Server Request Error';
+                })
+                // .then(function(result) {
+                
+                //   // assumes if ok, response is an object with some data, if not, a string with error
+                //   // customize according to your api
+                //   if ( !result.formlg) {
+                //    $scope.authMsg = 'Incorrect credentials.';
+                //   }else{
+                //     // $state.go('app.dashboard');
+                //       vm.authMsg = 'hellow';
+                //   }
+                //      alert(result.token);
+                // }, function() {
+                //   vm.authMsg = 'Server Request Error';
+                // });
+            
+            }
+            else {
+              // set as dirty if the user click directly to login so we show the validation messages
+              /*jshint -W106*/
+              vm.loginForm.account_email.$dirty = true;
+              vm.loginForm.account_password.$dirty = true;
+            }
+
+          };
+        }
+    }
+
+
+})();
+
+/**=========================================================
+ * Module: access-register.js
+ * Demo for register account api
+ =========================================================*/
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.pages')
+        .controller('RegisterFormController', RegisterFormController);
+
+    RegisterFormController.$inject = ['$scope','$http', '$state', 'register'];
+    function RegisterFormController($scope,$http, $state,register) {
+      // $scope.message=register.query();
+        var vm = this;
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+          // bind here all data from the form
+          vm.account = {};
+          // place the message if something goes wrong
+          vm.authMsg = '';
+
+          vm.auth=false;
+             vm.account= new register();
+  //     $scope.submitCompany = function() {
+  //       $scope.company.$save(function(){
+  //           console.log($scope.company.Company_Name);});
+  // }
+          vm.register = function() {
+            vm.authMsg = '';
+               vm.error='';
+
+            if(vm.registerForm.$valid) {
+
+              vm.account.$save(function(data){
+
+            var response=angular.fromJson(data);
+            console.log(response.Message);
+            vm.authMsg=response.Message;
+            if(response.Status=="1"){
+                    vm.authMsg =response.Message;
+            }else{
+              vm.auth=false;
+               
+                   vm.error=response.Message;
+              // vm.auth=true;
+            }
+            ;},
+            function(){
+              vm.error = 'Server Request Error';
+            });
+
+              // $http
+              //   .post('api/account/register', {email: vm.account.email, password: vm.account.password})
+              //   .then(function(response) {
+              //     // assumes if ok, response is an object with some data, if not, a string with error
+              //     // customize according to your api
+              //     if (!response.account ) {
+              //       vm.authMsg = response;
+              //     }else{
+              //       $state.go('app.dashboard');
+              //     }
+              //   }, function() {
+              //     vm.authMsg = 'Server Request Error';
+              //   });
+            }
+            // else {
+            //   // set as dirty if the user click directly to login so we show the validation messages
+            //   /*jshint -W106*/
+            //   vm.registerForm.password.$dirty = true;
+            //   vm.registerForm.account_password.$dirty = true;
+            //   // vm.registerForm.account_agreed.$dirty = true;
+              
+            // }
+          };
+        }
+    }
+})();
+
+// (function () {
+//     'use strict';
+
+//     angular
+//         .module('app.pages')
+//         .factory('AuthenticationService', Service);
+
+//     function Service($http, $localStorage) {
+//         var service = {};
+
+//                          service.authMsg="";
+//         service.Login = Login;
+//         service.Logout = Logout;
+
+//         return service;
+
+//         function Login(username, password, callback) {
+//             $http.post('http://localhost:56135/api/login', { username: username, password: password })
+//                 .success(function (response) {
+
+//                     // login successful if there's a token in the response
+//                     if (response.token) {
+//                         // store username and token in local storage to keep user logged in between page refreshes
+//                         $localStorage.currentUser = { username: username, token: response.token, isAuthenticated:true };
+
+
+//                         // add jwt token to auth header for all requests made by the $http service
+//                         $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
+
+//                         // execute callback with true to indicate successful login
+//                         callback(true);
+//                     } else {
+//                         // execute callback with false to indicate failed login
+//                         callback(false);
+
+//                          service.authMsg = response;
+                     
+//                     }
+//                 });
+//         }
+
+//         function Logout() {
+//             // remove user from local storage and clear http auth header
+//             delete $localStorage.currentUser;
+//             $http.defaults.headers.common.Authorization = '';
+//         }
+//     }
+// })();
+
+
+//    // $http
+//    //              .post('api/account/register', {email: vm.account.email, password: vm.account.password})
+//    //              .then(function(response) {
+//    //                // assumes if ok, response is an object with some data, if not, a string with error
+//    //                // customize according to your api
+//    //                if (!response.account ) {
+//    //                  vm.authMsg = response;
+//    //                }else{
+//    //                  $state.go('app.dashboard');
+//    //                }
+//    //              }, function() {
+//    //                vm.authMsg = 'Server Request Error';
+//    //              });
+// angular.module('app.pages').factory('authService',
+// ['AUTH_ENDPOINT','LOGOUT_ENDPOINT','$http','$cookieStore',
+// function(AUTH_ENDPOINT,LOGOUT_ENDPOINT,$http,$cookieStore){
+// var auth={};
+
+// auth.login=function(username, password){
+// 	var env = {
+//                                 username:username,
+                                                    
+//                                 password:password
+//                             };
+//                          return $http({
+//                                 method: 'POST',
+//                                 url: 'http://localhost:56135/api/login',
+//                                 data: env,
+//                                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+//                                 transformRequest: function(obj) {
+//                                   var str = [];
+//                                   for(var p in obj)
+//                                   str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+//                                   return str.join("&");
+//                                 }
+//                             })
+//                            .then(function(response,status){
+
+//                             alert(response.token);
+//                             // login successful if there's a token in the response
+//                     if (response.token) {
+//                         // store username and token in local storage to keep user logged in between page refreshes
+//                         $localStorage.currentUser = { username: username, token: response.token };
+
+//                         // add jwt token to auth header for all requests made by the $http service
+//                         $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
+
+
+//                     }
+//                     //      auth.user=response.data;
+//                     // $cookieStore.put('user',auth.user);
+//                     //    return auth.postStatus = 'success: ' + status;
+//                       },
+//                             function (error, status, headers, config) {
+//                              return   auth.postStatus = 'error: ' + status;
+//                             });
+                            
+//                         }
+
+// // return $http.post(AUTH_ENDPOINT,{env},
+// // {
+// //     headers: {
+// //       'Content-Type': 'application/x-www-form-urlencoded'
+    
+// //     }
+// //   },{
+// //   	   transformRequest: function(obj) {
+// //                                   var str = [];
+// //                                   for(var p in obj)
+// //                                   str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+// //                                   return str.join("&");
+// //                                 }
+// //   }).then(function(response,status){
+// // auth.user=response.data;
+// // $cookieStore.put('user',auth.user);
+// // return auth.user;
+// // });
+// // }
+// auth.logout=function(){
+// return $http.post(LOGOUT_ENDPOINT).then(function(response){
+// auth.user=undefined;
+// $cookieStore.remove('user');
+// });
+// }
+// return auth;
+// }]);
+
+// angular.module('app.pages').value('AUTH_ENDPOINT',
+// 'http://localhost:56135/api/login');
+// angular.module('app.pages').value('LOGOUT_ENDPOINT',
+// 'http://spblogger-sitepointdemos.rhcloud.com/logout');
+// // 'http://spblogger-sitepointdemos.rhcloud.com/login');
+// (function () {
+//     'use strict';
+
+//     angular
+//         .module('app.pages')
+//         .controller('AuthLoginController', Controller);
+
+//     function Controller($location, AuthenticationService) {
+//         var vm = this;
+
+//         vm.login = login;
+
+//         initController();
+
+//         function initController() {
+//             // reset login status
+//             AuthenticationService.Logout();
+//         };
+
+//         function login() {
+
+
+//             vm.loading = true;
+//             AuthenticationService.Login(vm.username, vm.password, function (result,status) {
+              
+//                 if (result === true) {
+//                     $location.path('/app/dashboard');
+//                 } else {
+//                       vm.loading = false;
+             
+
+
+
+//                        vm.error = 'Username or password is incorrect';
+
+//                 }
+//             });
+//         };
+//     }
+
+// })();
+
+
+
+// /**=========================================================
+//  * Module: access-login.js
+//  * Demo for login api
+//  =========================================================*/
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.pages')
+        .controller('LogoutController', LoginFormController);
+
+    LoginFormController.$inject = ['$scope','$http', '$state','$localStorage','jadaApiUrl'];
+    function LoginFormController($scope, $http, $state,$localStorage,jadaApiUrl) {
+
+
+ $scope.Logout=function() {
+            // remove user from local storage and clear http auth header
+            delete $localStorage.currentUser;
+            $http.defaults.headers.common.Authorization = '';
+                $state.go('page.login');
+        }
+
+
+    }
+
+
+})();
+
+// (function() {
+//     'use strict';
+
+//     angular
+//         .module('app.pages')
+//         .factory('register',  function($resource) {
+        
+//         return $resource('http://localhost:56135/api/systemsetup');
+//         // return $resource('http://localhost:9418/jada/Management/CompanyRegistration/');
+//         // http://localhost:9418/jada/Authentication/CompanyRegistration
+//     });
+// })();
+
+
+
+
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.pages')
+        .factory('register', register);
+
+    register.$inject = ['$resource','jadaApiUrl'];
+    function register($resource,jadaApiUrl) {
+    	  return $resource(jadaApiUrl+'api/systemsetup');
+    
+          
+       
+    }
+
+})();
+  /**=========================================================
+   * Module: modals.js
+   * Provides a simple way to implement bootstrap modals from templates
+   =========================================================*/
+  (function() {
+      'use strict';
+
+      angular
+          .module('app.bootstrapui')
+          .controller('ExemptionsController', ExemptionsController);
+
+      ExemptionsController.$inject = ['$scope','$http','$rootScope', '$uibModal','ExemptionsService','$stateParams', '$state','jadaApiUrl'];
+      function ExemptionsController($scope,$http,$rootScope, $uibModal, ExemptionsService,$stateParams, $state,jadaApiUrl) {
+          var vm = this;
+
+          activate();
+
+          ////////////////
+
+          function activate() {
+
+   var SuccessMsg;
+   var errorMsg;
+
+
+              $scope.exemptionData=ExemptionsService.query();
+
+
+                $http.get(jadaApiUrl+'api/employeegroup').success(function(data) {
+                $scope.employeeGroupData = data;
+            
+              });
+
+
+                $http.get(jadaApiUrl+'api/period').success(function(data) {
+                $scope.periodData = data;
+            
+              });
+   $scope.loadExemptemployees = function () {
+       
+   $scope.exemptionData=ExemptionsService.query();
+
+     }
+
+   $rootScope.$on("CallExemptemployees", function(){
+             $scope.loadExemptemployees();
+          });
+
+
+  $http.get(jadaApiUrl+'api/payrollcode').success(function(data) {
+                 $scope.pcodes = data;
+           
+
+              });
+
+
+  $http.get(jadaApiUrl+'api/employee').success(function(data) {
+                $scope.employees = data;
+              });
+
+
+
+
+
+    $scope.delete= function (employee) {
+  employee.$remove().then(function () {
+   $scope.loadExemptemployees();
+  });
+  }
+
+           $scope.open = function (size) {
+
+              var modalInstance = $uibModal.open({
+                templateUrl: 'addExempt.html',
+                controller: ModalOpenInstanceCtrl,
+                size: size
+              });
+          var state = $('#modal-state');
+              modalInstance.result.then(function () {
+                state.text('Modal dismissed with OK status');
+              }, function () {
+                state.text('Modal dismissed with Cancel status');
+              });
+            };
+
+
+
+
+
+      
+
+
+           $scope.show = function(exemptEmployee) {
+
+                var modalInstance = $uibModal.open({
+                  templateUrl: 'EditExempt.html',
+                  controller: ModalInstanceCtrl,
+                  resolve: {
+                     exemptEmployee: function () {
+                       return exemptEmployee;
+                     }
+                   }        
+
+                });
+              };
+
+
+
+     
+   
+
+
+            // Please note that $uibModalInstance represents a modal window (instance) dependency.
+            // It is not the same as the $uibModal service used above.
+
+            ModalOpenInstanceCtrl.$inject = ['$scope','$http','$rootScope', '$uibModalInstance','ExemptionsService','jadaApiUrl'];
+            function ModalOpenInstanceCtrl($scope, $http,$rootScope,$uibModalInstance, ExemptionsService,jadaApiUrl) {
+            
+              $scope.ok = function () {
+                $uibModalInstance.close('closed');
+              };
+
+              $scope.cancel = function () {
+                $uibModalInstance.dismiss('cancel');
+              };
+              $scope.exempt=new ExemptionsService();
+               $scope.submitExempt=function(exemptionform) {
+            $scope.exempt.$save().then(function(data){
+              var response=angular.fromJson(data);
+            
+              if(response.Status=="1"){
+                $scope.errorMsg=false;
+                      $scope.SuccessMsg =response.Message;
+              }else{
+             
+                 $scope.SuccessMsg=false;
+                     $scope.errorMsg=response.Message;
+             
+              }
+             
+                  $rootScope.$emit("CallExemptemployees", {});
+
+              $scope.exempReset(exemptionform);
+            },
+             function() {
+               $scope.SuccessMsg=false;
+                   $scope.errorMsg = 'Server Request Error';
+                  });
+          
+            };
+            
+              $scope.exempReset=function(exemptionform){
+               $scope.exemptionform={};
+              $scope.exempt="";
+              exemptionform.$setPristine();
+              };
+
+               $scope.CloseExempt=function() {
+            $scope.exempt.$save().then(function(){
+             
+                  $rootScope.$emit("CallExemptemployees", {});
+                    $scope.ok();
+            }, function() {
+               $scope.SuccessMsg=false;
+                   $scope.errorMsg = 'Server Request Error';
+                  });
+          
+            };
+
+
+
+
+
+
+
+            }
+
+
+
+            ModalInstanceCtrl.$inject = ['$scope','$rootScope', '$http','$uibModalInstance','ExemptionsService','exemptEmployee','jadaApiUrl'];
+            function ModalInstanceCtrl($scope, $rootScope,$http,$uibModalInstance, ExemptionsService,exemptEmployee,jadaApiUrl) {
+            $scope.exempt=exemptEmployee;
+              $scope.ok = function () {
+                $uibModalInstance.close('closed');
+              };
+
+              $scope.cancel = function () {
+                $uibModalInstance.dismiss('cancel');
+              };
+            
+
+             
+
+              
+                  $scope.updateExempt=function(employee){
+               employee.$update().then(function(){
+                   $rootScope.$emit("CallExemptemployees", {});
+              });
+            
+                };
+              
+
+
+           
+            }
+          }
+      }
+
+  })();
+
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.payrollcodes')
+        .factory('ExemptionsService', ExemptionsService);
+
+    ExemptionsService.$inject = ['$resource','jadaApiUrl'];
+    function ExemptionsService($resource,jadaApiUrl) {
+     var data=$resource(jadaApiUrl+'api/exemption/:id', {id: '@id'},
+    { 'get':    {method:'GET', isArray:false},
+  'save':   {method:'POST'},
+  'query':  {method:'GET', isArray:true},
+  'update': { method:'PUT' },
+  'remove': {method:'DELETE'},
+  'delete': {method:'DELETE'} 
+});
+     return data
+          
+       
+    }
+
+})();
+
+
+
+  (function() {
+      'use strict';
+
+      angular
+          .module('app.bootstrapui')
+          .controller('PayrollCodesController', PayrollCodesController);
+
+      PayrollCodesController.$inject =['$scope','$http','$rootScope', '$uibModal','PayrollCodesService','$stateParams', '$state','jadaApiUrl'];
+      function PayrollCodesController($scope,$http,$rootScope, $uibModal, PayrollCodesService,$stateParams, $state,jadaApiUrl) {
+          var vm = this;
+
+          activate();
+
+          ////////////////
+
+          function activate() {
+
+   var SuccessMsg;
+   var errorMsg;
+
+  $scope.plist=PayrollCodesService.query();
+
+
+
+    $scope.loadPlist = function () {
+            $http.get(jadaApiUrl+'api/payrollcode').success(function(data) {
+                $scope.plist = data;
+              });      
+          // $scope.plist=PayrollCodesService.query();
+     }
+
+   $rootScope.$on("CallloadPlist", function(){
+             $scope.loadPlist();
+          });
+    
+            
+            $http.get(jadaApiUrl+'api/payrollcodegroup').success(function(data) {
+                $scope.pgroups = data;
+              });
+
+    $scope.delete= function (code) {
+  code.$remove().then(function () {
+    $scope.loadPlist();
+  // $scope.plist.splice($scope.plist.indexOf(code), 1);
+  });
+  }
+
+
+            $scope.open = function (size) {
+
+              var modalInstance = $uibModal.open({
+                templateUrl: 'addPCodes.html',
+                controller: ModalOpenInstanceCtrl,
+                size: size
+              });
+
+
+
+
+
+              var state = $('#modal-state');
+              modalInstance.result.then(function () {
+                state.text('Modal dismissed with OK status');
+              }, function () {
+                state.text('Modal dismissed with Cancel status');
+              });
+            };
+
+
+
+
+    $scope.show = function(code) {
+        // $scope.x = x;
+        var modalInstance = $uibModal.open({
+          templateUrl: 'EditPCodes.html',
+          controller: ModalInstanceCtrl,
+          resolve: {
+             code: function () {
+               return code;
+             }
+           }        
+          // scope : $scope
+        });
+      };
+
+      
+
+
+
+   
+
+
+            // Please note that $uibModalInstance represents a modal window (instance) dependency.
+            // It is not the same as the $uibModal service used above.
+        
+
+         ModalOpenInstanceCtrl.$inject = ['$scope','$rootScope', '$uibModalInstance','PayrollCodesService'];
+            function ModalOpenInstanceCtrl($scope,$rootScope, $uibModalInstance, PayrollCodesService) {
+              
+              
+              $scope.ok = function () {
+                $uibModalInstance.close('closed');
+                
+              };
+
+              $scope.cancel = function () {
+                $uibModalInstance.dismiss('cancel');
+              };
+           $scope.payrollcodes=new PayrollCodesService();
+               $scope.submitPayrollCode=function(payrollcodeform) {
+            $scope.payrollcodes.$save().then(function(data){
+               var response=angular.fromJson(data);
+            
+              if(response.Status=="1"){
+                $scope.errorMsg=false;
+                      $scope.SuccessMsg =response.Message;
+              }else{
+             
+                 $scope.SuccessMsg=false;
+                     $scope.errorMsg=response.Message;
+             
+              }
+               $rootScope.$emit("CallloadPlist", {});
+
+            $scope.pcodeReset(payrollcodeform);
+            },
+            function() {
+               $scope.SuccessMsg=false;
+                   $scope.errorMsg = 'Server Request Error';
+                  });
+            
+          
+            };
+
+
+            $scope.pcodeReset=function(payrollcodeform){
+               $scope.payrollcodeform={};
+              $scope.payrollcodes="";
+              payrollcodeform.$setPristine();
+              };
+
+                $scope.submitPayrollCodeClose=function(payrollcodes) {
+
+                  var pcodes=new PayrollCodesService(payrollcodes)
+            pcodes.$save().then(function(){
+               $rootScope.$emit("CallloadPlist", {});
+               $scope.ok();
+            },function() {
+               $scope.SuccessMsg=false;
+                   $scope.errorMsg = 'Server Request Error';
+                  });
+            
+          
+            };
+                
+            // console.log('Saving paypoint: ' +$scope.ppoint.code);
+           // $scope.points.push(data);
+            
+           
+            }
+            ModalInstanceCtrl.$inject = ['$scope','$rootScope', '$uibModalInstance','PayrollCodesService','code'];
+            function ModalInstanceCtrl($scope,$rootScope, $uibModalInstance, PayrollCodesService,code) {
+              
+              $scope.code=code;
+             
+
+              $scope.ok = function () {
+                $uibModalInstance.close('closed');
+                
+              };
+
+              $scope.cancel = function () {
+                $uibModalInstance.dismiss('cancel');
+              };
+        $scope.updatepayrollcodes=function(code){
+   code.$update().then(function(){
+                     $rootScope.$emit("CallloadPlist", {});
+              });
+
+  };
+
+           
+            }
+          }
+      }
+
+  })();
+
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.payrollcodes')
+        .factory('PayrollCodesService', PayrollCodesService);
+
+    PayrollCodesService.$inject = ['$resource','jadaApiUrl'];
+    function PayrollCodesService($resource,jadaApiUrl) {
+     var data=$resource(jadaApiUrl+'api/payrollcode/:id', {id: '@id'},
+    { 'get':    {method:'GET', isArray:false},
+  'save':   {method:'POST'},
+  'query':  {method:'GET', isArray:true},
+  'update': { method:'PUT' },
+  'remove': {method:'DELETE'},
+  'delete': {method:'DELETE'} 
+});
+     return data
+          
+       
+    }
+
+})();
+
+
+
+
+
+
+/**=========================================================
+ * Module: modals.js
+ * Provides a simple way to implement bootstrap modals from templates
+ =========================================================*/
+(function() {
+    'use strict';
+
+    angular
+        .module('app.bootstrapui')
+        .controller('PayrollGroupController', PayrollGroupController);
+
+   PayrollGroupController.$inject = ['$scope','$rootScope', '$uibModal','PayrollGroupService','$stateParams', '$state'];
+    function PayrollGroupController($scope, $rootScope,$uibModal, PayrollGroupService,$stateParams, $state) {
+        var vm = this;
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+
+ var SuccessMsg;
+ var errorMsg;
+$scope.groups=PayrollGroupService.query();
+
+
+ $scope.loadPayrollGroups = function () {
+    $http.get(jadaApiUrl+'api/payrollcodegroup').success(function(data) {
+                $scope.groups = data;
+              });
+        // $scope.groups=PayrollGroupService.query();
+   }
+
+ $rootScope.$on("CallLoadPayrollGroups", function(){
+           $scope.loadPayrollGroups();
+        });
+
+
+  
+  $scope.delete= function (group) {
+group.$remove().then(function () {
+   $scope.loadPayrollGroups();
+});
+}
+          
+          $scope.open = function (size) {
+
+            var modalInstance = $uibModal.open({
+              templateUrl: 'AddPgroups.html',
+              controller: ModalOpenGroupInstanceCtrl,
+              size: size
+            });
+
+
+
+
+
+            var state = $('#modal-state');
+            modalInstance.result.then(function () {
+              state.text('Modal dismissed with OK status');
+            }, function () {
+              state.text('Modal dismissed with Cancel status');
+            });
+          };
+
+
+
+
+
+ $scope.show = function(codegroup) {
+      // $scope.x = x;
+      var modalInstance = $uibModal.open({
+        templateUrl: 'EditPgroups.html',
+        controller: ModalInstanceCtrl,
+        resolve: {
+           codegroup: function () {
+             return codegroup;
+           }
+         }        
+        // scope : $scope
+      });
+    };
+
+
+
+
+
+ 
+
+
+          // Please note that $uibModalInstance represents a modal window (instance) dependency.
+          // It is not the same as the $uibModal service used above.
+
+          ModalOpenGroupInstanceCtrl.$inject = ['$scope','$rootScope', '$uibModalInstance','PayrollGroupService'];
+          function ModalOpenGroupInstanceCtrl($scope, $rootScope,$uibModalInstance, PayrollGroupService) {
+          
+            $scope.ok = function () {
+              $uibModalInstance.close('closed');
+            };
+
+            $scope.cancel = function () {
+              $uibModalInstance.dismiss('cancel');
+            };
+            
+
+
+           $scope.pgroup=new PayrollGroupService();
+             $scope.submitPayrollGroup=function(payrollgroupform) {
+            
+            $scope.pgroup.$save().then(function(data){
+                 var response=angular.fromJson(data);
+          
+            if(response.Status=="1"){
+              $scope.errorMsg=false;
+                    $scope.SuccessMsg =response.Message;
+            }else{
+           
+               $scope.SuccessMsg=false;
+                   $scope.errorMsg=response.Message;
+           
+            }
+               $rootScope.$emit("CallLoadPayrollGroups", {});
+                  $scope.pgroupReset(payrollgroupform);
+            },
+            function() {
+             $scope.SuccessMsg=false;
+                 $scope.errorMsg = 'Server Request Error';
+                });
+    
+          };
+
+
+            $scope.pgroupReset=function(payrollgroupform){
+             $scope.payrollgroupform={};
+            $scope.pgroup="";
+            payrollgroupform.$setPristine();
+            };
+
+           $scope.ClosePayrollGroup=function(pgroup) {
+            var savepgroup=new PayrollGroupService(pgroup);
+            
+            savepgroup.$save().then(function(){
+                $rootScope.$emit("CallLoadPayrollGroups", {});
+                $scope.ok();
+            },
+                function() {
+             $scope.SuccessMsg=false;
+                 $scope.errorMsg = 'Server Request Error';
+                });
+    
+          };
+         
+         
+          }
+
+
+
+          ModalInstanceCtrl.$inject = ['$scope','$rootScope', '$uibModalInstance','PayrollGroupService','codegroup'];
+          function ModalInstanceCtrl($scope, $rootScope,$uibModalInstance, PayrollGroupService,codegroup) {
+          $scope.group=codegroup;
+            $scope.ok = function () {
+              $uibModalInstance.close('closed');
+            };
+
+            $scope.cancel = function () {
+              $uibModalInstance.dismiss('cancel');
+            };
+            
+
+             $scope.updatePayrollGroup=function(group){
+             group.$update().then(function(){
+                   $rootScope.$emit("CallLoadPayrollGroups", {});
+            });
+          
+              };
+
+
+           
+          }
+        }
+    }
+
+})();
+
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.payrollcodes')
+        .factory('PayrollGroupService', PayrollGroupService);
+
+    PayrollGroupService.$inject = ['$resource','jadaApiUrl'];
+    function PayrollGroupService($resource,jadaApiUrl) {
+     var data=$resource(jadaApiUrl+'api/payrollcodegroup/:id', {id: '@id'},
+    { 'get':    {method:'GET', isArray:false},
+  'save':   {method:'POST'},
+  'query':  {method:'GET', isArray:true},
+  'update': { method:'PUT' },
+  'remove': {method:'DELETE'},
+  'delete': {method:'DELETE'} 
+});
+     return data
+          
+       
+    }
+
+})();
+
+
+
+
+
+
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.preloader')
+        .directive('preloader', preloader);
+
+    preloader.$inject = ['$animate', '$timeout', '$q'];
+    function preloader ($animate, $timeout, $q) {
+
+        var directive = {
+            restrict: 'EAC',
+            template: 
+              '<div class="preloader-progress">' +
+                  '<div class="preloader-progress-bar" ' +
+                       'ng-style="{width: loadCounter + \'%\'}"></div>' +
+              '</div>'
+            ,
+            link: link
+        };
+        return directive;
+
+        ///////
+
+        function link(scope, el) {
+
+          scope.loadCounter = 0;
+
+          var counter  = 0,
+              timeout;
+
+          // disables scrollbar
+          angular.element('body').css('overflow', 'hidden');
+          // ensure class is present for styling
+          el.addClass('preloader');
+
+          appReady().then(endCounter);
+
+          timeout = $timeout(startCounter);
+
+          ///////
+
+          function startCounter() {
+
+            var remaining = 100 - counter;
+            counter = counter + (0.015 * Math.pow(1 - Math.sqrt(remaining), 2));
+
+            scope.loadCounter = parseInt(counter, 10);
+
+            timeout = $timeout(startCounter, 20);
+          }
+
+          function endCounter() {
+
+            $timeout.cancel(timeout);
+
+            scope.loadCounter = 100;
+
+            $timeout(function(){
+              // animate preloader hiding
+              $animate.addClass(el, 'preloader-hidden');
+              // retore scrollbar
+              angular.element('body').css('overflow', '');
+            }, 300);
+          }
+
+          function appReady() {
+            var deferred = $q.defer();
+            var viewsLoaded = 0;
+            // if this doesn't sync with the real app ready
+            // a custom event must be used instead
+            var off = scope.$on('$viewContentLoaded', function () {
+              viewsLoaded ++;
+              // we know there are at least two views to be loaded 
+              // before the app is ready (1-index.html 2-app*.html)
+              if ( viewsLoaded === 2) {
+                // with resolve this fires only once
+                $timeout(function(){
+                  deferred.resolve();
+                }, 3000);
+
+                off();
+              }
+
+            });
+
+            return deferred.promise;
+          }
+
+        } //link
+    }
+
 })();
 (function() {
     'use strict';
@@ -17742,365 +18352,82 @@ angular.module('app.reports').filter('unique', function () {
     return items;
   };
 });
-/**=========================================================
- * Module: sidebar-menu.js
- * Handle sidebar collapsible elements
- =========================================================*/
-
 (function() {
     'use strict';
 
     angular
-        .module('app.sidebar')
-        .controller('SidebarController', SidebarController);
+        .module('app.settings')
+        .run(settingsRun);
 
-    SidebarController.$inject = ['$rootScope', '$scope', '$state', 'SidebarLoader', 'Utils'];
-    function SidebarController($rootScope, $scope, $state, SidebarLoader,  Utils) {
+    settingsRun.$inject = ['$rootScope', '$localStorage'];
 
-        activate();
-
-        ////////////////
-
-        function activate() {
-          var collapseList = [];
-
-          // demo: when switch from collapse to hover, close all items
-          var watchOff1 = $rootScope.$watch('app.layout.asideHover', function(oldVal, newVal){
-            if ( newVal === false && oldVal === true) {
-              closeAllBut(-1);
-            }
-          });
+    function settingsRun($rootScope, $localStorage){
 
 
-          // Load menu from json file
-          // -----------------------------------
+      // User Settings
+      // -----------------------------------
+      $rootScope.user = {
+        name:     'John',
+        job:      'ng-developer',
+        picture:  'app/img/user/02.jpg'
+      };
 
-          SidebarLoader.getMenu(sidebarReady);
+      // Hides/show user avatar on sidebar from any element
+      $rootScope.toggleUserBlock = function(){
+        $rootScope.$broadcast('toggleUserBlock');
+      };
 
-          function sidebarReady(items) {
-            $scope.menuItems = items;
-          }
+      // Global Settings
+      // -----------------------------------
+      $rootScope.app = {
+        name: 'Jada',
+        description: 'Jada Payroll',
+        year: ((new Date()).getFullYear()),
+        layout: {
+          isFixed: true,
+          isCollapsed: false,
+          isBoxed: false,
+          isRTL: false,
+          horizontal: false,
+          isFloat: false,
+          asideHover: false,
+          theme: null,
+          asideScrollbar: false,
+          isCollapsedText: false
+        },
+        useFullLayout: false,
+        hiddenFooter: false,
+        offsidebarOpen: false,
+        asideToggled: false,
+        viewAnimation: 'ng-fadeInUp'
+      };
 
-          // Handle sidebar and collapse items
-          // ----------------------------------
+      // Setup the layout mode
+      $rootScope.app.layout.horizontal = ( $rootScope.$stateParams.layout === 'app-h') ;
 
-          $scope.getMenuItemPropClasses = function(item) {
-            return (item.heading ? 'nav-heading' : '') +
-                   (isActive(item) ? ' active' : '') ;
-          };
+      // Restore layout settings
+      if( angular.isDefined($localStorage.layout) )
+        $rootScope.app.layout = $localStorage.layout;
+      else
+        $localStorage.layout = $rootScope.app.layout;
 
-          $scope.addCollapse = function($index, item) {
-            collapseList[$index] = $rootScope.app.layout.asideHover ? true : !isActive(item);
-          };
+      $rootScope.$watch('app.layout', function () {
+        $localStorage.layout = $rootScope.app.layout;
+      }, true);
 
-          $scope.isCollapse = function($index) {
-            return (collapseList[$index]);
-          };
+      // Close submenu when sidebar change from collapsed to normal
+      $rootScope.$watch('app.layout.isCollapsed', function(newValue) {
+        if( newValue === false )
+          $rootScope.$broadcast('closeSidebarMenu');
+      });
 
-          $scope.toggleCollapse = function($index, isParentItem) {
-
-            // collapsed sidebar doesn't toggle drodopwn
-            if( Utils.isSidebarCollapsed() || $rootScope.app.layout.asideHover ) return true;
-
-            // make sure the item index exists
-            if( angular.isDefined( collapseList[$index] ) ) {
-              if ( ! $scope.lastEventFromChild ) {
-                collapseList[$index] = !collapseList[$index];
-                closeAllBut($index);
-              }
-            }
-            else if ( isParentItem ) {
-              closeAllBut(-1);
-            }
-
-            $scope.lastEventFromChild = isChild($index);
-
-            return true;
-
-          };
-
-          // Controller helpers
-          // -----------------------------------
-
-            // Check item and children active state
-            function isActive(item) {
-
-              if(!item) return;
-
-              if( !item.sref || item.sref === '#') {
-                var foundActive = false;
-                angular.forEach(item.submenu, function(value) {
-                  if(isActive(value)) foundActive = true;
-                });
-                return foundActive;
-              }
-              else
-                return $state.is(item.sref) || $state.includes(item.sref);
-            }
-
-            function closeAllBut(index) {
-              index += '';
-              for(var i in collapseList) {
-                if(index < 0 || index.indexOf(i) < 0)
-                  collapseList[i] = true;
-              }
-            }
-
-            function isChild($index) {
-              /*jshint -W018*/
-              return (typeof $index === 'string') && !($index.indexOf('-') < 0);
-            }
-
-            $scope.$on('$destroy', function() {
-                watchOff1();
-            });
-
-        } // activate
     }
-
-})();
-
-/**=========================================================
- * Module: sidebar.js
- * Wraps the sidebar and handles collapsed state
- =========================================================*/
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.sidebar')
-        .directive('sidebar', sidebar);
-
-    sidebar.$inject = ['$rootScope', '$timeout', '$window', 'Utils'];
-    function sidebar ($rootScope, $timeout, $window, Utils) {
-        var $win = angular.element($window);
-        var directive = {
-            // bindToController: true,
-            // controller: Controller,
-            // controllerAs: 'vm',
-            link: link,
-            restrict: 'EA',
-            template: '<nav class="sidebar" ng-transclude></nav>',
-            transclude: true,
-            replace: true
-            // scope: {}
-        };
-        return directive;
-
-        function link(scope, element, attrs) {
-
-          var currentState = $rootScope.$state.current.name;
-          var $sidebar = element;
-
-          var eventName = Utils.isTouch() ? 'click' : 'mouseenter' ;
-          var subNav = $();
-
-          $sidebar.on( eventName, '.nav > li', function() {
-
-            if( Utils.isSidebarCollapsed() || $rootScope.app.layout.asideHover ) {
-
-              subNav.trigger('mouseleave');
-              subNav = toggleMenuItem( $(this), $sidebar);
-
-              // Used to detect click and touch events outside the sidebar
-              sidebarAddBackdrop();
-
-            }
-
-          });
-
-          var eventOff1 = scope.$on('closeSidebarMenu', function() {
-            removeFloatingNav();
-          });
-
-          // Normalize state when resize to mobile
-          $win.on('resize.sidebar', function() {
-            if( ! Utils.isMobile() )
-          	asideToggleOff();
-          });
-
-          // Adjustment on route changes
-          var eventOff2 = $rootScope.$on('$stateChangeStart', function(event, toState) {
-            currentState = toState.name;
-            // Hide sidebar automatically on mobile
-            asideToggleOff();
-
-            $rootScope.$broadcast('closeSidebarMenu');
-          });
-
-      	  // Autoclose when click outside the sidebar
-          if ( angular.isDefined(attrs.sidebarAnyclickClose) ) {
-
-            var wrapper = $('.wrapper');
-            var sbclickEvent = 'click.sidebar';
-
-            var watchOff1 = $rootScope.$watch('app.asideToggled', watchExternalClicks);
-
-          }
-
-          //////
-
-          function watchExternalClicks(newVal) {
-            // if sidebar becomes visible
-            if ( newVal === true ) {
-              $timeout(function(){ // render after current digest cycle
-                wrapper.on(sbclickEvent, function(e){
-                  // if not child of sidebar
-                  if( ! $(e.target).parents('.aside').length ) {
-                    asideToggleOff();
-                  }
-                });
-              });
-            }
-            else {
-              // dettach event
-              wrapper.off(sbclickEvent);
-            }
-          }
-
-          function asideToggleOff() {
-            $rootScope.app.asideToggled = false;
-            if(!scope.$$phase) scope.$apply(); // anti-pattern but sometimes necessary
-      	  }
-
-          scope.$on('$destroy', function() {
-            // detach scope events
-            eventOff1();
-            eventOff2();
-            watchOff1();
-            // detach dom events
-            $sidebar.off(eventName);
-            $win.off('resize.sidebar');
-            wrapper.off(sbclickEvent);
-          });
-
+       function Logout() {
+            // remove user from local storage and clear http auth header
+            delete $localStorage.currentUser;
+            $http.defaults.headers.common.Authorization = '';
         }
 
-        ///////
-
-        function sidebarAddBackdrop() {
-          var $backdrop = $('<div/>', { 'class': 'dropdown-backdrop'} );
-          $backdrop.insertAfter('.aside-inner').on('click mouseenter', function () {
-            removeFloatingNav();
-          });
-        }
-
-        // Open the collapse sidebar submenu items when on touch devices
-        // - desktop only opens on hover
-        function toggleTouchItem($element){
-          $element
-            .siblings('li')
-            .removeClass('open')
-            .end()
-            .toggleClass('open');
-        }
-
-        // Handles hover to open items under collapsed menu
-        // -----------------------------------
-        function toggleMenuItem($listItem, $sidebar) {
-
-          removeFloatingNav();
-
-          var ul = $listItem.children('ul');
-
-          if( !ul.length ) return $();
-          if( $listItem.hasClass('open') ) {
-            toggleTouchItem($listItem);
-            return $();
-          }
-
-          var $aside = $('.aside');
-          var $asideInner = $('.aside-inner'); // for top offset calculation
-          // float aside uses extra padding on aside
-          var mar = parseInt( $asideInner.css('padding-top'), 0) + parseInt( $aside.css('padding-top'), 0);
-          var subNav = ul.clone().appendTo( $aside );
-
-          toggleTouchItem($listItem);
-
-          var itemTop = ($listItem.position().top + mar) - $sidebar.scrollTop();
-          var vwHeight = $win.height();
-
-          subNav
-            .addClass('nav-floating')
-            .css({
-              position: $rootScope.app.layout.isFixed ? 'fixed' : 'absolute',
-              top:      itemTop,
-              bottom:   (subNav.outerHeight(true) + itemTop > vwHeight) ? 0 : 'auto'
-            });
-
-          subNav.on('mouseleave', function() {
-            toggleTouchItem($listItem);
-            subNav.remove();
-          });
-
-          return subNav;
-        }
-
-        function removeFloatingNav() {
-          $('.dropdown-backdrop').remove();
-          $('.sidebar-subnav.nav-floating').remove();
-          $('.sidebar li.open').removeClass('open');
-        }
-    }
-
-
-})();
-
-
-(function() {
-    'use strict';
-
-    angular
-        .module('app.sidebar')
-        .service('SidebarLoader', SidebarLoader);
-
-    SidebarLoader.$inject = ['$http'];
-    function SidebarLoader($http) {
-        this.getMenu = getMenu;
-
-        ////////////////
-
-        function getMenu(onReady, onError) {
-          var menuJson = 'server/sidebar-menu.json',
-              menuURL  = menuJson + '?v=' + (new Date().getTime()); // jumps cache
-            
-          onError = onError || function() { alert('Failure loading menu'); };
-
-          $http
-            .get(menuURL)
-            .success(onReady)
-            .error(onError);
-        }
-    }
-})();
-(function() {
-    'use strict';
-
-    angular
-        .module('app.sidebar')
-        .controller('UserBlockController', UserBlockController);
-
-    UserBlockController.$inject = ['$scope'];
-    function UserBlockController($scope) {
-
-        activate();
-
-        ////////////////
-
-        function activate() {
-
-          $scope.userBlockVisible = true;
-
-          var detach = $scope.$on('toggleUserBlock', function(/*event, args*/) {
-
-            $scope.userBlockVisible = ! $scope.userBlockVisible;
-
-          });
-
-          $scope.$on('$destroy', detach);
-        }
-    }
 })();
 
 /**=========================================================
@@ -18990,6 +19317,13 @@ angular.module('app.reports').filter('unique', function () {
             
           })
 
+         .state('app.advance-approval', {
+              url: '/advance-approval',
+              title: 'advance approval',
+                templateUrl: helper.basepath('advance-approval.html'),
+                 resolve: helper.resolveFor('datatables')
+             
+          })  
 
              .state('app.leaveposting', {
               url: '/leaveposting',
@@ -19293,6 +19627,20 @@ angular.module('app.reports').filter('unique', function () {
                  resolve: helper.resolveFor('datatables')
              
           })  
+         .state('app.casual-approval', {
+              url: '/casual-approval',
+              title: 'casual approval',
+                templateUrl: helper.basepath('casual-approval.html'),
+                 resolve: helper.resolveFor('datatables')
+             
+          })   
+         .state('app.casual-payment', {
+              url: '/casual-payment',
+              title: 'casual payment',
+                templateUrl: helper.basepath('casual-payment.html'),
+                 resolve: helper.resolveFor('datatables')
+             
+          })                  
          .state('app.casual-monthly-summary', {
               url: '/casual-monthly-summary',
               title: 'casual Monthly Summary',
@@ -19621,82 +19969,365 @@ angular.module('app.reports').filter('unique', function () {
 })();
 
 
+/**=========================================================
+ * Module: sidebar-menu.js
+ * Handle sidebar collapsible elements
+ =========================================================*/
+
 (function() {
     'use strict';
 
     angular
-        .module('app.settings')
-        .run(settingsRun);
+        .module('app.sidebar')
+        .controller('SidebarController', SidebarController);
 
-    settingsRun.$inject = ['$rootScope', '$localStorage'];
+    SidebarController.$inject = ['$rootScope', '$scope', '$state', 'SidebarLoader', 'Utils'];
+    function SidebarController($rootScope, $scope, $state, SidebarLoader,  Utils) {
 
-    function settingsRun($rootScope, $localStorage){
+        activate();
+
+        ////////////////
+
+        function activate() {
+          var collapseList = [];
+
+          // demo: when switch from collapse to hover, close all items
+          var watchOff1 = $rootScope.$watch('app.layout.asideHover', function(oldVal, newVal){
+            if ( newVal === false && oldVal === true) {
+              closeAllBut(-1);
+            }
+          });
 
 
-      // User Settings
-      // -----------------------------------
-      $rootScope.user = {
-        name:     'John',
-        job:      'ng-developer',
-        picture:  'app/img/user/02.jpg'
-      };
+          // Load menu from json file
+          // -----------------------------------
 
-      // Hides/show user avatar on sidebar from any element
-      $rootScope.toggleUserBlock = function(){
-        $rootScope.$broadcast('toggleUserBlock');
-      };
+          SidebarLoader.getMenu(sidebarReady);
 
-      // Global Settings
-      // -----------------------------------
-      $rootScope.app = {
-        name: 'Jada',
-        description: 'Jada Payroll',
-        year: ((new Date()).getFullYear()),
-        layout: {
-          isFixed: true,
-          isCollapsed: false,
-          isBoxed: false,
-          isRTL: false,
-          horizontal: false,
-          isFloat: false,
-          asideHover: false,
-          theme: null,
-          asideScrollbar: false,
-          isCollapsedText: false
-        },
-        useFullLayout: false,
-        hiddenFooter: false,
-        offsidebarOpen: false,
-        asideToggled: false,
-        viewAnimation: 'ng-fadeInUp'
-      };
+          function sidebarReady(items) {
+            $scope.menuItems = items;
+          }
 
-      // Setup the layout mode
-      $rootScope.app.layout.horizontal = ( $rootScope.$stateParams.layout === 'app-h') ;
+          // Handle sidebar and collapse items
+          // ----------------------------------
 
-      // Restore layout settings
-      if( angular.isDefined($localStorage.layout) )
-        $rootScope.app.layout = $localStorage.layout;
-      else
-        $localStorage.layout = $rootScope.app.layout;
+          $scope.getMenuItemPropClasses = function(item) {
+            return (item.heading ? 'nav-heading' : '') +
+                   (isActive(item) ? ' active' : '') ;
+          };
 
-      $rootScope.$watch('app.layout', function () {
-        $localStorage.layout = $rootScope.app.layout;
-      }, true);
+          $scope.addCollapse = function($index, item) {
+            collapseList[$index] = $rootScope.app.layout.asideHover ? true : !isActive(item);
+          };
 
-      // Close submenu when sidebar change from collapsed to normal
-      $rootScope.$watch('app.layout.isCollapsed', function(newValue) {
-        if( newValue === false )
-          $rootScope.$broadcast('closeSidebarMenu');
-      });
+          $scope.isCollapse = function($index) {
+            return (collapseList[$index]);
+          };
 
+          $scope.toggleCollapse = function($index, isParentItem) {
+
+            // collapsed sidebar doesn't toggle drodopwn
+            if( Utils.isSidebarCollapsed() || $rootScope.app.layout.asideHover ) return true;
+
+            // make sure the item index exists
+            if( angular.isDefined( collapseList[$index] ) ) {
+              if ( ! $scope.lastEventFromChild ) {
+                collapseList[$index] = !collapseList[$index];
+                closeAllBut($index);
+              }
+            }
+            else if ( isParentItem ) {
+              closeAllBut(-1);
+            }
+
+            $scope.lastEventFromChild = isChild($index);
+
+            return true;
+
+          };
+
+          // Controller helpers
+          // -----------------------------------
+
+            // Check item and children active state
+            function isActive(item) {
+
+              if(!item) return;
+
+              if( !item.sref || item.sref === '#') {
+                var foundActive = false;
+                angular.forEach(item.submenu, function(value) {
+                  if(isActive(value)) foundActive = true;
+                });
+                return foundActive;
+              }
+              else
+                return $state.is(item.sref) || $state.includes(item.sref);
+            }
+
+            function closeAllBut(index) {
+              index += '';
+              for(var i in collapseList) {
+                if(index < 0 || index.indexOf(i) < 0)
+                  collapseList[i] = true;
+              }
+            }
+
+            function isChild($index) {
+              /*jshint -W018*/
+              return (typeof $index === 'string') && !($index.indexOf('-') < 0);
+            }
+
+            $scope.$on('$destroy', function() {
+                watchOff1();
+            });
+
+        } // activate
     }
-       function Logout() {
-            // remove user from local storage and clear http auth header
-            delete $localStorage.currentUser;
-            $http.defaults.headers.common.Authorization = '';
+
+})();
+
+/**=========================================================
+ * Module: sidebar.js
+ * Wraps the sidebar and handles collapsed state
+ =========================================================*/
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.sidebar')
+        .directive('sidebar', sidebar);
+
+    sidebar.$inject = ['$rootScope', '$timeout', '$window', 'Utils'];
+    function sidebar ($rootScope, $timeout, $window, Utils) {
+        var $win = angular.element($window);
+        var directive = {
+            // bindToController: true,
+            // controller: Controller,
+            // controllerAs: 'vm',
+            link: link,
+            restrict: 'EA',
+            template: '<nav class="sidebar" ng-transclude></nav>',
+            transclude: true,
+            replace: true
+            // scope: {}
+        };
+        return directive;
+
+        function link(scope, element, attrs) {
+
+          var currentState = $rootScope.$state.current.name;
+          var $sidebar = element;
+
+          var eventName = Utils.isTouch() ? 'click' : 'mouseenter' ;
+          var subNav = $();
+
+          $sidebar.on( eventName, '.nav > li', function() {
+
+            if( Utils.isSidebarCollapsed() || $rootScope.app.layout.asideHover ) {
+
+              subNav.trigger('mouseleave');
+              subNav = toggleMenuItem( $(this), $sidebar);
+
+              // Used to detect click and touch events outside the sidebar
+              sidebarAddBackdrop();
+
+            }
+
+          });
+
+          var eventOff1 = scope.$on('closeSidebarMenu', function() {
+            removeFloatingNav();
+          });
+
+          // Normalize state when resize to mobile
+          $win.on('resize.sidebar', function() {
+            if( ! Utils.isMobile() )
+          	asideToggleOff();
+          });
+
+          // Adjustment on route changes
+          var eventOff2 = $rootScope.$on('$stateChangeStart', function(event, toState) {
+            currentState = toState.name;
+            // Hide sidebar automatically on mobile
+            asideToggleOff();
+
+            $rootScope.$broadcast('closeSidebarMenu');
+          });
+
+      	  // Autoclose when click outside the sidebar
+          if ( angular.isDefined(attrs.sidebarAnyclickClose) ) {
+
+            var wrapper = $('.wrapper');
+            var sbclickEvent = 'click.sidebar';
+
+            var watchOff1 = $rootScope.$watch('app.asideToggled', watchExternalClicks);
+
+          }
+
+          //////
+
+          function watchExternalClicks(newVal) {
+            // if sidebar becomes visible
+            if ( newVal === true ) {
+              $timeout(function(){ // render after current digest cycle
+                wrapper.on(sbclickEvent, function(e){
+                  // if not child of sidebar
+                  if( ! $(e.target).parents('.aside').length ) {
+                    asideToggleOff();
+                  }
+                });
+              });
+            }
+            else {
+              // dettach event
+              wrapper.off(sbclickEvent);
+            }
+          }
+
+          function asideToggleOff() {
+            $rootScope.app.asideToggled = false;
+            if(!scope.$$phase) scope.$apply(); // anti-pattern but sometimes necessary
+      	  }
+
+          scope.$on('$destroy', function() {
+            // detach scope events
+            eventOff1();
+            eventOff2();
+            watchOff1();
+            // detach dom events
+            $sidebar.off(eventName);
+            $win.off('resize.sidebar');
+            wrapper.off(sbclickEvent);
+          });
+
         }
 
+        ///////
+
+        function sidebarAddBackdrop() {
+          var $backdrop = $('<div/>', { 'class': 'dropdown-backdrop'} );
+          $backdrop.insertAfter('.aside-inner').on('click mouseenter', function () {
+            removeFloatingNav();
+          });
+        }
+
+        // Open the collapse sidebar submenu items when on touch devices
+        // - desktop only opens on hover
+        function toggleTouchItem($element){
+          $element
+            .siblings('li')
+            .removeClass('open')
+            .end()
+            .toggleClass('open');
+        }
+
+        // Handles hover to open items under collapsed menu
+        // -----------------------------------
+        function toggleMenuItem($listItem, $sidebar) {
+
+          removeFloatingNav();
+
+          var ul = $listItem.children('ul');
+
+          if( !ul.length ) return $();
+          if( $listItem.hasClass('open') ) {
+            toggleTouchItem($listItem);
+            return $();
+          }
+
+          var $aside = $('.aside');
+          var $asideInner = $('.aside-inner'); // for top offset calculation
+          // float aside uses extra padding on aside
+          var mar = parseInt( $asideInner.css('padding-top'), 0) + parseInt( $aside.css('padding-top'), 0);
+          var subNav = ul.clone().appendTo( $aside );
+
+          toggleTouchItem($listItem);
+
+          var itemTop = ($listItem.position().top + mar) - $sidebar.scrollTop();
+          var vwHeight = $win.height();
+
+          subNav
+            .addClass('nav-floating')
+            .css({
+              position: $rootScope.app.layout.isFixed ? 'fixed' : 'absolute',
+              top:      itemTop,
+              bottom:   (subNav.outerHeight(true) + itemTop > vwHeight) ? 0 : 'auto'
+            });
+
+          subNav.on('mouseleave', function() {
+            toggleTouchItem($listItem);
+            subNav.remove();
+          });
+
+          return subNav;
+        }
+
+        function removeFloatingNav() {
+          $('.dropdown-backdrop').remove();
+          $('.sidebar-subnav.nav-floating').remove();
+          $('.sidebar li.open').removeClass('open');
+        }
+    }
+
+
+})();
+
+
+(function() {
+    'use strict';
+
+    angular
+        .module('app.sidebar')
+        .service('SidebarLoader', SidebarLoader);
+
+    SidebarLoader.$inject = ['$http'];
+    function SidebarLoader($http) {
+        this.getMenu = getMenu;
+
+        ////////////////
+
+        function getMenu(onReady, onError) {
+          var menuJson = 'server/sidebar-menu.json',
+              menuURL  = menuJson + '?v=' + (new Date().getTime()); // jumps cache
+            
+          onError = onError || function() { alert('Failure loading menu'); };
+
+          $http
+            .get(menuURL)
+            .success(onReady)
+            .error(onError);
+        }
+    }
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.sidebar')
+        .controller('UserBlockController', UserBlockController);
+
+    UserBlockController.$inject = ['$scope'];
+    function UserBlockController($scope) {
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+
+          $scope.userBlockVisible = true;
+
+          var detach = $scope.$on('toggleUserBlock', function(/*event, args*/) {
+
+            $scope.userBlockVisible = ! $scope.userBlockVisible;
+
+          });
+
+          $scope.$on('$destroy', detach);
+        }
+    }
 })();
 
 /**=========================================================
@@ -20673,69 +21304,167 @@ angular.module('app.reports').filter('unique', function () {
         }
     }
 })();
-(function() {
-    'use strict';
 
-    angular
-        .module('app.translate')
-        .config(translateConfig)
-        ;
-    translateConfig.$inject = ['$translateProvider'];
-    function translateConfig($translateProvider){
 
-      $translateProvider.useStaticFilesLoader({
-          prefix : 'app/i18n/',
-          suffix : '.json'
+
+/**=========================================================
+ * Module: modals.js
+ * Provides a simple way to implement bootstrap modals from templates
+ =========================================================*/
+ (function() {
+  'use strict';
+
+  angular
+  .module('app.bootstrapui')
+  .controller('AdvanceApprovalController', AdvanceApprovalController);
+
+  AdvanceApprovalController.$inject = ['jadaApiUrl','$http','$scope','$rootScope', '$uibModal','AdvanceApprovalService','$stateParams', '$state'];
+  function AdvanceApprovalController(jadaApiUrl,$http,$scope, $rootScope, $uibModal, AdvanceApprovalService,$stateParams, $state) {
+    var vm = this;
+
+    activate();
+
+        ////////////////
+
+        function activate() {
+
+ 
+         var SuccessMsg;
+         var errorMsg;
+
+
+         $scope.AdvanceApprovalList=AdvanceApprovalService.query();
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+        $scope.open = function (size) {
+
+          var modalInstance = $uibModal.open({
+            templateUrl: 'create.html',
+            controller: ModalOpenCostInstanceCtrl,
+            size: size
+          });
+
+
+
+
+
+          var state = $('#modal-state');
+          modalInstance.result.then(function () {
+            state.text('Modal dismissed with OK status');
+          }, function () {
+            state.text('Modal dismissed with Cancel status');
+          });
+        };
+
+
+
+
+
+
+        $scope.show = function(AdvanceApproval) {
+      // $scope.x = x;
+      var modalInstance = $uibModal.open({
+        templateUrl: 'advance-reciept.html',
+        controller: ModalInstanceCtrl,
+        resolve: {
+         AdvanceApproval: function () {
+           return AdvanceApproval;
+         }
+       }        
+        // scope : $scope
       });
+    };
 
-      $translateProvider.preferredLanguage('en');
-      $translateProvider.useLocalStorage();
-      $translateProvider.usePostCompiling(true);
-      $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 
-    }
-})();
+
+
+    
+
+
+
+
+         ModalInstanceCtrl.$inject = ['$scope', '$rootScope','$uibModalInstance','AdvanceApprovalService','AdvanceApproval'];
+         function ModalInstanceCtrl($scope, $rootScope,$uibModalInstance, AdvanceApprovalService,AdvanceApproval) {
+          $scope.AdvanceApprovalModel=AdvanceApproval;
+          $scope.ok = function () {
+            $uibModalInstance.close('closed');
+          };
+
+          $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+          };
+          
+          
+
+          $scope.updateAdvanceApproval=function(AdvanceApprovalModel){
+           $scope.AdvanceApproval=new AdvanceApprovalService(AdvanceApprovalModel);
+           AdvanceApproval.$update().then(function(){
+             $rootScope.$emit("CallLoadAdvanceApprovals", {});
+             $scope.AdvanceApproval=AdvanceApproval;
+           });
+         };
+
+        $scope.printReceipt = function (div) {
+         
+          var docHead = document.head.outerHTML;
+          var printContents = document.getElementById(div).outerHTML;
+          var winAttr = "location=yes, statusbar=no, menubar=no, titlebar=no, toolbar=no,dependent=no, width=865, height=600, resizable=yes, screenX=200, screenY=200, personalbar=no, scrollbars=yes";
+
+          var newWin = window.open("", "_blank", winAttr);
+          var writeDoc = newWin.document;
+          writeDoc.open();
+          writeDoc.write('<!doctype html><html>' + docHead + '<body onLoad="window.print()">' + printContents + '</body></html>');
+          writeDoc.close();
+          newWin.focus();
+          $scope.ok();
+        }         
+
+       }
+
+
+
+
+
+
+     }
+   }
+
+ })();
+
 (function() {
     'use strict';
 
     angular
-        .module('app.translate')
-        .run(translateRun)
-        ;
-    translateRun.$inject = ['$rootScope', '$translate'];
-    
-    function translateRun($rootScope, $translate){
+        .module('app.maintenance')
+        .factory('AdvanceApprovalService', AdvanceApprovalService);
 
-      // Internationalization
-      // ----------------------
-
-      $rootScope.language = {
-        // Handles language dropdown
-        listIsOpen: false,
-        // list of available languages
-        available: {
-          'en':       'English',
-          'es_AR':    'Español'
-        },
-        // display always the current ui language
-        init: function () {
-          var proposedLanguage = $translate.proposedLanguage() || $translate.use();
-          var preferredLanguage = $translate.preferredLanguage(); // we know we have set a preferred one in app.config
-          $rootScope.language.selected = $rootScope.language.available[ (proposedLanguage || preferredLanguage) ];
-        },
-        set: function (localeId) {
-          // Set the new idiom
-          $translate.use(localeId);
-          // save a reference for the current language
-          $rootScope.language.selected = $rootScope.language.available[localeId];
-          // finally toggle dropdown
-          $rootScope.language.listIsOpen = ! $rootScope.language.listIsOpen;
-        }
-      };
-
-      $rootScope.language.init();
-
+    AdvanceApprovalService.$inject = ['$resource','jadaApiUrl'];
+    function AdvanceApprovalService($resource,jadaApiUrl) {
+     var data=$resource(jadaApiUrl+'api/advancetransaction/:id', {id: '@id'},
+    { 'get':    {method:'GET', isArray:false},
+  'save':   {method:'POST'},
+  'query':  {method:'GET', isArray:true},
+  'update': { method:'PUT' },
+  'remove': {method:'DELETE'},
+  'delete': {method:'DELETE'} 
+});
+     return data
+          
+       
     }
+
 })();
 /**=========================================================
  * Module: demo-buttons.js
@@ -21799,6 +22528,7 @@ for(var r=0;r<list.length;r++){
 
               ////////////////
 
+
               function activate() {
 
        var SuccessMsg;
@@ -21955,6 +22685,7 @@ for(var r=0;r<list.length;r++){
 
 
 
+
                    ModalInstanceCtrl.$inject = ['$scope', '$http', '$rootScope','$uibModalInstance','LeaveApprovalService','leave','jadaApiUrl'];
                 function ModalInstanceCtrl($scope,$http, $rootScope,$uibModalInstance, LeaveApprovalService,leave,jadaApiUrl) {
                 $scope.leave=leave;
@@ -21973,6 +22704,7 @@ for(var r=0;r<list.length;r++){
                    leave.$update().then(function(){
 
                          $rootScope.$emit("CallLoadPendingLeaves", {});
+                         $scope.ok();
                   });
                 
                     };
@@ -22127,6 +22859,8 @@ $scope.dayDiff = function(firstDate, secondDate){
 
      
              $scope.submitLeaveApplication=function(leavepost,leavepostform) {
+              var d = new Date(leavepost.startDate);
+              console.log(d);
  var leaveposting=new LeaveProcessingService(leavepost);
           leaveposting.$save().then(function(data){
              var response=angular.fromJson(data);
@@ -22278,41 +23012,12 @@ $scope.clickBtn = function() {
        var errorMsg;
 
  
-           
-$scope.approvedResource = $resource(jadaApiUrl+'api/approvedpayrolltransaction');
-$scope.approve=$scope.approvedResource.get({});
-
-$scope.rejectedResource = $resource(jadaApiUrl+'api/rejectedpayrolltransaction');
- $scope.rejectedgpayroll=$scope.rejectedResource.get({});
 
       $scope.pendingleaves=LeaveApprovalService.query();
     
 
            
 
-// $http.get(jadaApiUrl+'api/approvedpayrolltransaction').success(function(data) {
-//                     $scope.approvedgpayroll=data;
-                 
-//                   });
-
-
-
-
-       $scope.approvedpayroll=function () {
-      var count = 0;
-
-      angular.forEach($scope.approve, function(value, key) {
-        if(key=="status" &&value=="1"){
-          count++
-  
-        }
-       
-      }
-      );
-      return count;
-
-
-      }
 
 
 
@@ -22321,30 +23026,11 @@ $scope.rejectedResource = $resource(jadaApiUrl+'api/rejectedpayrolltransaction')
 
 
 
-      // $http.get(jadaApiUrl+'api/rejectedpayrolltransaction').success(function(data) {
-      //               $scope.rejectedgpayroll =data;
-
-      //           console.log($scope.rejectedgpayroll);
-      //             });
 
 
 
 
-       $scope.rejectedpayroll=function () {
-      var count = 0;
 
-      angular.forEach($scope.rejectedgpayroll, function(value, key) {
-        if(key=="status" &&value=="2"){
-          count++
-
-        }
-       
-      }
-      );
-      return count;
-
-
-      }
 
 
 
@@ -22356,22 +23042,57 @@ $scope.rejectedResource = $resource(jadaApiUrl+'api/rejectedpayrolltransaction')
                  
                   });
 
-
-       $scope.pendingpayroll=function () {
-      var count = 0;
-
-      angular.forEach($scope.pendingpayrolldata, function(value, key) {
-        if(key=="status" &&value=="0"){
-          count++
-
-        }
-       
-      }
-      );
-      return count;
+                  $http.get(jadaApiUrl+'api/pendingapprovalcasualtransaction').success(function(data) {
+                    $scope.pendingapprovalcasualdata=data;
+                 
+                  });
 
 
-      }
+
+                  $http.get(jadaApiUrl+'api/pendingpaymentcasualtransaction').success(function(data) {
+                    $scope.pendingpaymentcasualdata=data;
+                 
+                  });
+
+                  $http.get(jadaApiUrl+'api/advancetransaction').success(function(data) {
+                    $scope.advancedata=data;
+                 
+                  });
+
+
+                  $scope.pendingapprovalcasualcount=function(){
+                    var c=0;
+                    angular.forEach($scope.pendingapprovalcasualdata, function(value, key) {
+                      
+                        c++
+                    });
+                      return c;
+
+                      
+                  }
+                  $scope.pendingpaymentcasualcount=function(){
+                    var c=0;
+                    angular.forEach($scope.pendingpaymentcasualdata, function(value, key) {
+                      
+                        c++
+                    });
+                      return c;
+
+                      
+                  }                  
+
+                  $scope.advancecount=function(){
+                    var c=0;
+                    angular.forEach($scope.advancedata, function(value, key) {
+                      
+                        c++
+                    });
+                      return c;
+
+                      
+                  }                  
+
+
 
 
 
@@ -22400,7 +23121,7 @@ $scope.rejectedResource = $resource(jadaApiUrl+'api/rejectedpayrolltransaction')
 
 
       $scope.totalNotification=function(){
-        var total=$scope.leavenotification()+ $scope.pendingpayroll()+$scope.rejectedpayroll()+$scope.approvedpayroll();
+        var total=$scope.leavenotification();
         return total;
       
 
@@ -23130,9 +23851,11 @@ $scope.accountReset=function(accountform){
         function activate() {
 
 
+
  var SuccessMsg;
  var errorMsg;
   $scope.leavenotification=NotificationService.query();
+
 
 
 
@@ -24296,6 +25019,70 @@ $scope.userReset = function(userform){
        
     }
 
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.translate')
+        .config(translateConfig)
+        ;
+    translateConfig.$inject = ['$translateProvider'];
+    function translateConfig($translateProvider){
+
+      $translateProvider.useStaticFilesLoader({
+          prefix : 'app/i18n/',
+          suffix : '.json'
+      });
+
+      $translateProvider.preferredLanguage('en');
+      $translateProvider.useLocalStorage();
+      $translateProvider.usePostCompiling(true);
+      $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+
+    }
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('app.translate')
+        .run(translateRun)
+        ;
+    translateRun.$inject = ['$rootScope', '$translate'];
+    
+    function translateRun($rootScope, $translate){
+
+      // Internationalization
+      // ----------------------
+
+      $rootScope.language = {
+        // Handles language dropdown
+        listIsOpen: false,
+        // list of available languages
+        available: {
+          'en':       'English',
+          'es_AR':    'Español'
+        },
+        // display always the current ui language
+        init: function () {
+          var proposedLanguage = $translate.proposedLanguage() || $translate.use();
+          var preferredLanguage = $translate.preferredLanguage(); // we know we have set a preferred one in app.config
+          $rootScope.language.selected = $rootScope.language.available[ (proposedLanguage || preferredLanguage) ];
+        },
+        set: function (localeId) {
+          // Set the new idiom
+          $translate.use(localeId);
+          // save a reference for the current language
+          $rootScope.language.selected = $rootScope.language.available[localeId];
+          // finally toggle dropdown
+          $rootScope.language.listIsOpen = ! $rootScope.language.listIsOpen;
+        }
+      };
+
+      $rootScope.language.init();
+
+    }
 })();
 /**=========================================================
  * Module: animate-enabled.js

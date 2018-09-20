@@ -801,6 +801,13 @@
             
           })
 
+         .state('app.advance-approval', {
+              url: '/advance-approval',
+              title: 'advance approval',
+                templateUrl: helper.basepath('advance-approval.html'),
+                 resolve: helper.resolveFor('datatables')
+             
+          })  
 
              .state('app.leaveposting', {
               url: '/leaveposting',
@@ -1104,6 +1111,20 @@
                  resolve: helper.resolveFor('datatables')
              
           })  
+         .state('app.casual-approval', {
+              url: '/casual-approval',
+              title: 'casual approval',
+                templateUrl: helper.basepath('casual-approval.html'),
+                 resolve: helper.resolveFor('datatables')
+             
+          })   
+         .state('app.casual-payment', {
+              url: '/casual-payment',
+              title: 'casual payment',
+                templateUrl: helper.basepath('casual-payment.html'),
+                 resolve: helper.resolveFor('datatables')
+             
+          })                  
          .state('app.casual-monthly-summary', {
               url: '/casual-monthly-summary',
               title: 'casual Monthly Summary',

@@ -24,41 +24,12 @@
        var errorMsg;
 
  
-           
-$scope.approvedResource = $resource(jadaApiUrl+'api/approvedpayrolltransaction');
-$scope.approve=$scope.approvedResource.get({});
-
-$scope.rejectedResource = $resource(jadaApiUrl+'api/rejectedpayrolltransaction');
- $scope.rejectedgpayroll=$scope.rejectedResource.get({});
 
       $scope.pendingleaves=LeaveApprovalService.query();
     
 
            
 
-// $http.get(jadaApiUrl+'api/approvedpayrolltransaction').success(function(data) {
-//                     $scope.approvedgpayroll=data;
-                 
-//                   });
-
-
-
-
-       $scope.approvedpayroll=function () {
-      var count = 0;
-
-      angular.forEach($scope.approve, function(value, key) {
-        if(key=="status" &&value=="1"){
-          count++
-  
-        }
-       
-      }
-      );
-      return count;
-
-
-      }
 
 
 
@@ -67,30 +38,11 @@ $scope.rejectedResource = $resource(jadaApiUrl+'api/rejectedpayrolltransaction')
 
 
 
-      // $http.get(jadaApiUrl+'api/rejectedpayrolltransaction').success(function(data) {
-      //               $scope.rejectedgpayroll =data;
-
-      //           console.log($scope.rejectedgpayroll);
-      //             });
 
 
 
 
-       $scope.rejectedpayroll=function () {
-      var count = 0;
 
-      angular.forEach($scope.rejectedgpayroll, function(value, key) {
-        if(key=="status" &&value=="2"){
-          count++
-
-        }
-       
-      }
-      );
-      return count;
-
-
-      }
 
 
 
@@ -102,22 +54,57 @@ $scope.rejectedResource = $resource(jadaApiUrl+'api/rejectedpayrolltransaction')
                  
                   });
 
-
-       $scope.pendingpayroll=function () {
-      var count = 0;
-
-      angular.forEach($scope.pendingpayrolldata, function(value, key) {
-        if(key=="status" &&value=="0"){
-          count++
-
-        }
-       
-      }
-      );
-      return count;
+                  $http.get(jadaApiUrl+'api/pendingapprovalcasualtransaction').success(function(data) {
+                    $scope.pendingapprovalcasualdata=data;
+                 
+                  });
 
 
-      }
+
+                  $http.get(jadaApiUrl+'api/pendingpaymentcasualtransaction').success(function(data) {
+                    $scope.pendingpaymentcasualdata=data;
+                 
+                  });
+
+                  $http.get(jadaApiUrl+'api/advancetransaction').success(function(data) {
+                    $scope.advancedata=data;
+                 
+                  });
+
+
+                  $scope.pendingapprovalcasualcount=function(){
+                    var c=0;
+                    angular.forEach($scope.pendingapprovalcasualdata, function(value, key) {
+                      
+                        c++
+                    });
+                      return c;
+
+                      
+                  }
+                  $scope.pendingpaymentcasualcount=function(){
+                    var c=0;
+                    angular.forEach($scope.pendingpaymentcasualdata, function(value, key) {
+                      
+                        c++
+                    });
+                      return c;
+
+                      
+                  }                  
+
+                  $scope.advancecount=function(){
+                    var c=0;
+                    angular.forEach($scope.advancedata, function(value, key) {
+                      
+                        c++
+                    });
+                      return c;
+
+                      
+                  }                  
+
+
 
 
 
@@ -146,7 +133,7 @@ $scope.rejectedResource = $resource(jadaApiUrl+'api/rejectedpayrolltransaction')
 
 
       $scope.totalNotification=function(){
-        var total=$scope.leavenotification()+ $scope.pendingpayroll()+$scope.rejectedpayroll()+$scope.approvedpayroll();
+        var total=$scope.leavenotification();
         return total;
       
 

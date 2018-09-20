@@ -1,0 +1,139 @@
+
+  <h3>Advance Approvals
+     
+  </h3>
+  <div class="panel panel-default" ng-controller="AdvanceApprovalController">
+                   <div class="panel-heading"><div class="clearfix">
+
+          
+          
+        </div></div>
+                   <div class="panel-body" >
+
+                    <div class="table-responsive">
+                     <table class="table table-striped" datatable="ng">
+                       <thead>
+                         <tr>
+
+                          <th>Employee Number</th>
+                          <th>Employe Name</th>
+                          <th>Advance Amount</th>
+                          <th>Is Processed</th>
+                          <th>Print</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                       <tr ng-repeat="AdvanceApproval in AdvanceApprovalList">
+                        <td>{{ AdvanceApproval.employeeNumber}}</td>
+                        <td>{{ AdvanceApproval.employeeName}}</td>
+                         <td>{{ AdvanceApproval.amount}}</td>
+                         <td>{{ AdvanceApproval.isProcessed}}</td>
+ 
+                         <td><button class="btn btn-danger" ng-click="show(AdvanceApproval)"><i class="fa fa-print"></i></button></td>
+
+
+
+        
+                    </tr>
+
+                  </tbody>
+                </table>
+
+
+              </div>
+      
+              
+
+<script type="text/ng-template" id="advance-reciept.html">
+  <div class="modal-header">
+    <button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button>
+    <h4 class="modal-title" id="myMapModalLabel">Advance Receipt</h4>
+  </div>
+  <div class="modal-body" ng-controller="AdvanceApprovalController" id='receipt'>
+   <table style="margin: auto;">
+     <tbody>
+       <tr>
+         <td style="width:100%; text-align:center; font-weight:bold;" colspan="3">{{AdvanceApprovalModel.company}}</td>
+       </tr>      
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%">Employee No : </td>
+         <td style="width:50%">{{AdvanceApprovalModel.employeeNumber}}</td>
+       </tr>
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%">Employee Name : </td>
+         <td style="width:50%">{{AdvanceApprovalModel.employeeName}}</td>
+       </tr>      
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%">Pin Number : </td>
+         <td style="width:50%">{{AdvanceApprovalModel.pinNumber}}</td>
+       </tr>    
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%">Pay Period : </td>
+         <td style="width:50%">{{AdvanceApprovalModel.payPeriod}}</td>
+       </tr>  
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%">Advance Amount : </td>
+         <td style="width:50%">{{AdvanceApprovalModel.amount}}</td>
+       </tr> 
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%; font-weight:bold;">Approved By </td>
+         <td style="width:50%"></td>
+       </tr>
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%">Name : </td>
+         <td style="width:50%">.........................................</td>
+       </tr>
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%">Signature : </td>
+         <td style="width:50%">.........................................</td>
+       </tr>
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%">Date of Approval : </td>
+         <td style="width:50%">.........................................</td>
+       </tr>   
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%; font-weight:bold;">Received By </td>
+         <td style="width:50%"></td>
+       </tr>
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%">Name : </td>
+         <td style="width:50%">.........................................</td>
+       </tr>
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%">Signature : </td>
+         <td style="width:50%">.........................................</td>
+       </tr>
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%">Date Received : </td>
+         <td style="width:50%">.........................................</td>
+       </tr>                                                
+     </tbody>
+   </table>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="printReceipt('receipt')"><i class='fa fa-print'></i></button> <button class="btn btn-primary" ng-click="ok()">Close</button>
+  </div>
+   </script>
+
+
+            </div>
+          </div>
+    
+
+
+
+

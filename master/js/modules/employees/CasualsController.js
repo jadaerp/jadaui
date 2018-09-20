@@ -226,7 +226,7 @@
     
   }
 
-  $http.get(jadaApiUrl+'api/Casual').success(function(data) {
+  $http.get(jadaApiUrl+'api/Casuals').success(function(data) {
                 $scope.points = data;
 
               });

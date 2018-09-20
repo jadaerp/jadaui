@@ -18,6 +18,7 @@
 
               ////////////////
 
+
               function activate() {
 
        var SuccessMsg;
@@ -174,6 +175,7 @@
 
 
 
+
                    ModalInstanceCtrl.$inject = ['$scope', '$http', '$rootScope','$uibModalInstance','LeaveApprovalService','leave','jadaApiUrl'];
                 function ModalInstanceCtrl($scope,$http, $rootScope,$uibModalInstance, LeaveApprovalService,leave,jadaApiUrl) {
                 $scope.leave=leave;
@@ -192,6 +194,7 @@
                    leave.$update().then(function(){
 
                          $rootScope.$emit("CallLoadPendingLeaves", {});
+                         $scope.ok();
                   });
                 
                     };

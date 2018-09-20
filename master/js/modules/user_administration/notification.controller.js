@@ -16,9 +16,11 @@
         function activate() {
 
 
+
  var SuccessMsg;
  var errorMsg;
   $scope.leavenotification=NotificationService.query();
+
 
 
 

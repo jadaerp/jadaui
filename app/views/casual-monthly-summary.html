@@ -3,26 +3,16 @@
 
      
   </h3>
-  <div class="panel panel-default" ng-controller="CasualMonthlySummaryController">
-    <div class="panel-body">
-           <form class="form-horizontal" name="CasualMonthlySummaryform" novalidate >
-             <div class="row col-lg-12">
-           <div class="form-group col-lg-4">
-            <label class="col-lg-4 control-label">Casual Category</label>
-            <div class="col-lg-8">
-                            <select  class="form-control" name="casual-category"  ng-model="CasualMonthlySummaryModel.casualCategoryId" ng-change="getHoursDone(CasualMonthlySummaryModel)" ng-options="casualCategory.id as casualCategory.code+' - '+casualCategory.description for casualCategory in casualCategoryList">
-                     <option value=""  disabled selected>Select Casual Category</option>
-                     </select>
-            
-                 <span class="text-danger" ng-if="CasualMonthlySummaryform.CasualMonthlySummaryModel_description.$dirty &amp;&amp; CasualMonthlySummaryform.CasualMonthlySummaryModel_description.$error.pattern">This field is invalid:No special characters allowed </span>
-           </div>
-         </div>
-
-             <div class="form-group col-lg-4">
-              <label class="col-lg-4 control-label">Date From</label>
-              <div class="col-lg-8" ng-controller="DatepickerDemoCtrl as dp">
+  <div class="panel panel-default" >
+    <div class="panel-body" ng-controller="CasualMonthlySummaryController">
+           <form name="CasualMonthlySummaryform" novalidate  >
+             <div class="row">
+              <div class="col-md-12">
+             <div class="form-group col-md-4">
+              <label class="col-md-4 control-label">Date From</label>
+              <div class="col-md-8" ng-controller="DatepickerDemoCtrl as dp">
                     <p class="input-group">
-                        <input class="form-control" type="text" uib-datepicker-popup="{{dp.format}}" ng-model="CasualMonthlySummaryModel.date" is-open="dp.opened" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
+                        <input class="form-control" type="text" name="date_from" uib-datepicker-popup="{{dp.format}}" ng-model="CasualMonthlySummaryModel.dateFrom" is-open="dp.opened" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
                         ng-required="true" close-text="Close" />
                         <span class="input-group-btn">
                            <button class="btn btn-default" type="button" ng-click="dp.open($event)">
@@ -33,11 +23,11 @@
              </div>
            </div>
 
-             <div class="form-group col-lg-4">
-              <label class="col-lg-4 control-label">Date To</label>
-              <div class="col-lg-8" ng-controller="DatepickerDemoCtrl as dp">
+             <div class="form-group col-md-4">
+              <label class="col-md-4 control-label">Date To</label>
+              <div class="col-md-8" ng-controller="DatepickerDemoCtrl as dp">
                     <p class="input-group">
-                        <input class="form-control" type="text" uib-datepicker-popup="{{dp.format}}" ng-model="CasualMonthlySummaryModel.date" is-open="dp.opened" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
+                        <input class="form-control" type="text" name="date_to" uib-datepicker-popup="{{dp.format}}" ng-model="CasualMonthlySummaryModel.dateTo" is-open="dp.opened" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
                         ng-required="true" close-text="Close" />
                         <span class="input-group-btn">
                            <button class="btn btn-default" type="button" ng-click="dp.open($event)">
@@ -45,69 +35,55 @@
                            </button>
                         </span>
                      </p>
-             </div>
-           </div>   
-           </div>
-            <div class="row col-lg-12">        
-          <div class="form-group col-lg-4">
-              <label class="col-lg-4 control-label">Approved</label>
-              <div class="col-lg-8">
-                 <input type="checkbox" name="isApproved"  ng-model="CasualMonthlySummaryModel.isApproved"    />
              </div>
            </div> 
-          <div class="form-group col-lg-4">
-              <label class="col-lg-4 control-label">Paid</label>
-              <div class="col-lg-8">
-                 <input type="checkbox" name="isPaid"  ng-model="CasualMonthlySummaryModel.isPaid"    />
+          <div class="form-group col-md-4">
+              <label class="col-md-4 control-label">Approved</label>
+              <div class="col-md-8">
+                 <input type="checkbox" name="isApproved" value="1" ng-model="CasualMonthlySummaryModel.isApproved"    />
+             </div>
+           </div>              
+           </div>
+         </div>
+            <div class="row">        
+              <div class="col-md-12">
+          <div class="form-group col-md-4">
+              <label class="col-md-4 control-label">Paid</label>
+              <div class="col-md-8">
+                 <input type="checkbox" name="isPaid" value="1" ng-model="CasualMonthlySummaryModel.isPaid"    />
              </div>
            </div>  
-          <div class="form-group col-lg-4">
-              <label class="col-lg-4 control-label"></label>
-              <div class="col-lg-8">
-                 <input type="button" class="btn btn-primary" value="Submit"   />
+          <div class="form-group col-md-4">
+              <label class="col-md-4 control-label"></label>
+              <div class="col-md-8">
+                 <button class="btn btn-primary" value="Process Report"  ng-click="processReport(CasualMonthlySummaryModel)" >Process Report</button>
              </div>
            </div>                                          
             </div>
+          </div>
      </form>       
-    </div>
-    
-  </div>
-  <div class="panel panel-default" ng-controller="CasualMonthlySummaryController">
-                   <div class="panel-heading"></div>
-                   <div class="panel-body" >
+
                    
                      
                     
-                    <div class="row col-lg-12">
+                    <div class="row col-md-12">
                     <div class="table-responsive">
                      <table class="table table-striped" datatable="ng">
                        <thead>
                          <tr>
 
-                          <th> Casual</th>
-                          <th>Casual Name</th>
                           <th>Category</th>
-                          <th>Date</th>
-                          <th>Clock In</th>
-                          <th>Clock Out</th>
-                          <th>Hours Done</th>
-                          <th>Amount Due</th>
-                          <th>Approved</th>
-                          <th>Paid</th>
+                          <th>Category Name</th>
+                          <th>Total Payments</th>
+
                         </tr>
                       </thead>
                       <tbody>
                        <tr ng-repeat="CasualMonthlySummary in CasualMonthlySummaryList">
-                        <td>{{ CasualMonthlySummary.casualNumber}}</td>
-                        <td>{{ CasualMonthlySummary.casualName}}</td>
-                         <td>{{ CasualMonthlySummary.casualCategoryDescription}}</td>
-                         <td>{{ CasualMonthlySummary.date}}</td>
-                         <td>{{ CasualMonthlySummary.clockIn}}</td>
-                         <td>{{ CasualMonthlySummary.clockOut}}</td>
-                         <td>{{ CasualMonthlySummary.hoursDone}}</td>
-                         <td>{{ CasualMonthlySummary.amountDue}}</td>
-                         <td>{{ CasualMonthlySummary.isApproved?'YES':'NO'}}</td>
-                         <td>{{ CasualMonthlySummary.isPaid?'YES':'NO'}}</td>
+                        <td>{{ CasualMonthlySummary.casualCategoryCode}}</td>
+                        <td>{{ CasualMonthlySummary.casualCategoryDescription}}</td>
+                         <td>{{ CasualMonthlySummary.totalPayments}}</td>
+
 
         
                     </tr>

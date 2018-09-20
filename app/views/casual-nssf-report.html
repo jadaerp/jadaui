@@ -3,37 +3,50 @@
 
      
   </h3>
-  <div class="panel panel-default" ng-controller="CasualMonthlySummaryController">
+  <div class="panel panel-default" ng-controller="CasualNSSFReportController">
     <div class="panel-body">
-           <form class="form-horizontal" name="CasualMonthlySummaryform" novalidate >
+           <form class="form-horizontal" name="CasualNSSFReportform" novalidate >
              <div class="row col-lg-12">
-           <div class="form-group col-lg-6">
-            <label class="col-lg-4 control-label">Select Period</label>
-            <div class="col-lg-8">
-  
-         <select name="period" class="slider slider-lg form-control" ng-model="postingtrans.periodId" ng-options="period.id as period.monthDescription+ ' '+ period.year for period in periods" disabled="">
-        <option value="0"  selected="selected">Select Period</option>
-  </select>
-            
-                 <span class="text-danger" ng-if="CasualMonthlySummaryform.CasualMonthlySummaryModel_description.$dirty &amp;&amp; CasualMonthlySummaryform.CasualMonthlySummaryModel_description.$error.pattern">This field is invalid:No special characters allowed </span>
-           </div>
-         </div>
-
-  
-          <div class="form-group col-lg-4">
-              <label class="col-lg-4 control-label"></label>
-              <div class="col-lg-8">
-                 <input type="button" class="btn btn-primary" value="Submit"   />
+             <div class="form-group col-md-4">
+              <label class="col-md-4 control-label">Date From</label>
+              <div class="col-md-8" ng-controller="DatepickerDemoCtrl as dp">
+                    <p class="input-group">
+                        <input class="form-control" type="text" name="date_from" uib-datepicker-popup="{{dp.format}}" ng-model="CasualNSSFReportModel.dateFrom" is-open="dp.opened" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
+                        ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                           <button class="btn btn-default" type="button" ng-click="dp.open($event)">
+                              <em class="fa fa-calendar"></em>
+                           </button>
+                        </span>
+                     </p>
              </div>
-           </div>                                          
+           </div>
+
+             <div class="form-group col-md-4">
+              <label class="col-md-4 control-label">Date To</label>
+              <div class="col-md-8" ng-controller="DatepickerDemoCtrl as dp">
+                    <p class="input-group">
+                        <input class="form-control" type="text" name="date_to" uib-datepicker-popup="{{dp.format}}" ng-model="CasualNSSFReportModel.dateTo" is-open="dp.opened" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
+                        ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                           <button class="btn btn-default" type="button" ng-click="dp.open($event)">
+                              <em class="fa fa-calendar"></em>
+                           </button>
+                        </span>
+                     </p>
+             </div>
+           </div> 
+
+          <div class="form-group col-md-4">
+              <label class="col-md-4 control-label"></label>
+              <div class="col-md-8">
+                 <button class="btn btn-primary" value="Process Report"  ng-click="processReport(CasualNSSFReportModel)" >Process Report</button>
+             </div>
+           </div>                                           
             </div>
      </form>       
-    </div>
-    
-  </div>
-  <div class="panel panel-default" ng-controller="CasualMonthlySummaryController">
-                   <div class="panel-heading"></div>
-                   <div class="panel-body" >
+
+
                    
                      
                     
@@ -50,11 +63,11 @@
                         </tr>
                       </thead>
                       <tbody>
-                       <tr ng-repeat="CasualMonthlySummary in CasualMonthlySummaryList">
-                        <td>{{ CasualMonthlySummary.casualNumber}}</td>
-                        <td>{{ CasualMonthlySummary.casualName}}</td>
-                         <td>{{ CasualMonthlySummary.casualCategoryDescription}}</td>
-                         <td>{{ CasualMonthlySummary.date}}</td>
+                       <tr ng-repeat="CasualNSSFReport in CasualNSSFReportList">
+                        <td>{{ CasualNSSFReport.casualNumber}}</td>
+                        <td>{{ CasualNSSFReport.casualName}}</td>
+                         <td>{{ CasualNSSFReport.totalPayments}}</td>
+                         <td>{{ CasualNSSFReport.companyNSSF}}</td>
 
 
         

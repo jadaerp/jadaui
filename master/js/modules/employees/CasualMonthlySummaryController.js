@@ -22,32 +22,51 @@
 
         function activate() {
 
-          $scope.CasualMonthlySummaryModel={};
-         $scope.CasualMonthlySummaryModel.clockIn = new Date();          
-         $scope.CasualMonthlySummaryModel.clockOut = new Date(); 
-         $scope.CasualMonthlySummaryModel.date = new Date(); 
+
          var SuccessMsg;
          var errorMsg;
 
+         CasualMonthlySummaryService.get()
+       .$promise
+       .then(function(data){
+                 $scope.CasualMonthlySummaryList = data.casualMonthlySummaryList;
+                 console.log($scope.CasualMonthlySummaryList);
 
-         $scope.CasualMonthlySummaryList=CasualMonthlySummaryService.query();
+       });
+          
+          // $scope.CasualMonthlySummaryList=$scope.list.casualMonthlySummaryList;
+          //  console.log($scope.list.data);
+       // $http.get(jadaApiUrl+'api/casualmonthlysummary/').success(function(data) {
+       //           $scope.CasualMonthlySummaryList = data;
+                
 
-       $http.get(jadaApiUrl+'api/casuals/').success(function(data) {
-                 $scope.casualList = data;
-           
+       //        });
+         
+         
 
-              });
+    
 
        $http.get(jadaApiUrl+'api/casualcategory/').success(function(data) {
                  $scope.casualCategoryList = data;
            
 
-              });       
+              });     
+        $scope.CasualMonthlySummaryModel=new CasualMonthlySummaryService();
+       $scope.processReport=function(CasualMonthlySummaryModel){
+     
+        
+        CasualMonthlySummaryModel.$save().then(function(data){
+    
+    console.log(data); 
+                 $scope.CasualMonthlySummaryList = data.casualMonthlySummaryList;
+                 console.log($scope.CasualMonthlySummaryList);          
+        });
+       }
 
-         $scope.loadCasualMonthlySummarys = function () {
-           $scope.CasualMonthlySummaryList=CasualMonthlySummaryService.query();
+         // $scope.loadCasualMonthlySummarys = function () {
+         //   $scope.CasualMonthlySummaryList=CasualMonthlySummaryService.query();
 
-         }
+         // }
 
 
 

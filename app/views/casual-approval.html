@@ -1,0 +1,122 @@
+
+  <h3>Casual Approvals
+     
+  </h3>
+  <div class="panel panel-default" ng-controller="CasualApprovalController">
+                   <div class="panel-heading"><div class="clearfix">
+     <button class="btn btn-info pull-right mr" type="button" ng-click="open()">Add New</button>
+          
+          
+        </div></div>
+                   <div class="panel-body" >
+
+                    <div class="table-responsive">
+                     <table class="table table-striped" datatable="ng">
+                       <thead>
+                         <tr>
+
+                          <th> Casual</th>
+                          <th>Casual Name</th>
+                          <th>Category</th>
+                          <th>Date</th>
+                          <th>Clock In</th>
+                          <th>Clock Out</th>
+                          <th>Hours Done</th>
+                          <th>Amount Due</th>
+                          <th>Approved</th>
+                          <th>Paid</th>
+                          <th>Action</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                       <tr ng-repeat="CasualApproval in CasualApprovalList">
+                        <td>{{ CasualApproval.casualNumber}}</td>
+                        <td>{{ CasualApproval.casualName}}</td>
+                         <td>{{ CasualApproval.casualCategoryDescription}}</td>
+                         <td>{{ CasualApproval.date}}</td>
+                         <td>{{ CasualApproval.clockIn}}</td>
+                         <td>{{ CasualApproval.clockOut}}</td>
+                         <td>{{ CasualApproval.hoursDone}}</td>
+                         <td>{{ CasualApproval.amountDue}}</td>
+                         <td>{{ CasualApproval.isApproved?'YES':'NO'}}</td>
+                         <td>{{ CasualApproval.isPaid?'YES':'NO'}}</td>
+                         <td><button class="btn btn-danger" ng-click="show(CasualApproval)">Approval</button></td>
+
+
+        
+                    </tr>
+
+                  </tbody>
+                </table>
+
+
+              </div>
+      
+
+<script type="text/ng-template" id="casual-approval-modal.html">
+  <div class="modal-header">
+    <button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">x</button>
+    <h4 class="modal-title" id="myMapModalLabel">Casual Approval</h4>
+  </div>
+  <div class="modal-body">
+          <form class="form-horizontal" >
+
+             
+
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Casual</label>
+                  <div class="col-lg-9">
+                     <label class="control-label">{{CasualApprovalModel.casualNumber}} - {{CasualApprovalModel.casualName}}</label>
+                      <input class="form-control" type="hidden" name="id" ng-model="CasualApprovalModel.id" placeholder="Enter comment"/>
+                  </div>
+               </div>
+
+           
+ <div class="form-group">
+ <label class="col-lg-3 control-label">Casual approval</label>
+   <div class="col-lg-9">
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="f_country" ng-value="1" ng-model="CasualApprovalModel.isApproved">
+                   <span class="fa fa-circle"></span> Approve
+                </label>
+            </div>
+            <div class="radio c-radio">
+                <label>
+                    <input type="radio" name="f_custom" ng-value="0" ng-model="CasualApprovalModel.isApproved">
+                    <span class="fa fa-circle"></span>Reject
+                </label>
+            </div>
+            </div>
+        </div>
+
+
+     <div class="form-group">
+      <div class="col-lg-offset-3 col-lg-9">
+       <button class="btn btn-info btn-sm" ng-click="approveCasual(CasualApprovalModel)">Submit</button>
+      
+          <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+     </div>
+   
+   </div>
+      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+
+ </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Close</button>
+  </div>
+   </script>              
+
+
+            </div>
+          </div>
+    
+
+
+
+
+
+
