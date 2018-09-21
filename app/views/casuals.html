@@ -144,6 +144,7 @@
                            </div>
                            <div class="radio c-radio">
                               <label>
+
                                  <input type="radio"  name="gender"  value="2" ng-model="empMaster.gender" required=""  />
 
                                  <span class="fa fa-circle"></span>Female
@@ -157,13 +158,13 @@
          <div class="form-group">
           <div class="col-lg-offset-3 col-lg-9">
            <button class="btn btn-info btn-sm" ng-disabled="casualform.$invalid"  ng-click="submitcasual(empMaster)">Save and New</button>
-             <button class="btn btn-info btn-sm" ng-disabled="casualform.$invalid"  ng-click="Closecasual(ppoint)">Save and Close</button>
+             <button class="btn btn-info btn-sm" ng-disabled="casualform.$invalid"  ng-click="submitcasualandclose(empMaster)">Save and Close</button>
              <button class="btn btn-warning btn-sm" type="reset">Reset</button>
          </div>
        </div>
-  <!-- 
-                        <div class="alert alert-success text-center" margin-top="md" ng-show="SuccessMsg">{{reg.authMsg}}</div>
-               <div class="alert alert-danger text-center" margin-top="md" ng-show="error">{{errorMsg}}</div> -->
+ 
+                        <div class="alert alert-success text-center" margin-top="md" ng-show="success">{{SuccessMsg}}</div>
+               <div class="alert alert-danger text-center" margin-top="md" ng-show="error">{{errorMsg}}</div> 
   </form>
   <!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
   </script>
@@ -256,9 +257,9 @@
              <button class="btn btn-warning btn-sm" type="reset">Reset</button>
          </div>
        </div>
-  <!-- 
-                        <div class="alert alert-success text-center" margin-top="md" ng-show="SuccessMsg">{{reg.authMsg}}</div>
-               <div class="alert alert-danger text-center" margin-top="md" ng-show="error">{{errorMsg}}</div> -->
+  
+                        <div class="alert alert-success text-center" margin-top="md" ng-show="success">{{SuccessMsg}}</div>
+               <div class="alert alert-danger text-center" margin-top="md" ng-show="error">{{errorMsg}}</div> 
   </form>
   <!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
   </script>

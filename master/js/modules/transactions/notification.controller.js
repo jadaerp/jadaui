@@ -133,7 +133,7 @@
 
 
       $scope.totalNotification=function(){
-        var total=$scope.leavenotification();
+        var total=Number($scope.leavenotification())+Number($scope.advancecount())+Number($scope.pendingpaymentcasualcount())+Number($scope.pendingapprovalcasualcount());
         return total;
       
 

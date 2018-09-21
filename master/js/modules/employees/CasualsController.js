@@ -232,28 +232,7 @@
               });
 
          $scope.empMaster= new CasualsService();
-              $scope.submitEmpMaster = function() {
-                $scope.empMaster.$save().then(function(data){
-                  var response=angular.fromJson(data);
-            
-              if(response.Status=="1"){
-                     $scope.errorMsg=false;
-                      $scope.SuccessMsg =response.Message;
-              }else{
-             
-                      $scope.SuccessMsg=false;
-                     $scope.errorMsg=response.Message;
-      
-              }
-                    $scope.loadEmployees();
 
-                },
-                 function() {
-                  $scope.SuccessMsg=false;
-                   $scope.errorMsg = 'Server Request Error';
-                  });
-               
-          };
 
            $scope.delete= function (employee) {
               employee.$remove().then(function () {
@@ -264,37 +243,10 @@
 
 
                  
-              $scope.updateEmpMaster=function(employee){
-                 var emp=new CasualsService(employee);
-               emp.$update().then(function(data){
-                   var response=angular.fromJson(data);
-            
-              if(response.Status=="1"){
-                     $scope.errorMsg=false;
-                      $scope.SuccessMsg =response.Message;
-                        $scope.employee=CasualsService.get({id:id}); 
-              }else{
-             
-                      $scope.SuccessMsg=false;
-                     $scope.errorMsg=response.Message;
-      
-              }
-                       $scope.loadEmployees();
-              },
-                function() {
-                 $scope.SuccessMsg=false;
-                   $scope.errorMsg = 'Server Request Error';
-                  });
-            
-                };
+
           
 
-
-         $scope.departments = [];
-         $scope.selectDepartments= function() {
-             $rootScope.$emit("CallLoadDepartment", {});
-            };
-
+$scope.empMaster= new CasualsService();
 
       $scope.open = function (size) {
 
@@ -334,22 +286,24 @@
               };
               
               
-               $scope.submitcasual=function(Casualform) {
-                $scope.ppoint=new CasualsService(Casualform);
-             $scope.ppoint.$save().then(function(data){
+
+               $scope.submitcasual=function(empMaster) {
+                
+             empMaster.$save().then(function(data){
             var response=angular.fromJson(data);
             
               if(response.Status=="1"){
-                      $scope.errorMsg=false;
+                      $scope.success=true;
                       $scope.SuccessMsg =response.Message;
+                      $scope.empMaster={};
               }else{
              
-                   $scope.SuccessMsg=false;
+                   $scope.error=true;
                      $scope.errorMsg=response.Message;
                 // vm.auth=true;
               }
-            $rootScope.$emit("CallParentMethod", {});
-             $scope.ppointReset(Casualform);
+            $rootScope.$emit("CallLoadEmployees", {});
+             
          
            },
             function() {
@@ -361,26 +315,10 @@
 
 
         
-            $scope.ppointReset=function(leavetypesform){
-               $scope.leavetypesform={};
-              $scope.ppoint="";
-              leavetypesform.$setPristine();
-              };
 
 
-             $scope.CloseCasual=function(ppoint) {
-              var saveppoint= new CasualsService(ppoint);
-           saveppoint.$save().then(function(data){
-           
-            $rootScope.$emit("CallParentMethod", {});
-            $scope.ok();
-           },
-            function() {
-                   $scope.SuccessMsg=false;
-                   $scope.errorMsg = 'Server Request Error';
-                  });
-   
-            };
+
+
            
             }
 
