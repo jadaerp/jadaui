@@ -5,8 +5,8 @@
         .module('app.reports')
         .controller('CompanySumarryController', CompanySumarryController);
 
-    CompanySumarryController.$inject = ['$scope','$http','$resource', 'CompanySummaryService','jadaApiUrl'];
-    function CompanySumarryController($scope,$http, $resource,CompanySummaryService,jadaApiUrl) {
+    CompanySumarryController.$inject = ['$scope','$http','$resource','$timeout','Excel', 'CompanySummaryService','jadaApiUrl'];
+    function CompanySumarryController($scope,$http, $resource,$timeout,Excel,CompanySummaryService,jadaApiUrl) {
         var vm = this;
 
         activate();
@@ -49,7 +49,10 @@ $scope.searchCsummaryByperiod=function(id){
 
 
 
-
+               $scope.exportToExcel=function(tableId){ // ex: '#my-table'
+            var exportHref=Excel.tableToExcel(tableId,'WireWorkbenchDataExport');
+            $timeout(function(){location.href=exportHref;},100); // trigger download
+        }
 
                         
 $scope.printDiv = function (div) {

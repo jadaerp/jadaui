@@ -24,7 +24,7 @@
            <div class="panel-body">
             <div id="printable">
             <div class="table-responsive ">
-           <table class="table table-bordered-white horiztbl">
+           <table class="table table-bordered-white horiztbl" id="tableToExcel">
                    <thead>
                  <tr>
                  <th ng-repeat="column
@@ -70,7 +70,7 @@
            
       
            <button class="btn btn-info pull-left mr" type="button" ng-click="printDiv('printable');"">Print</button>
-     
+                    <button class="btn btn-info pull-left mr" type="button"  ng-click="exportToExcel('#tableToExcel')">Send to Excel</button>     
         </div>
            </div>
            </div>
@@ -112,6 +112,7 @@
            
       
            <button class="btn btn-info pull-left mr" type="button" ng-click="printDiv('payment');"">Print</button>
+
      
         </div>
           </div>

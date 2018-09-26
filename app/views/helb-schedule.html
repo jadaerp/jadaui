@@ -75,27 +75,26 @@
    
        
       </div>
-      <div class="table-responsive table-bordered mb-lg">
+      <div id="dvData" class="table-responsive table-bordered mb-lg">
       <h3 class="mt0">PAYMENT DETAILS</h3>
-         <table class="table">
+         <table  class="table">
             <thead>
                <tr>
-                  <th>S/NO</th>
-                  <th>PAYROLL NO</th>
-                  <th>NAME  OF LOANEE</th>
-                  <th>UNIVERSITY REG. NO</th>
-                  <th >IDENTITY NUMBER</th>
-                  <th>AMOUNT DEDUCTED</th>
+                  <th>NAMES</th>
+                  <th>ID NUMBER</th>
+                  <th>STAFF NUMBER</th>
+                  <th>AMOUNT(No Commas)</th>
                </tr>
             </thead>
             <tbody>
                <tr ng-repeat="helb in helbs.employeeHelbReportList">
-                  <td>{{$index+1}}</td>
+                  <td>{{helb.employeeName}}</td>
+                  <td>{{helb.idNumber}}</td>
                   <td>{{helb.employeeNumber}}
 </td>
-                  <td>{{helb.employeeName}}</td>
-                  <td>{{helb.universityRegNo}}</td>
-                  <td>{{helb.idNumber}}</td>
+                  
+                  
+                  
                   <td>{{helb.amount}}</td>
                </tr>
          
@@ -140,33 +139,7 @@
    </div>
    </div>
       </div>
-   <div >
-         <table id="dvData" class="table table-bordered-white " >
-            
-            <thead>
-                <tr>
-                  <th >NAMES</th>
-                  <th >Ih NUMBER</th>
-                  
-                  <th >STAFF NUMBER</th>
-                  <th >AMOUNT(No Commas)</th>
-                  
-               </tr>              
-            </thead>
 
-            <tbody >
-               <tr ng-repeat="helb in helbs.employeeHelbReportList">
-                  <td>{{helb.employeeName}}</td>
-                  <td>{{helb.idNumber}}</td>
-                  <td>{{helb.employeeNumber}}</td>
-                  <td>{{helb.amount}}</td>
-
-               </tr>               
-                
-                  
-            </tbody>
-         </table>
-      </div>
       <hr class="hidden-print" />
       <div class="clearfix">
          

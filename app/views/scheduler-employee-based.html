@@ -77,11 +77,8 @@
    <div class="form-group" ng-repeat="period in periods">
                <label class="col-lg-6 control-label">{{period.monthDescription}} {{period.year}} </label>
                <div class="col-lg-6">
-                  <div class="checkbox c-checkbox needsclick">
-                     <label class="needsclick">
-                        <input type="checkbox"  data-checklist-model="scheduler.periodScheduler" data-checklist-value="period.id"/>
-                        <span class="fa fa-check"></span></label>
-
+                  <div class="">
+                    <input type="radio" name="period" value="{{period.id}}" ng-model="scheduler.periodScheduler"/>
                   </div>
                 
                </div>

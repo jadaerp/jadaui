@@ -138,7 +138,7 @@ $http.get(jadaApiUrl+'api/currentperiod').then(function(data) {
 
     function export_table_to_csv(html, filename) {
       var csv = [];
-      var rows = document.querySelectorAll("table tr");
+      var rows = document.querySelectorAll("#dvData table tr");
       
         for (var i = 0; i < rows.length; i++) {
         var row = [], cols = rows[i].querySelectorAll("td, th");
@@ -154,8 +154,9 @@ $http.get(jadaApiUrl+'api/currentperiod').then(function(data) {
     }
 
             $scope.exportToCSV=function(){
-                var html = document.querySelector("#dvData").outerHTML;
-              export_table_to_csv(html, "table.csv");           
+                var html = $( "#dvData" ).html();
+                var today = new Date().toString().replace(/[^\w]/g, '');
+              export_table_to_csv(html, "HELB-"+today+".csv");           
             }                        
 
               $scope.showcurrentperiod=function(id){
