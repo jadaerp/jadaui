@@ -153,6 +153,7 @@
           CasualApprovalModel.$update().then(function(){
              $rootScope.$emit("CallLoadCasualApprovals", {});
              $scope.CasualApprovalModel=CasualApprovalModel;
+              $uibModalInstance.close('closed');
            });
          };
 

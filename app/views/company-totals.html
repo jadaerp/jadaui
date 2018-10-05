@@ -100,10 +100,10 @@
                      </tr>
 
 
-                       <tr>
+                       <tr ng-repeat="grossPay in companytotals.grossPay">
                         <td class="text-right" style="width:10%;"></td>  
                      <!--    <td >{{payslipcode.code}}</td> -->
-                        <td class="boldTotal" style="width:40%;" >Gross Pay</td>
+                        <td class="boldTotal" style="width:40%;" >{{grossPay.description}}</td>
                         <td class="boldTotal text-right" style="width:40%;" >{{grossPay.amount}}</td>
     
               <td class="text-right" style="width:10%;"></td>                        

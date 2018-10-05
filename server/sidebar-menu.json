@@ -274,22 +274,22 @@
     "submenu": [
       {"text": "Categories", "sref": "app.casual-categories"},
       {"text": "Casuals", "sref": "app.casuals"},
-      {"text": "Transactions", "sref": "app.casual-transactions"},
-      {"text": "Monthly Summary Report", "sref": "app.casual-monthly-summary"},
-      {"text": "Paye Report", "sref": "app.casual-paye-report"},
-      {"text": "Nssf Report", "sref": "app.casual-nssf-report"}
-     
-        
-        
-          
-         
-           
-         
-       
+      {"text": "Transactions", "sref": "app.casual-transactions"}   
     ]
   
-  }  
- 
+  },  
+ {
+    "text": " Casual Reports",
+    "sref": "#",
+    "child": "fa fa-chevron-down",
+
+    "submenu": [
+      {"text": "Monthly Summary Report", "sref": "app.casual-monthly-summary"},
+      {"text": "PAYE Report", "sref": "app.casual-paye-report"},
+      {"text": "NSSF Report", "sref": "app.casual-nssf-report"}
+    ]
+  
+  }
 
 
     ]

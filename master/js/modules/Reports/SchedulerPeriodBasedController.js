@@ -5,10 +5,10 @@
 
     angular
         .module('app.reports')
-        .controller('SchedulerController', SchedulerController);
+        .controller('SchedulerPeriodBasedController', SchedulerPeriodBasedController);
 
-    SchedulerController.$inject = ['$rootScope','$state','$scope','$http','$resource','SchedulerService','SchedulerEmployeeBasedReportService','SchedulerPeriodBasedReportService','jadaApiUrl'];
-    function SchedulerController($rootScope,$state,$scope,$http,$resource,SchedulerService,SchedulerEmployeeBasedReportService,SchedulerPeriodBasedReportService,jadaApiUrl) {
+    SchedulerPeriodBasedController.$inject = ['$rootScope','$state','$scope','$http','$resource','SchedulerPeriodBasedService','SchedulerEmployeeBasedReportService','SchedulerPeriodBasedReportService','jadaApiUrl'];
+    function SchedulerPeriodBasedController($rootScope,$state,$scope,$http,$resource,SchedulerPeriodBasedService,SchedulerEmployeeBasedReportService,SchedulerPeriodBasedReportService,jadaApiUrl) {
         var vm = this;
 
         activate();
@@ -68,31 +68,9 @@
            // console.log($scope.pcodes);
 
               });
-               $scope.employeeBasedReport=function(scheduler){
-                
-                var saveScheduler=new SchedulerService(scheduler);
-                        saveScheduler.$save().then(function(data){
-                          var response=angular.fromJson(data);
-                          SchedulerEmployeeBasedReportService.setJson(data);
-                          $scope.periodBasedSchedulerReport=response;
-                          $state.go('app.employee-based-scheduler-report');
-                          // console.log(response);
-
-                        },
-                         function() {
-                           $scope.SuccessMsg=false;
-                               $scope.errorMsg = 'Server Request Error';
-                              });
-                      
-
-
-
-               }
-
-
 
                $scope.periodBasedReport=function(scheduler){
-                    var saveScheduler=new SchedulerService(scheduler);
+                    var saveScheduler=new SchedulerPeriodBasedService(scheduler);
                         saveScheduler.$save().then(function(data){
                           var response=angular.fromJson(data);
                           SchedulerPeriodBasedReportService.setJson(data);
@@ -215,7 +193,7 @@ $scope.details=model;
 $scope.periodBasedSchedulerReport=null;
 
    // $scope.submitScheduler=function(scheduler) {
-   //  var saveScheduler=new SchedulerService(scheduler);
+   //  var saveScheduler=new SchedulerPeriodBasedService(scheduler);
    //          saveScheduler.$save().then(function(data){
    //            var response=angular.fromJson(data);
    //            $scope.periodBasedSchedulerReport=response;
