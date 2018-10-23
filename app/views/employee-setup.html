@@ -746,7 +746,24 @@
                          <span class="text-danger" ng-show="formStep5.$submitted &amp;&amp; formStep5.position.$invalid">This field is required  ></span>
                   </div>
                </div>
+                 <div class="form-group">
+                  <label class="col-lg-3"> UserName
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="text"  name="userName"  ng-model="empMaster.userName" placeholder="UserName " required="" />
 
+                         <span class="text-danger" ng-show="formStep5.$submitted &amp;&amp; formStep5.userName.$invalid">This field is required  ></span>
+                  </div>
+               </div>
+                                <div class="form-group">
+                  <label class="col-lg-3">Password
+                   </label>
+                  <div class="col-lg-9">
+                     <input class="form-control" type="password"  name="password"  ng-model="empMaster.password" placeholder="Password " required="" />
+
+                         <span class="text-danger" ng-show="formStep5.$submitted &amp;&amp; formStep5.password.$invalid">This field is required  ></span>
+                  </div>
+               </div>
 
                       
               <div class="form-group">
