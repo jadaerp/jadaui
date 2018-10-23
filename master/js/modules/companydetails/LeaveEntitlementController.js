@@ -200,6 +200,7 @@ $scope.submitLeaveEntitlementExit=function(categoryform) {
 
 
 
+
             ModalInstanceCtrl.$inject = ['$scope', '$rootScope', '$uibModalInstance','LeaveEntitlementService','category'];
             function ModalInstanceCtrl($scope, $rootScope, $uibModalInstance, LeaveEntitlementService,category) {
             $scope.cat=category;
