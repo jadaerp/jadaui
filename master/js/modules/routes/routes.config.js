@@ -809,6 +809,14 @@
              
           })  
 
+         .state('app.approved-advance', {
+              url: '/approved-advance',
+              title: 'approved-advance',
+                templateUrl: helper.basepath('approved-advance-list.html'),
+                 resolve: helper.resolveFor('datatables')
+             
+          })         
+
              .state('app.leaveposting', {
               url: '/leaveposting',
               title: 'Leave Posting',

@@ -2,7 +2,7 @@
   <h3>Advance Approvals
      
   </h3>
-  <div class="panel panel-default" ng-controller="AdvanceApprovalController">
+  <div class="panel panel-default" ng-controller="ApprovedAdvanceListController">
                    <div class="panel-heading"><div class="clearfix">
 
           
@@ -19,20 +19,21 @@
                           <th>Employe Name</th>
                           <th>Advance Amount</th>
                           <th>Is Processed</th>
+                          <th>Is Approved</th>
                           <th>Action</th>
                           
                         </tr>
                       </thead>
                       <tbody>
-                       <tr ng-repeat="AdvanceApproval in AdvanceApprovalList">
-                        <td>{{ AdvanceApproval.employeeNumber}}</td>
-                        <td>{{ AdvanceApproval.employeeName}}</td>
-                         <td>{{ AdvanceApproval.amount}}</td>
-                         <td>{{ AdvanceApproval.isProcessed}}</td>
-                         
+                       <tr ng-repeat="ApprovedAdvance in ApprovedAdvanceList">
+                        <td>{{ ApprovedAdvance.employeeNumber}}</td>
+                        <td>{{ ApprovedAdvance.employeeName}}</td>
+                         <td>{{ ApprovedAdvance.amount}}</td>
+                         <td>{{ ApprovedAdvance.isProcessed}}</td>
+                          <td>{{ApprovedAdvance.isApproved}}</td>
  
-                         <!-- <td><button class="btn btn-danger" ng-click="show(AdvanceApproval)"><i class="fa fa-print"></i></button></td> -->
-                         <td><button class="btn btn-danger" ng-click="approve(AdvanceApproval)">Approval</button></td>
+                         <td><button class="btn btn-danger" ng-click="show(ApprovedAdvance)"><i class="fa fa-print"></i></button></td>
+                         <!-- <td><button class="btn btn-danger" ng-click="approve(ApprovedAdvance)">Approval</button></td> -->
 
 
         
@@ -51,37 +52,42 @@
     <button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button>
     <h4 class="modal-title" id="myMapModalLabel">Advance Receipt</h4>
   </div>
-  <div class="modal-body" ng-controller="AdvanceApprovalController" id='receipt'>
+  <div class="modal-body" ng-controller="ApprovedAdvanceListController" id='receipt'>
    <table style="margin: auto;">
      <tbody>
        <tr>
-         <td style="width:100%; text-align:center; font-weight:bold;" colspan="3">{{AdvanceApprovalModel.company}}</td>
+         <td style="width:100%; text-align:center; font-weight:bold;" colspan="3">{{ApprovedAdvanceModel.company}}</td>
        </tr>      
        <tr>
          <td style="width:10%"></td>
          <td style="width:40%">Employee No : </td>
-         <td style="width:50%">{{AdvanceApprovalModel.employeeNumber}}</td>
+         <td style="width:50%">{{ApprovedAdvanceModel.employeeNumber}}</td>
        </tr>
        <tr>
          <td style="width:10%"></td>
          <td style="width:40%">Employee Name : </td>
-         <td style="width:50%">{{AdvanceApprovalModel.employeeName}}</td>
+         <td style="width:50%">{{ApprovedAdvanceModel.employeeName}}</td>
        </tr>      
        <tr>
          <td style="width:10%"></td>
          <td style="width:40%">Pin Number : </td>
-         <td style="width:50%">{{AdvanceApprovalModel.pinNumber}}</td>
+         <td style="width:50%">{{ApprovedAdvanceModel.pinNumber}}</td>
        </tr>    
        <tr>
          <td style="width:10%"></td>
          <td style="width:40%">Pay Period : </td>
-         <td style="width:50%">{{AdvanceApprovalModel.payPeriod}}</td>
+         <td style="width:50%">{{ApprovedAdvanceModel.payPeriod}}</td>
        </tr>  
        <tr>
          <td style="width:10%"></td>
          <td style="width:40%">Advance Amount : </td>
-         <td style="width:50%">{{AdvanceApprovalModel.amount}}</td>
+         <td style="width:50%">{{ApprovedAdvanceModel.amount}}</td>
        </tr> 
+       <tr>
+         <td style="width:10%"></td>
+         <td style="width:40%">Is Approved : </td>
+         <td style="width:50%">{{ApprovedAdvanceModel.isApproved}}</td>
+       </tr>        
        <tr>
          <td style="width:10%"></td>
          <td style="width:40%; font-weight:bold;">Approved By </td>
@@ -129,68 +135,3 @@
     <button class="btn btn-primary" ng-click="printReceipt('receipt')"><i class='fa fa-print'></i></button> <button class="btn btn-primary" ng-click="ok()">Close</button>
   </div>
    </script>
-
-<script type="text/ng-template" id="advance-approval-modal.html">
-  <div class="modal-header">
-    <button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">x</button>
-    <h4 class="modal-title" id="myMapModalLabel">Advance Approval</h4>
-  </div>
-  <div class="modal-body">
-          <form class="form-horizontal" >
-
-             
-
-               <div class="form-group">
-                  <label class="col-lg-3 control-label">Employee</label>
-                  <div class="col-lg-9">
-                     <label class="control-label">{{AdvanceApprovalModel.employeeNumber}} - {{AdvanceApprovalModel.employeeName}}</label>
-                      <input class="form-control" type="hidden" name="id" ng-model="AdvanceApprovalModel.id" placeholder="Enter comment"/>
-                  </div>
-               </div>
-
-           
- <div class="form-group">
- <label class="col-lg-3 control-label">Advance approval</label>
-   <div class="col-lg-9">
-            <div class="radio c-radio">
-                <label>
-                    <input type="radio" name="f_country" ng-value="1" ng-model="AdvanceApprovalModel.isApproved">
-                   <span class="fa fa-circle"></span> Approve
-                </label>
-            </div>
-            <div class="radio c-radio">
-                <label>
-                    <input type="radio" name="f_custom" ng-value="2" ng-model="AdvanceApprovalModel.isApproved">
-                    <span class="fa fa-circle"></span>Reject
-                </label>
-            </div>
-            </div>
-        </div>
-
-
-     <div class="form-group">
-      <div class="col-lg-offset-3 col-lg-9">
-       <button class="btn btn-info btn-sm" ng-click="submitApproval(AdvanceApprovalModel)">Submit</button>
-      
-          <button class="btn btn-warning btn-sm" type="reset">Reset</button>
-     </div>
-   
-   </div>
-      <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
-             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
-
- </form>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">Close</button>
-  </div>
-   </script>       
-
-
-            </div>
-          </div>
-    
-
-
-
-

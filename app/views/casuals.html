@@ -170,8 +170,8 @@
   </script>
 
 
-     <script type="text/ng-template" id="edit-casuals.html">
-    <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Casual</h4></div>
+     <script type="text/ng-template" id="edit-casual.html">
+    <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Edit Casual</h4></div>
     <div class="modal-body" ng-controller="CasualsController"><!-- START panel-->
 
      <form class="form-horizontal"  name="casualform" novalidate  >
@@ -181,7 +181,7 @@
                    </label></div>
                   
                   <div class="col-lg-12">
-                     <input class="form-control" type="text" name="firstname" ng-model="empMaster.firstName" placeholder="First Name " required=""  />
+                     <input class="form-control" type="text" name="firstname" ng-model="casual.firstName" placeholder="First Name " required=""  />
                     <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.firstname.$invalid">This field is required</span>
                   </div>
                </div>
@@ -191,7 +191,7 @@
                    </label></div>
                   
                   <div class="col-lg-10">
-                     <input class="form-control" type="text" name=" surname" ng-model="empMaster.middleName" placeholder="Middle Name
+                     <input class="form-control" type="text" name=" surname" ng-model="casual.middleName" placeholder="Middle Name
                    " required="" />
                      <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.surname.$invalid">This field is required</span>
                   </div>
@@ -201,7 +201,7 @@
                    </label></div>
                   
                   <div class="col-lg-10">
-                     <input class="form-control" type="text"  name="lastname" ng-model="empMaster.lastName" placeholder="Surname" required="" />
+                     <input class="form-control" type="text"  name="lastname" ng-model="casual.lastName" placeholder="Surname" required="" />
                    <span class="text-danger" ng-show="formStep1.$submitted &amp;&amp; formStep1.lastname.$invalid">This field is required</span>
                   </div>
                </div>
@@ -221,10 +221,19 @@
                    </label></div>
                   
                   <div class="col-lg-10">
-                     <input class="form-control" type="text"  name="id_number"  ng-model="empMaster.idNumber" placeholder="National ID Number
+                     <input class="form-control" type="text"  name="id_number"  ng-model="casual.idNumber" placeholder="National ID Number
                    " />
                   </div>
                </div>
+               <div class="form-group">
+                <div class="col-lg-12"><label class="col-lg-12 ">  NSSF Number
+                   </label></div>
+                  
+                  <div class="col-lg-10">
+                     <input class="form-control" type="text"  name="nssf_number"  ng-model="casual.nssfNumber" placeholder="NSSF Number
+                   " />
+                  </div>
+               </div>               
                 <div class="form-group">
                   <div class="col-lg-12"><label class="col-lg-12 ">Gender </label></div>
                         
@@ -234,13 +243,14 @@
                            
                            <div class="radio c-radio">
                               <label>
-                                 <input type="radio"  name="gender" value="1" ng-model="empMaster.gender" required="" />
+                                 <input type="radio"  name="gender" value="1" ng-model="casual.gender" required="" />
                                  <span class="fa fa-circle"></span>Male
 </label>
                            </div>
                            <div class="radio c-radio">
                               <label>
-                                 <input type="radio"  name="gender"  value="2" ng-model="empMaster.gender" required=""  />
+
+                                 <input type="radio"  name="gender"  value="2" ng-model="casual.gender" required=""  />
 
                                  <span class="fa fa-circle"></span>Female
 </label>
@@ -252,14 +262,14 @@
 
          <div class="form-group">
           <div class="col-lg-offset-3 col-lg-9">
-           <button class="btn btn-info btn-sm" ng-disabled="casualform.$invalid"  ng-click="updateCasual(empMaster)">Update</button>
-             <button class="btn btn-info btn-sm" ng-disabled="casualform.$invalid"  ng-click="Closecasual(ppoint)">Save and Close</button>
-             <button class="btn btn-warning btn-sm" type="reset">Reset</button>
+           <button class="btn btn-info btn-sm"  ng-click="updatecasual(casual)">Update</button>
          </div>
        </div>
-  
+ 
                         <div class="alert alert-success text-center" margin-top="md" ng-show="success">{{SuccessMsg}}</div>
                <div class="alert alert-danger text-center" margin-top="md" ng-show="error">{{errorMsg}}</div> 
   </form>
   <!-- END panel--></div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+
+    
   </script>

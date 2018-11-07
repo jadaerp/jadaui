@@ -10,10 +10,10 @@
 
   angular
   .module('app.bootstrapui')
-  .controller('AdvanceApprovalController', AdvanceApprovalController);
+  .controller('ApprovedAdvanceListController', ApprovedAdvanceListController);
 
-  AdvanceApprovalController.$inject = ['jadaApiUrl','$http','$scope','$rootScope', '$uibModal','AdvanceApprovalService','$stateParams', '$state'];
-  function AdvanceApprovalController(jadaApiUrl,$http,$scope, $rootScope, $uibModal, AdvanceApprovalService,$stateParams, $state) {
+  ApprovedAdvanceListController.$inject = ['jadaApiUrl','$http','$scope','$rootScope', '$uibModal','ApprovedAdvanceListService','$stateParams', '$state'];
+  function ApprovedAdvanceListController(jadaApiUrl,$http,$scope, $rootScope, $uibModal, ApprovedAdvanceListService,$stateParams, $state) {
     var vm = this;
 
     activate();
@@ -27,7 +27,8 @@
          var errorMsg;
 
 
-         $scope.AdvanceApprovalList=AdvanceApprovalService.query();
+         $scope.ApprovedAdvanceList=ApprovedAdvanceListService.query();
+         // console.log($scope.ApprovedAdvanceList);
 
 
    
@@ -67,14 +68,14 @@
 
 
 
-        $scope.show = function(AdvanceApproval) {
+        $scope.show = function(ApprovedAdvance) {
       // $scope.x = x;
       var modalInstance = $uibModal.open({
         templateUrl: 'advance-reciept.html',
         controller: ModalInstanceCtrl,
         resolve: {
-         AdvanceApproval: function () {
-           return AdvanceApproval;
+         ApprovedAdvance: function () {
+           return ApprovedAdvance;
          }
        }        
         // scope : $scope
@@ -82,24 +83,24 @@
     };
 
 
-         $scope.loadAdvanceApprovals = function () {
-           $scope.AdvanceApprovalList=AdvanceApprovalService.query();
+         $scope.loadApprovedAdvanceLists = function () {
+           $scope.ApprovedAdvanceListList=ApprovedAdvanceListService.query();
 
          }
 
-         $rootScope.$on("CallLoadAdvanceApprovals", function(){
-           $scope.loadAdvanceApprovals();
+         $rootScope.$on("CallLoadApprovedAdvanceLists", function(){
+           $scope.loadApprovedAdvanceLists();
          });
 
 
-        $scope.approve= function(AdvanceApproval) {
+        $scope.approve= function(ApprovedAdvanceList) {
       // $scope.x = x;
       var modalInstance = $uibModal.open({
         templateUrl: 'advance-approval-modal.html',
         controller: ModalInstanceCtrl1,
         resolve: {
-         AdvanceApproval: function () {
-           return AdvanceApproval;
+         ApprovedAdvanceList: function () {
+           return ApprovedAdvanceList;
          }
        }        
         // scope : $scope
@@ -111,9 +112,11 @@
 
 
 
-         ModalInstanceCtrl.$inject = ['$scope', '$rootScope','$uibModalInstance','AdvanceApprovalService','AdvanceApproval'];
-         function ModalInstanceCtrl($scope, $rootScope,$uibModalInstance, AdvanceApprovalService,AdvanceApproval) {
-          $scope.AdvanceApprovalModel=AdvanceApproval;
+         ModalInstanceCtrl.$inject = ['$scope', '$rootScope','$uibModalInstance','ApprovedAdvanceListService','ApprovedAdvance'];
+         function ModalInstanceCtrl($scope, $rootScope,$uibModalInstance, ApprovedAdvanceListService,ApprovedAdvance) {
+
+          $scope.ApprovedAdvanceModel=ApprovedAdvance;
+
           $scope.ok = function () {
             $uibModalInstance.close('closed');
           };
@@ -124,11 +127,11 @@
           
           
 
-          $scope.submitApproval=function(AdvanceApprovalModel){
-           $scope.AdvanceApproval=new AdvanceApprovalService(AdvanceApprovalModel);
-           AdvanceApproval.$update().then(function(){
-             $rootScope.$emit("CallLoadAdvanceApprovals", {});
-             $scope.AdvanceApproval=AdvanceApproval;
+          $scope.submitApproval=function(ApprovedAdvanceListModel){
+           $scope.ApprovedAdvanceList=new ApprovedAdvanceListService(ApprovedAdvanceListModel);
+           ApprovedAdvanceList.$update().then(function(){
+             $rootScope.$emit("CallLoadApprovedAdvanceLists", {});
+             $scope.ApprovedAdvanceList=ApprovedAdvanceList;
            });
          };
 
@@ -149,9 +152,9 @@
 
        }
 
-         ModalInstanceCtrl1.$inject = ['$scope', '$rootScope','$uibModalInstance','AdvanceApprovalService','AdvanceApproval'];
-         function ModalInstanceCtrl1($scope, $rootScope,$uibModalInstance, AdvanceApprovalService,AdvanceApproval) {
-          $scope.AdvanceApprovalModel=AdvanceApproval;
+         ModalInstanceCtrl1.$inject = ['$scope', '$rootScope','$uibModalInstance','ApprovedAdvanceListService','ApprovedAdvanceList'];
+         function ModalInstanceCtrl1($scope, $rootScope,$uibModalInstance, ApprovedAdvanceListService,ApprovedAdvanceList) {
+          $scope.ApprovedAdvanceListModel=ApprovedAdvanceList;
           $scope.ok = function () {
             $uibModalInstance.close('closed');
           };
@@ -164,11 +167,11 @@
 
           
 
-          $scope.submitApproval=function(AdvanceApprovalModel){
+          $scope.submitApproval=function(ApprovedAdvanceListModel){
            
-           AdvanceApprovalModel.$save().then(function(){
-             $rootScope.$emit("CallLoadAdvanceApprovals", {});
-             $scope.AdvanceApproval=AdvanceApproval;
+           ApprovedAdvanceListModel.$save().then(function(){
+             $rootScope.$emit("CallLoadApprovedAdvanceLists", {});
+             $scope.ApprovedAdvanceList=ApprovedAdvanceList;
            });
          };
        

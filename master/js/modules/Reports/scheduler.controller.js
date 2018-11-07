@@ -173,7 +173,7 @@ employee: [
 
 company: [{ name:"companyName", description: "Company Name" },
          { name:"companyPin", description: "Pin Number" },
-          { name:"nssfNumber", description: "NSSF Number"},
+          { name:"nssfNumbe", description: "NSSF Number"},
           { name:"nhifNumber", description: "NHIF Number"},
           { name:"helbNumber", description: "HELB Number"},
           { name:"country", description: "Country"},

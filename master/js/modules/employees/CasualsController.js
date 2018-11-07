@@ -258,14 +258,14 @@ $scope.empMaster= new CasualsService();
             }
 
 
-    $scope.edit = function(point) {
+    $scope.edit = function(casual) {
       
         var modalInstance = $uibModal.open({
           templateUrl: 'edit-casual.html',
           controller: ModalInstanceCtrl,
           resolve: {
-             point: function () {
-               return point;
+             casual: function () {
+               return casual;
              }
            }        
          
@@ -315,16 +315,42 @@ $scope.empMaster= new CasualsService();
 
 
         
-
+               $scope.submitcasualandclose=function(empMaster) {
+                
+             empMaster.$save().then(function(data){
+            var response=angular.fromJson(data);
+            
+              if(response.Status=="1"){
+                      $scope.success=true;
+                      $scope.SuccessMsg =response.Message;
+                      $scope.empMaster={};
+                       $uibModalInstance.close('closed');
+              }else{
+             
+                   $scope.error=true;
+                     $scope.errorMsg=response.Message;
+                // vm.auth=true;
+              }
+            $rootScope.$emit("CallLoadEmployees", {});
+             
+         
+           },
+            function() {
+                $scope.SuccessMsg=false;
+                   $scope.errorMsg = 'Server Request Error';
+                  });
+   
+            };
 
 
 
            
             }
 
-            ModalInstanceCtrl.$inject = ['$scope','$rootScope', '$uibModalInstance','CasualsService','point'];
-            function ModalInstanceCtrl($scope,$rootScope, $uibModalInstance, CasualsService,point) {
-              $scope.point=point;
+            ModalInstanceCtrl.$inject = ['$scope','$rootScope', '$uibModalInstance','CasualsService','casual'];
+            function ModalInstanceCtrl($scope,$rootScope, $uibModalInstance, CasualsService,casual) {
+              $scope.casual=casual;
+              console.log($scope.casual);
               $scope.ok = function () {
                 $uibModalInstance.close('closed');
                 
@@ -334,13 +360,13 @@ $scope.empMaster= new CasualsService();
                 $uibModalInstance.dismiss('cancel');
               };
               
-                  $scope.updateCasual=function(point){
+                  $scope.updatecasual=function(point){
 
                 
                point.$update().then(function(){
                         $scope.point=point;
                         console.log(point);
-                     $rootScope.$emit("CallParentMethod", {});
+                     $rootScope.$emit("CallLoadEmployees", {});
               });
             
                 };

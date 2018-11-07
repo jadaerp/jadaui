@@ -71,6 +71,11 @@
                  
                   });
 
+                  $http.get(jadaApiUrl+'api/approvedadvancetransaction').success(function(data) {
+                    $scope.approvedadvancedata=data;
+                 
+                  });                  
+
 
                   $scope.pendingapprovalcasualcount=function(){
                     var c=0;
@@ -102,7 +107,18 @@
                       return c;
 
                       
-                  }                  
+                  }    
+
+                  $scope.approvedadvancecount=function(){
+                    var c=0;
+                    angular.forEach($scope.approvedadvancedata, function(value, key) {
+                      
+                        c++
+                    });
+                      return c;
+
+                      
+                  }                                  
 
 
 

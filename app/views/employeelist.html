@@ -28,6 +28,9 @@
                   
                                     <th>Department</th>
                   <th>Cost Center</th>
+                  <th>NSSF Number</th>
+                  <th>NHIF Number</th>
+                  <th>Pin Number</th>
                   <th>Status</th>
                   <th>Action</th>
               </tr>
@@ -40,6 +43,9 @@
                   
                   <td>{{employee.departmentDescription}}</td>
                   <td>{{employee.costCenterDescription}}</td>
+                  <td>{{employee.nssfNumber}}</td>
+                  <td>{{employee.nhifNumber}}</td>
+                  <td>{{employee.pinNumber}}</td>
                   <td>{{employee.isTerminated==false || employee.isTerminated==null?'ACTIVE':'TERMINATED'}}</td>
                   <td> 
                     <div class="buttons" >
