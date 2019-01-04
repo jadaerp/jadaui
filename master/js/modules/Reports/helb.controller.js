@@ -110,6 +110,7 @@ $http.get(jadaApiUrl+'api/currentperiod').then(function(data) {
 
                 }
             }    
+            
     function download_csv(csv, filename) {
         var csvFile;
         var downloadLink;

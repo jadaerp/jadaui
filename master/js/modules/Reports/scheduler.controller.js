@@ -28,6 +28,7 @@
             });
 
               $scope.getEmployeeFilter=function(employeeTypeFilter){
+
                 if(employeeTypeFilter=="1"){
                     $http.get(jadaApiUrl+'api/employeecategory').success(function(data) {
                     $scope.employeeFilterArray=data;              
@@ -45,6 +46,11 @@
 
                 }else if(employeeTypeFilter=="4"){
                     $http.get(jadaApiUrl+'api/employeegroup').success(function(data) {
+                    $scope.employeeFilterArray=data;              
+                    });
+
+                }else{
+                    $http.get(jadaApiUrl+'api/employee').success(function(data) {
                     $scope.employeeFilterArray=data;              
                     });
 
