@@ -13,13 +13,13 @@
       <div class="input-group-addon">Period</div>
     
            <select name="period" class="slider slider-lg form-control" ng-model="user.period" ng-options="period.id as period.period for period in periods" >
-          <option value="" disabled selected>Periods</option>
+          <option value=""  selected>Periods</option>
     </select>
     </div>
     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
       <div class="input-group-addon">Employee Number</div>
       <select name="employeeNumber" class="slider slider-lg form-control" ng-model="user.employeeNumber" ng-options="employee.id as employee.employeeNumber for employee in employees" >
-          <option value="" disabled selected>Employees</option>
+          <option value=""  selected>Employees</option>
     </select>
     </div>
     <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -110,28 +110,28 @@
                           <th>Lump Sum Payment if any</th>
                           <th>Other Allowance</th>
                           <th >Total Cash Pay(A)</th>
-                          <th>Value of Car Benefit ("Value of Car Benefit")</th>
+                          <th>Value of Car Benefit</th>
                           <th>Other Non Cash Benefits(C)</th>
-                          <th>Total Non Cash Pay (D)=(B+C)(C is greater than 3,000)</th>
+                          <th>Total Non Cash Pay (D)</th>
 
-                           <th>Global Income(In case of non full time service director)(Ksh)(E)</th>
+                           <th>Global Income(Ksh)(E)</th>
                           <th>Type of Housing</th>
                           <th>Rent of House/ Market Value</th>
                           <th>Computed Rent of House(F)</th>
                           <th>Rent Recovered from Employee (G)</th>
-                          <th>Net Value of Housing (Ksh) (H)=(F)-(G)</th>
-                          <th>Total Gross Pay(Ksh) (I)=(A+D+E+H)</th>
-                          <th>30% of Cash Pay (J)=(A)*30%</th>
+                          <th>Net Value of Housing (Ksh) (H)</th>
+                          <th>Total Gross Pay(Ksh) (I)</th>
+                          <th>30% of Cash Pay (J)</th>
                           <th>Actual contribution (K)</th>
                           <th>Permissible Limit (L)</th>
-                          <th>Mortgage Interest (Max 25000 Ksh a month) (M)</th>
-                          <th>Deposit on Home Ownership Saving Plan (Max 48,000 Ksh or 4,000 Ksh a month) (N</th>
-                          <th>Amount of Benefit (O) =(Lower of J,K,L + M or N which ever is higher)</th>
-                          <th>Taxable Pay (Ksh) (P) = (I -O)</th>
-                          <th>Tax Payable (Ksh) (Q) =(P)*Slab Rate</th>
+                          <th>Mortgage Interest (M)</th>
+                          <th>Deposit on Home Ownership Saving Plan  (N)</th>
+                          <th>Amount of Benefit (O) </th>
+                          <th>Taxable Pay (Ksh) (P)</th>
+                          <th>Tax Payable (Ksh) (Q)</th>
                           <th>Monthly Personal Relief(Ksh) ( R ) </th>
-                            <th>Amount of Insurance Relief (Total of "Amount of Insurance Relief" from E_Computation_of_Insu_Relief) (Ksh) (S)</th>
-                          <th>PAYE Tax (Ksh) (T) =(Q - R - S)</th>
+                            <th>Amount of Insurance Relief (Ksh) (S)</th>
+                          <th>PAYE Tax (Ksh) (T)</th>
                           <th>Self Assessed PAYE Tax(Ksh)</th>
                           
                        </tr>
@@ -154,7 +154,7 @@
                           <td>{{paye.valueOfCarBenefit}}</td>
                                <td>{{paye.otherNonCashBenefits}}</td>
                            <td class="disabled">{{paye.totalNonCashPay}}</td>
-                                <td class="disabled">{{paye.totalNonCashPay}}</td>
+                                
                               <td>{{paye.globalIncome}}</td>
                              <td>{{paye.typeOfHousing}}</td>
                                <td class="disabled">{{paye.rentOfHouse}}</td>
@@ -171,7 +171,7 @@
                          <td class="disabled">{{paye.taxablePay}}</td>
                         <td class="disabled">{{paye.taxPayable}}</td>
                           <td class="disabled">{{paye.monthlyPersonalRelief}}</td>
-                        
+                          <td class="disabled">{{paye.amountOfInsuranceRelief}}</td>
                             <td class="disabled">{{paye.payeTax}}</td>
                       
                            <td>{{paye.selfAssessedPAYETax}}</td>
@@ -223,7 +223,7 @@
   
 
 
-  <uib-tab heading="Disabled Employee Details"> <div class=" companydetails"><div class="panel panel-default">
+  <uib-tab heading=" Employee Details"> <div class=" companydetails"><div class="panel panel-default">
            <div class="panel-heading"><h3>Section C: Details of Salary and Benefits Paid and Paye deducted from Persons with Disability
            </h3></div>
            <div class="panel-body " ng-controller="ModalController as  trans">
@@ -234,10 +234,8 @@
                        <tr>
                           <th>PIN of Employee</th>
                           <th>Name of Employee</th>
-
                           <th>Residential Status</th>
                           <th>Type of Employee</th>
-                           <th>Exemption Certificate Number</th>
                           <th>Basic Salary</th>
                           <th>Housing Allowance</th>
                           <th>Transport Allowance</th>
@@ -246,10 +244,8 @@
                           <th>Director's Fee</th>
                           <th>Lump Sum Payment if any</th>
                           <th>Other Allowance</th>
-                          <th>Total Cash Pay(A)</th>
-                          <th>Value of Car Benefit ("Value of Car Benefit" from D_Computation_of_Car_Benefit) 
-                            (B)
-  </th>
+                          <th >Total Cash Pay(A)</th>
+                          <th>Value of Car Benefit ("Value of Car Benefit")</th>
                           <th>Other Non Cash Benefits(C)</th>
                           <th>Total Non Cash Pay (D)=(B+C)(C is greater than 3,000)</th>
 
@@ -258,7 +254,7 @@
                           <th>Rent of House/ Market Value</th>
                           <th>Computed Rent of House(F)</th>
                           <th>Rent Recovered from Employee (G)</th>
-                          <th>Net Vakue of Housing (Ksh) (H)=(F)-(G)</th>
+                          <th>Net Value of Housing (Ksh) (H)=(F)-(G)</th>
                           <th>Total Gross Pay(Ksh) (I)=(A+D+E+H)</th>
                           <th>30% of Cash Pay (J)=(A)*30%</th>
                           <th>Actual contribution (K)</th>
@@ -266,7 +262,6 @@
                           <th>Mortgage Interest (Max 25000 Ksh a month) (M)</th>
                           <th>Deposit on Home Ownership Saving Plan (Max 48,000 Ksh or 4,000 Ksh a month) (N</th>
                           <th>Amount of Benefit (O) =(Lower of J,K,L + M or N which ever is higher)</th>
-                          <th>Exemption for Persons with Disability (Ksh) (P)</th>
                           <th>Taxable Pay (Ksh) (P) = (I -O)</th>
                           <th>Tax Payable (Ksh) (Q) =(P)*Slab Rate</th>
                           <th>Monthly Personal Relief(Ksh) ( R ) </th>
@@ -276,13 +271,12 @@
                           
                        </tr>
                     </thead>
-               <tbody>
+                    <tbody>
                        <tr ng-repeat="paye in payes.payeEmployeeDetailsList">
                           <td >{{paye.employeePin}}</td>
                           <td >{{paye.employeeName}}</td>
                            <td>{{paye.residentailStatus}}</td>
                           <td>{{paye.employeeType}}</td>
-                            <td>{{paye.exemptionCertificateNumber}}</td>
                          <td>{{paye.basicSalary}}</td>
                           <td>{{paye.houseAllowance}}</td>
                                <td>{{paye.transportAllowance}}</td>
@@ -295,7 +289,7 @@
                           <td>{{paye.valueOfCarBenefit}}</td>
                                <td>{{paye.otherNonCashBenefits}}</td>
                            <td class="disabled">{{paye.totalNonCashPay}}</td>
-                                <td class="disabled">{{paye.totalNonCashPay}}</td>
+                                
                               <td>{{paye.globalIncome}}</td>
                              <td>{{paye.typeOfHousing}}</td>
                                <td class="disabled">{{paye.rentOfHouse}}</td>
@@ -309,11 +303,10 @@
                         <td class="disabled">{{paye.mortgageInterest}}</td>
                          <td class="disabled">{{paye.depositOnHomeOwnershipSavingPlan}}</td>
                         <td class="disabled">{{paye.amountOfBenefit}}</td>
-                         <td class="disabled">{{paye.exemptionforPersonswithDisability}}</td>
                          <td class="disabled">{{paye.taxablePay}}</td>
                         <td class="disabled">{{paye.taxPayable}}</td>
                           <td class="disabled">{{paye.monthlyPersonalRelief}}</td>
-                        
+                          <td class="disabled">{{paye.amountOfInsuranceRelief}}</td>
                             <td class="disabled">{{paye.payeTax}}</td>
                       
                            <td>{{paye.selfAssessedPAYETax}}</td>
@@ -321,9 +314,9 @@
                           
                        </tr>
                       <tr>
-                          <td colspan="34" class="disabled"></td>
+                          <td colspan="32"></td>
                          
-                               <td class="disabled"><b>Total</b></td>
+                               <td><b>Total</b></td>
                           <td class="disabled"></td>
                             <td class="disabled"></td>
                          
@@ -337,7 +330,6 @@
                         
                     </tbody>
                 
-                 
                  </table>
                 
 
@@ -1366,7 +1358,7 @@
                     <tbody>
                        <tr>
                           <td>1</td>
-                         <td colspan="5">Total Employees (Total records of B_Employees_Dtls and C_Disabled_Employees_Dtls)
+                         <td colspan="5">Total Employees (Total records of B_Employees_Dtls and C__Employees_Dtls)
                          </td>
                           <td></td>
                                
@@ -1381,7 +1373,7 @@
                          <tr>
                           <td>3</td>
                          <td colspan="5">PAYE Tax deducted from Persons with Disability (Total of "Self Assessed PAYE Tax"
-                          from C_Disabled_Employees_Dtls)
+                          from C__Employees_Dtls)
                          </td>
                           <td></td>
                                
