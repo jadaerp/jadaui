@@ -30,7 +30,7 @@
       <small>Company Totals</small>
    </div> -->
    <div class="panel-body">
-    <div id="tableToExport">
+    <div >
    <div class="row">
      <div class="col-lg-8 col-xs-12 pv">
 
@@ -65,28 +65,31 @@
 <div class="row">
    <div class="col-lg-12">
       
-         <table class="table table-bordered-white   table-bordered-whitecol-lg-6" >
+         <table class="table table-bordered-white   table-bordered-whitecol-lg-6" id="tableToExport">
             <thead>
                <tr><th>PAYROLL NUMBER</th>
-                  <th>EMPLOYEE NAME</th>
-                 <th>NSSF NO</th>
-                  <th>STD AMT</th>
-                  <th>VOL AMT</th>
-                  <th>TOT AMT</th>
+                  <th>SURNAME</th>
+                  <th>OTHER NAMES</th>
                   <th>ID NO</th>
+                  <th>KRA PIN</th>
+                 <th>NSSF NO</th>
+                  <th>GROSS PAY</th>
+                  <th>VOLUNTARY</th>
                </tr>
             </thead>
             <tbody >
                <tr ng-repeat="nssf in nssfs.employeeNSSFReportList
 ">
                   <td >{{nssf.employeeNumber}}</td>
-                  <td >{{nssf.employeeName}}</td>
+                  <td >{{nssf.surName}}</td>
+                  <td>{{nssf.otherNames}}</td>
+                  <td >{{nssf.idNumber}}</td>
+                  <td>{{nssf.pinNumber}}</td>
                    <td >{{nssf.nssfNumber}}</td>
-                  <td >{{nssf.stdAmt}}</td>
+                  <td >{{nssf.grossPay}}</td>
                    
                   <td >{{nssf.volAmt}}</td>
-                  <td >{{nssf.totAmt}}</td>
-                  <td >{{nssf.idNumber}}</td>
+                  
                 
                </tr>
              
