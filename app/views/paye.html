@@ -94,7 +94,7 @@
            <div class="panel-body">
 
   <div class="table-responsive">
-                 <table class="table table-bordered table-hover table-striped largetbl">
+                 <table class="table table-bordered table-hover table-striped largetbl" id="paye-table">
                     <thead>
                        <tr>
                           <th>PIN of Employee</th>
@@ -206,7 +206,7 @@
               </div>
                   <br/>
                <div class="clearfix">
-           <button class="btn btn-success pull-left mr" type="button">Export to CSV</button>
+           <button class="btn btn-success pull-left mr" type="button" ng-click="exportToCSV();">Export to CSV</button>
           
         </div>
               <!-- END table responsive-->
