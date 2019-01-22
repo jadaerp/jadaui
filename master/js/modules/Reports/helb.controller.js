@@ -172,6 +172,7 @@ $http.get(jadaApiUrl+'api/currentperiod').then(function(data) {
                   
                 }
                 
+                
               }
 
               $scope.printDiv = function (div) {

@@ -2,7 +2,7 @@
 // 'http://localhost:56135/');
 
 angular.module('angle').constant('jadaApiUrl',
-'https://inl-jadabackend.azurewebsites.net/');
+'http://-jadabackend.azurewebsites.net/');
 
 // angular.module('angle').constant('jadaApiUrl',
 // 'http://demo-jadabackend.azurewebsites.net/');

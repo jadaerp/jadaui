@@ -146,7 +146,7 @@
                 var html = $( "#paye-table" ).html();
 
                 var today = new Date().toString().replace(/[^\w]/g, '');
-              export_table_to_csv(html, "PAYE RETURN SCHEDULE - "+today+".csv");           
+              export_table_to_csv(html, "PAYE RETURN SCHEDULE - "+today+".txt");           
             }                        
 
 
