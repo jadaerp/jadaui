@@ -133,7 +133,7 @@
         var row = [], cols = rows[i].querySelectorAll("td, th");
         
             for (var j = 0; j < cols.length; j++) 
-                row.push(cols[j].innerText);
+                row.push(""+cols[j].innerText+"");
             
         csv.push(row.join(","));    
       }
@@ -146,7 +146,7 @@
                 var html = $( "#paye-table" ).html();
 
                 var today = new Date().toString().replace(/[^\w]/g, '');
-              export_table_to_csv(html, "PAYE RETURN SCHEDULE - "+today+".txt");           
+              export_table_to_csv(html, "PAYE RETURN SCHEDULE - "+today+".csv");           
             }                        
 
 

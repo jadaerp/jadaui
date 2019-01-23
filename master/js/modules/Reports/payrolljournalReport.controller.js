@@ -174,7 +174,7 @@ $scope.exportTableToCSV=function($table, filename) {
             $scope.exportToCSV=function(){
                 var html = $( "#dvData" ).html();
                 var today = new Date().toString().replace(/[^\w]/g, '');
-              export_table_to_csv(html, "pastel-"+today+".txt");           
+              export_table_to_csv(html, "pastel-"+today+".csv");           
             }                        
 
               $scope.showcurrentperiod=function(id){
@@ -315,10 +315,58 @@ $scope.exportTableToCSV=function($table, filename) {
             $scope.exportToCSV2=function(){
                 var html = $( "#dvData2" ).html();
                 var today = new Date().toString().replace(/[^\w]/g, '');
-              export_table_to_csv2(html, "palladium-"+today+".txt");           
+              export_table_to_csv2(html, "palladium- payroll "+today+".txt");           
             }                        
         
 
+    function download_csv3(csv, filename) {
+        var csvFile;
+        var downloadLink;
+
+        // CSV FILE
+        csvFile = new Blob([csv], {type: "text/csv"});
+
+        // Download link
+        downloadLink = document.createElement("a");
+
+        // File name
+        downloadLink.download = filename;
+
+        // We have to create a link to the file
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+
+        // Make sure that the link is not displayed
+        downloadLink.style.display = "none";
+
+        // Add the link to your DOM
+        document.body.appendChild(downloadLink);
+
+        // Lanzamos
+        downloadLink.click();
+    }
+
+    function export_table_to_csv3(html, filename) {
+      var csv = [];
+      var rows = document.querySelectorAll("#dvData3 table tr");
+      
+        for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll("td, th");
+        
+            for (var j = 0; j < cols.length; j++) 
+                row.push(""+cols[j].innerText+"");
+            
+        csv.push(row.join(","));    
+      }
+
+    // Download CSV
+    download_csv3(csv.join("\n"), filename);
+    }
+
+            $scope.exportToCSV3=function(){
+                var html = $( "#dvData3" ).html();
+                var today = new Date().toString().replace(/[^\w]/g, '');
+              export_table_to_csv3(html, "palladium - journal"+today+".csv");           
+            } 
 
         }
     }

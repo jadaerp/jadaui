@@ -35,8 +35,9 @@
             <button class="btn btn-primary pull-right" uib-dropdown-toggle="">Generate File
             </button>
             <ul class="dropdown-menu animated" role="menu">
-              <li><a href="#" id ="export" role='button' class="btn btn-info pull-left mr" ng-click="exportToCSV();">Pastel</a></li>
-              <li><a href="#" id ="export" role='button' class="btn btn-info pull-left mr" ng-click="exportToCSV2();">Paladium</a></li>
+              <li><a href="#" id ="export" role='button' class="btn" ng-click="exportToCSV();">Pastel</a></li>
+              <li><a href="#" id ="export2" role='button' class="btn" ng-click="exportToCSV2();">Paladium - payroll</a></li>
+              <li><a href="#" id ="export3" role='button' class="btn" ng-click="exportToCSV3();">Paladium - journal</a></li>
 
                </li>
                <!-- <li><a href="#">Another action</a>
@@ -162,13 +163,14 @@
        </div>
    <div   id="dvData2" >
          <table ng-show="false"  >
-           <thead><th>Account Number</th><th>Amount</th></thead>
+           <thead><th>04-30-09</th><th>"7"</th><th>"SALARIES FOR 20090430"</th></thead>
            <tbody id="exportTable">
              <tr ng-repeat="pastelExport in pastelExportData">
 
                  <td >{{pastelExport.accountNumber}}</td>
 
                  <td >{{pastelExport.amount}}</td>
+                 <td></td>
 
 
              </tr>
@@ -176,6 +178,27 @@
 
          </table>
        </div>     
+
+         <div   id="dvData3" >
+         <table ng-show="false"  >
+           <tbody id="exportTable">
+             <tr ng-repeat="palladium in jounalreports.palladiumExportList">
+                  <td>{{palladium.module}}</td>
+                  <td >{{palladium.account}}</td>
+                 <td >{{palladium.description}}</td>
+                 <td >{{palladium.reference}}</td>
+                 <td >{{palladium.lineComment}}</td>
+                 <td >{{palladium.debits}}</td>
+                 
+                 <td >{{palladium.credits}}</td>
+                 <td >{{palladium.glContraAccount}}</td>
+                 <td >{{palladium.taxCode}}</td>
+                 <td >{{palladium.amountExclusive}}</td>
+             </tr>
+           </tbody>
+
+         </table>
+       </div>
              
    </div>
           

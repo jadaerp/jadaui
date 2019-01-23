@@ -131,7 +131,7 @@ vm.val = {
         
             for (var j = 0; j < cols.length; j++) {
               
-                row.push("\""+cols[j].innerText+"\"");
+                row.push(""+cols[j].innerText+"");
     
             }
                
