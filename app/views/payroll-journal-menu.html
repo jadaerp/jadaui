@@ -1,0 +1,88 @@
+<h3>Payroll Journals
+   <small></small>
+</h3>
+<div class="row">
+   <a ui-sref="app.pastel-journals" ><div class="col-lg-4 col-md-12">
+      <div class="panel widget bg-success">
+         <div class="row row-table">
+            <div class="col-xs-4 text-center bg-success-dark pv-lg">
+               <em class="fa fa-file-excel-o fa-3x"></em>
+            </div>
+            <div class="col-xs-8 pv-lg">
+               <div class="h2 m0 text-bold">Pastel</div>
+               <!-- <div class="text-uppercase">Proceeed</div> -->
+            </div>
+         </div>
+      </div>      
+   </div></a>
+   <div class="col-lg-4 col-md-12">
+      <div class="panel widget bg-primary">
+         <div class="row row-table">
+            <div class="col-xs-4 text-center bg-primary-dark pv-lg">
+               <em class="fa fa-file-excel-o fa-3x"></em>
+            </div>
+            <div class="col-xs-8 pv-lg">
+               <div class="h2 m0 text-bold">Palladium</div>
+               <!-- <div class="text-uppercase">Proceeed</div> -->
+            </div>
+         </div>
+      </div>      
+   </div>
+   <div class="col-lg-4 col-md-12">
+      <div class="panel widget bg-danger">
+         <div class="row row-table">
+            <div class="col-xs-4 text-center bg-danger-dark pv-lg">
+               <em class="fa fa-file-excel-o fa-3x"></em>
+            </div>
+            <div class="col-xs-8 pv-lg">
+               <div class="h2 m0 text-bold">Evolution</div>
+               <!-- <div class="text-uppercase">Proceeed</div> -->
+            </div>
+         </div>
+      </div>      
+   </div>
+</div>
+
+
+         <script type="text/ng-template" id="addPCodes.html">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×</button><h4 class="modal-title" id="myMapModalLabel">Add Payroll Code</h4></div>
+            <div class="modal-body"   ng-controller="PayrollCodesController">
+  <form class="form-horizontal"   name="payrollcodeform" novalidate  >
+
+
+             
+
+               <div class="form-group">
+                  <label class="col-lg-3 control-label">Group code
+                   </label>
+                  <div class="col-lg-9">
+                  
+
+                    <select  class="form-control" name="payrollCodeGroup"  ng-model="payrollcodes.payrollCodeGroupId" ng-options="group.id as group.description for group in pgroups" ng-required="true">
+                     <option value="" disabled selected>Payroll Codes Group</option>
+
+                     
+                     </select>
+                     <span class="text-danger" ng-show="payrollcodeform.$submitted &amp;&amp; payrollcodeform.payrollCodeGroup.$error.required">This field is required</span>
+                  </div>
+               </div>
+               
+              
+                     
+              <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                  <button class="btn btn-sm btn-primary mr"  ng-click="payrollcodeform.$valid && submitPayrollCode(payrollcodeform)" >Save and New</button>
+                   <button class="btn btn-sm btn-primary mr"  ng-click="payrollcodeform.$valid && submitPayrollCodeClose(payrollcodes)" >Save and Close</button>
+                   <button class="btn btn-sm btn-warning mr"  type="reset">Reset</button>
+                   </div>
+               </div>
+                 <div class="text-center text-success" margin-top="md" ng-show="SuccessMsg">{{SuccessMsg}}</div>
+             <div class="text-center text-danger"  margin-top="md" ng-show="errorMsg">{{errorMsg}}</div>
+         
+            </form>
+
+           
+        
+</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">Close</button></div>
+
+         </script>

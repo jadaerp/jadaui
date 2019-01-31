@@ -1015,7 +1015,21 @@
              
           })
 
+           .state('app.pastel-journals', {
+              url: '/pastel-journals',
+              title: 'pastel journals',
+                templateUrl: helper.basepath('pastel-journals.html'),
+                 resolve: helper.resolveFor('angular-file-saver','datatables','loaders.css', 'spinkit')
+             
+          })           
 
+           .state('app.payroll-journal-menu', {
+              url: '/payroll-journal-menu',
+              title: 'payroll journals menu',
+                templateUrl: helper.basepath('payroll-journal-menu.html'),
+                 resolve: helper.resolveFor('angular-file-saver','datatables')
+             
+          })
          .state('app.bulktrans_input', {
               url: '/batch_posting',
               title: 'Bulk transaction item input',

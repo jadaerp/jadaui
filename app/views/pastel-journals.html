@@ -1,0 +1,135 @@
+   
+         <h3>Pastel Journal</h3>
+      <!-- START panel-->
+      <div ng-controller="PastelPayrollJournalController">
+        <div class="row">
+          
+           <form class="">
+            <div class="col-lg-4">
+             <div class="input-group " ng-controller="DatepickerDemoCtrl as dpick">
+
+             <div class="input-group-addon">Date * </div>
+
+                     
+                      
+                              <input class="form-control" type="text" name="pastelDate" ng-model="filter.pastelDate" uib-datepicker-popup="{{dpick.format}}" is-open="dpick.opened" min-date="dpick.minDate" max-date="'2019-12-22'" uib-datepicker-options="dpick.dateOptions"
+                              date-disabled="dpick.disabled(date, mode)" close-text="Close" />
+                              <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="dpick.open($event)">
+                                    <em class="fa fa-calendar"></em>
+                                 </button>
+                              </span>
+                           
+                           
+                  
+              </div>              
+            </div>
+            <!-- {{filter.pastelDate}} -->
+            <!-- {{filter.pastelPeriod}} -->
+            <div class="col-lg-4">
+             <div class="input-group ">
+
+             <div class="input-group-addon">Period * </div>
+                          <select  class="form-control" name="pastelPeriod" ng-model="filter.pastelPeriod" ng-options="pastelPeriod.period as pastelPeriod.description for pastelPeriod in pastelPeriodList" >
+    <option value="" disabled selected >Select Period</option>
+
+ 
+  </select>
+              </div>              
+            </div>
+            <div class="col-lg-4">
+                <button  ng-click="filterData(filter)"   class="btn btn-primary">Process</button>
+            </div>
+
+            
+  
+            </form>     
+
+          
+     
+          
+        </div>
+  
+<!-- 
+        <div class="row" >
+   
+
+
+   <div class="col-lg-8">
+
+     <div class="clearfix" ng-controller="DashboardController">
+               <p class="pull-left mr"><b>Period:</b> </p>
+               <p class="pull-left mr">{{dashboard.currentPeriod.month}} {{dashboard.currentPeriod.year}}</p>
+              
+            </div>
+
+
+    
+
+   </div>
+
+
+
+</div> --> 
+<div class="row">
+  <div class="col-lg-12">
+  <div class="panel panel-default whirl helicopter" id="panelDemo15">
+         <div class="panel-heading"></div>
+         <div class="panel-body">
+
+ 
+
+
+          <div>
+
+
+         <div  class="table-responsive"  id="dvData" >
+         <table  class="table table-striped" datatable="ng">
+           <thead><th>Period</th><th>Date</th><th>GDC</th><th>Account Number</th><th>Reference</th><th>Description</th><th>Amount</th><th>Tax Type</th><th>Tax Amount</th><th>Open Item</th><th>Projects Code</th><th>Contra Amount</th><th>Exchange Rate</th><th>Bank Exchange Rate</th><th>Batch ID</th><th>Discount Tax Type</th><th>Discount Amount</th>
+           <th>Home Amount</th></thead>
+           <tbody id="exportTable">
+             <tr ng-repeat="pastelExport in pastelExportData">
+              <td>{{pastelExport.period}}</td>
+              <td >{{pastelExport.date}}</td>
+              <td >{{pastelExport.gdc}}</td>
+              <td >{{pastelExport.accountNumber}}</td>
+              <td >{{pastelExport.reference}}</td>
+              <td >{{pastelExport.description}}</td>
+              <td >{{pastelExport.amount}}</td>
+              <td >{{pastelExport.taxType}}</td>
+              <td >{{pastelExport.taxAmout}}</td>
+              <td >{{pastelExport.openItem}}</td>
+              <td >{{pastelExport.projectCode}}</td>
+              <td >{{pastelExport.contraAmount}}</td>
+              <td >{{pastelExport.exchangeRate}}</td>
+              <td >{{pastelExport.bankExchangeRate}}</td>
+              <td >{{pastelExport.batchId}}</td>
+              <td >{{pastelExport.discountTaxType}}</td>
+              <td >{{pastelExport.discountAmount}}</td>
+              <td >{{pastelExport.homeAmount}}</td>
+              
+              
+
+             </tr>
+           </tbody>
+
+         </table>
+       </div>
+
+<div class="row">
+   <div class="col-lg-4">
+      <!-- START box placeholder-->
+      
+         <!-- START button group-->
+         <div class="btn-group" uib-dropdown="dropdown">
+            <a href="#" id ="export" role='button' class="btn btn-primary" ng-click="exportToCSV();">Export
+            </a>
+
+         </div>
+         <!-- END button group-->
+      
+      <!-- END box placeholder-->
+   </div>    
+</div>
+      
+</div>      

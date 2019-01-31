@@ -5,10 +5,10 @@
 
     angular
         .module('app.reports')
-        .controller('PayrollJournalReportController', PayrollJournalReportController);
+        .controller('PastelPayrollJournalController', PastelPayrollJournalController);
 
-    PayrollJournalReportController.$inject = ['$scope','$http','$resource','jadaApiUrl','PayrollLedgerReportService','FileSaver','Blob'];
-    function PayrollJournalReportController($scope,$http,$resource,jadaApiUrl,PayrollLedgerReportService,FileSaver,Blob) {
+    PastelPayrollJournalController.$inject = ['$scope','$http','$resource','jadaApiUrl','PastelPayrollJournalService','FileSaver','Blob'];
+    function PastelPayrollJournalController($scope,$http,$resource,jadaApiUrl,PastelPayrollJournalService,FileSaver,Blob) {
         var vm = this;
 
         activate();
@@ -16,37 +16,38 @@
         ////////////////
 
         function activate() {
+            $scope.pastelPeriodList=[];
+            $scope.pastelPeriodList=[{'period':'1','description':'ONE'},{'period':'2','description':'TWO'},{'period':'3','description':'THREE'},{'period':'4','description':'FOUR'},{'period':'5','description':'FIVE'},{'period':'6','description':'SIX'},{'period':'7','description':'SEVEN'},{'period':'8','description':'EIGHT'},{'period':'9','description':'NINE'},{'period':'10','description':'TEN'},{'period':'11','description':'EVELEN'},{'period':'12','description':'TWELVE'}];
+             
+// $http.get(jadaApiUrl+'api/payrollledgerreport/0').then(function(data) {
+//     console.log(data);
+//            $scope.jounalreports=data.data;
 
-
-$http.get(jadaApiUrl+'api/payrollledgerreport/0').then(function(data) {
-    $("#panelDemo15").removeClass(" whirl helicopter");
-    console.log(data);
-           $scope.jounalreports=data.data;
 
 
  
-     },function(data){
-        $("#panelDemo15").removeClass(" whirl helicopter");
-     });
+//      });
      console.log($scope.jounalreports)
-$http.get(jadaApiUrl+'api/pastelexport').then(function(data) {
-    
-           $scope.pastelExportData=data.data;
+// $http.get(jadaApiUrl+'api/pastelpayrolljournal/').then(function(data) {
+//      $("#panelDemo15").removeClass('whirl helicopter');
+//            $scope.pastelExportData=data.data;
           
 
  
-     });            
-
-            $scope.filterData=function(filter){
-                var filterType=filter.filterType;
-$http.get(jadaApiUrl+'api/payrollledgerreport/'+filterType).then(function(data) {
-    console.log(data);
-           $scope.jounalreports=data.data;
-
-
- 
-     });
-            }
+//      });          
+$scope.filter=new PastelPayrollJournalService();  
+     $("#panelDemo15").removeClass('whirl helicopter');
+            $scope.filterData=function(){
+                     $("#panelDemo15").addClass('whirl helicopter');
+                     
+                     $scope.filter.$save().then(function(data){
+                        $("#panelDemo15").removeClass('whirl helicopter');
+                        $scope.pastelExportData=data.pastelExportList;
+                        console.log(pastelExportData);
+                     },function(data){
+                         $("#panelDemo15").removeClass('whirl helicopter');
+                     });
+    }
 
   $scope.download = function(table) {
     // var data = new Blob([text], { type: 'text/plain;charset=utf-8' });
