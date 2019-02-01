@@ -1,27 +1,34 @@
-
 <h3>Payslip</h3>
 
 <div  ng-controller="PayslipController" >
    
        
-
-   <div class="col-lg-12" style="float:left;">
+<div class="row"> 
+   <div class="col-lg-12">
       <form class="form-inline">
+
   <div class="input-group mb-2 mr-sm-2 mb-sm-0">
     <div class="input-group-addon">Period</div>
   
-         <select name="period" class="slider slider-lg form-control" ng-model="user.period" ng-options="period.id as period.period+' - '+period.monthDescription+' '+peiod.year for period in periods"  >
+         <select name="period" class="slider slider-lg form-control" ng-model="user.period" ng-options="period.id as period.period+' - '+period.monthDescription+' '+period.year for period in periods"  >
         <option value="" disabled selected>Periods</option>
   </select>
-  </div>
+  </div>  
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Pay Point</div>
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="user.payPoint" ng-options="payPoint.id as payPoint.code+' - '+payPoint.description for payPoint in payPointList"  >
+        <option value="" disabled selected>Select Pay Point</option>
+  </select>
+  </div>  
   <div class="input-group mb-2 mr-sm-2 mb-sm-0">
     <div class="input-group-addon">Employee Number</div>
-    <select name="employeeNumber" class="slider slider-lg form-control" ng-model="user.employeeNumber" ng-options="employee.id as employee.employeeNumber for employee in employees" >
+    <select name="employeeNumber" class="slider slider-lg form-control" ng-model="user.employeeNumber" ng-options="employee.id as employee.employeeNumber+' '+employee.firstName+' '+employee.middleName+' '+employee.lastName for employee in employees" >
         <option value="" disabled selected>All Employees</option>
   </select>
   </div>
   <button type="submit" ng-click="searchPayslip(user)" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
-<div class="col-lg-2 text-right" style="float: right;" ng-show="persons.length" >
+<!-- <div class="col-lg-2 text-right" style="float: right;" ng-show="persons.length" >
                
   <button type="button" class="btn btn-primary" ng-disabled="curPage == 0"
  ng-click="curPage=curPage-1"> Previous</button>
@@ -32,26 +39,34 @@
  ng-click="curPage = curPage+1">Next</button>
 
             
-             </div>
+             </div> -->
 
 </form>
   
    </div>
- 
+ </div>
 
 
-<br/>
-<br/>
 <div>
-    
-
-
-
-   <div >
+  
+    <div class="row">
+    <div class="col-md-12 clearfix" >
+      <!-- START panel-->
+      <div id="progress-panel" class="panel panel-default">
+         <div class="panel-heading" id="please-wait">Please Wait</div>
+         <div class="panel-body" >
+            <p id="wait-message">Fetching all payslips for the current period. might take a few minutes. please be patient.......</p>
+<div class="clearfix">
+           
+      
+           <button class="btn btn-info pull-left mr" type="button" ng-click="printDiv('printable');"">Print Payslip(s)</button>
+     
+        </div>
+   <div    id="printable">
 
       <!-- START widget-->
-      <div ng-repeat="payslip in persons| pagination: curPage * pageSize | limitTo: pageSize">
-         <div   id="printable" style="background-color:#fff; padding:20px;">
+      <div  class="print-single-page"  ng-repeat="payslip in persons" >
+         <div style="background-color:#fff; padding:20px;">
 
         <table style="background-color:#fff; margin:auto;">
 
@@ -283,16 +298,19 @@
 
  
 
-<div class="clearfix">
-           
-      
-           <button class="btn btn-info pull-left mr" type="button" ng-click="printDiv('printable');"">Print</button>
-     
-        </div>
+
       </div>
          </div>
          
       </div>
+
+         </div>
+      </div>
+      <!-- END panel-->
+   </div>
+     
+    </div>
+
 
        
       <!-- END widget-->

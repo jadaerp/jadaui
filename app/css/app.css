@@ -11214,6 +11214,7 @@ body .jvectormap-zoomout {
    Component: print.less
  ========================================================================== */
 @media print {
+  .print-single-page { page-break-after: always; }
   .sidebar,
   .topnavbar,
   .offsidebar,

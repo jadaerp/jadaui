@@ -16,10 +16,15 @@
         ////////////////
 
         function activate() {
+$http.get(jadaApiUrl+'api/paypoint').then(function(data) {
+  $scope.payPointList=data.data;
+  console.log($scope.payPointList);
+});
 
 $scope.getp=function(){
 
 return $http.get(jadaApiUrl+'api/currentperiod').then(function(data) {
+    $("#progress-panel").find(".panel-body").addClass(" whirl helicopter");
           $scope.searchpayslipByperiod(data.data.id);  
          
           return data.data.id;
@@ -27,6 +32,7 @@ return $http.get(jadaApiUrl+'api/currentperiod').then(function(data) {
       
   
             });
+
 
 
 
@@ -62,6 +68,9 @@ $scope.searchpayslipByperiod=function(id){
               $scope.message='helllo period';
                  console.log('helllo period');
               console.log($scope.persons);
+              $("#progress-panel").find(".panel-body").removeClass(" whirl helicopter");
+              $("#please-wait").html("");
+              $("#wait-message").html("");
              
      $scope.numberOfPages = function() {
         return Math.ceil($scope.persons.length / $scope.pageSize);
@@ -81,16 +90,77 @@ $scope.searchpayslipByperiod=function(id){
 
          $scope.searchPayslip=function(user) {
  // $scope.persons= null;
-          if(user.period!=null && user.period!=""){
+          if(user.period!=null && user.period!="" &&( user.payPoint=="" || user.payPoint==null )){
     
            var employeeId=user.employeeNumber;
            var period=user.period;
 
  $scope.curPage = 0;
  $scope.pageSize = 1;
-     
+     $("#progress-panel").find(".panel-body").addClass(" whirl helicopter");
+              $("#please-wait").html("please wait");
+              $("#wait-message").html("fetching single employee payslip");
+
           $http.get(jadaApiUrl+'api/payslipreport//'+period+'/'+employeeId).success(function(data) {
                 $scope.persons= data;
+              $("#progress-panel").find(".panel-body").removeClass(" whirl helicopter");
+              $("#please-wait").html("");
+              $("#wait-message").html("");
+
+
+
+
+         $scope.numberOfPages = function() {
+        return Math.ceil($scope.persons.length / $scope.pageSize);
+      };
+
+
+            });
+
+          }else if(user.period!=null && user.period!="" &&( user.payPoint!="" || user.payPoint!=null )){
+    
+           
+           var period=user.period;
+           var payPointId=user.payPoint;
+
+ $scope.curPage = 0;
+ $scope.pageSize = 1;
+     $("#progress-panel").find(".panel-body").addClass(" whirl helicopter");
+              $("#please-wait").html("please wait");
+              $("#wait-message").html("fetching payslip from selected paypoint");
+
+          $http.get(jadaApiUrl+'api/payslipreportbypaypoint//'+period+'/'+payPointId).success(function(data) {
+                $scope.persons= data;
+              $("#progress-panel").find(".panel-body").removeClass(" whirl helicopter");
+              $("#please-wait").html("");
+              $("#wait-message").html("");
+
+
+
+
+         $scope.numberOfPages = function() {
+        return Math.ceil($scope.persons.length / $scope.pageSize);
+      };
+
+
+            });
+
+          }else if(user.period!=null && user.period!="" && ( user.payPoint=="" || user.payPoint==null ) && (user.employee==null || user.employee=="") ){
+    
+           var employeeId=user.employeeNumber;
+           var period=user.period;
+
+ $scope.curPage = 0;
+ $scope.pageSize = 1;
+     $("#progress-panel").find(".panel-body").addClass(" whirl helicopter");
+              $("#please-wait").html("please wait");
+              $("#wait-message").html("fetching single employee payslip");
+
+          $http.get(jadaApiUrl+'api/payslipreport//'+period+'/'+employeeId).success(function(data) {
+                $scope.persons= data;
+              $("#progress-panel").find(".panel-body").removeClass(" whirl helicopter");
+              $("#please-wait").html("");
+              $("#wait-message").html("");
 
 
 
@@ -103,6 +173,8 @@ $scope.searchpayslipByperiod=function(id){
             });
 
           }
+          
+          
           
 
          };
