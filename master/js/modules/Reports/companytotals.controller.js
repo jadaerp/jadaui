@@ -23,10 +23,10 @@
           //   $scope.companytotals=CompanyTotalsService.get({periodId:period});
 
           // }
-
+          $("#progress-panel").removeClass("whirl helicopter");
 
            $scope.getByperiod=function(ctotal){
-               
+               $("#progress-panel").addClass("whirl helicopter");
              var periodId=ctotal.period==null?"0":ctotal.period;
              var departmentId=ctotal.department==null?"0":ctotal.department;
           
@@ -36,6 +36,7 @@
              
                $http.get(jadaApiUrl+'api/CompanyTotalsReport/'+periodId+'/'+departmentId+'/'+employeeGroupId+'/'+employeeCategoryId+'/'+payPointId).success(function(data){
              $scope.companytotals=data;
+             $("#progress-panel").removeClass("whirl helicopter");
              
 console.log($scope.companytotals);
             });
