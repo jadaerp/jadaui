@@ -32,8 +32,9 @@
           
              var employeeCategoryId=ctotal.category==null?"0":ctotal.category;
              var employeeGroupId=ctotal.group==null?"0":ctotal.group;
+             var payPointId=ctotal.payPoint==null?"0":ctotal.payPoint;
              
-               $http.get(jadaApiUrl+'api/CompanyTotalsReport/'+periodId+'/'+departmentId+'/'+employeeGroupId+'/'+employeeCategoryId).success(function(data){
+               $http.get(jadaApiUrl+'api/CompanyTotalsReport/'+periodId+'/'+departmentId+'/'+employeeGroupId+'/'+employeeCategoryId+'/'+payPointId).success(function(data){
              $scope.companytotals=data;
              
 console.log($scope.companytotals);
@@ -56,6 +57,11 @@ console.log($scope.companytotals);
 
             });
 
+    
+              $http.get(jadaApiUrl+'api/paypoint').success(function(data) {
+              $scope.payPointList = data;
+
+            });
 
 $http.get(jadaApiUrl+'api/currentperiod').then(function(data) {
         var period=0;

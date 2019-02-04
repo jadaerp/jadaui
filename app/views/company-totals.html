@@ -37,7 +37,13 @@
   </select>
   </div>
 
-
+<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon">Pay Point</div>
+  
+         <select name="period" class="slider slider-lg form-control" ng-model="ctotal.payPoint" ng-options="payPoint.id as payPoint.description for payPoint in payPointList" ng-change="getByperiod(ctotal)" >
+        <option value=""  selected>All Pay Points</option>
+  </select>
+  </div>
   <br/>
    <br/>
     <div class="col-lg-8">
